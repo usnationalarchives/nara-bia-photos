@@ -1,11 +1,8 @@
 import React from "react";
+import CrossfilterTest from "./components/CrossfilterTest";
 
 function App() {
-  return (
-    <div>
-      <p>Hello World</p>
-    </div>
-  );
+  return <CrossfilterTest />;
 }
 
 export default App;
