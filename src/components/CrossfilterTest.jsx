@@ -54,7 +54,7 @@ const CrossfilterTest = () => {
   // reset the page to 1 when a filter changes
   useEffect(() => {
     setPage(1);
-  }, [creatingOrg, location]);
+  }, [creatingOrg, location, parentSeriesTitle]);
 
   return (
     <div style={{ padding: "20px" }}>
