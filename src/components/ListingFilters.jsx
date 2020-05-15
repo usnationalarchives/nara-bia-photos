@@ -20,6 +20,21 @@ const ListingFilters = ({ actions, data }) => {
       </div>
 
       <div style={{ marginBottom: "20px" }}>
+        <label htmlFor="parentSeriesTitle">Parent Series</label>
+        <br />
+        <select
+          onChange={(event) => actions.setParentSeriesTitle(event.target.value)}
+        >
+          <option value="">Select Parent Series</option>
+          {data.parentSeriesTitles.map((org, i) => (
+            <option key={i} value={org.key}>
+              {org.key}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div style={{ marginBottom: "20px" }}>
         <label htmlFor="creatingOrg">Location</label>
         <br />
         <select onChange={(event) => actions.setLocation(event.target.value)}>

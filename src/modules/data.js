@@ -19,12 +19,17 @@ const recordsByParentSeriesNaId = records.dimension((d) => {
   return d.parentSeriesNaid;
 });
 
+const recordsByParentSeriesTitle = records.dimension((d) => {
+  return d.parentSeriesTitle;
+});
+
 const recordsByCreatingOrg = records.dimension((d) => {
   return d.creatingOrg;
 });
 
 const creatingOrgs = recordsByCreatingOrg.group().all();
 const locations = recordsByLocation.group().all();
+const parentSeriesTitles = recordsByParentSeriesTitle.group().all();
 
 export {
   records,
@@ -32,7 +37,9 @@ export {
   recordsByLocation,
   recordsByTitle,
   recordsByParentSeriesNaId,
+  recordsByParentSeriesTitle,
   recordsByCreatingOrg,
   creatingOrgs,
   locations,
+  parentSeriesTitles,
 };

@@ -15,9 +15,11 @@ import {
   recordsByLocation,
   recordsByTitle,
   recordsByParentSeriesNaId,
+  recordsByParentSeriesTitle,
   recordsByCreatingOrg,
   creatingOrgs,
   locations,
+  parentSeriesTitles,
 } from "../modules/data";
 
 const totalRecords = records.size();
@@ -26,11 +28,17 @@ const CrossfilterTest = () => {
   const [page, setPage] = useState(1);
   const [creatingOrg, setCreatingOrg] = useState("");
   const [location, setLocation] = useState("");
+  const [parentSeriesTitle, setParentSeriesTitle] = useState("");
 
   // If there is a creating org, filter by it. otherwise, dispose of any existing filters
   creatingOrg
     ? recordsByCreatingOrg.filter(creatingOrg)
     : recordsByCreatingOrg.dispose();
+
+  // If there is a parent series, filter by it. otherwise, dispose of any existing filters
+  parentSeriesTitle
+    ? recordsByParentSeriesTitle.filter(parentSeriesTitle)
+    : recordsByParentSeriesTitle.dispose();
 
   // If there is a location, filter by it. otherwise, dispose of any existing filters
   location ? recordsByLocation.filter(location) : recordsByLocation.dispose();
@@ -53,8 +61,8 @@ const CrossfilterTest = () => {
       <p style={{ marginBottom: "20px" }}>{totalRecords} Total Records</p>
 
       <ListingFilters
-        actions={{ setLocation, setCreatingOrg }}
-        data={{ locations, creatingOrgs }}
+        actions={{ setLocation, setCreatingOrg, setParentSeriesTitle }}
+        data={{ locations, creatingOrgs, parentSeriesTitles }}
       />
 
       <h1 style={{ marginBottom: "20px" }}>
