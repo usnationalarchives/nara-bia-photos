@@ -11,11 +11,11 @@ import Record from "./Record";
 
 import {
   records,
-  recordsByNaId,
-  recordsByLocation,
-  recordsByTitle,
-  recordsByParentSeriesNaId,
+  // recordsByNaId,
+  // recordsByTitle,
+  // recordsByParentSeriesNaId,
   recordsByParentSeriesTitle,
+  recordsByLocation,
   recordsByCreatingOrg,
   creatingOrgs,
   locations,
