@@ -39,7 +39,7 @@ const Record = ({ record }) => {
       <dt>
         <b>Thumbnail:</b>
       </dt>
-      <dd style={{ marginBottom: "4px" }}>
+      <dd>
         <img src={record.thumbnailUrl} alt="" aria-hidden="true" />
       </dd>
     </dl>
