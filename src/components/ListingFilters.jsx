@@ -1,7 +1,9 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
-const ListingFilters = ({ actions, data }) => {
+import { creatingOrgs, locations, parentSeriesTitles } from "../modules/data";
+
+const ListingFilters = ({ actions }) => {
   return (
     <Fragment>
       <div style={{ marginBottom: "20px" }}>
@@ -11,7 +13,7 @@ const ListingFilters = ({ actions, data }) => {
           onChange={(event) => actions.setCreatingOrg(event.target.value)}
         >
           <option value="">Select Organization</option>
-          {data.creatingOrgs.map((org, i) => (
+          {creatingOrgs.map((org, i) => (
             <option key={i} value={org.key}>
               {org.key}
             </option>
@@ -26,7 +28,7 @@ const ListingFilters = ({ actions, data }) => {
           onChange={(event) => actions.setParentSeriesTitle(event.target.value)}
         >
           <option value="">Select Parent Series</option>
-          {data.parentSeriesTitles.map((org, i) => (
+          {parentSeriesTitles.map((org, i) => (
             <option key={i} value={org.key}>
               {org.key}
             </option>
@@ -39,7 +41,7 @@ const ListingFilters = ({ actions, data }) => {
         <br />
         <select onChange={(event) => actions.setLocation(event.target.value)}>
           <option value="">Select Location</option>
-          {data.locations.map((org, i) => (
+          {locations.map((org, i) => (
             <option key={i} value={org.key}>
               {org.key}
             </option>
