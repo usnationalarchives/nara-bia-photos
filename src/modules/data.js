@@ -1,7 +1,19 @@
 import crossfilter from "crossfilter2";
+import elasticlunr from "elasticlunr";
+
 import data from "../data/records.csv";
 
 const records = crossfilter(data);
+
+const index = elasticlunr(function () {
+  this.setRef("naId");
+  this.addField("title");
+  this.addField("parentSeriesTitle");
+  this.addField("creatingOrg");
+});
+data.forEach((doc) => {
+  index.addDoc(doc);
+}, this);
 
 const recordsByNaId = records.dimension((d) => {
   return d.naId;
@@ -33,6 +45,7 @@ const parentSeriesTitles = recordsByParentSeriesTitle.group().all();
 
 export {
   records,
+  index,
   recordsByNaId,
   recordsByLocation,
   recordsByTitle,

@@ -5,13 +5,15 @@ import React, { useState, useEffect } from "react";
 import paginator from "../modules/paginator";
 
 // components
+import Search from "./Search";
 import ListingFilters from "./ListingFilters";
 import Pagination from "./Pagination";
 import Record from "./Record";
 
 import {
   records,
-  // recordsByNaId,
+  index,
+  recordsByNaId,
   // recordsByTitle,
   // recordsByParentSeriesNaId,
   recordsByParentSeriesTitle,
@@ -26,6 +28,7 @@ const totalRecords = records.size();
 
 const CrossfilterTest = () => {
   const [page, setPage] = useState(1);
+  const [query, setQuery] = useState("");
   const [creatingOrg, setCreatingOrg] = useState("");
   const [location, setLocation] = useState("");
   const [parentSeriesTitle, setParentSeriesTitle] = useState("");
@@ -43,6 +46,19 @@ const CrossfilterTest = () => {
   // If there is a location, filter by it. otherwise, dispose of any existing filters
   location ? recordsByLocation.filter(location) : recordsByLocation.dispose();
 
+  if (query) {
+    const searchResults = index.search(query);
+    const searchResultNaIds = searchResults.map((result) =>
+      parseInt(result.ref)
+    );
+
+    recordsByNaId.filterFunction((d) => {
+      return searchResultNaIds.includes(d);
+    });
+  } else {
+    recordsByNaId.dispose();
+  }
+
   const filteredResults = records.allFiltered();
   const results = paginator(filteredResults, page, 30);
 
@@ -54,11 +70,13 @@ const CrossfilterTest = () => {
   // reset the page to 1 when a filter changes
   useEffect(() => {
     setPage(1);
-  }, [creatingOrg, location, parentSeriesTitle]);
+  }, [creatingOrg, location, parentSeriesTitle, query]);
 
   return (
     <div style={{ padding: "20px" }}>
       <p style={{ marginBottom: "20px" }}>{totalRecords} Total Records</p>
+
+      <Search setQuery={setQuery} />
 
       <ListingFilters
         actions={{ setLocation, setCreatingOrg, setParentSeriesTitle }}
@@ -76,8 +94,8 @@ const CrossfilterTest = () => {
         results={results}
       />
 
-      {results.data.map((record, i) => (
-        <Record key={i} record={record} />
+      {results.data.map((record) => (
+        <Record key={record.naId} record={record} />
       ))}
 
       <Pagination
