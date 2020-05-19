@@ -1,30 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Pagination = ({ page, setPage, results, style }) => {
-  const prev = () => {
-    setPage(page - 1);
-  };
-
-  const next = () => {
-    setPage(page + 1);
-  };
-
+const Pagination = ({
+  page,
+  prevHandler,
+  nextHandler,
+  prevPage,
+  nextPage,
+  perPage,
+  total,
+  totalPages,
+}) => {
   return (
-    <div style={style}>
+    <div>
       <p style={{ marginBottom: "20px" }}>
-        Page {page} of {results.total_pages}
+        Page {page} of {totalPages}
       </p>
       <button
-        onClick={prev}
-        disabled={page === 1}
+        onClick={prevHandler}
+        disabled={!prevPage}
         style={{ marginRight: "10px", padding: "4px 8px" }}
       >
         Previous
       </button>
       <button
-        onClick={next}
-        disabled={page === results.total_pages || results.total_pages === 0}
+        onClick={nextHandler}
+        disabled={!nextPage}
         style={{ padding: "4px 8px" }}
       >
         Next
@@ -35,8 +36,13 @@ const Pagination = ({ page, setPage, results, style }) => {
 
 Pagination.propTypes = {
   page: PropTypes.number.isRequired,
-  setPage: PropTypes.func.isRequired,
-  results: PropTypes.object.isRequired,
+  prevHandler: PropTypes.func.isRequired,
+  nextHandler: PropTypes.func.isRequired,
+  prevPage: PropTypes.number,
+  nextPage: PropTypes.number,
+  perPage: PropTypes.number,
+  total: PropTypes.number,
+  totalPages: PropTypes.number,
 };
 
 export default Pagination;

@@ -1,9 +1,6 @@
 // libraries
 import React, { useState, useEffect } from "react";
 
-// modules
-import paginator from "../modules/paginator";
-
 // components
 import Search from "./Search";
 import ListingFilters from "./ListingFilters";
@@ -11,22 +8,36 @@ import Pagination from "./Pagination";
 import Record from "./Record";
 
 import useRecords from "../hooks/useRecords";
+import usePagination from "../hooks/usePagination";
 
 const CrossfilterTest = () => {
-  const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
   const [creatingOrg, setCreatingOrg] = useState("");
   const [location, setLocation] = useState("");
   const [parentSeriesTitle, setParentSeriesTitle] = useState("");
 
-  const [allRecords, filteredRecords] = useRecords(
-    {
+  const { results, totalCount } = useRecords({
+    facets: {
       location: location,
       creatingOrg: creatingOrg,
       parentSeriesTitle: parentSeriesTitle,
     },
-    query
-  );
+    query: query,
+  });
+
+  const {
+    page,
+    setPage,
+    prevPage,
+    nextPage,
+    prevHandler,
+    nextHandler,
+    totalPages,
+    data,
+  } = usePagination({
+    items: results,
+    perPage: 30,
+  });
 
   // Scroll to the top of the document when the page changes
   useEffect(() => {
@@ -36,13 +47,27 @@ const CrossfilterTest = () => {
   // reset the page to 1 when a filter changes
   useEffect(() => {
     setPage(1);
-  }, [creatingOrg, location, parentSeriesTitle, query]);
+  }, [setPage, creatingOrg, location, parentSeriesTitle, query]);
 
-  const results = paginator(filteredRecords, page, 30);
+  const TestPager = () => {
+    return (
+      <div style={{ marginBottom: "20px" }}>
+        <Pagination
+          style={{ marginBottom: "20px" }}
+          page={page}
+          prevPage={prevPage}
+          nextPage={nextPage}
+          prevHandler={prevHandler}
+          nextHandler={nextHandler}
+          totalPages={totalPages}
+        />
+      </div>
+    );
+  };
 
   return (
     <div style={{ padding: "20px" }}>
-      <p style={{ marginBottom: "20px" }}>{allRecords.size()} Total Records</p>
+      <p style={{ marginBottom: "20px" }}>{totalCount} Total Records</p>
 
       <Search setQuery={setQuery} />
 
@@ -51,26 +76,16 @@ const CrossfilterTest = () => {
       />
 
       <h1 style={{ marginBottom: "20px" }}>
-        {filteredRecords.length} result{filteredRecords.length !== 1 && "s"}
+        {results.length} result{results.length !== 1 && "s"}
       </h1>
 
-      <Pagination
-        style={{ marginBottom: "20px" }}
-        page={page}
-        setPage={setPage}
-        results={results}
-      />
+      <TestPager />
 
-      {results.data.map((record) => (
+      {data.map((record) => (
         <Record key={record.naId} record={record} />
       ))}
 
-      <Pagination
-        style={{ marginBottom: "20px" }}
-        page={page}
-        setPage={setPage}
-        results={results}
-      />
+      <TestPager />
     </div>
   );
 };

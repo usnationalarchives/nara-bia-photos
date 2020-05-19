@@ -1,9 +1,11 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
-import { creatingOrgs, locations, parentSeriesTitles } from "../modules/data";
+import { groups } from "../modules/data";
 
 const ListingFilters = ({ actions }) => {
+  const { creatingOrgs, locations, parentSeriesTitles } = groups;
+
   return (
     <Fragment>
       <div style={{ marginBottom: "20px" }}>
@@ -54,7 +56,6 @@ const ListingFilters = ({ actions }) => {
 
 ListingFilters.propTypes = {
   actions: PropTypes.object.isRequired,
-  data: PropTypes.object.isRequired,
 };
 
 export default ListingFilters;

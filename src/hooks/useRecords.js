@@ -1,50 +1,46 @@
-import {
-  records,
-  index,
-  recordsByNaId,
-  recordsByParentSeriesTitle,
-  recordsByLocation,
-  recordsByCreatingOrg,
-} from "../modules/data";
+import { useState, useEffect } from "react";
 
-const useRecords = (facets = {}, query = null) => {
-  if (query) {
-    const searchResults = index.search(query);
-    const searchResultNaIds = searchResults.map((result) =>
-      parseInt(result.ref)
-    );
+import { records, dimensions, actions } from "../modules/data";
 
-    recordsByNaId.filterFunction((d) => {
-      return searchResultNaIds.includes(d);
-    });
-  } else {
-    recordsByNaId.dispose();
-  }
+const useRecords = (options = {}) => {
+  const serializedOptions = JSON.stringify(options);
 
-  // If there is a creating org, filter by it. otherwise, dispose of any existing filters
-  facets.creatingOrg
-    ? recordsByCreatingOrg.filter(facets.creatingOrg)
-    : recordsByCreatingOrg.dispose();
+  const [results, setResults] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
 
-  // If there is a parent series, filter by it. otherwise, dispose of any existing filters
-  facets.parentSeriesTitle
-    ? recordsByParentSeriesTitle.filter(facets.parentSeriesTitle)
-    : recordsByParentSeriesTitle.dispose();
+  const { facets, query } = options;
+  const { search, filterByValue, filterByValues } = actions;
+  const {
+    recordsByCreatingOrg,
+    recordsByParentSeriesTitle,
+    recordsByLocation,
+    recordsByNaId,
+  } = dimensions;
 
-  // If there is a location, filter by it. otherwise, dispose of any existing filters
-  facets.location
-    ? recordsByLocation.filter(facets.location)
-    : recordsByLocation.dispose();
+  useEffect(() => {
+    if (facets) {
+      // Apply filters from incoming facets
+      filterByValue(recordsByCreatingOrg, facets.creatingOrg);
+      filterByValue(recordsByParentSeriesTitle, facets.parentSeriesTitle);
+      filterByValue(recordsByLocation, facets.location);
+      filterByValues(recordsByNaId, facets.naIds);
+    }
 
-  if (facets.naIds) {
-    recordsByNaId.filterFunction((d) => {
-      return facets.naIds.includes(d);
-    });
-  }
+    if (query) {
+      // Apply Full Text Search
+      search(query);
+    }
 
-  const filteredRecords = records.allFiltered();
+    // Get the filtered records
+    setResults(records.allFiltered());
+    setTotalCount(records.size());
 
-  return [records, filteredRecords];
+    // We are only looking for changes to the serialized options string to re-run.
+    // Ignore other dependencies
+    // eslint-disable-next-line
+  }, [serializedOptions]);
+
+  return { results, totalCount };
 };
 
 export default useRecords;
