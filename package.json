@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^7.2.1",
     "@typescript-eslint/eslint-plugin": "^2.10.0",
     "@typescript-eslint/parser": "^2.10.0",
+    "axios": "^0.19.2",
     "babel-eslint": "10.1.0",
     "babel-jest": "^24.9.0",
     "babel-loader": "8.1.0",
@@ -22,6 +23,7 @@
     "crossfilter2": "^1.5.2",
     "css-loader": "3.4.2",
     "csv-loader": "^3.0.3",
+    "csv-writer": "^1.6.0",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
     "elasticlunr": "^0.9.5",
@@ -73,7 +75,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "seed": "node scripts/seed.js"
+    "seed": "node scripts/seed/seed.js"
   },
   "eslintConfig": {
     "extends": "react-app"
