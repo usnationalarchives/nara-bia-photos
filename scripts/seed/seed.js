@@ -1,37 +1,28 @@
-const axios = require("axios");
 const csv = require("./csv");
+const api = require("./api");
 
 const createCsv = async () => {
-  const apiUrl = "https://catalog.archives.gov/api/v1",
-    params = {
-      "description.item.parentSeries.parentRecordGroup.naId": 404,
-      "description.item.generalRecordsTypeArray.generalRecordsType.naId": 10035674,
-      exists: "objects",
-      resultTypes: "item",
-      rows: 5000,
-      sort: "naId asc",
-    };
-
+  // Set the initial cursorMark
   let nextCursorMark = "*";
 
   do {
-    console.log(`Fetching with cursor mark: ${nextCursorMark}`);
+    let response;
 
-    await axios
-      .get(apiUrl, {
-        params: { cursorMark: nextCursorMark, ...params },
-      })
-      .then((response) => {
-        const apiResults = response.data.opaResponse.results.result,
-          rows = csv.mapRows(apiResults),
-          append = nextCursorMark !== "*";
+    try {
+      // fetch a page of results from the api
+      response = await api.fetchPage({ cursorMark: nextCursorMark });
+    } catch (error) {
+      console.log(error);
+    }
 
-        csv.writer({ append: append }).writeRecords(rows);
-        nextCursorMark = response.data.opaResponse.results.nextCursorMark;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (response) {
+      const apiResults = response.data.opaResponse.results.result, // pull out results from the response
+        rows = csv.mapRows(apiResults), // map the results to CSV rows
+        append = nextCursorMark !== "*"; // append unless this is the first page
+
+      csv.writer({ append: append }).writeRecords(rows); // write out to the csv
+      nextCursorMark = response.data.opaResponse.results.nextCursorMark; // update the cursor mark
+    }
   } while (typeof nextCursorMark !== "undefined");
 };
 

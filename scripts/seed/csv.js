@@ -1,20 +1,16 @@
-const trim = require("lodash").trim;
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 
-const dataMapper = require("./dataMapper");
+const dataMap = require("./dataMap");
 
 const mapRow = (result) => {
   return {
-    naId: result.naId,
-    location: trim(result.description.item.dataControlGroup.groupCd),
-    title: trim(result.description.item.title),
-    parentSeriesNaId: result.description.item.parentSeries.naId,
-    parentSeriesTitle: trim(result.description.item.parentSeries.title),
-    thumbnailUrl: dataMapper.thumbnailUrl(result.objects.object),
-    creatingOrg: dataMapper.creatingOrg(
-      result.description.item.parentSeries.creatingOrganizationArray
-        .creatingOrganization
-    ),
+    naId: dataMap.naId(result),
+    location: dataMap.location(result),
+    title: dataMap.title(result),
+    parentSeriesNaId: dataMap.parentSeriesNaId(result),
+    parentSeriesTitle: dataMap.parentSeriesTitle(result),
+    thumbnailUrl: dataMap.thumbnailUrl(result),
+    creatingOrg: dataMap.creatingOrg(result),
   };
 };
 
@@ -36,8 +32,6 @@ module.exports = {
   },
 
   mapRows: (apiResults) => {
-    return apiResults.map((result) => {
-      return mapRow(result);
-    });
+    return apiResults.map((result) => mapRow(result));
   },
 };

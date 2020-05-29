@@ -1,5 +1,31 @@
+const trim = require("lodash").trim;
+
 module.exports = {
-  creatingOrg: (creatingOrganization) => {
+  naId: (result) => {
+    return result.naId;
+  },
+
+  location: (result) => {
+    return trim(result.description.item.dataControlGroup.groupCd);
+  },
+
+  title: (result) => {
+    return trim(result.description.item.title);
+  },
+
+  parentSeriesNaId: (result) => {
+    return result.description.item.parentSeries.naId;
+  },
+
+  parentSeriesTitle: (result) => {
+    return trim(result.description.item.parentSeries.title);
+  },
+
+  creatingOrg: (result) => {
+    const creatingOrganization =
+      result.description.item.parentSeries.creatingOrganizationArray
+        .creatingOrganization;
+
     if (creatingOrganization && Array.isArray(creatingOrganization)) {
       creatingOrgs = creatingOrganization.map((org) => {
         if (org.creatorType.termName === "Most Recent") {
@@ -15,9 +41,10 @@ module.exports = {
     }
   },
 
-  thumbnailUrl: (object) => {
+  thumbnailUrl: (result) => {
     // If objects is an array, take the thumbnail from the frist entry
     // otherwise it can be an object
+    const object = result.objects.object;
 
     if (object && Array.isArray(object)) {
       return object[0].thumbnail["@url"];
