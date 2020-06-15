@@ -52,4 +52,26 @@ module.exports = {
       return object.thumbnail["@url"];
     }
   },
+
+  aspectRatio: (result) => {
+    const object = result.objects.object;
+    let width, height;
+
+    if (object && Array.isArray(object)) {
+      width = (object[0].technicalMetadata || {}).width;
+      height = (object[0].technicalMetadata || {}).height;
+    } else if (object) {
+      width = (object.technicalMetadata || {}).width;
+      height = (object.technicalMetadata || {}).height;
+    }
+
+    if (object && width && height) {
+      width = width.replace("pixels", "").trim();
+      height = height.replace("pixels", "").trim();
+
+      return parseInt(width) / parseInt(height);
+    } else {
+      return 0;
+    }
+  },
 };

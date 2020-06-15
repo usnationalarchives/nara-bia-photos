@@ -7,7 +7,7 @@ const config = {
     "description.item.generalRecordsTypeArray.generalRecordsType.naId": 10035674,
     exists: "objects",
     resultTypes: "item",
-    rows: 5000,
+    rows: 1000,
     sort: "naId asc",
   },
 };

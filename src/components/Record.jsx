@@ -37,6 +37,10 @@ const Record = ({ record }) => {
       </dt>
       <dd style={{ marginBottom: "4px" }}>{record.creatingOrg}</dd>
       <dt>
+        <b>Aspect Ratio:</b>
+      </dt>
+      <dd style={{ marginBottom: "4px" }}>{record.aspectRatio}</dd>
+      <dt>
         <b>Thumbnail:</b>
       </dt>
       <dd>

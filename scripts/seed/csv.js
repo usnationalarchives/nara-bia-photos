@@ -11,6 +11,7 @@ const mapRow = (result) => {
     parentSeriesTitle: dataMap.parentSeriesTitle(result),
     thumbnailUrl: dataMap.thumbnailUrl(result),
     creatingOrg: dataMap.creatingOrg(result),
+    aspectRatio: dataMap.aspectRatio(result),
   };
 };
 
@@ -26,6 +27,7 @@ module.exports = {
         { id: "parentSeriesTitle", title: "parentSeriesTitle" },
         { id: "thumbnailUrl", title: "thumbnailUrl" },
         { id: "creatingOrg", title: "creatingOrg" },
+        { id: "aspectRatio", title: "aspectRatio" },
       ],
       append: options.append || false,
     });

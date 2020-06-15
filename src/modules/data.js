@@ -25,6 +25,9 @@ const recordsByParentSeriesTitle = records.dimension((d) => {
 const recordsByCreatingOrg = records.dimension((d) => {
   return d.creatingOrg;
 });
+const recordsByAspectRatio = records.dimension((d) => {
+  return d.aspectRatio;
+});
 
 const dimensions = {
   recordsByNaId,
@@ -33,6 +36,7 @@ const dimensions = {
   recordsByParentSeriesTitle,
   recordsByParentSeriesNaId,
   recordsByCreatingOrg,
+  recordsByAspectRatio,
 };
 
 // Setup groups for each dimension, this creates a list of all values in the
@@ -71,6 +75,16 @@ const filterByValues = (dimension, values) => {
   }
 };
 
+const filterByRange = (dimension, range) => {
+  if (dimension.hasCurrentFilter()) {
+    dimension.dispose();
+  }
+
+  if (range) {
+    dimension.filterRange(range);
+  }
+};
+
 // Define and create a search index using elasticlunr
 const index = elasticlunr(function () {
   this.setRef("naId");
@@ -98,6 +112,7 @@ const actions = {
   search,
   filterByValue,
   filterByValues,
+  filterByRange,
 };
 
 export { records, dimensions, groups, actions };

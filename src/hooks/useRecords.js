@@ -8,13 +8,14 @@ const useRecords = (options = {}) => {
   const [results, setResults] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
 
-  const { facets, query } = options;
-  const { search, filterByValue, filterByValues } = actions;
+  const { facets, query, aspectRatioRange } = options;
+  const { search, filterByValue, filterByValues, filterByRange } = actions;
   const {
     recordsByCreatingOrg,
     recordsByParentSeriesTitle,
     recordsByLocation,
     recordsByNaId,
+    recordsByAspectRatio,
   } = dimensions;
 
   useEffect(() => {
@@ -24,6 +25,10 @@ const useRecords = (options = {}) => {
       filterByValue(recordsByParentSeriesTitle, facets.parentSeriesTitle);
       filterByValue(recordsByLocation, facets.location);
       filterByValues(recordsByNaId, facets.naIds);
+    }
+
+    if (aspectRatioRange) {
+      filterByRange(recordsByAspectRatio, aspectRatioRange);
     }
 
     if (query) {
