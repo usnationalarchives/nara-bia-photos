@@ -15,8 +15,8 @@ const CrossfilterTest = () => {
   const [creatingOrg, setCreatingOrg] = useState("");
   const [location, setLocation] = useState("");
   const [parentSeriesTitle, setParentSeriesTitle] = useState("");
-  const [aspectRatioMin, setAspectRatioMin] = useState(0);
-  const [aspectRatioMax, setAspectRatioMax] = useState(200);
+  const [aspectRatioMin, setAspectRatioMin] = useState();
+  const [aspectRatioMax, setAspectRatioMax] = useState();
 
   const { results, totalCount } = useRecords({
     facets: {
@@ -25,7 +25,7 @@ const CrossfilterTest = () => {
       parentSeriesTitle: parentSeriesTitle,
     },
     query: query,
-    aspectRatioRange: [aspectRatioMin, aspectRatioMax],
+    aspectRatioRange: [aspectRatioMin || 0, aspectRatioMax || 200],
   });
 
   const {
