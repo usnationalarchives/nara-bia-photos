@@ -15,6 +15,8 @@ const CrossfilterTest = () => {
   const [creatingOrg, setCreatingOrg] = useState("");
   const [location, setLocation] = useState("");
   const [parentSeriesTitle, setParentSeriesTitle] = useState("");
+  const [aspectRatioMin, setAspectRatioMin] = useState(0);
+  const [aspectRatioMax, setAspectRatioMax] = useState(200);
 
   const { results, totalCount } = useRecords({
     facets: {
@@ -23,6 +25,7 @@ const CrossfilterTest = () => {
       parentSeriesTitle: parentSeriesTitle,
     },
     query: query,
+    aspectRatioRange: [aspectRatioMin, aspectRatioMax],
   });
 
   const {
@@ -72,7 +75,13 @@ const CrossfilterTest = () => {
       <Search setQuery={setQuery} />
 
       <ListingFilters
-        actions={{ setLocation, setCreatingOrg, setParentSeriesTitle }}
+        actions={{
+          setLocation,
+          setCreatingOrg,
+          setParentSeriesTitle,
+          setAspectRatioMin,
+          setAspectRatioMax,
+        }}
       />
 
       <h1 style={{ marginBottom: "20px" }}>

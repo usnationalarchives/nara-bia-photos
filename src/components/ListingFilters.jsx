@@ -39,9 +39,12 @@ const ListingFilters = ({ actions }) => {
       </div>
 
       <div style={{ marginBottom: "20px" }}>
-        <label htmlFor="creatingOrg">Location</label>
+        <label htmlFor="location">Location</label>
         <br />
-        <select onChange={(event) => actions.setLocation(event.target.value)}>
+        <select
+          id="location"
+          onChange={(event) => actions.setLocation(event.target.value)}
+        >
           <option value="">Select Location</option>
           {locations.map((org, i) => (
             <option key={i} value={org.key}>
@@ -49,6 +52,30 @@ const ListingFilters = ({ actions }) => {
             </option>
           ))}
         </select>
+      </div>
+
+      <div style={{ marginBottom: "20px" }}>
+        <label htmlFor="minAspectRatio">Minimum Aspect Ratio</label>
+        <br />
+        <input
+          type="text"
+          id="minAspectRatio"
+          onChange={(event) =>
+            actions.setAspectRatioMin(parseFloat(event.target.value))
+          }
+        />
+      </div>
+
+      <div style={{ marginBottom: "20px" }}>
+        <label htmlFor="maxAspectRatio">Maximum Aspect Ratio</label>
+        <br />
+        <input
+          type="text"
+          id="maxAspectRatio"
+          onChange={(event) =>
+            actions.setAspectRatioMax(parseFloat(event.target.value))
+          }
+        />
       </div>
     </Fragment>
   );
