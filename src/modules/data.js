@@ -1,5 +1,4 @@
 import crossfilter from "crossfilter2";
-import elasticlunr from "elasticlunr";
 
 import data from "../data/records.csv";
 
@@ -7,6 +6,9 @@ import data from "../data/records.csv";
 const records = crossfilter(data);
 
 // setup dimensions for filtering records by individual properties
+const recordsBySearchUUID = records.dimension((d) => {
+  return d.searchUUID;
+});
 const recordsByNaId = records.dimension((d) => {
   return d.naId;
 });
@@ -30,6 +32,7 @@ const recordsByAspectRatio = records.dimension((d) => {
 });
 
 const dimensions = {
+  recordsBySearchUUID,
   recordsByNaId,
   recordsByLocation,
   recordsByTitle,
@@ -85,31 +88,7 @@ const filterByRange = (dimension, range) => {
   }
 };
 
-// Define and create a search index using elasticlunr
-const index = elasticlunr(function () {
-  this.setRef("naId");
-  this.addField("title");
-  this.addField("parentSeriesTitle");
-  this.addField("creatingOrg");
-
-  data.forEach((doc) => {
-    this.addDoc(doc);
-  });
-});
-
-const search = (query) => {
-  if (query) {
-    const searchResults = index.search(query);
-    const searchResultNaIds = searchResults.map((result) =>
-      parseInt(result.ref)
-    );
-
-    filterByValues(recordsByNaId, searchResultNaIds);
-  }
-};
-
 const actions = {
-  search,
   filterByValue,
   filterByValues,
   filterByRange,

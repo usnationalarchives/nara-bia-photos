@@ -8,13 +8,14 @@ const useRecords = (options = {}) => {
   const [results, setResults] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
 
-  const { facets, query, aspectRatioRange } = options;
-  const { search, filterByValue, filterByValues, filterByRange } = actions;
+  const { facets, aspectRatioRange } = options;
+  const { filterByValue, filterByValues, filterByRange } = actions;
   const {
     recordsByCreatingOrg,
     recordsByParentSeriesTitle,
     recordsByLocation,
     recordsByNaId,
+    recordsBySearchUUID,
     recordsByAspectRatio,
   } = dimensions;
 
@@ -25,15 +26,11 @@ const useRecords = (options = {}) => {
       filterByValue(recordsByParentSeriesTitle, facets.parentSeriesTitle);
       filterByValue(recordsByLocation, facets.location);
       filterByValues(recordsByNaId, facets.naIds);
+      filterByValues(recordsBySearchUUID, facets.searchUUIDs);
     }
 
     if (aspectRatioRange) {
       filterByRange(recordsByAspectRatio, aspectRatioRange);
-    }
-
-    if (query) {
-      // Apply Full Text Search
-      search(query);
     }
 
     // Get the filtered records

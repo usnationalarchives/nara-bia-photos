@@ -1,9 +1,11 @@
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
+const uuidv1 = require("uuid").v1;
 
 const dataMap = require("./dataMap");
 
 const mapRow = (result) => {
   return {
+    searchUUID: uuidv1(),
     naId: dataMap.naId(result),
     location: dataMap.location(result),
     title: dataMap.title(result),
@@ -20,6 +22,7 @@ module.exports = {
     return createCsvWriter({
       path: "src/data/records.csv",
       header: [
+        { id: "searchUUID", title: "searchUUID" },
         { id: "naId", title: "naId" },
         { id: "location", title: "location" },
         { id: "title", title: "title" },
