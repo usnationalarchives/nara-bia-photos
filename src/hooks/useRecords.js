@@ -8,7 +8,7 @@ const useRecords = (options = {}) => {
   const [results, setResults] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
 
-  const { facets, aspectRatioRange } = options;
+  const { facets } = options;
   const { filterByValue, filterByValues, filterByRange } = actions;
   const {
     recordsByCreatingOrg,
@@ -27,10 +27,7 @@ const useRecords = (options = {}) => {
       filterByValue(recordsByLocation, facets.location);
       filterByValues(recordsByNaId, facets.naIds);
       filterByValues(recordsBySearchUUID, facets.searchUUIDs);
-    }
-
-    if (aspectRatioRange) {
-      filterByRange(recordsByAspectRatio, aspectRatioRange);
+      filterByRange(recordsByAspectRatio, facets.aspectRatioRange);
     }
 
     // Get the filtered records

@@ -34,8 +34,8 @@ const Search = () => {
       creatingOrg: creatingOrg,
       parentSeriesTitle: parentSeriesTitle,
       searchUUIDs: searchUUIDs,
+      aspectRatioRange: [aspectRatioMin || 0, aspectRatioMax || 200],
     },
-    aspectRatioRange: [aspectRatioMin || 0, aspectRatioMax || 200],
   });
 
   const {
