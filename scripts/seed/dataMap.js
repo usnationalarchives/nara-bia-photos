@@ -74,4 +74,28 @@ module.exports = {
       return 0;
     }
   },
+
+  tags: (result) => {
+    const tags = ((result.publicContributions || {}).tags || {}).tag;
+
+    if (Array.isArray(tags)) {
+      return tags.map((tag) => tag.$).join("||");
+    } else if (tags) {
+      return [tags.$];
+    } else {
+      return null;
+    }
+  },
+
+  tribes: (result) => {
+    const tribes = result.description.item.organizationalReferenceArray;
+
+    if (Array.isArray(tribes)) {
+      return tribes.map((tribe) => tribe.organizationName.termName).join("||");
+    } else if (tribes) {
+      return tribes.organizationName.termName;
+    } else {
+      return null;
+    }
+  },
 };

@@ -30,6 +30,12 @@ const recordsByCreatingOrg = records.dimension((d) => {
 const recordsByAspectRatio = records.dimension((d) => {
   return d.aspectRatio;
 });
+const recordsByTag = records.dimension((d) => {
+  return (d.tags || "").split("||");
+}, true);
+const recordsByTribe = records.dimension((d) => {
+  return (d.tribes || "").split("||");
+}, true);
 
 const dimensions = {
   recordsBySearchUUID,
@@ -40,6 +46,8 @@ const dimensions = {
   recordsByParentSeriesNaId,
   recordsByCreatingOrg,
   recordsByAspectRatio,
+  recordsByTag,
+  recordsByTribe,
 };
 
 // Setup groups for each dimension, this creates a list of all values in the
@@ -47,11 +55,43 @@ const dimensions = {
 const creatingOrgs = recordsByCreatingOrg.group().all();
 const locations = recordsByLocation.group().all();
 const parentSeriesTitles = recordsByParentSeriesTitle.group().all();
+const tribes = recordsByTribe.group().all();
+// const tags = recordsByTag.group().all();
+
+const topics = [
+  "Agriculture",
+  "Animals",
+  "Artistry and Artifacts",
+  "Buildings",
+  "Bureau Personnel",
+  "Camps",
+  "Children",
+  "Dances",
+  "Dress",
+  "Dwellings",
+  "Farming",
+  "Fishing",
+  "Food Preparation",
+  "Games and Recreation",
+  "Groups",
+  "Hunting",
+  "Landscapes",
+  "Leaders",
+  "Military Service",
+  "Portraits",
+  "Reservations",
+  "Schools",
+  "Transportation",
+  "Tribal Councils",
+  "Villages",
+];
 
 const groups = {
   creatingOrgs,
   locations,
   parentSeriesTitles,
+  topics,
+  tribes,
 };
 
 // Filter results by column on a single value

@@ -16,6 +16,8 @@ import usePagination from "../../hooks/usePagination";
 
 const Search = () => {
   const [query, setQuery] = useState("");
+  const [tag, setTag] = useState("");
+  const [tribe, setTribe] = useState("");
   const [creatingOrg, setCreatingOrg] = useState("");
   const [location, setLocation] = useState("");
   const [parentSeriesTitle, setParentSeriesTitle] = useState("");
@@ -30,6 +32,8 @@ const Search = () => {
 
   const { results, totalCount } = useRecords({
     facets: {
+      tribe: tribe,
+      tag: tag,
       location: location,
       creatingOrg: creatingOrg,
       parentSeriesTitle: parentSeriesTitle,
@@ -86,6 +90,8 @@ const Search = () => {
 
       <ListingFilters
         actions={{
+          setTag,
+          setTribe,
           setLocation,
           setCreatingOrg,
           setParentSeriesTitle,

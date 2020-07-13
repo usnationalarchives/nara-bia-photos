@@ -4,10 +4,47 @@ import PropTypes from "prop-types";
 import { groups } from "../modules/data";
 
 const ListingFilters = ({ actions }) => {
-  const { creatingOrgs, locations, parentSeriesTitles } = groups;
+  const {
+    creatingOrgs,
+    locations,
+    parentSeriesTitles,
+    topics,
+    tribes,
+  } = groups;
 
   return (
     <Fragment>
+      <div style={{ marginBottom: "20px" }}>
+        <label htmlFor="topic">Topic</label>
+        <br />
+        <select
+          onChange={(event) => actions.setTag(event.target.value)}
+          id="topic"
+        >
+          <option value="">Select Topic</option>
+          {topics.map((topic, i) => (
+            <option key={i} value={topic}>
+              {topic}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div style={{ marginBottom: "20px" }}>
+        <label htmlFor="tribe">Tribe</label>
+        <br />
+        <select
+          onChange={(event) => actions.setTribe(event.target.value)}
+          id="tribe"
+        >
+          {tribes.map((org, i) => (
+            <option key={i} value={org.key}>
+              {i === 0 ? "Select Tribe" : org.key}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <div style={{ marginBottom: "20px" }}>
         <label htmlFor="creatingOrg">Creating Organization</label>
         <br />

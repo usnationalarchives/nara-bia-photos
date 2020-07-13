@@ -34,6 +34,8 @@ const useRecords = (options = {}) => {
     recordsByNaId,
     recordsBySearchUUID,
     recordsByAspectRatio,
+    recordsByTag,
+    recordsByTribe,
   } = dimensions;
 
   useEffect(() => {
@@ -42,6 +44,8 @@ const useRecords = (options = {}) => {
       filterByValue(recordsByCreatingOrg, facets.creatingOrg);
       filterByValue(recordsByParentSeriesTitle, facets.parentSeriesTitle);
       filterByValue(recordsByLocation, facets.location);
+      filterByValue(recordsByTribe, facets.tribe);
+      filterByValue(recordsByTag, facets.tag);
       filterByValues(recordsByNaId, facets.naIds);
       filterByValues(recordsBySearchUUID, facets.searchUUIDs);
       filterByRange(recordsByAspectRatio, facets.aspectRatioRange);

@@ -14,6 +14,8 @@ const mapRow = (result) => {
     thumbnailUrl: dataMap.thumbnailUrl(result),
     creatingOrg: dataMap.creatingOrg(result),
     aspectRatio: dataMap.aspectRatio(result),
+    tags: dataMap.tags(result),
+    tribes: dataMap.tribes(result),
   };
 };
 
@@ -31,6 +33,8 @@ module.exports = {
         { id: "thumbnailUrl", title: "thumbnailUrl" },
         { id: "creatingOrg", title: "creatingOrg" },
         { id: "aspectRatio", title: "aspectRatio" },
+        { id: "tags", title: "tags" },
+        { id: "tribes", title: "tribes" },
       ],
       append: options.append || false,
     });
