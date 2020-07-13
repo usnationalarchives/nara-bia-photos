@@ -1,7 +1,24 @@
 import { useState, useEffect } from "react";
-
 import { records, dimensions, actions } from "../modules/data";
 
+/**
+ * This is a React hook used to interface with the records in the finding aid.
+ *
+ * @param {*} [options={}]
+ * @returns
+ *
+ * @example
+ * const { results, totalCount } = useRecords({
+ *   facets: {
+ *     naIds: [1, 2, 3],
+ *     location: "A Location",
+ *     creatingOrg: "A creating organization",
+ *     parentSeriesTitle: "A parent series title",
+ *     apsectRatioRange: [0.9, 1.1],
+ *     searchUUIDs: []
+ *   }
+ * })
+ */
 const useRecords = (options = {}) => {
   const serializedOptions = JSON.stringify(options);
 
