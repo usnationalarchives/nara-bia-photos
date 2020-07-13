@@ -111,7 +111,7 @@ const filterByValues = (dimension, values) => {
     dimension.dispose();
   }
 
-  if (values) {
+  if (values && values.length > 0) {
     dimension.filterFunction((d) => {
       return values.includes(d);
     });

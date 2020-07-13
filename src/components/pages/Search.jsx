@@ -6,25 +6,27 @@ import fullTextSearch from "../../modules/fullTextSearch";
 
 // components
 import SearchField from "../SearchField";
-import ListingFilters from "../ListingFilters";
-import Pagination from "../Pagination";
 import Record from "../Record";
+import SearchFilterCheckboxes from "../SearchFilterCheckboxes";
+import Pagination from "../Pagination";
 
 // hooks
+import useCheckboxes from "../../hooks/useCheckboxes";
 import useRecords from "../../hooks/useRecords";
 import usePagination from "../../hooks/usePagination";
 
+import { groups } from "../../modules/data";
+
 const Search = () => {
   const [query, setQuery] = useState("");
-  const [tag, setTag] = useState("");
-  const [tribe, setTribe] = useState("");
-  const [creatingOrg, setCreatingOrg] = useState("");
-  const [location, setLocation] = useState("");
-  const [parentSeriesTitle, setParentSeriesTitle] = useState("");
   const [searchUUIDs, setSearchUUIDs] = useState();
-  const [aspectRatioMin, setAspectRatioMin] = useState();
-  const [aspectRatioMax, setAspectRatioMax] = useState();
 
+  // pluck tribes from group keys, remove empty strings
+  const tribeNames = groups.tribes.map((t) => t.key).filter((t) => Boolean(t));
+  const [tribes, dispatchTribes] = useCheckboxes();
+  const [topics, dispatchTopics] = useCheckboxes();
+
+  // set the search UUIDs when the query changes
   useEffect(() => {
     const UUIDs = fullTextSearch(query);
     setSearchUUIDs(UUIDs);
@@ -32,23 +34,19 @@ const Search = () => {
 
   const { results, totalCount } = useRecords({
     facets: {
-      tribe: tribe,
-      tag: tag,
-      location: location,
-      creatingOrg: creatingOrg,
-      parentSeriesTitle: parentSeriesTitle,
+      tribes: tribes,
+      topics: topics,
       searchUUIDs: searchUUIDs,
-      aspectRatioRange: [aspectRatioMin || 0, aspectRatioMax || 200],
     },
   });
 
   const {
     page,
     setPage,
-    prevPage,
-    nextPage,
     prevHandler,
     nextHandler,
+    prevPage,
+    nextPage,
     totalPages,
     data,
   } = usePagination({
@@ -64,23 +62,7 @@ const Search = () => {
   // reset the page to 1 when a filter changes
   useEffect(() => {
     setPage(1);
-  }, [setPage, creatingOrg, location, parentSeriesTitle, query]);
-
-  const TestPager = () => {
-    return (
-      <div style={{ marginBottom: "20px" }}>
-        <Pagination
-          style={{ marginBottom: "20px" }}
-          page={page}
-          prevPage={prevPage}
-          nextPage={nextPage}
-          prevHandler={prevHandler}
-          nextHandler={nextHandler}
-          totalPages={totalPages}
-        />
-      </div>
-    );
-  };
+  }, [setPage, tribes, topics, query]);
 
   return (
     <div style={{ padding: "20px" }}>
@@ -88,29 +70,38 @@ const Search = () => {
 
       <SearchField setQuery={setQuery} />
 
-      <ListingFilters
-        actions={{
-          setTag,
-          setTribe,
-          setLocation,
-          setCreatingOrg,
-          setParentSeriesTitle,
-          setAspectRatioMin,
-          setAspectRatioMax,
-        }}
+      <SearchFilterCheckboxes
+        label="Topics"
+        allItems={groups.topics}
+        activeItems={topics}
+        dispatchItems={dispatchTopics}
+      />
+
+      <SearchFilterCheckboxes
+        label="Tribes"
+        allItems={tribeNames}
+        activeItems={tribes}
+        dispatchItems={dispatchTribes}
       />
 
       <h1 style={{ marginBottom: "20px" }}>
         {results.length} result{results.length !== 1 && "s"}
       </h1>
 
-      <TestPager />
-
       {data.map((record) => (
         <Record key={record.naId} record={record} />
       ))}
 
-      <TestPager />
+      <Pagination
+        style={{ marginBottom: "20px" }}
+        page={page}
+        setPage={page}
+        prevHandler={prevHandler}
+        nextHandler={nextHandler}
+        prevPage={prevPage}
+        nextPage={nextPage}
+        totalPages={totalPages}
+      />
     </div>
   );
 };

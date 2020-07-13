@@ -3,12 +3,11 @@ import PropTypes from "prop-types";
 
 const Pagination = ({
   page,
+  setPage,
   prevHandler,
   nextHandler,
   prevPage,
   nextPage,
-  perPage,
-  total,
   totalPages,
 }) => {
   return (

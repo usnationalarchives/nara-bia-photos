@@ -44,10 +44,10 @@ const useRecords = (options = {}) => {
       filterByValue(recordsByCreatingOrg, facets.creatingOrg);
       filterByValue(recordsByParentSeriesTitle, facets.parentSeriesTitle);
       filterByValue(recordsByLocation, facets.location);
-      filterByValue(recordsByTribe, facets.tribe);
-      filterByValue(recordsByTag, facets.tag);
       filterByValues(recordsByNaId, facets.naIds);
       filterByValues(recordsBySearchUUID, facets.searchUUIDs);
+      filterByValues(recordsByTag, facets.topics);
+      filterByValues(recordsByTribe, facets.tribes);
       filterByRange(recordsByAspectRatio, facets.aspectRatioRange);
     }
 

@@ -9,6 +9,7 @@ import PageLoader from "./components/PageLoader";
 const Home = lazy(() => import("./components/pages/Home"));
 const About = lazy(() => import("./components/pages/About"));
 const Search = lazy(() => import("./components/pages/Search"));
+const Prototype = lazy(() => import("./components/pages/Prototype"));
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Switch>
             <Route path="/about" component={About} />
             <Route path="/search" component={Search} />
+            <Route path="/prototype" component={Prototype} />
             <Route path="/" component={Home} />
           </Switch>
         </Suspense>
