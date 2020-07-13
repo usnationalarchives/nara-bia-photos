@@ -5,7 +5,7 @@ import { records, dimensions, actions } from "../modules/data";
  * This is a React hook used to interface with the records in the finding aid.
  *
  * @param {*} [options={}]
- * @returns
+ * @returns {Object[]} // returns an array of result objects
  *
  * @example
  * const { results, totalCount } = useRecords({
