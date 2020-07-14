@@ -28,7 +28,7 @@ const SearchFilterCheckboxes = ({
                   value: value,
                 });
               }}
-            />
+            />{" "}
             <label htmlFor={`${label}[${i}]`}>{item}</label>
           </li>
         ))}
