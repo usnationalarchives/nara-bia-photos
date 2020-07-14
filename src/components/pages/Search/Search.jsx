@@ -2,20 +2,20 @@
 import React, { useState, useEffect } from "react";
 
 // modules
-import fullTextSearch from "../../modules/fullTextSearch";
+import fullTextSearch from "../../../modules/fullTextSearch";
 
 // components
-import SearchField from "../SearchField";
-import Record from "../Record";
-import SearchFilterCheckboxes from "../SearchFilterCheckboxes";
-import Pagination from "../Pagination";
+import QueryField from "./QueryField";
+import Record from "./Record";
+import FilterCheckboxes from "./FilterCheckboxes";
+import Pagination from "../../shared/Pagination";
 
 // hooks
-import useCheckboxes from "../../hooks/useCheckboxes";
-import useRecords from "../../hooks/useRecords";
-import usePagination from "../../hooks/usePagination";
+import useCheckboxes from "../../../hooks/useCheckboxes";
+import useRecords from "../../../hooks/useRecords";
+import usePagination from "../../../hooks/usePagination";
 
-import { groups } from "../../modules/data";
+import { groups } from "../../../modules/data";
 
 const Search = () => {
   const [query, setQuery] = useState("");
@@ -68,16 +68,16 @@ const Search = () => {
     <div style={{ padding: "20px" }}>
       <p style={{ marginBottom: "20px" }}>{totalCount} Total Records</p>
 
-      <SearchField setQuery={setQuery} />
+      <QueryField setQuery={setQuery} />
 
-      <SearchFilterCheckboxes
+      <FilterCheckboxes
         label="Topics"
         allItems={groups.topics}
         activeItems={topics}
         dispatchItems={dispatchTopics}
       />
 
-      <SearchFilterCheckboxes
+      <FilterCheckboxes
         label="Tribes"
         allItems={tribeNames}
         activeItems={tribes}

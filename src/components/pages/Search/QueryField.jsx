@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { debounce } from "lodash";
 
-const SearchField = ({ setQuery }) => {
+const QueryField = ({ setQuery }) => {
   const handleSearch = debounce((value) => {
     setQuery("");
     setQuery(value);
@@ -21,8 +21,8 @@ const SearchField = ({ setQuery }) => {
   );
 };
 
-SearchField.propTypes = {
+QueryField.propTypes = {
   setQuery: PropTypes.func.isRequired,
 };
 
-export default SearchField;
+export default QueryField;
