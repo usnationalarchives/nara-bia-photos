@@ -2,20 +2,19 @@
 import React, { useState, useEffect } from "react";
 
 // modules
-import fullTextSearch from "../../../modules/fullTextSearch";
+import fullTextSearch from "#modules/fullTextSearch";
+import { groups } from "#modules/data";
 
 // components
 import QueryField from "./QueryField";
 import Record from "./Record";
 import FilterCheckboxes from "./FilterCheckboxes";
-import Pagination from "../../shared/Pagination";
+import Pagination from "#components/shared/Pagination";
 
 // hooks
-import useCheckboxes from "../../../hooks/useCheckboxes";
-import useRecords from "../../../hooks/useRecords";
-import usePagination from "../../../hooks/usePagination";
-
-import { groups } from "../../../modules/data";
+import useCheckboxes from "#hooks/useCheckboxes";
+import useRecords from "#hooks/useRecords";
+import usePagination from "#hooks/usePagination";
 
 const Search = () => {
   const [query, setQuery] = useState("");

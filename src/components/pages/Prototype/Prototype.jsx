@@ -2,20 +2,19 @@
 import React, { Fragment, useState, useEffect } from "react";
 
 // modules
-import fullTextSearch from "../../../modules/fullTextSearch";
+import fullTextSearch from "#modules/fullTextSearch";
+import { groups } from "#modules/data";
 
 // components
 import QueryField from "../Search/QueryField";
 import Record from "../Search/Record";
 import FilterCheckboxes from "../Search/FilterCheckboxes";
-import Pagination from "../../shared/Pagination";
+import Pagination from "#components/shared/Pagination";
 
 // hooks
-import useCheckboxes from "../../../hooks/useCheckboxes";
-import useRecords from "../../../hooks/useRecords";
-import usePagination from "../../../hooks/usePagination";
-
-import { groups } from "../../../modules/data";
+import useCheckboxes from "#hooks/useCheckboxes";
+import useRecords from "#hooks/useRecords";
+import usePagination from "#hooks/usePagination";
 
 const Prototype = () => {
   // pluck tribes from group keys, remove empty strings
