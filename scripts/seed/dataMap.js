@@ -53,6 +53,18 @@ module.exports = {
     }
   },
 
+  originalUrl: (result) => {
+    // If objects is an array, take the file from the frist entry
+    // otherwise it can be an object
+    const object = result.objects.object;
+
+    if (object && Array.isArray(object)) {
+      return object[0].file["@url"];
+    } else if (object) {
+      return object.file["@url"];
+    }
+  },
+
   aspectRatio: (result) => {
     const object = result.objects.object;
     let width, height;
