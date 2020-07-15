@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { debounce } from "lodash";
 
+import * as Text from "../../shared/Text";
+
 const QueryField = ({ setQuery }) => {
   const handleSearch = debounce((value) => {
     setQuery("");
@@ -10,7 +12,9 @@ const QueryField = ({ setQuery }) => {
 
   return (
     <div style={{ marginBottom: "20px" }}>
-      <label htmlFor="query">Search</label>
+      <label htmlFor="query">
+        <Text.H1>Search</Text.H1>
+      </label>
       <br />
       <input
         type="text"

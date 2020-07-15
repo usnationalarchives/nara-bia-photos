@@ -6,6 +6,7 @@ import fullTextSearch from "#modules/fullTextSearch";
 import { groups } from "#modules/data";
 
 // components
+import * as Layout from "#components/shared/Layout";
 import QueryField from "../Search/QueryField";
 import Record from "../Search/Record";
 import FilterCheckboxes from "../Search/FilterCheckboxes";
@@ -72,113 +73,115 @@ const Prototype = () => {
   }, [setPage, creatingOrg, location, parentSeriesTitle, query]);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <p style={{ marginBottom: "20px" }}>{totalCount} Total Records</p>
+    <Layout.Padding style={{ marginTop: "1rem", marginBottom: "2rem" }}>
+      <Layout.Wrapper>
+        <p style={{ marginBottom: "20px" }}>{totalCount} Total Records</p>
 
-      <QueryField setQuery={setQuery} />
+        <QueryField setQuery={setQuery} />
 
-      <FilterCheckboxes
-        label="Topics"
-        allItems={groups.topics}
-        activeItems={topics}
-        dispatchItems={dispatchTopics}
-      />
+        <FilterCheckboxes
+          label="Topics"
+          allItems={groups.topics}
+          activeItems={topics}
+          dispatchItems={dispatchTopics}
+        />
 
-      <FilterCheckboxes
-        label="Tribes"
-        allItems={tribeNames}
-        activeItems={tribes}
-        dispatchItems={dispatchTribes}
-      />
+        <FilterCheckboxes
+          label="Tribes"
+          allItems={tribeNames}
+          activeItems={tribes}
+          dispatchItems={dispatchTribes}
+        />
 
-      <Fragment>
-        <div style={{ marginBottom: "20px" }}>
-          <label htmlFor="creatingOrg">Creating Organization</label>
-          <br />
-          <select onChange={(event) => setCreatingOrg(event.target.value)}>
-            <option value="">Select Organization</option>
-            {groups.creatingOrgs.map((org, i) => (
-              <option key={i} value={org.key}>
-                {org.key}
-              </option>
-            ))}
-          </select>
-        </div>
+        <Fragment>
+          <div style={{ marginBottom: "20px" }}>
+            <label htmlFor="creatingOrg">Creating Organization</label>
+            <br />
+            <select onChange={(event) => setCreatingOrg(event.target.value)}>
+              <option value="">Select Organization</option>
+              {groups.creatingOrgs.map((org, i) => (
+                <option key={i} value={org.key}>
+                  {org.key}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <div style={{ marginBottom: "20px" }}>
-          <label htmlFor="parentSeriesTitle">Parent Series</label>
-          <br />
-          <select
-            onChange={(event) => setParentSeriesTitle(event.target.value)}
-          >
-            <option value="">Select Parent Series</option>
-            {groups.parentSeriesTitles.map((org, i) => (
-              <option key={i} value={org.key}>
-                {org.key}
-              </option>
-            ))}
-          </select>
-        </div>
+          <div style={{ marginBottom: "20px" }}>
+            <label htmlFor="parentSeriesTitle">Parent Series</label>
+            <br />
+            <select
+              onChange={(event) => setParentSeriesTitle(event.target.value)}
+            >
+              <option value="">Select Parent Series</option>
+              {groups.parentSeriesTitles.map((org, i) => (
+                <option key={i} value={org.key}>
+                  {org.key}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <div style={{ marginBottom: "20px" }}>
-          <label htmlFor="location">Location</label>
-          <br />
-          <select
-            id="location"
-            onChange={(event) => setLocation(event.target.value)}
-          >
-            <option value="">Select Location</option>
-            {groups.locations.map((org, i) => (
-              <option key={i} value={org.key}>
-                {org.key}
-              </option>
-            ))}
-          </select>
-        </div>
+          <div style={{ marginBottom: "20px" }}>
+            <label htmlFor="location">Location</label>
+            <br />
+            <select
+              id="location"
+              onChange={(event) => setLocation(event.target.value)}
+            >
+              <option value="">Select Location</option>
+              {groups.locations.map((org, i) => (
+                <option key={i} value={org.key}>
+                  {org.key}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <div style={{ marginBottom: "20px" }}>
-          <label htmlFor="minAspectRatio">Minimum Aspect Ratio</label>
-          <br />
-          <input
-            type="text"
-            id="minAspectRatio"
-            onChange={(event) =>
-              setAspectRatioMin(parseFloat(event.target.value))
-            }
-          />
-        </div>
+          <div style={{ marginBottom: "20px" }}>
+            <label htmlFor="minAspectRatio">Minimum Aspect Ratio</label>
+            <br />
+            <input
+              type="text"
+              id="minAspectRatio"
+              onChange={(event) =>
+                setAspectRatioMin(parseFloat(event.target.value))
+              }
+            />
+          </div>
 
-        <div style={{ marginBottom: "20px" }}>
-          <label htmlFor="maxAspectRatio">Maximum Aspect Ratio</label>
-          <br />
-          <input
-            type="text"
-            id="maxAspectRatio"
-            onChange={(event) =>
-              setAspectRatioMax(parseFloat(event.target.value))
-            }
-          />
-        </div>
-      </Fragment>
+          <div style={{ marginBottom: "20px" }}>
+            <label htmlFor="maxAspectRatio">Maximum Aspect Ratio</label>
+            <br />
+            <input
+              type="text"
+              id="maxAspectRatio"
+              onChange={(event) =>
+                setAspectRatioMax(parseFloat(event.target.value))
+              }
+            />
+          </div>
+        </Fragment>
 
-      <h1 style={{ marginBottom: "20px" }}>
-        {results.length} result{results.length !== 1 && "s"}
-      </h1>
+        <h1 style={{ marginBottom: "20px" }}>
+          {results.length} result{results.length !== 1 && "s"}
+        </h1>
 
-      {data.map((record) => (
-        <Record key={record.naId} record={record} />
-      ))}
+        {data.map((record) => (
+          <Record key={record.naId} record={record} />
+        ))}
 
-      <Pagination
-        style={{ marginBottom: "20px" }}
-        page={page}
-        prevPage={prevPage}
-        nextPage={nextPage}
-        prevHandler={prevHandler}
-        nextHandler={nextHandler}
-        totalPages={totalPages}
-      />
-    </div>
+        <Pagination
+          style={{ marginBottom: "20px" }}
+          page={page}
+          prevPage={prevPage}
+          nextPage={nextPage}
+          prevHandler={prevHandler}
+          nextHandler={nextHandler}
+          totalPages={totalPages}
+        />
+      </Layout.Wrapper>
+    </Layout.Padding>
   );
 };
 

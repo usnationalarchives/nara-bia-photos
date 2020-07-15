@@ -4,6 +4,6 @@ import App from "./App";
 
 test("renders total records", () => {
   const { getByText } = render(<App />);
-  const textElement = getByText(/Total Records/i);
+  const textElement = getByText(/Heading 1/i);
   expect(textElement).toBeInTheDocument();
 });

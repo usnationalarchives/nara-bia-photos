@@ -1,5 +1,7 @@
 import React from "react";
 
+import { H2 } from "#components/shared/Text";
+
 const SearchFilterCheckboxes = ({
   label,
   allItems,
@@ -8,7 +10,9 @@ const SearchFilterCheckboxes = ({
 }) => {
   return (
     <fieldset style={{ marginBottom: "20px" }}>
-      <legend>{label}</legend>
+      <legend style={{ marginBottom: "1.25rem" }}>
+        <H2>{label}</H2>
+      </legend>
 
       <ul>
         {allItems.map((item, i) => (
