@@ -18,11 +18,11 @@ export const Padding = styled.div`
 `;
 
 export const Wrapper = styled.div`
+  ${fl_clearfix}
+
   margin-left: auto;
   margin-right: auto;
   max-width: ${(props) => props.theme.layout.maxWidth};
-
-  ${fl_clearfix}
 
   ${(props) =>
     props.wide &&
