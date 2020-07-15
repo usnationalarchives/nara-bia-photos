@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { fl_visuallyHidden } from "#styles/frontline";
 
 export const H1 = styled.h1`
   font-weight: bold;
@@ -61,6 +62,10 @@ export const Intro = styled.p`
     font-size: 1.375rem;
     line-height: 1.6;
   }
+`;
+
+export const Screenreader = styled.span`
+  ${fl_visuallyHidden}
 `;
 
 export const Rich = styled.div`

@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { fl_clearfix } from "#styles/frontline";
 
 export const Padding = styled.div`
   width: 100%;
@@ -21,11 +22,7 @@ export const Wrapper = styled.div`
   margin-right: auto;
   max-width: ${(props) => props.theme.layout.maxWidth};
 
-  &:after {
-    clear: both;
-    content: "";
-    display: table;
-  }
+  ${fl_clearfix}
 
   ${(props) =>
     props.wide &&

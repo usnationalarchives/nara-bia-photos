@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import * as frontline from "#styles/frontline";
 
 const BaseStyles = createGlobalStyle`
   html {
@@ -54,9 +55,9 @@ const BaseStyles = createGlobalStyle`
     }
 
     a {
-      &:link {
+      ${frontline.fl_static(`
         color: ${(props) => props.theme.colors.blue}
-      }
+      `)}
 
       &:visited {
         color: 'purple';
