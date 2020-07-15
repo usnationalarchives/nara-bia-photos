@@ -29,9 +29,11 @@ const Search = () => {
           dispatchTopics={dispatchTopics}
         />
 
-        <Suspense fallback={<p>Loading...</p>}>
-          <Results facets={{ tribes, topics }} query={query} />
-        </Suspense>
+        {(query || tribes.length > 0 || topics.length > 0) && (
+          <Suspense fallback={<p>Loading...</p>}>
+            <Results facets={{ tribes, topics }} query={query} />
+          </Suspense>
+        )}
       </Layout.Wrapper>
     </Layout.Padding>
   );

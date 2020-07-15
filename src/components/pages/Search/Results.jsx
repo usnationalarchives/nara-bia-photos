@@ -16,8 +16,10 @@ const Results = ({ facets, query }) => {
   const { results } = useRecords({ facets: { searchUUIDs, ...facets } });
 
   useEffect(() => {
-    const UUIDs = fullTextSearch(query);
-    setSearchUUIDs(UUIDs);
+    if (query) {
+      const UUIDs = fullTextSearch(query);
+      setSearchUUIDs(UUIDs);
+    }
   }, [query]);
 
   const {
@@ -36,7 +38,9 @@ const Results = ({ facets, query }) => {
 
   // Scroll to the top of the document when the page changes
   useEffect(() => {
-    document.querySelector("html").scrollTop = 0;
+    if (page !== 1) {
+      document.querySelector("html").scrollTop = 0;
+    }
   }, [page]);
 
   // reset the page to 1 when a filter changes

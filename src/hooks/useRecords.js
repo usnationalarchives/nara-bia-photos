@@ -21,14 +21,10 @@ import { records, dimensions, actions } from "../modules/data";
  */
 const useRecords = (options = {}) => {
   const serializedOptions = JSON.stringify(options);
-
   const [results, setResults] = useState([]);
-  const [totalCount, setTotalCount] = useState(0);
-
   const { facets } = options;
-  // We arent using filterByValue yet, disable the warning
-  // eslint-disable-next-line
-  const { filterByValue, filterByValues, filterByRange } = actions;
+
+  const { filterByValues, filterByRange } = actions;
   const {
     recordsByNaId,
     recordsBySearchUUID,
@@ -37,26 +33,39 @@ const useRecords = (options = {}) => {
     recordsByTribe,
   } = dimensions;
 
-  useEffect(() => {
-    if (facets) {
-      // Apply filters from incoming facets
-      filterByValues(recordsByNaId, facets.naIds);
-      filterByValues(recordsBySearchUUID, facets.searchUUIDs);
-      filterByValues(recordsByTag, facets.topics);
-      filterByValues(recordsByTribe, facets.tribes);
-      filterByRange(recordsByAspectRatio, facets.aspectRatioRange);
+  const hasActiveFilters = () => {
+    if (
+      recordsByNaId.hasCurrentFilter() ||
+      recordsBySearchUUID.hasCurrentFilter() ||
+      recordsByAspectRatio.hasCurrentFilter() ||
+      recordsByTag.hasCurrentFilter() ||
+      recordsByTribe.hasCurrentFilter()
+    ) {
+      return true;
     }
 
-    // Get the filtered records
-    setResults(records.allFiltered());
-    setTotalCount(records.size());
+    return false;
+  };
+
+  useEffect(() => {
+    // Apply filters from incoming facets
+    filterByValues(recordsByNaId, facets.naIds);
+    filterByValues(recordsBySearchUUID, facets.searchUUIDs);
+    filterByValues(recordsByTag, facets.topics);
+    filterByValues(recordsByTribe, facets.tribes);
+    filterByRange(recordsByAspectRatio, facets.aspectRatioRange);
+
+    // Only provide results if facets were provided
+    if (hasActiveFilters()) {
+      setResults(records.allFiltered());
+    }
 
     // We are only looking for changes to the serialized options string to re-run.
     // Ignore other dependencies
     // eslint-disable-next-line
   }, [serializedOptions]);
 
-  return { results, totalCount };
+  return { results };
 };
 
 export default useRecords;
