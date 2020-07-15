@@ -6,7 +6,7 @@ import "what-input";
 import "frontline-css-reset";
 
 // Webfonts
-// import "#assets/fonts/fonts.css";
+import "#assets/fonts/fonts.css";
 
 import React from "react";
 import ReactDOM from "react-dom";
