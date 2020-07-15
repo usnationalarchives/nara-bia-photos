@@ -18,7 +18,7 @@ const SearchFilterCheckboxes = ({
         {allItems.map((item, i) => (
           <li key={i}>
             <input
-              defaultChecked={activeItems.includes(item)}
+              checked={activeItems.includes(item)}
               value={item}
               type="checkbox"
               name={`${label}[${i}]`}
