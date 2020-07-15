@@ -12,7 +12,6 @@ import PageLoader from "./components/shared/PageLoader";
 const Home = lazy(() => import("./components/pages/Home/Home"));
 const About = lazy(() => import("./components/pages/About/About"));
 const Search = lazy(() => import("./components/pages/Search/Search"));
-const Prototype = lazy(() => import("./components/pages/Prototype/Prototype"));
 
 const App = () => {
   return (
@@ -26,7 +25,6 @@ const App = () => {
             <Switch>
               <Route path="/about" component={About} />
               <Route path="/search" component={Search} />
-              <Route path="/prototype" component={Prototype} />
               <Route pattern="/" component={Home} />
             </Switch>
           </Suspense>

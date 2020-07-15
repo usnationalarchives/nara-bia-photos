@@ -39,7 +39,6 @@ const Nav = () => {
       <Item to="/">Home</Item>
       <Item to="/about">About</Item>
       <Item to="/search">Search</Item>
-      <Item to="/prototype">Prototype</Item>
     </Menu>
   );
 };

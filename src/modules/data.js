@@ -12,21 +12,6 @@ const recordsBySearchUUID = records.dimension((d) => {
 const recordsByNaId = records.dimension((d) => {
   return d.naId;
 });
-const recordsByLocation = records.dimension((d) => {
-  return d.location;
-});
-const recordsByTitle = records.dimension((d) => {
-  return d.title;
-});
-const recordsByParentSeriesNaId = records.dimension((d) => {
-  return d.parentSeriesNaid;
-});
-const recordsByParentSeriesTitle = records.dimension((d) => {
-  return d.parentSeriesTitle;
-});
-const recordsByCreatingOrg = records.dimension((d) => {
-  return d.creatingOrg;
-});
 const recordsByAspectRatio = records.dimension((d) => {
   return d.aspectRatio;
 });
@@ -40,11 +25,6 @@ const recordsByTribe = records.dimension((d) => {
 const dimensions = {
   recordsBySearchUUID,
   recordsByNaId,
-  recordsByLocation,
-  recordsByTitle,
-  recordsByParentSeriesTitle,
-  recordsByParentSeriesNaId,
-  recordsByCreatingOrg,
   recordsByAspectRatio,
   recordsByTag,
   recordsByTribe,
@@ -52,11 +32,7 @@ const dimensions = {
 
 // Setup groups for each dimension, this creates a list of all values in the
 // respective fields
-const creatingOrgs = recordsByCreatingOrg.group().all();
-const locations = recordsByLocation.group().all();
-const parentSeriesTitles = recordsByParentSeriesTitle.group().all();
 const tribes = recordsByTribe.group().all();
-// const tags = recordsByTag.group().all();
 
 const topics = [
   "Agriculture",
@@ -87,9 +63,6 @@ const topics = [
 ];
 
 const groups = {
-  creatingOrgs,
-  locations,
-  parentSeriesTitles,
   topics,
   tribes,
 };

@@ -26,11 +26,10 @@ const useRecords = (options = {}) => {
   const [totalCount, setTotalCount] = useState(0);
 
   const { facets } = options;
+  // We arent using filterByValue yet, disable the warning
+  // eslint-disable-next-line
   const { filterByValue, filterByValues, filterByRange } = actions;
   const {
-    recordsByCreatingOrg,
-    recordsByParentSeriesTitle,
-    recordsByLocation,
     recordsByNaId,
     recordsBySearchUUID,
     recordsByAspectRatio,
@@ -41,9 +40,6 @@ const useRecords = (options = {}) => {
   useEffect(() => {
     if (facets) {
       // Apply filters from incoming facets
-      filterByValue(recordsByCreatingOrg, facets.creatingOrg);
-      filterByValue(recordsByParentSeriesTitle, facets.parentSeriesTitle);
-      filterByValue(recordsByLocation, facets.location);
       filterByValues(recordsByNaId, facets.naIds);
       filterByValues(recordsBySearchUUID, facets.searchUUIDs);
       filterByValues(recordsByTag, facets.topics);
