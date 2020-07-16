@@ -74,6 +74,18 @@ module.exports = {
     }
   },
 
+  imageTilesUrl: (result) => {
+    // If objects is an array, take the thumbnail from the frist entry
+    // otherwise it can be an object
+    const object = result.objects.object;
+
+    if (object && Array.isArray(object)) {
+      return object[0].imageTiles ? object[0].imageTiles["@url"] : null;
+    } else if (object) {
+      return object.imageTiles ? object.imageTiles["@url"] : null;
+    }
+  },
+
   originalUrl: (result) => {
     // If objects is an array, take the file from the frist entry
     // otherwise it can be an object

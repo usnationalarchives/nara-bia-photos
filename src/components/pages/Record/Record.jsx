@@ -3,6 +3,7 @@ import React, { Fragment } from "react";
 // components
 import * as Text from "#components/shared/Text";
 import * as Layout from "#components/shared/Layout";
+import ImageViewer from "./ImageViewer";
 
 // hooks
 import useRecords from "#hooks/useRecords";
@@ -26,7 +27,7 @@ const Record = ({ ...props }) => {
         {record && (
           <Fragment>
             <Text.H1>{record.title}</Text.H1>
-            <img src={record.thumbnailUrl} alt="" aria-hidden="true" />
+            <ImageViewer record={record} />
           </Fragment>
         )}
       </Layout.Wrapper>

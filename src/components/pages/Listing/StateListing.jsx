@@ -59,7 +59,7 @@ const StateListing = ({ ...props }) => {
         <Pagination
           style={{ marginBottom: "20px" }}
           page={page}
-          setPage={page}
+          setPage={setPage}
           prevHandler={prevHandler}
           nextHandler={nextHandler}
           prevPage={prevPage}
