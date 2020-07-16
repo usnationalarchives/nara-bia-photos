@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const Record = ({ record }) => {
   return (
@@ -23,7 +24,9 @@ const Record = ({ record }) => {
       <dt>
         <b>Title:</b>
       </dt>
-      <dd style={{ marginBottom: "4px" }}>{record.title}</dd>
+      <dd style={{ marginBottom: "4px" }}>
+        <Link to={`/${record.slug}`}>{record.title}</Link>
+      </dd>
       <dt>
         <b>Parent Series NAID:</b>
       </dt>
