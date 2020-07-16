@@ -38,6 +38,8 @@ const Nav = () => {
     <Menu>
       <Item to="/">Home</Item>
       <Item to="/about">About</Item>
+      <Item to="/states">States</Item>
+      <Item to="/topics">Topics</Item>
       <Item to="/search">Search</Item>
     </Menu>
   );

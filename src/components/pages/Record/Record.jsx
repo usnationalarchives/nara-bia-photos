@@ -7,7 +7,7 @@ import * as Layout from "#components/shared/Layout";
 // hooks
 import useRecords from "#hooks/useRecords";
 
-const Record = (props) => {
+const Record = ({ ...props }) => {
   const slug = props.match.params.slug;
   const slugParts = slug.split("-");
   const naId = parseInt(slugParts[slugParts.length - 1]);

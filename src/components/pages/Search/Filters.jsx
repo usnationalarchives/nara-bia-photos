@@ -6,10 +6,11 @@ import SelectedTerm from "./SelectedTerm";
 
 // modules
 import { groups } from "#modules/data";
-import constants from "../../../modules/constants";
+import { states, topics } from "#modules/constants";
 
-// pluck tribes from group keys, remove empty strings
 const tribeNames = groups.tribes.map((t) => t.key).filter((t) => Boolean(t));
+const stateNames = states.map((state) => state.name);
+const topicNames = topics.map((topic) => topic.name);
 
 const Filters = ({
   topics,
@@ -25,7 +26,7 @@ const Filters = ({
         <div>
           <FilterCheckboxes
             label="Topics"
-            allItems={constants.topics}
+            allItems={topicNames}
             activeItems={topics}
             dispatchItems={dispatchTopics}
           />
@@ -43,7 +44,7 @@ const Filters = ({
         <div>
           <FilterCheckboxes
             label="States"
-            allItems={constants.states}
+            allItems={stateNames}
             activeItems={states}
             dispatchItems={dispatchStates}
           />

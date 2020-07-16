@@ -1,5 +1,4 @@
 const axios = require("axios");
-const trialNaIds = require("../../src/modules/constants").trialNaids;
 
 const config = {
   endpoint: "https://catalog.archives.gov/api/v1",
