@@ -13,6 +13,27 @@ module.exports = {
     return trim(result.description.item.title);
   },
 
+  slug: (result) => {
+    let string = result.description.item.title;
+
+    string = string.replace(/^\s+|\s+$/g, ""); // trim
+    string = string.toLowerCase();
+
+    // remove accents, swap ñ for n, etc
+    let from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
+    let to = "aaaaaeeeeeiiiiooooouuuunc------";
+    for (let i = 0, l = from.length; i < l; i++) {
+      string = string.replace(new RegExp(from.charAt(i), "g"), to.charAt(i));
+    }
+
+    string = string
+      .replace(/[^a-z0-9 -]/g, "") // remove invalid chars
+      .replace(/\s+/g, "-") // collapse whitespace and replace by -
+      .replace(/-+/g, "-"); // collapse dashes
+
+    return `${string}-${result.naId}`;
+  },
+
   parentSeriesNaId: (result) => {
     return result.description.item.parentSeries.naId;
   },
@@ -106,6 +127,30 @@ module.exports = {
       return tribes.map((tribe) => tribe.organizationName.termName).join("||");
     } else if (tribes) {
       return tribes.organizationName.termName;
+    } else {
+      return null;
+    }
+  },
+
+  states: (result) => {
+    const geoReferences = result.description.item.geographicReferenceArray;
+
+    const terms = (termName) => {
+      if (Array.isArray(termName)) {
+        return termName.join("||");
+      } else if (termName) {
+        return termName;
+      } else {
+        return null;
+      }
+    };
+
+    if (Array.isArray(geoReferences)) {
+      return geoReferences
+        .map((geoReference) => terms(geoReference.geographicPlaceName.termName))
+        .join("||");
+    } else if (geoReferences) {
+      return terms(geoReferences.geographicPlaceName.termName);
     } else {
       return null;
     }

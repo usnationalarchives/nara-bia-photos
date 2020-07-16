@@ -21,6 +21,9 @@ const recordsByTag = records.dimension((d) => {
 const recordsByTribe = records.dimension((d) => {
   return (d.tribes || "").split("||");
 }, true);
+const recordsByState = records.dimension((d) => {
+  return (d.states || "").split("||");
+}, true);
 
 const dimensions = {
   recordsBySearchUUID,
@@ -28,6 +31,7 @@ const dimensions = {
   recordsByAspectRatio,
   recordsByTag,
   recordsByTribe,
+  recordsByState,
 };
 
 // Setup groups for each dimension, this creates a list of all values in the

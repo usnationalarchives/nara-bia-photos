@@ -1,4 +1,5 @@
 const axios = require("axios");
+const trialNaIds = require("../../src/modules/constants").trialNaids;
 
 const config = {
   endpoint: "https://catalog.archives.gov/api/v1",
@@ -7,7 +8,7 @@ const config = {
     "description.item.generalRecordsTypeArray.generalRecordsType.naId": 10035674,
     exists: "objects",
     resultTypes: "item",
-    rows: 1000,
+    rows: 500,
     sort: "naId asc",
   },
 };

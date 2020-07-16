@@ -16,6 +16,7 @@ const Search = () => {
   const [query, setQuery] = useState();
   const [tribes, dispatchTribes] = useCheckboxes();
   const [topics, dispatchTopics] = useCheckboxes();
+  const [states, dispatchStates] = useCheckboxes();
 
   return (
     <Layout.Padding style={{ marginTop: "1rem", marginBottom: "2rem" }}>
@@ -27,11 +28,16 @@ const Search = () => {
           dispatchTribes={dispatchTribes}
           topics={topics}
           dispatchTopics={dispatchTopics}
+          states={states}
+          dispatchStates={dispatchStates}
         />
 
-        {(query || tribes.length > 0 || topics.length > 0) && (
+        {(query ||
+          tribes.length > 0 ||
+          topics.length > 0 ||
+          states.length > 0) && (
           <Suspense fallback={<p>Loading...</p>}>
-            <Results facets={{ tribes, topics }} query={query} />
+            <Results facets={{ tribes, topics, states }} query={query} />
           </Suspense>
         )}
       </Layout.Wrapper>

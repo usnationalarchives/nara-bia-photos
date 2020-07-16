@@ -31,6 +31,7 @@ const useRecords = (options = {}) => {
     recordsByAspectRatio,
     recordsByTag,
     recordsByTribe,
+    recordsByState,
   } = dimensions;
 
   const hasActiveFilters = () => {
@@ -39,7 +40,8 @@ const useRecords = (options = {}) => {
       recordsBySearchUUID.hasCurrentFilter() ||
       recordsByAspectRatio.hasCurrentFilter() ||
       recordsByTag.hasCurrentFilter() ||
-      recordsByTribe.hasCurrentFilter()
+      recordsByTribe.hasCurrentFilter() ||
+      recordsByState.hasCurrentFilter()
     ) {
       return true;
     }
@@ -53,6 +55,7 @@ const useRecords = (options = {}) => {
     filterByValues(recordsBySearchUUID, facets.searchUUIDs);
     filterByValues(recordsByTag, facets.topics);
     filterByValues(recordsByTribe, facets.tribes);
+    filterByValues(recordsByState, facets.states);
     filterByRange(recordsByAspectRatio, facets.aspectRatioRange);
 
     // Only provide results if facets were provided

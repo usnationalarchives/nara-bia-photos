@@ -17,6 +17,8 @@ const mapRow = (result) => {
     aspectRatio: dataMap.aspectRatio(result),
     tags: dataMap.tags(result),
     tribes: dataMap.tribes(result),
+    states: dataMap.states(result),
+    slug: dataMap.slug(result),
   };
 };
 
@@ -37,6 +39,8 @@ module.exports = {
         { id: "aspectRatio", title: "aspectRatio" },
         { id: "tags", title: "tags" },
         { id: "tribes", title: "tribes" },
+        { id: "states", title: "states" },
+        { id: "slug", title: "slug" },
       ],
       append: options.append || false,
     });

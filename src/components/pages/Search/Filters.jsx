@@ -6,24 +6,32 @@ import SelectedTerm from "./SelectedTerm";
 
 // modules
 import { groups } from "#modules/data";
+import constants from "../../../modules/constants";
 
 // pluck tribes from group keys, remove empty strings
 const tribeNames = groups.tribes.map((t) => t.key).filter((t) => Boolean(t));
 
-const Filters = ({ topics, tribes, dispatchTopics, dispatchTribes }) => {
+const Filters = ({
+  topics,
+  tribes,
+  states,
+  dispatchTopics,
+  dispatchTribes,
+  dispatchStates,
+}) => {
   return (
     <Fragment>
       <div style={{ display: "flex" }}>
-        <div style={{ width: "50%" }}>
+        <div>
           <FilterCheckboxes
             label="Topics"
-            allItems={groups.topics}
+            allItems={constants.topics}
             activeItems={topics}
             dispatchItems={dispatchTopics}
           />
         </div>
 
-        <div style={{ width: "50%" }}>
+        <div>
           <FilterCheckboxes
             label="Tribes"
             allItems={tribeNames}
@@ -31,9 +39,18 @@ const Filters = ({ topics, tribes, dispatchTopics, dispatchTribes }) => {
             dispatchItems={dispatchTribes}
           />
         </div>
+
+        <div>
+          <FilterCheckboxes
+            label="States"
+            allItems={constants.states}
+            activeItems={states}
+            dispatchItems={dispatchStates}
+          />
+        </div>
       </div>
 
-      {(topics.length > 0 || tribes.length > 0) && (
+      {(topics.length > 0 || tribes.length > 0 || states.length > 0) && (
         <ul style={{ marginBottom: "1.25rem" }}>
           {topics.map((topic) => (
             <li key={topic}>
@@ -43,6 +60,11 @@ const Filters = ({ topics, tribes, dispatchTopics, dispatchTribes }) => {
           {tribes.map((tribe) => (
             <li key={tribe}>
               <SelectedTerm dispatchItems={dispatchTribes} value={tribe} />
+            </li>
+          ))}
+          {states.map((state) => (
+            <li key={state}>
+              <SelectedTerm dispatchItems={dispatchStates} value={state} />
             </li>
           ))}
         </ul>
