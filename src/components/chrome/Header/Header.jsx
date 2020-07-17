@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import styled, { css } from "styled-components";
-import { fl_allStates, fl_burger, fl_burgerToCross } from "#styles/frontline";
+import styled from "styled-components";
+import { fl_allStates } from "#styles/frontline";
+import { useLocation } from "react-router-dom";
 
 // components
 import Logo from "./Logo";
 import Nav from "./Nav";
 import Title from "./Title";
-
-// styles
-import { buttonReset } from "#styles/mixins";
+import NavToggle from "./NavToggle";
 
 const Root = styled.div`
   background-color: ${(props) => props.theme.colors.darkGrey};
@@ -44,48 +43,13 @@ const LogoTitle = styled.div`
   align-items: center;
 `;
 
-const NavToggle = styled.button`
-  ${buttonReset}
-
-  font-size: 0.6rem;
-  font-weight: bold;
-  line-height: 2;
-  outline: none;
-  text-align: center;
-  text-transform: uppercase;
-  width: 30px;
-
-  @media all and ${(props) => props.theme.breakpoints.medium} {
-    display: none;
-  }
-`;
-
-const Burger = styled.div`
-  ${fl_burger({
-    color: "#fff",
-    gutter: 5,
-    height: 3,
-    transitionDuration: 250,
-    width: 30,
-  })}
-
-  ${(props) =>
-    props.navOpen &&
-    css`
-      ${fl_burgerToCross({
-        color: "#fff",
-        burgerGutter: 5,
-        burgerHeight: 3,
-      })}
-    `}
-`;
-
-const Header = () => {
+const Header = ({ ...props }) => {
+  const location = useLocation();
   const [navOpen, setNavOpen] = useState(false);
 
-  const toggleNav = () => {
-    setNavOpen(!navOpen);
-  };
+  useEffect(() => {
+    setNavOpen(false);
+  }, [location]);
 
   return (
     <Root id="header">
@@ -97,11 +61,7 @@ const Header = () => {
           </LogoTitle>
         </TitleLink>
 
-        <NavToggle onClick={toggleNav}>
-          <Burger navOpen={navOpen} />
-          {!navOpen && "Menu"}
-          {navOpen && "Close"}
-        </NavToggle>
+        <NavToggle navOpen={navOpen} setNavOpen={setNavOpen} />
       </Inner>
 
       <Nav navOpen={navOpen} />
