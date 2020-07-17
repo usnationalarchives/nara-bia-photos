@@ -47,6 +47,7 @@ const Header = ({ ...props }) => {
   const location = useLocation();
   const [navOpen, setNavOpen] = useState(false);
 
+  // collapse the mobile navigation when following a link
   useEffect(() => {
     setNavOpen(false);
   }, [location]);
