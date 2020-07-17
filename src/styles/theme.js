@@ -27,7 +27,7 @@ export const layout = {
   maxWidthMedium: "900px",
   maxWidthWide: "1200px",
   minPadding: "15px",
-  maxPadding: "30px",
+  maxPadding: "20px",
 };
 
 export const zIndex = {

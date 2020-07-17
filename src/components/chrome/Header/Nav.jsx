@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const Link = styled(NavLink)`
   color: ${(props) => props.theme.colors.white};
-  font-size: 1.5rem;
+  font-size: 1.15rem;
   text-decoration: none;
   text-transform: uppercase;
 
@@ -20,7 +20,11 @@ const Menu = styled.ul``;
 
 const MenuItem = styled.li`
   display: inline;
-  margin-right: 1.25rem;
+  margin-right: 2rem;
+
+  &:last-child {
+    margin: 0;
+  }
 `;
 
 const Item = (props) => {
@@ -36,10 +40,9 @@ const Item = (props) => {
 const Nav = () => {
   return (
     <Menu>
-      <Item to="/">Home</Item>
-      <Item to="/about">About</Item>
-      <Item to="/states">States</Item>
       <Item to="/topics">Topics</Item>
+      <Item to="/states">States</Item>
+      <Item to="/about">About</Item>
       <Item to="/search">Search</Item>
     </Menu>
   );
