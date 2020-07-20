@@ -22,10 +22,10 @@ export const font = {
 };
 
 export const layout = {
-  maxWidth: "1050px",
+  maxWidth: "1200px",
   maxWidthNarrow: "740px",
   maxWidthMedium: "900px",
-  maxWidthWide: "1200px",
+  maxWidthWide: "1400px",
   minPadding: "15px",
   maxPadding: "20px",
 };

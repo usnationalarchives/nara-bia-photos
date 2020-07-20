@@ -46,3 +46,7 @@ export const Wrapper = styled.div`
     max-width: none !important;
   }
 `;
+
+export const Center = styled.div`
+  text-align: center;
+`;
