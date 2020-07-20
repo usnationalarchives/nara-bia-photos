@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 // components
-import FooterNav from "./FooterNav";
+import CopyrightNav from "./CopyrightNav";
 
 // config
 import content from "#config/content";
@@ -28,7 +28,7 @@ const Copyright = () => {
   return (
     <Root>
       <Text>{content.footer.copyright}</Text>
-      <FooterNav />
+      <CopyrightNav />
     </Root>
   );
 };

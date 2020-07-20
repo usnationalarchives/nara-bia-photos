@@ -8,6 +8,7 @@ import content from "#config/content";
 import * as Layout from "#components/shared/Layout";
 import { ButtonLink } from "#components/shared/Button";
 import Logo from "./Logo";
+import FooterNav from "./FooterNav";
 import Copyright from "./Copyright";
 
 const Root = styled.div`
@@ -40,7 +41,7 @@ const Branding = styled.div`
   @media all and ${(props) => props.theme.breakpoints.medium} {
     text-align: left;
     margin-bottom: 0;
-    margin-right: 30px;
+    margin-right: 40px;
   }
 `;
 const Help = styled.div`
@@ -58,6 +59,8 @@ const Footer = () => {
             <Branding>
               <Logo />
             </Branding>
+
+            <FooterNav />
 
             <Help>
               <Summary>{content.footer.summary}</Summary>
