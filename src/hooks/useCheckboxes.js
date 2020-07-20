@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 
-const useCheckboxes = () => {
+const useCheckboxes = (defaultValue) => {
   const [activeItems, dispatchItems] = useReducer(
     (activeItems, { type, value }) => {
       switch (type) {
@@ -14,7 +14,7 @@ const useCheckboxes = () => {
           return activeItems;
       }
     },
-    [] // the default value is an empty array
+    defaultValue || [] // the default value is an empty array
   );
 
   return [activeItems, dispatchItems];

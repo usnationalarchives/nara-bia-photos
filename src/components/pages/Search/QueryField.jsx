@@ -4,7 +4,7 @@ import { debounce } from "lodash";
 
 import * as Text from "../../shared/Text";
 
-const QueryField = ({ setQuery }) => {
+const QueryField = ({ defaultValue, setQuery }) => {
   const handleSearch = debounce((value) => {
     setQuery("");
     setQuery(value);
@@ -19,6 +19,7 @@ const QueryField = ({ setQuery }) => {
       <input
         type="text"
         id="query"
+        defaultValue={defaultValue}
         onKeyUp={(event) => handleSearch(event.target.value)}
       />
     </div>
