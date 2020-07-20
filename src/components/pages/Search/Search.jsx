@@ -1,5 +1,6 @@
 // libraries
 import React, { useState, lazy, Suspense } from "react";
+import qs from "qs";
 
 // components
 import * as Layout from "#components/shared/Layout";
@@ -8,20 +9,36 @@ import Filters from "./Filters";
 
 // hooks
 import useCheckboxes from "#hooks/useCheckboxes";
+import useSearchHistory from "#hooks/useSearchHistory";
 
 // Lazy Loads
 const Results = lazy(() => import("./Results"));
 
-const Search = () => {
-  const [query, setQuery] = useState();
-  const [tribes, dispatchTribes] = useCheckboxes();
-  const [topics, dispatchTopics] = useCheckboxes();
-  const [states, dispatchStates] = useCheckboxes();
+const Search = ({ ...props }) => {
+  // fetch starting search parameters remove the leading ?
+  const search = qs.parse(props.location.search.replace("?", ""));
+
+  // set up query state, seed with any starting search query
+  const [query, setQuery] = useState(search.q || "");
+
+  // Set up checkboxes state, seed with any starting search filters
+  const [tribes, dispatchTribes] = useCheckboxes(search.tribes || []);
+  const [topics, dispatchTopics] = useCheckboxes(search.topics || []);
+  const [states, dispatchStates] = useCheckboxes(search.states || []);
+
+  useSearchHistory({
+    query: query,
+    filters: [
+      { label: "tribalNations", values: tribes },
+      { label: "topics", values: topics },
+      { label: "states", values: states },
+    ],
+  });
 
   return (
     <Layout.Padding style={{ marginTop: "1rem", marginBottom: "2rem" }}>
       <Layout.Wrapper>
-        <QueryField setQuery={setQuery} />
+        <QueryField defaultValue={query} setQuery={setQuery} />
 
         <Filters
           tribes={tribes}

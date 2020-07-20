@@ -34,7 +34,7 @@ const Filters = ({
 
         <div>
           <FilterCheckboxes
-            label="Tribes"
+            label="Tribal Nations"
             allItems={tribeNames}
             activeItems={tribes}
             dispatchItems={dispatchTribes}
