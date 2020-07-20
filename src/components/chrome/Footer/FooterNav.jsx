@@ -1,54 +1,53 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
 
 // styles
 import { fl_allStates, fl_attention } from "#styles/frontline";
 
 const Menu = styled.ul`
-  display: flex;
-  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center;
 
   @media all and ${(props) => props.theme.breakpoints.medium} {
-    margin-top: 0;
+    align-self: flex-end;
+    text-align: left;
+    margin-bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
   }
 `;
 
 const MenuItem = styled.li`
-  font-size: 0.8rem;
-  position: relative;
-  padding-right: 25px;
+  font-size: 1.15rem;
+  margin-top: 15px;
+  text-transform: uppercase;
 
-  &:after {
-    position: absolute;
-    top: 2px;
-    right: 13px;
-    background-color: ${(props) => props.theme.colors.white};
-    content: "";
-    display: inline-block;
-    height: 14px;
-    width: 1px;
+  @media all and ${(props) => props.theme.breakpoints.medium} {
+    width: 50%;
+    padding-right: 30px;
   }
 
-  &:last-child:after {
-    display: none;
+  @media all and ${(props) => props.theme.breakpoints.large} {
+    width: auto;
   }
 `;
 
-const MenuLink = styled.a`
+const MenuLink = styled(Link)`
   ${fl_allStates(css`
     color: ${(props) => props.theme.colors.white};
     text-decoration: none;
   `)}
 
   ${fl_attention(css`
-    text-decoration: underline;
+    color: ${(props) => props.theme.colors.yellow};
   `)}
 `;
 
-const Item = ({ href, ...props }) => {
+const Item = ({ to, ...props }) => {
   return (
     <MenuItem>
-      <MenuLink href={href}>{props.children}</MenuLink>
+      <MenuLink to={to}>{props.children}</MenuLink>
     </MenuItem>
   );
 };
@@ -56,9 +55,10 @@ const Item = ({ href, ...props }) => {
 const FooterNav = () => {
   return (
     <Menu>
-      <Item href="#">Help</Item>
-      <Item href="#">Contact Us</Item>
-      <Item href="#">Privacy Policy</Item>
+      <Item to="/">Tribal Nations</Item>
+      <Item to="/topics">Topics</Item>
+      <Item to="/states">States</Item>
+      <Item to="/about">About</Item>
     </Menu>
   );
 };
