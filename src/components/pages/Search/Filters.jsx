@@ -5,10 +5,9 @@ import FilterCheckboxes from "./FilterCheckboxes";
 import SelectedTerm from "./SelectedTerm";
 
 // modules
-import { groups } from "#modules/data";
-import { states, topics } from "#modules/constants";
+import { states, topics, tribalNations } from "#modules/constants";
 
-const tribeNames = groups.tribes.map((t) => t.key).filter((t) => Boolean(t));
+const tribeNames = tribalNations.map((t) => t.name);
 const stateNames = states.map((state) => state.name);
 const topicNames = topics.map((topic) => topic.name);
 

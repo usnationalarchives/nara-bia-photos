@@ -44,7 +44,7 @@ const useSearchHistory = (options = {}) => {
     const searchString = "?" + params.join("&");
 
     // push the new search url to the history
-    history.push(searchString);
+    history.replace(searchString);
 
     //eslint-disable-next-line
   }, [serializedOptions]);

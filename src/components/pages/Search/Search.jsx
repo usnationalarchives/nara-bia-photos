@@ -22,7 +22,7 @@ const Search = ({ ...props }) => {
   const [query, setQuery] = useState(search.q || "");
 
   // Set up checkboxes state, seed with any starting search filters
-  const [tribes, dispatchTribes] = useCheckboxes(search.tribes || []);
+  const [tribes, dispatchTribes] = useCheckboxes(search.tribalNations || []);
   const [topics, dispatchTopics] = useCheckboxes(search.topics || []);
   const [states, dispatchStates] = useCheckboxes(search.states || []);
 
