@@ -9,6 +9,7 @@ const config = {
     resultTypes: "item",
     rows: 500,
     sort: "naId asc",
+    naIds: 100382457,
   },
 };
 
