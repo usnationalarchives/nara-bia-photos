@@ -68,7 +68,7 @@ const useRecords = (options = {}) => {
     // eslint-disable-next-line
   }, [serializedOptions]);
 
-  return { results };
+  return { results, dimensions };
 };
 
 export default useRecords;
