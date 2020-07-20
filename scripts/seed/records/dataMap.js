@@ -1,4 +1,5 @@
 const trim = require("lodash").trim;
+const parameterize = require("../../../src/modules/helpers").parameterize;
 
 module.exports = {
   naId: (result) => {
@@ -14,24 +15,9 @@ module.exports = {
   },
 
   slug: (result) => {
-    let string = result.description.item.title;
-
-    string = string.replace(/^\s+|\s+$/g, ""); // trim
-    string = string.toLowerCase();
-
-    // remove accents, swap ñ for n, etc
-    let from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
-    let to = "aaaaaeeeeeiiiiooooouuuunc------";
-    for (let i = 0, l = from.length; i < l; i++) {
-      string = string.replace(new RegExp(from.charAt(i), "g"), to.charAt(i));
-    }
-
-    string = string
-      .replace(/[^a-z0-9 -]/g, "") // remove invalid chars
-      .replace(/\s+/g, "-") // collapse whitespace and replace by -
-      .replace(/-+/g, "-"); // collapse dashes
-
-    return `${string}-${result.naId}`;
+    const title = result.description.item.title;
+    let slugPart = parameterize(title);
+    return `${slugPart}-${result.naId}`;
   },
 
   parentSeriesNaId: (result) => {

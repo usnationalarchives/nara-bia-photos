@@ -1,4 +1,5 @@
 const trim = require("lodash").trim;
+const parameterize = require("../../../src/modules/helpers").parameterize;
 
 module.exports = {
   naId: (result) => {
@@ -9,5 +10,12 @@ module.exports = {
     return trim(
       result.authority.organization.organizationNameArray.organizationName.name
     );
+  },
+
+  slug: (result) => {
+    const name =
+      result.authority.organization.organizationNameArray.organizationName.name;
+    let slugPart = parameterize(name);
+    return `${slugPart}-${result.naId}`;
   },
 };

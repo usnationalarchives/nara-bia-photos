@@ -55,7 +55,7 @@ const Item = ({ to, ...props }) => {
 const FooterNav = () => {
   return (
     <Menu>
-      <Item to="/">Tribal Nations</Item>
+      <Item to="/tribal-nations">Tribal Nations</Item>
       <Item to="/topics">Topics</Item>
       <Item to="/states">States</Item>
       <Item to="/about">About</Item>

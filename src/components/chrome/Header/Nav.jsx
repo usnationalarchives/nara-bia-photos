@@ -51,6 +51,7 @@ const Menu = styled.ul`
 const MenuItem = styled.li`
   display: inline;
   margin-bottom: 1rem;
+  white-space: nowrap;
 
   &:last-child {
     margin: 0;
@@ -81,6 +82,7 @@ const Nav = ({ navOpen }) => {
   return (
     <Root>
       <Menu navOpen={navOpen}>
+        <Item to="/tribal-nations">Tribal Nations</Item>
         <Item to="/topics">Topics</Item>
         <Item to="/states">States</Item>
         <Item to="/about">About</Item>
