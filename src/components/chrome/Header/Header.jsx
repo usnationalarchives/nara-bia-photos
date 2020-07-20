@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { fl_allStates } from "#styles/frontline";
 import { useLocation } from "react-router-dom";
 
@@ -32,10 +32,10 @@ const Inner = styled.div`
 `;
 
 const TitleLink = styled(Link)`
-  ${fl_allStates} {
+  ${fl_allStates(css`
     color: ${(props) => props.theme.colors.white};
     text-decoration: none;
-  }
+  `)}
 `;
 
 const LogoTitle = styled.div`
