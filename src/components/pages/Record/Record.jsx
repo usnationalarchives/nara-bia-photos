@@ -13,7 +13,7 @@ const Record = ({ ...props }) => {
   const slugParts = slug.split("-");
   const naId = parseInt(slugParts[slugParts.length - 1]);
 
-  const { results } = useRecords({
+  const [results] = useRecords({
     facets: {
       naIds: [naId],
     },

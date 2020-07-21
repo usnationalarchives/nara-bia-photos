@@ -1,6 +1,6 @@
 import React from "react";
 
-const SelectedTerm = ({ dispatchItems, value }) => {
+const SelectedFilter = ({ dispatchItems, value }) => {
   return (
     <button onClick={() => dispatchItems({ type: "remove", value: value })}>
       {value} X
@@ -8,4 +8,4 @@ const SelectedTerm = ({ dispatchItems, value }) => {
   );
 };
 
-export default SelectedTerm;
+export default SelectedFilter;
