@@ -63,6 +63,8 @@ const useScopedFilters = (term, type, filters) => {
         i.key && i.value !== 0 && permitted.map((p) => p.name).includes(i.key)
     );
 
+  dimension.dispose();
+
   return allItems;
 };
 
