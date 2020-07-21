@@ -1,14 +1,16 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import { H2 } from "#components/shared/Text";
 
 const Filter = ({ filter }) => {
-  const { label, active, dispatch, dimension, permitted } = filter;
+  const { label, active, dispatch, dimension, all, permitted } = filter;
 
-  const allItems = dimension
-    .group()
-    .all()
-    .filter((i) => i.key && permitted.includes(i.key));
+  const allItems =
+    all ||
+    dimension
+      .group()
+      .all()
+      .filter((i) => i.key && permitted.includes(i.key));
 
   return (
     <div>
@@ -37,7 +39,8 @@ const Filter = ({ filter }) => {
                 }}
               />{" "}
               <label htmlFor={`${label}[${i}]`}>
-                {item.key} ({item.value})
+                {item.key}
+                {filter.totals && <Fragment>({item.value})</Fragment>}
               </label>
             </li>
           ))}
