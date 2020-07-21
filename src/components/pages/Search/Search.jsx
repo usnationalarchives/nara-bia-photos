@@ -91,6 +91,7 @@ const Search = ({ ...props }) => {
       dispatch: dispatchTribes,
       dimension: dimensions.recordsByTribe,
       permitted: tribalNations.map((i) => i.name),
+      totals: true,
     },
     {
       label: "States",
@@ -98,6 +99,7 @@ const Search = ({ ...props }) => {
       dispatch: dispatchStates,
       dimension: dimensions.recordsByState,
       permitted: statesConstant.map((i) => i.name),
+      totals: true,
     },
     {
       label: "Topics",
@@ -105,6 +107,7 @@ const Search = ({ ...props }) => {
       dispatch: dispatchTopics,
       dimension: dimensions.recordsByTag,
       permitted: topicsConstant.map((i) => i.name),
+      totals: true,
     },
   ];
 

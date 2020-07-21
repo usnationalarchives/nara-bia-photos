@@ -13,12 +13,9 @@ import useRecords from "#hooks/useRecords";
 import usePagination from "#hooks/usePagination";
 import useCheckboxes from "#hooks/useCheckboxes";
 import useSearchHistory from "#hooks/useSearchHistory";
+import useScopedFilters from "#hooks/useScopedFilters";
 
-import {
-  topics,
-  states as statesConstant,
-  tribalNations,
-} from "#modules/constants";
+import { topics } from "#modules/constants";
 
 const TopicListing = ({ ...props }) => {
   const slug = props.match.params.slug;
@@ -31,7 +28,10 @@ const TopicListing = ({ ...props }) => {
   const [tribes, dispatchTribes] = useCheckboxes(search.tribalNations || []);
   const [states, dispatchStates] = useCheckboxes(search.states || []);
 
-  const [results, dimensions] = useRecords({
+  const stateFilters = useScopedFilters(topicName, "topic", "states");
+  const tribeFilters = useScopedFilters(topicName, "topic", "tribes");
+
+  const [results] = useRecords({
     facets: {
       topics: [topicName],
       tribes: tribes,
@@ -72,15 +72,13 @@ const TopicListing = ({ ...props }) => {
       label: "Tribal Nations",
       active: tribes,
       dispatch: dispatchTribes,
-      dimension: dimensions.recordsByTribe,
-      permitted: tribalNations.map((i) => i.name),
+      all: tribeFilters,
     },
     {
       label: "States",
       active: states,
       dispatch: dispatchStates,
-      dimension: dimensions.recordsByState,
-      permitted: statesConstant.map((i) => i.name),
+      all: stateFilters,
     },
   ];
 
