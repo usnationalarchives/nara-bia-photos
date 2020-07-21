@@ -42,13 +42,10 @@ const Search = ({ ...props }) => {
 
   // Set the search UUIDs when the query changes
   useEffect(() => {
-    if (query) {
-      const UUIDs = fullTextSearch(query);
-      setSearchUUIDs(UUIDs);
-    }
+    setSearchUUIDs(fullTextSearch(query));
   }, [query]);
 
-  const [results, dimensions] = useRecords({
+  const [results, dimensions, hasActiveFilters] = useRecords({
     facets: { searchUUIDs, tribes, topics, states },
   });
 
@@ -118,10 +115,9 @@ const Search = ({ ...props }) => {
 
         <Filters filters={filters} />
 
-        {(query ||
-          tribes.length > 0 ||
-          topics.length > 0 ||
-          states.length > 0) && (
+        {query && !hasActiveFilters && <p>No Results</p>}
+
+        {hasActiveFilters && (
           <Suspense fallback={<p>Loading...</p>}>
             <Results results={results} data={data} />
 

@@ -34,20 +34,13 @@ const useRecords = (options = {}) => {
     recordsByState,
   } = dimensions;
 
-  const hasActiveFilters = () => {
-    if (
-      recordsByNaId.hasCurrentFilter() ||
-      recordsBySearchUUID.hasCurrentFilter() ||
-      recordsByAspectRatio.hasCurrentFilter() ||
-      recordsByTag.hasCurrentFilter() ||
-      recordsByTribe.hasCurrentFilter() ||
-      recordsByState.hasCurrentFilter()
-    ) {
-      return true;
-    }
-
-    return false;
-  };
+  const hasActiveFilters =
+    recordsByNaId.hasCurrentFilter() ||
+    recordsBySearchUUID.hasCurrentFilter() ||
+    recordsByAspectRatio.hasCurrentFilter() ||
+    recordsByTag.hasCurrentFilter() ||
+    recordsByTribe.hasCurrentFilter() ||
+    recordsByState.hasCurrentFilter();
 
   useEffect(() => {
     // Apply filters from incoming facets
@@ -58,25 +51,14 @@ const useRecords = (options = {}) => {
     filterByValues(recordsByState, facets.states);
     filterByRange(recordsByAspectRatio, facets.aspectRatioRange);
 
-    // Only provide results if facets were provided
-    if (hasActiveFilters()) {
-      setResults(records.allFiltered());
-      // FIXME: This may need to be enabled to handle multiple record streams
-      // on the same page. This should get resolved with homepage development
-      // recordsByNaId.dispose();
-      // recordsBySearchUUID.dispose();
-      // recordsByAspectRatio.dispose();
-      // recordsByTag.dispose();
-      // recordsByTribe.dispose();
-      // recordsByState.dispose();
-    }
+    setResults(records.allFiltered());
 
     // We are only looking for changes to the serialized options string to re-run.
     // Ignore other dependencies
     // eslint-disable-next-line
   }, [serializedOptions]);
 
-  return [results, dimensions];
+  return [results, dimensions, hasActiveFilters];
 };
 
 export default useRecords;

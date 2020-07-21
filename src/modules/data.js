@@ -88,7 +88,7 @@ const filterByValues = (dimension, values) => {
     dimension.dispose();
   }
 
-  if (values && values.length > 0) {
+  if ((values || []).length > 0) {
     dimension.filterFunction((d) => {
       return values.includes(d);
     });
