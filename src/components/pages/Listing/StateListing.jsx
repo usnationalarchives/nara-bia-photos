@@ -6,7 +6,7 @@ import qs from "qs";
 import * as Layout from "#components/shared/Layout";
 import * as Text from "#components/shared/Text";
 import Pagination from "#components/shared/Pagination";
-import Filters from "./Filters";
+import Filters from "#components/shared/Filters";
 
 // hooks
 import useRecords from "#hooks/useRecords";
@@ -32,7 +32,7 @@ const StateListing = ({ ...props }) => {
   const [tribes, dispatchTribes] = useCheckboxes(search.tribalNations || []);
   const [topics, dispatchTopics] = useCheckboxes(search.topics || []);
 
-  const { results, dimensions } = useRecords({
+  const [results, dimensions] = useRecords({
     facets: {
       states: [stateName],
       tribes: tribes,

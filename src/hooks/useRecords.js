@@ -61,6 +61,14 @@ const useRecords = (options = {}) => {
     // Only provide results if facets were provided
     if (hasActiveFilters()) {
       setResults(records.allFiltered());
+      // FIXME: This may need to be enabled to handle multiple record streams
+      // on the same page. This should get resolved with homepage development
+      // recordsByNaId.dispose();
+      // recordsBySearchUUID.dispose();
+      // recordsByAspectRatio.dispose();
+      // recordsByTag.dispose();
+      // recordsByTribe.dispose();
+      // recordsByState.dispose();
     }
 
     // We are only looking for changes to the serialized options string to re-run.
@@ -68,7 +76,7 @@ const useRecords = (options = {}) => {
     // eslint-disable-next-line
   }, [serializedOptions]);
 
-  return { results, dimensions };
+  return [results, dimensions];
 };
 
 export default useRecords;

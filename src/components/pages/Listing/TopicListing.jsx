@@ -6,7 +6,7 @@ import qs from "qs";
 import * as Layout from "#components/shared/Layout";
 import * as Text from "#components/shared/Text";
 import Pagination from "#components/shared/Pagination";
-import Filters from "./Filters";
+import Filters from "#components/shared/Filters";
 
 // hooks
 import useRecords from "#hooks/useRecords";
@@ -14,7 +14,6 @@ import usePagination from "#hooks/usePagination";
 import useCheckboxes from "#hooks/useCheckboxes";
 import useSearchHistory from "#hooks/useSearchHistory";
 
-// modules
 import {
   topics,
   states as statesConstant,
@@ -32,7 +31,7 @@ const TopicListing = ({ ...props }) => {
   const [tribes, dispatchTribes] = useCheckboxes(search.tribalNations || []);
   const [states, dispatchStates] = useCheckboxes(search.states || []);
 
-  const { results, dimensions } = useRecords({
+  const [results, dimensions] = useRecords({
     facets: {
       topics: [topicName],
       tribes: tribes,

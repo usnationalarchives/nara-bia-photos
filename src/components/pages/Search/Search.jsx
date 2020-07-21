@@ -1,15 +1,26 @@
 // libraries
-import React, { useState, lazy, Suspense } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import qs from "qs";
 
 // components
 import * as Layout from "#components/shared/Layout";
+import Filters from "#components/shared/Filters";
+import Pagination from "#components/shared/Pagination";
 import QueryField from "./QueryField";
-import Filters from "./Filters";
 
 // hooks
+import useRecords from "#hooks/useRecords";
 import useCheckboxes from "#hooks/useCheckboxes";
+import usePagination from "#hooks/usePagination";
 import useSearchHistory from "#hooks/useSearchHistory";
+
+// modules
+import fullTextSearch from "#modules/fullTextSearch";
+import {
+  states as statesConstant,
+  topics as topicsConstant,
+  tribalNations,
+} from "#modules/constants";
 
 // Lazy Loads
 const Results = lazy(() => import("./Results"));
@@ -26,6 +37,21 @@ const Search = ({ ...props }) => {
   const [topics, dispatchTopics] = useCheckboxes(search.topics || []);
   const [states, dispatchStates] = useCheckboxes(search.states || []);
 
+  // state for search UUIDs
+  const [searchUUIDs, setSearchUUIDs] = useState();
+
+  // Set the search UUIDs when the query changes
+  useEffect(() => {
+    if (query) {
+      const UUIDs = fullTextSearch(query);
+      setSearchUUIDs(UUIDs);
+    }
+  }, [query]);
+
+  const [results, dimensions] = useRecords({
+    facets: { searchUUIDs, tribes, topics, states },
+  });
+
   useSearchHistory({
     query: query,
     filters: [
@@ -35,26 +61,80 @@ const Search = ({ ...props }) => {
     ],
   });
 
+  const {
+    page,
+    setPage,
+    prevHandler,
+    nextHandler,
+    prevPage,
+    nextPage,
+    totalPages,
+    data,
+  } = usePagination({
+    items: results,
+    perPage: 30,
+  });
+
+  // Scroll to the top of the document when the page changes
+  useEffect(() => {
+    if (page !== 1) {
+      document.querySelector("html").scrollTop = 0;
+    }
+  }, [page]);
+
+  // reset the page to 1 when the query changes
+  useEffect(() => {
+    setPage(1);
+  }, [setPage, query, tribes, topics, states]);
+
+  const filters = [
+    {
+      label: "Tribal Nations",
+      active: tribes,
+      dispatch: dispatchTribes,
+      dimension: dimensions.recordsByTribe,
+      permitted: tribalNations.map((i) => i.name),
+    },
+    {
+      label: "States",
+      active: states,
+      dispatch: dispatchStates,
+      dimension: dimensions.recordsByState,
+      permitted: statesConstant.map((i) => i.name),
+    },
+    {
+      label: "Topics",
+      active: topics,
+      dispatch: dispatchTopics,
+      dimension: dimensions.recordsByTag,
+      permitted: topicsConstant.map((i) => i.name),
+    },
+  ];
+
   return (
     <Layout.Padding style={{ marginTop: "1rem", marginBottom: "2rem" }}>
       <Layout.Wrapper>
         <QueryField defaultValue={query} setQuery={setQuery} />
 
-        <Filters
-          tribes={tribes}
-          dispatchTribes={dispatchTribes}
-          topics={topics}
-          dispatchTopics={dispatchTopics}
-          states={states}
-          dispatchStates={dispatchStates}
-        />
+        <Filters filters={filters} />
 
         {(query ||
           tribes.length > 0 ||
           topics.length > 0 ||
           states.length > 0) && (
           <Suspense fallback={<p>Loading...</p>}>
-            <Results facets={{ tribes, topics, states }} query={query} />
+            <Results results={results} data={data} />
+
+            <Pagination
+              style={{ marginBottom: "20px" }}
+              page={page}
+              setPage={page}
+              prevHandler={prevHandler}
+              nextHandler={nextHandler}
+              prevPage={prevPage}
+              nextPage={nextPage}
+              totalPages={totalPages}
+            />
           </Suspense>
         )}
       </Layout.Wrapper>
