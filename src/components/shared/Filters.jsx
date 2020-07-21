@@ -18,7 +18,11 @@ const Filters = ({ filters }) => {
         {filters.map((filter, i) => (
           <Fragment key={i}>
             {filter.active.map((active, i) => (
-              <SelectedFilter dispatchItems={filter.dispatch} value={active} />
+              <SelectedFilter
+                key={i}
+                dispatchItems={filter.dispatch}
+                value={active}
+              />
             ))}
           </Fragment>
         ))}
