@@ -47,5 +47,5 @@ const createTribalNationsCsv = async () => {
   }
 };
 
-// createRecordsCsv();
+createRecordsCsv();
 createTribalNationsCsv();

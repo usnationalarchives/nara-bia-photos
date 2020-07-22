@@ -6,10 +6,6 @@ module.exports = {
     return result.naId;
   },
 
-  location: (result) => {
-    return trim(result.description.item.dataControlGroup.groupCd);
-  },
-
   title: (result) => {
     return trim(result.description.item.title);
   },
@@ -28,60 +24,35 @@ module.exports = {
     return trim(result.description.item.parentSeries.title);
   },
 
-  creatingOrg: (result) => {
-    const creatingOrganization =
-      result.description.item.parentSeries.creatingOrganizationArray
-        .creatingOrganization;
+  objects: (result) => {
+    const mapObject = (object) => {
+      let json = {
+        type: (object.technicalMetadata || {})["mime"],
+        thumbnail: {
+          url: object.thumbnail["@url"],
+        },
+        file: {
+          url: object.file["url"],
+        },
+      };
 
-    if (creatingOrganization && Array.isArray(creatingOrganization)) {
-      creatingOrgs = creatingOrganization.map((org) => {
-        if (org.creatorType.termName === "Most Recent") {
-          return org.creator.termName;
-        } else {
-          return "";
-        }
-      });
+      if (object.imageTiles) {
+        json.imageTiles = {};
+        json.imageTiles.url = object.imageTiles["@url"];
+      }
 
-      return creatingOrgs.join("; ");
-    } else if (creatingOrganization) {
-      return creatingOrganization.creator.termName;
+      return json;
+    };
+
+    const objects = result.objects.object;
+
+    if (objects && Array.isArray(objects)) {
+      data = objects.map((object) => mapObject(object));
+    } else if (objects) {
+      data = [mapObject(objects)];
     }
-  },
 
-  thumbnailUrl: (result) => {
-    // If objects is an array, take the thumbnail from the frist entry
-    // otherwise it can be an object
-    const object = result.objects.object;
-
-    if (object && Array.isArray(object)) {
-      return object[0].thumbnail["@url"];
-    } else if (object) {
-      return object.thumbnail["@url"];
-    }
-  },
-
-  imageTilesUrl: (result) => {
-    // If objects is an array, take the thumbnail from the frist entry
-    // otherwise it can be an object
-    const object = result.objects.object;
-
-    if (object && Array.isArray(object)) {
-      return object[0].imageTiles ? object[0].imageTiles["@url"] : null;
-    } else if (object) {
-      return object.imageTiles ? object.imageTiles["@url"] : null;
-    }
-  },
-
-  originalUrl: (result) => {
-    // If objects is an array, take the file from the frist entry
-    // otherwise it can be an object
-    const object = result.objects.object;
-
-    if (object && Array.isArray(object)) {
-      return object[0].file["@url"];
-    } else if (object) {
-      return object.file["@url"];
-    }
+    return JSON.stringify(data);
   },
 
   aspectRatio: (result) => {

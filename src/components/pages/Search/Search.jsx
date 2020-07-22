@@ -23,7 +23,7 @@ import {
 } from "#modules/constants";
 
 // Lazy Loads
-const Results = lazy(() => import("./Results"));
+const Results = lazy(() => import("#components/shared/Results"));
 
 const Search = ({ ...props }) => {
   // fetch starting search parameters remove the leading ?

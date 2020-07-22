@@ -4,25 +4,7 @@ import React from "react";
 import * as Text from "#components/shared/Text";
 import * as Layout from "#components/shared/Layout";
 
-// hooks
-import useRecords from "#hooks/useRecords";
-
 const Home = () => {
-  const [set1] = useRecords({
-    facets: {
-      topics: ["Dress"],
-    },
-  });
-
-  const [set2] = useRecords({
-    facets: {
-      topics: ["Fishing"],
-    },
-  });
-
-  console.log(set1);
-  console.log(set2);
-
   return (
     <Layout.Padding>
       <Layout.Wrapper>

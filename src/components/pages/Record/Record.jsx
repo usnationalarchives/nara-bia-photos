@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 
 // components
 import * as Text from "#components/shared/Text";
@@ -12,6 +12,7 @@ const Record = ({ ...props }) => {
   const slug = props.match.params.slug;
   const slugParts = slug.split("-");
   const naId = parseInt(slugParts[slugParts.length - 1]);
+  const [objects, setObjects] = useState([]);
 
   const [results] = useRecords({
     facets: {
@@ -21,13 +22,21 @@ const Record = ({ ...props }) => {
 
   const record = results[0];
 
+  useEffect(() => {
+    if (record) {
+      setObjects(JSON.parse(record.objects).filter((o) => o.imageTiles));
+    }
+  }, [record]);
+
   return (
     <Layout.Padding style={{ marginTop: "1rem", marginBottom: "2rem" }}>
       <Layout.Wrapper>
         {record && (
           <Fragment>
             <Text.H1>{record.title}</Text.H1>
-            <ImageViewer record={record} />
+            {objects.map((object, i) => (
+              <ImageViewer key={i} object={object} />
+            ))}
           </Fragment>
         )}
       </Layout.Wrapper>
