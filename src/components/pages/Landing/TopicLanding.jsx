@@ -1,59 +1,15 @@
 import React, { Fragment } from "react";
-import styled, { css } from "styled-components";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 // components
 import * as Layout from "#components/shared/Layout";
 import LandingBillboard from "#components/shared/LandingBillboard";
 import { Grid, GridItem } from "#components/shared/Grid";
 import Card from "#components/shared/Card";
+import Topic from "#components/shared/Topic";
 
 // modules
 import { topics } from "#modules/constants";
-
-// styles
-import { fl_allStates, fl_absoluteFill } from "#styles/frontline";
-
-const ImagePlaceholder = styled.div`
-  background-color: ${(props) => props.theme.colors.mediumGrey};
-  height: 0;
-  padding-top: 56.25%;
-`;
-
-const Topic = ({ topic }) => {
-  const Inner = styled.div`
-    padding: 1rem 1.5rem;
-  `;
-
-  const Label = styled(Link)`
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-decoration: none;
-
-    ${fl_allStates(css`
-      color: ${(props) => props.theme.colors.blue};
-    `)}
-  `;
-
-  const CoverLink = styled(Link)`
-    ${fl_absoluteFill}
-  `;
-
-  return (
-    <Fragment>
-      <ImagePlaceholder />
-      <Inner>
-        <Label to={`/topics/${topic.slug}`}>{topic.name}</Label>
-      </Inner>
-      <CoverLink
-        to={`/topics/${topic.slug}`}
-        aria-hidden="true"
-        focusable="false"
-        tabIndex="-1"
-      />
-    </Fragment>
-  );
-};
 
 const TopicLanding = () => {
   const Billboard = () => {
