@@ -24,40 +24,35 @@ module.exports = {
     return trim(result.description.item.parentSeries.title);
   },
 
-  thumbnailUrl: (result) => {
-    // If objects is an array, take the thumbnail from the frist entry
-    // otherwise it can be an object
-    const object = result.objects.object;
+  objects: (result) => {
+    const mapObject = (object) => {
+      let json = {
+        type: (object.technicalMetadata || {})["mime"],
+        thumbnail: {
+          url: object.thumbnail["@url"],
+        },
+        file: {
+          url: object.file["url"],
+        },
+      };
 
-    if (object && Array.isArray(object)) {
-      return object[0].thumbnail["@url"];
-    } else if (object) {
-      return object.thumbnail["@url"];
+      if (object.imageTiles) {
+        json.imageTiles = {};
+        json.imageTiles.url = object.imageTiles["@url"];
+      }
+
+      return json;
+    };
+
+    const objects = result.objects.object;
+
+    if (objects && Array.isArray(objects)) {
+      data = objects.map((object) => mapObject(object));
+    } else if (objects) {
+      data = [mapObject(objects)];
     }
-  },
 
-  imageTilesUrl: (result) => {
-    // If objects is an array, take the thumbnail from the frist entry
-    // otherwise it can be an object
-    const object = result.objects.object;
-
-    if (object && Array.isArray(object)) {
-      return object[0].imageTiles ? object[0].imageTiles["@url"] : null;
-    } else if (object) {
-      return object.imageTiles ? object.imageTiles["@url"] : null;
-    }
-  },
-
-  originalUrl: (result) => {
-    // If objects is an array, take the file from the frist entry
-    // otherwise it can be an object
-    const object = result.objects.object;
-
-    if (object && Array.isArray(object)) {
-      return object[0].file["@url"];
-    } else if (object) {
-      return object.file["@url"];
-    }
+    return JSON.stringify(data);
   },
 
   aspectRatio: (result) => {

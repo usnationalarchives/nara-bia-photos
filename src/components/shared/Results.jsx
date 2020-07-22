@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
 // components
-import Record from "./Record";
+import Result from "#components/shared/Result";
 
 const Results = ({ results, data }) => {
   return (
@@ -11,7 +11,7 @@ const Results = ({ results, data }) => {
       </p>
 
       {data.map((record) => (
-        <Record key={record.naId} record={record} />
+        <Result key={record.naId} record={record} />
       ))}
     </Fragment>
   );

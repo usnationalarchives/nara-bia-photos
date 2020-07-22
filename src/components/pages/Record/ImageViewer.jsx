@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import OpenSeaDragon from "openseadragon";
 
-const ImageViewer = ({ record }) => {
+const ImageViewer = ({ object }) => {
   const [viewer, setViewer] = useState();
 
   useEffect(() => {
-    if (record && viewer) {
+    if (object && viewer) {
       viewer.open();
     }
-    // we only care about the record prop, ignore other dependencies
+    // we only care about the object prop, ignore other dependencies
     // eslint-disable-next-line
-  }, [record]);
+  }, [object]);
 
   useEffect(() => {
     initOpenSeaDragon();
@@ -26,7 +26,7 @@ const ImageViewer = ({ record }) => {
   const initOpenSeaDragon = () => {
     viewer && viewer.destroy();
 
-    const tileSources = record.imageTilesUrl.replace(
+    const tileSources = object.imageTiles.url.replace(
       "catalog.archives.gov/catalogmedia",
       "s3.amazonaws.com/NARAprodstorage"
     );

@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import qs from "qs";
 
 // components
@@ -7,6 +6,7 @@ import * as Layout from "#components/shared/Layout";
 import * as Text from "#components/shared/Text";
 import Pagination from "#components/shared/Pagination";
 import Filters from "#components/shared/Filters";
+import Results from "#components/shared/Results";
 
 // hooks
 import useRecords from "#hooks/useRecords";
@@ -92,12 +92,7 @@ const TribeListing = ({ ...props }) => {
 
         <Filters filters={filters} />
 
-        {data.map((result) => (
-          <Link key={result.slug} to={`/${result.slug}`}>
-            <img src={result.thumbnailUrl} alt="" aria-hidden="true" />
-            <p>{result.title}</p>
-          </Link>
-        ))}
+        <Results results={results} data={data} />
 
         <Pagination
           style={{ marginBottom: "20px" }}

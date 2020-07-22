@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const Record = ({ record }) => {
+  const objects = JSON.parse(record.objects);
+
   return (
     <dl
       style={{
@@ -47,7 +49,7 @@ const Record = ({ record }) => {
         <b>Thumbnail:</b>
       </dt>
       <dd>
-        <img src={record.thumbnailUrl} alt="" aria-hidden="true" />
+        <img src={objects[0].thumbnail.url} alt="" aria-hidden="true" />
       </dd>
     </dl>
   );
