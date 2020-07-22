@@ -17,4 +17,39 @@ module.exports = {
 
     return string;
   },
+
+  alphabet: () => {
+    let list = [];
+
+    for (let i = 0; i < 26; i++) {
+      list.push((i + 10).toString(36));
+    }
+
+    return list;
+  },
+
+  groupObjectsByNameLetter: (items) => {
+    let grouped = {};
+
+    items.map((item) => {
+      let firstLetter = item.name.charAt(0);
+
+      if (typeof grouped[firstLetter] === "undefined") {
+        grouped[firstLetter] = [];
+      }
+
+      return grouped[firstLetter].push(item);
+    });
+
+    // create a new object sorted alphabetically
+    let sorted = {};
+
+    Object.keys(grouped)
+      .sort()
+      .forEach((letter) => {
+        sorted[letter] = grouped[letter];
+      });
+
+    return sorted;
+  },
 };

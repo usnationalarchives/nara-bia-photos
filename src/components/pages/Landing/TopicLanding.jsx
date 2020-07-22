@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 
 // components
 import * as Layout from "#components/shared/Layout";
-import Billboard from "./Billboard";
+import LandingBillboard from "#components/shared/LandingBillboard";
 import { Grid, GridItem } from "#components/shared/Grid";
 import Card from "#components/shared/Card";
 
@@ -56,16 +56,16 @@ const Topic = ({ topic }) => {
 };
 
 const TopicLanding = () => {
-  const history = useHistory();
+  const Billboard = () => {
+    const history = useHistory();
 
-  const handleSelect = (event) => {
-    const slug = event.target.value;
-    history.push("/topics/" + slug);
-  };
+    const handleSelect = (event) => {
+      const slug = event.target.value;
+      history.push("/topics/" + slug);
+    };
 
-  return (
-    <Fragment>
-      <Billboard title="Topics" description="Lorem Ipsum">
+    return (
+      <LandingBillboard title="Topics" intro="Lorem Ipsum">
         <select style={{ marginTop: "1rem" }} onChange={handleSelect}>
           <option value="">Select a Topic</option>
           {topics.map((topic) => (
@@ -74,19 +74,31 @@ const TopicLanding = () => {
             </option>
           ))}
         </select>
-      </Billboard>
+      </LandingBillboard>
+    );
+  };
+
+  const TopicsGrid = () => {
+    return (
+      <Grid>
+        {topics.map((topic) => (
+          <GridItem key={topic.slug}>
+            <Card>
+              <Topic topic={topic} />
+            </Card>
+          </GridItem>
+        ))}
+      </Grid>
+    );
+  };
+
+  return (
+    <Fragment>
+      <Billboard />
 
       <Layout.Padding style={{ marginTop: "5rem", marginBottom: "5rem" }}>
         <Layout.Wrapper>
-          <Grid>
-            {topics.map((topic) => (
-              <GridItem key={topic.slug}>
-                <Card>
-                  <Topic topic={topic} />
-                </Card>
-              </GridItem>
-            ))}
-          </Grid>
+          <TopicsGrid />
         </Layout.Wrapper>
       </Layout.Padding>
     </Fragment>
