@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from "react";
 import OpenSeaDragon from "openseadragon";
 
-const ImageViewer = ({ object }) => {
+const ImageViewer = ({ objects }) => {
   const [viewer, setViewer] = useState();
 
   useEffect(() => {
-    if (object && viewer) {
-      viewer.open();
+    if (objects && viewer) {
+      const tileSources = objects
+        .map((object) => object.imageTiles.url)
+        .map((url) =>
+          url.replace(
+            "catalog.archives.gov/catalogmedia",
+            "s3.amazonaws.com/NARAprodstorage"
+          )
+        );
+
+      viewer.open(tileSources);
     }
     // we only care about the object prop, ignore other dependencies
     // eslint-disable-next-line
-  }, [object]);
+  }, [objects]);
 
   useEffect(() => {
     initOpenSeaDragon();
@@ -26,15 +35,11 @@ const ImageViewer = ({ object }) => {
   const initOpenSeaDragon = () => {
     viewer && viewer.destroy();
 
-    const tileSources = object.imageTiles.url.replace(
-      "catalog.archives.gov/catalogmedia",
-      "s3.amazonaws.com/NARAprodstorage"
-    );
-
     const newViewer = OpenSeaDragon({
       id: "viewer",
-      tileSources: tileSources,
       prefixUrl: "/images/openseadragon/",
+      sequenceMode: true,
+      showReferenceStrip: true,
     });
 
     setViewer(newViewer);
