@@ -1,10 +1,12 @@
-import React from "react";
 import styled from "styled-components";
+
+const horizontalGutter = 40;
+const verticalGutter = 60;
 
 const Grid = styled.ul`
   display: flex;
   flex-direction: column;
-  margin: 0 -20px;
+  margin: -${verticalGutter / 2}px -${horizontalGutter / 2}px;
 
   @media all and ${(props) => props.theme.breakpoints.medium} {
     flex-direction: row;
@@ -13,7 +15,7 @@ const Grid = styled.ul`
 `;
 
 const GridItem = styled.li`
-  padding: 20px;
+  padding: ${verticalGutter / 2}px ${horizontalGutter / 2}px;
 
   @media all and ${(props) => props.theme.breakpoints.medium} {
     width: 50%;
