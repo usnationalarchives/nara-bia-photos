@@ -1,62 +1,37 @@
 searchUUID,naId,name,slug
-92c14b50-caa4-11ea-a2dd-616592547c9b,10444475,Standing Rock Sioux Tribe of North & South Dakota,standing-rock-sioux-tribe-of-north-south-dakota-10444475
-92c14b51-caa4-11ea-a2dd-616592547c9b,10446012,Minnesota Chippewa Tribe,minnesota-chippewa-tribe-10446012
-92c14b52-caa4-11ea-a2dd-616592547c9b,10446357,Northern Cheyenne Tribe,northern-cheyenne-tribe-10446357
-92c14b53-caa4-11ea-a2dd-616592547c9b,175776440,Assiniboine Indians,assiniboine-indians-175776440
-92c14b54-caa4-11ea-a2dd-616592547c9b,176215806,"Sisseton-Wahpeton Oyate of the Lake Traverse Reservation, South Dakota",sisseton-wahpeton-oyate-of-the-lake-traverse-reservation-south-dakota-176215806
-92c14b55-caa4-11ea-a2dd-616592547c9b,10441069,Skokomish Indian Tribe,skokomish-indian-tribe-10441069
-92c14b56-caa4-11ea-a2dd-616592547c9b,175776445,"Iipay Nation of Santa Ysabel, California",iipay-nation-of-santa-ysabel-california-175776445
-92c14b57-caa4-11ea-a2dd-616592547c9b,176213805,"Pueblo of Isleta, New Mexico",pueblo-of-isleta-new-mexico-176213805
-92c14b58-caa4-11ea-a2dd-616592547c9b,10440787,Chippewa Tribe,chippewa-tribe-10440787
-92c14b59-caa4-11ea-a2dd-616592547c9b,175776447,Bannock Indians,bannock-indians-175776447
-92c14b5a-caa4-11ea-a2dd-616592547c9b,175776450,"Cheyenne and Arapaho Tribes, Oklahoma",cheyenne-and-arapaho-tribes-oklahoma-175776450
-92c14b5b-caa4-11ea-a2dd-616592547c9b,175776453,"Pueblo of Taos, New Mexico",pueblo-of-taos-new-mexico-175776453
-92c14b5c-caa4-11ea-a2dd-616592547c9b,175776458,Pueblo of Santa Clara,pueblo-of-santa-clara-175776458
-92c14b5d-caa4-11ea-a2dd-616592547c9b,176213813,Seminole Nation of Oklahoma,seminole-nation-of-oklahoma-176213813
-92c14b5e-caa4-11ea-a2dd-616592547c9b,176213818,Seminole Tribes of Florida,seminole-tribes-of-florida-176213818
-92c14b5f-caa4-11ea-a2dd-616592547c9b,176203313,Pima Indians,pima-indians-176203313
-92c14b60-caa4-11ea-a2dd-616592547c9b,176203315,Pala Band of Mission Indians,pala-band-of-mission-indians-176203315
-92c14b61-caa4-11ea-a2dd-616592547c9b,176213808,Seneca Nation of Indians,seneca-nation-of-indians-176213808
-92c14b62-caa4-11ea-a2dd-616592547c9b,10445840,Cherokee Nation,cherokee-nation-10445840
-92c14b63-caa4-11ea-a2dd-616592547c9b,176215669,"Confederated Salish & Kootenai Tribes of the Flathead Reservation, Montana",confederated-salish-kootenai-tribes-of-the-flathead-reservation-montana-176215669
-92c14b64-caa4-11ea-a2dd-616592547c9b,10442678,Kickapoo Tribe of Indians,kickapoo-tribe-of-indians-10442678
-92c14b65-caa4-11ea-a2dd-616592547c9b,176213827,"Pueblo of Acoma, New Mexico",pueblo-of-acoma-new-mexico-176213827
-92c14b66-caa4-11ea-a2dd-616592547c9b,176215671,Fallon Paiute-Shoshone Tribe,fallon-paiute-shoshone-tribe-176215671
-92c14b67-caa4-11ea-a2dd-616592547c9b,176203902,Muscogee (Creek) Nation,muscogee-creek-nation-176203902
-92c14b68-caa4-11ea-a2dd-616592547c9b,10444831,Omaha Tribe of Nebraska,omaha-tribe-of-nebraska-10444831
-92c14b69-caa4-11ea-a2dd-616592547c9b,10446758,Nez Perce Tribe,nez-perce-tribe-10446758
-92c14b6a-caa4-11ea-a2dd-616592547c9b,10441171,Sioux Nation,sioux-nation-10441171
-92c14b6b-caa4-11ea-a2dd-616592547c9b,175776612,Ute Indian Tribe,ute-indian-tribe-175776612
-92c14b6c-caa4-11ea-a2dd-616592547c9b,175776601,Caddo Nation of Oklahoma,caddo-nation-of-oklahoma-175776601
-92c14b6d-caa4-11ea-a2dd-616592547c9b,175776603,Waco Tribe,waco-tribe-175776603
-92c14b6e-caa4-11ea-a2dd-616592547c9b,175776606,Delaware Tribe of Indians,delaware-tribe-of-indians-175776606
-92c14b6f-caa4-11ea-a2dd-616592547c9b,12024135,Lower Yanktonai Sioux Tribe,lower-yanktonai-sioux-tribe-12024135
-92c14b70-caa4-11ea-a2dd-616592547c9b,10444187,Lower Brule Sioux Tribe,lower-brule-sioux-tribe-10444187
-92c14b71-caa4-11ea-a2dd-616592547c9b,175776578,Tonto Apache Tribe of Arizona,tonto-apache-tribe-of-arizona-175776578
-92c14b72-caa4-11ea-a2dd-616592547c9b,175776567,"Jicarilla Apache Nation, New Mexico",jicarilla-apache-nation-new-mexico-175776567
-92c14b73-caa4-11ea-a2dd-616592547c9b,175776570,"San Carlos Apache Tribe of the San Carlos Reservation, Arizona",san-carlos-apache-tribe-of-the-san-carlos-reservation-arizona-175776570
-92c14b74-caa4-11ea-a2dd-616592547c9b,175776564,Apache Tribe of Oklahoma,apache-tribe-of-oklahoma-175776564
-92c14b75-caa4-11ea-a2dd-616592547c9b,175776249,Kiowa Apache Indians,kiowa-apache-indians-175776249
-92c14b76-caa4-11ea-a2dd-616592547c9b,175776522,Tulalip Tribes of Washington,tulalip-tribes-of-washington-175776522
-92c14b77-caa4-11ea-a2dd-616592547c9b,175776526,Crow Tribe of Montana,crow-tribe-of-montana-175776526
-92c14b78-caa4-11ea-a2dd-616592547c9b,10442550,Quileute Indian Tribe,quileute-indian-tribe-10442550
-92c14b79-caa4-11ea-a2dd-616592547c9b,175776243,Nooksack Indian Tribe of Washington,nooksack-indian-tribe-of-washington-175776243
-92c14b7a-caa4-11ea-a2dd-616592547c9b,175776245,"Confederated Tribes of the Colville Reservation, Washington",confederated-tribes-of-the-colville-reservation-washington-175776245
-92c14b7b-caa4-11ea-a2dd-616592547c9b,175776247,"Comanche Nation, Oklahoma",comanche-nation-oklahoma-175776247
-92c14b7c-caa4-11ea-a2dd-616592547c9b,10446076,Navajo Nation,navajo-nation-10446076
-92c14b7d-caa4-11ea-a2dd-616592547c9b,175776216,Menominee Indian Tribe of Wisconsin,menominee-indian-tribe-of-wisconsin-175776216
-92c14b7e-caa4-11ea-a2dd-616592547c9b,175776227,Blackfeet Tribe of the Blackfeet Indian Reservation of Montana,blackfeet-tribe-of-the-blackfeet-indian-reservation-of-montana-175776227
-92c14b7f-caa4-11ea-a2dd-616592547c9b,175776235,Shoshone-Bannock Tribes of the Fort Hall Reservation of Idaho,shoshone-bannock-tribes-of-the-fort-hall-reservation-of-idaho-175776235
-92c17260-caa4-11ea-a2dd-616592547c9b,175776240,"Duckwater Shoshone Tribe of the Duckwater Reservation, Nevada",duckwater-shoshone-tribe-of-the-duckwater-reservation-nevada-175776240
-92c17261-caa4-11ea-a2dd-616592547c9b,175704066,"Citizen Potawatomi Nation, Oklahoma",citizen-potawatomi-nation-oklahoma-175704066
-92c17262-caa4-11ea-a2dd-616592547c9b,175704069,Prairie Band Potawatomi Nation,prairie-band-potawatomi-nation-175704069
-92c17263-caa4-11ea-a2dd-616592547c9b,175776209,"Pokagon Band of Potawatomi Indians, Michigan and Indiana",pokagon-band-of-potawatomi-indians-michigan-and-indiana-175776209
-92c17264-caa4-11ea-a2dd-616592547c9b,10445690,Potawatomi Tribe,potawatomi-tribe-10445690
-92c17265-caa4-11ea-a2dd-616592547c9b,10446757,Oglala Sioux Tribe,oglala-sioux-tribe-10446757
-92c17266-caa4-11ea-a2dd-616592547c9b,10443825,Rosebud Sioux Tribe,rosebud-sioux-tribe-10443825
-92c17267-caa4-11ea-a2dd-616592547c9b,10446069,Turtle Mountain Band of Chippewa Indians,turtle-mountain-band-of-chippewa-indians-10446069
-92c17268-caa4-11ea-a2dd-616592547c9b,175649122,"Spirit Lake Tribe, North Dakota",spirit-lake-tribe-north-dakota-175649122
-92c17269-caa4-11ea-a2dd-616592547c9b,175649119,"Mandan, Hidatsa, and Arikara Nation",mandan-hidatsa-and-arikara-nation-175649119
-92c1726a-caa4-11ea-a2dd-616592547c9b,10444556,Crow Creek Sioux Tribe,crow-creek-sioux-tribe-10444556
-92c1726b-caa4-11ea-a2dd-616592547c9b,10444557,Cheyenne River Sioux Tribe,cheyenne-river-sioux-tribe-10444557
-92c1726c-caa4-11ea-a2dd-616592547c9b,10444182,White Earth Band of Chippewa Indians,white-earth-band-of-chippewa-indians-10444182
+289586a0-cc1c-11ea-a88a-adf80894f451,10444475,Standing Rock Sioux Tribe of North & South Dakota,standing-rock-sioux-tribe-of-north-south-dakota-10444475
+289586a1-cc1c-11ea-a88a-adf80894f451,10446012,Minnesota Chippewa Tribe,minnesota-chippewa-tribe-10446012
+289586a2-cc1c-11ea-a88a-adf80894f451,10446357,Northern Cheyenne Tribe,northern-cheyenne-tribe-10446357
+289586a3-cc1c-11ea-a88a-adf80894f451,175776440,Assiniboine Indians,assiniboine-indians-175776440
+289586a4-cc1c-11ea-a88a-adf80894f451,10441069,Skokomish Indian Tribe,skokomish-indian-tribe-10441069
+289586a5-cc1c-11ea-a88a-adf80894f451,176213805,"Pueblo of Isleta, New Mexico",pueblo-of-isleta-new-mexico-176213805
+289586a6-cc1c-11ea-a88a-adf80894f451,10440787,Chippewa Tribe,chippewa-tribe-10440787
+289586a7-cc1c-11ea-a88a-adf80894f451,175776447,Bannock Indians,bannock-indians-175776447
+289586a8-cc1c-11ea-a88a-adf80894f451,175776450,"Cheyenne and Arapaho Tribes, Oklahoma",cheyenne-and-arapaho-tribes-oklahoma-175776450
+289586a9-cc1c-11ea-a88a-adf80894f451,175776453,"Pueblo of Taos, New Mexico",pueblo-of-taos-new-mexico-175776453
+289586aa-cc1c-11ea-a88a-adf80894f451,175776458,Pueblo of Santa Clara,pueblo-of-santa-clara-175776458
+289586ab-cc1c-11ea-a88a-adf80894f451,176213813,Seminole Nation of Oklahoma,seminole-nation-of-oklahoma-176213813
+289586ac-cc1c-11ea-a88a-adf80894f451,176213818,Seminole Tribes of Florida,seminole-tribes-of-florida-176213818
+289586ad-cc1c-11ea-a88a-adf80894f451,176213808,Seneca Nation of Indians,seneca-nation-of-indians-176213808
+289586ae-cc1c-11ea-a88a-adf80894f451,10445840,Cherokee Nation,cherokee-nation-10445840
+289586af-cc1c-11ea-a88a-adf80894f451,176215669,"Confederated Salish & Kootenai Tribes of the Flathead Reservation, Montana",confederated-salish-kootenai-tribes-of-the-flathead-reservation-montana-176215669
+289586b0-cc1c-11ea-a88a-adf80894f451,176215671,Fallon Paiute-Shoshone Tribe,fallon-paiute-shoshone-tribe-176215671
+289586b1-cc1c-11ea-a88a-adf80894f451,10446758,Nez Perce Tribe,nez-perce-tribe-10446758
+289586b2-cc1c-11ea-a88a-adf80894f451,175776601,Caddo Nation of Oklahoma,caddo-nation-of-oklahoma-175776601
+289586b3-cc1c-11ea-a88a-adf80894f451,12024135,Lower Yanktonai Sioux Tribe,lower-yanktonai-sioux-tribe-12024135
+289586b4-cc1c-11ea-a88a-adf80894f451,175776578,Tonto Apache Tribe of Arizona,tonto-apache-tribe-of-arizona-175776578
+289586b5-cc1c-11ea-a88a-adf80894f451,175776567,"Jicarilla Apache Nation, New Mexico",jicarilla-apache-nation-new-mexico-175776567
+289586b6-cc1c-11ea-a88a-adf80894f451,175776570,"San Carlos Apache Tribe of the San Carlos Reservation, Arizona",san-carlos-apache-tribe-of-the-san-carlos-reservation-arizona-175776570
+2895adb0-cc1c-11ea-a88a-adf80894f451,175776249,Kiowa Apache Indians,kiowa-apache-indians-175776249
+2895adb1-cc1c-11ea-a88a-adf80894f451,175776243,Nooksack Indian Tribe of Washington,nooksack-indian-tribe-of-washington-175776243
+2895adb2-cc1c-11ea-a88a-adf80894f451,175776245,"Confederated Tribes of the Colville Reservation, Washington",confederated-tribes-of-the-colville-reservation-washington-175776245
+2895adb3-cc1c-11ea-a88a-adf80894f451,175776247,"Comanche Nation, Oklahoma",comanche-nation-oklahoma-175776247
+2895adb4-cc1c-11ea-a88a-adf80894f451,175776216,Menominee Indian Tribe of Wisconsin,menominee-indian-tribe-of-wisconsin-175776216
+2895adb5-cc1c-11ea-a88a-adf80894f451,175776227,Blackfeet Tribe of the Blackfeet Indian Reservation of Montana,blackfeet-tribe-of-the-blackfeet-indian-reservation-of-montana-175776227
+2895adb6-cc1c-11ea-a88a-adf80894f451,175776240,"Duckwater Shoshone Tribe of the Duckwater Reservation, Nevada",duckwater-shoshone-tribe-of-the-duckwater-reservation-nevada-175776240
+2895adb7-cc1c-11ea-a88a-adf80894f451,175776209,"Pokagon Band of Potawatomi Indians, Michigan and Indiana",pokagon-band-of-potawatomi-indians-michigan-and-indiana-175776209
+2895adb8-cc1c-11ea-a88a-adf80894f451,10445690,Potawatomi Tribe,potawatomi-tribe-10445690
+2895adb9-cc1c-11ea-a88a-adf80894f451,10443825,Rosebud Sioux Tribe,rosebud-sioux-tribe-10443825
+2895adba-cc1c-11ea-a88a-adf80894f451,10446069,Turtle Mountain Band of Chippewa Indians,turtle-mountain-band-of-chippewa-indians-10446069
+2895adbb-cc1c-11ea-a88a-adf80894f451,175649119,"Mandan, Hidatsa, and Arikara Nation",mandan-hidatsa-and-arikara-nation-175649119
+2895adbc-cc1c-11ea-a88a-adf80894f451,10444182,White Earth Band of Chippewa Indians,white-earth-band-of-chippewa-indians-10444182

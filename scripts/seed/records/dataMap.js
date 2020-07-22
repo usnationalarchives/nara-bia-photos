@@ -6,10 +6,6 @@ module.exports = {
     return result.naId;
   },
 
-  location: (result) => {
-    return trim(result.description.item.dataControlGroup.groupCd);
-  },
-
   title: (result) => {
     return trim(result.description.item.title);
   },
@@ -26,26 +22,6 @@ module.exports = {
 
   parentSeriesTitle: (result) => {
     return trim(result.description.item.parentSeries.title);
-  },
-
-  creatingOrg: (result) => {
-    const creatingOrganization =
-      result.description.item.parentSeries.creatingOrganizationArray
-        .creatingOrganization;
-
-    if (creatingOrganization && Array.isArray(creatingOrganization)) {
-      creatingOrgs = creatingOrganization.map((org) => {
-        if (org.creatorType.termName === "Most Recent") {
-          return org.creator.termName;
-        } else {
-          return "";
-        }
-      });
-
-      return creatingOrgs.join("; ");
-    } else if (creatingOrganization) {
-      return creatingOrganization.creator.termName;
-    }
   },
 
   thumbnailUrl: (result) => {
