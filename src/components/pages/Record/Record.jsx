@@ -12,7 +12,7 @@ const Record = ({ ...props }) => {
   const slug = props.match.params.slug;
   const slugParts = slug.split("-");
   const naId = parseInt(slugParts[slugParts.length - 1]);
-  const [objects, setObjects] = useState([]);
+  const [objects, setObjects] = useState();
 
   const [results] = useRecords({
     facets: {
@@ -34,9 +34,7 @@ const Record = ({ ...props }) => {
         {record && (
           <Fragment>
             <Text.H1>{record.title}</Text.H1>
-            {objects.map((object, i) => (
-              <ImageViewer key={i} object={object} />
-            ))}
+            <ImageViewer objects={objects} />
           </Fragment>
         )}
       </Layout.Wrapper>
