@@ -26,6 +26,7 @@ const Topic = ({ topic }) => {
   `;
 
   const Label = styled(Link)`
+    font-size: 1.2rem;
     font-weight: bold;
     text-decoration: none;
 
