@@ -64,6 +64,12 @@ export const Intro = styled.p`
   }
 `;
 
+export const Label = styled.p`
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.2;
+`;
+
 export const Screenreader = styled.span`
   ${fl_visuallyHidden}
 `;

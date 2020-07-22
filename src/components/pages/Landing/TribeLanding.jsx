@@ -1,29 +1,49 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { Fragment } from "react";
+import styled from "styled-components";
 
 // components
 import * as Layout from "#components/shared/Layout";
 import * as Text from "#components/shared/Text";
+import LandingBillboard from "#components/shared/LandingBillboard";
+import AlphabetLinks from "#components/shared/AlphabetLinks";
+import TribeList from "#components/shared/TribeList";
+import TribeSearch from "#components/shared/TribeSearch";
 
 // modules
 import { tribalNations } from "#modules/constants";
+import { groupObjectsByNameLetter } from "#modules/helpers";
+
+const Label = styled(Text.Label)`
+  color: ${(props) => props.theme.colors.white};
+  margin-bottom: 1.5rem;
+`;
 
 const TribeLanding = () => {
+  const groupedTribes = groupObjectsByNameLetter(tribalNations);
+
+  const Billboard = () => {
+    return (
+      <LandingBillboard title="Tribal Nations">
+        <Label>Select the first letter of a Tribal Nation's name</Label>
+        <AlphabetLinks
+          style={{ marginBottom: "1rem" }}
+          activeLetters={Object.keys(groupedTribes)}
+        />
+
+        <TribeSearch />
+      </LandingBillboard>
+    );
+  };
+
   return (
-    <Layout.Padding>
-      <Layout.Wrapper>
-        <Text.H1>Tribal Nations</Text.H1>
-        <ol>
-          {tribalNations.map((tribalNation) => (
-            <li key={tribalNation.slug}>
-              <Link to={`/tribal-nations/${tribalNation.slug}`}>
-                {tribalNation.name}
-              </Link>
-            </li>
-          ))}
-        </ol>
-      </Layout.Wrapper>
-    </Layout.Padding>
+    <Fragment>
+      <Billboard />
+      <Layout.Padding style={{ marginTop: "4rem", marginBottom: "4rem" }}>
+        <Layout.Wrapper>
+          <TribeList groupedTribes={groupedTribes} />
+        </Layout.Wrapper>
+      </Layout.Padding>
+    </Fragment>
   );
 };
 

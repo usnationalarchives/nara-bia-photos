@@ -19,13 +19,13 @@ const Intro = styled(Text.Intro)`
   color: ${(props) => props.theme.colors.white};
 `;
 
-const Billboard = ({ title, description, ...props }) => {
+const Billboard = ({ title, intro, ...props }) => {
   return (
     <Root>
       <Layout.Padding>
         <Layout.Wrapper>
           <Title>{title}</Title>
-          <Intro>{description}</Intro>
+          {intro && <Intro>{intro}</Intro>}
           {props.children}
         </Layout.Wrapper>
       </Layout.Padding>
