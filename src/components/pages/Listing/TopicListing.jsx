@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import qs from "qs";
 
 // components
 import * as Layout from "#components/shared/Layout";
-import * as Text from "#components/shared/Text";
 import Pagination from "#components/shared/Pagination";
 import Filters from "#components/shared/Filters";
 import Results from "#components/shared/Results";
+import ListingBillboard from "#components/shared/ListingBillboard";
 
 // hooks
 import useRecords from "#hooks/useRecords";
@@ -83,26 +83,33 @@ const TopicListing = ({ ...props }) => {
   ];
 
   return (
-    <Layout.Padding>
-      <Layout.Wrapper>
-        <Text.H1>{topicName}</Text.H1>
+    <Fragment>
+      <ListingBillboard
+        label="Topic"
+        intro="Lorem Ipsum"
+        title={topicName}
+        items={topics}
+        slugPrefix="topics"
+      />
+      <Layout.Padding>
+        <Layout.Wrapper>
+          <Filters filters={filters} />
 
-        <Filters filters={filters} />
+          <Results results={results} data={data} />
 
-        <Results results={results} data={data} />
-
-        <Pagination
-          style={{ marginBottom: "20px" }}
-          page={page}
-          setPage={setPage}
-          prevHandler={prevHandler}
-          nextHandler={nextHandler}
-          prevPage={prevPage}
-          nextPage={nextPage}
-          totalPages={totalPages}
-        />
-      </Layout.Wrapper>
-    </Layout.Padding>
+          <Pagination
+            style={{ marginBottom: "20px" }}
+            page={page}
+            setPage={setPage}
+            prevHandler={prevHandler}
+            nextHandler={nextHandler}
+            prevPage={prevPage}
+            nextPage={nextPage}
+            totalPages={totalPages}
+          />
+        </Layout.Wrapper>
+      </Layout.Padding>
+    </Fragment>
   );
 };
 

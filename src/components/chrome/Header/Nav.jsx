@@ -49,7 +49,7 @@ const Menu = styled.ul`
 `;
 
 const MenuItem = styled.li`
-  display: inline;
+  display: inline-block;
   margin-bottom: 1rem;
   white-space: nowrap;
 
@@ -58,6 +58,7 @@ const MenuItem = styled.li`
   }
 
   @media all and ${(props) => props.theme.breakpoints.medium} {
+    display: inline;
     margin-bottom: 0;
     margin-right: 2rem;
   }
