@@ -27,6 +27,7 @@ const TribeSearch = () => {
         <input
           id="tribalNationQuery"
           type="text"
+          defaultValue={query}
           onChange={(event) => handleSearch(event.target.value)}
         />
       </div>

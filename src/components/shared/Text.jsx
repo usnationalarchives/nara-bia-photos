@@ -65,9 +65,10 @@ export const Intro = styled.p`
 `;
 
 export const Label = styled.p`
-  font-size: 1rem;
-  font-weight: normal;
+  font-size: 0.9rem;
+  font-weight: bold;
   line-height: 1.2;
+  text-transform: uppercase;
 `;
 
 export const Screenreader = styled.span`
