@@ -1,10 +1,11 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useRef } from "react";
 import styled from "styled-components";
 import { debounce } from "lodash";
 import elasticlunr from "elasticlunr";
 import Popover from "react-tiny-popover";
 
 // componnts
+import * as Input from "#components/shared/Input";
 import PopoverNav from "#components/shared/PopoverNav";
 
 const Label = styled.label`
@@ -14,6 +15,7 @@ const Label = styled.label`
 `;
 
 const TribeSearch = ({ tribalNations }) => {
+  const popoverEl = useRef();
   const [query, setQuery] = useState();
   const [results, setResults] = useState([]);
 
@@ -55,20 +57,24 @@ const TribeSearch = ({ tribalNations }) => {
       <div>
         <Popover
           isOpen={query}
-          align="start"
           disableReposition
           onClickOutside={resetSearch}
-          position={["bottom", "left"]}
+          contentLocation={{ top: 50, left: 0 }}
           content={<PopoverNav items={results} slugPrefix="tribal-nations" />}
+          contentDestination={popoverEl.current}
           containerStyle={{ overflow: "visible" }}
         >
-          <input
-            id="tribalNationQuery"
-            type="text"
-            defaultValue={query}
-            onChange={(event) => handleSearch(event.target.value)}
-            onFocus={(event) => handleSearch(event.target.value)}
-          />
+          <div style={{ position: "relative" }}>
+            <Input.Text
+              id="tribalNationQuery"
+              defaultValue={query}
+              placeholder="Enter a name"
+              onChange={(event) => handleSearch(event.target.value)}
+              onFocus={(event) => handleSearch(event.target.value)}
+            />
+
+            <div ref={popoverEl}></div>
+          </div>
         </Popover>
       </div>
     </Fragment>
