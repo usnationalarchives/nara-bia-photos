@@ -2,11 +2,12 @@ import React, { Fragment, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
-import * as theme from "./styles/theme";
-import BaseStyles from "./styles/base";
-import Header from "./components/chrome/Header/Header";
-import Footer from "./components/chrome/Footer/Footer";
-import PageLoader from "./components/shared/PageLoader";
+import * as theme from "#styles/theme";
+import BaseStyles from "#styles/base";
+import Header from "#components/chrome/Header/Header";
+import Footer from "#components/chrome/Footer/Footer";
+import PageLoader from "#components/shared/PageLoader";
+import ScrollToTop from "#components/shared/ScrollToTop";
 
 // Lazy load (via code splitting) the top level page components
 const Home = lazy(() => import("./components/pages/Home/Home"));
@@ -38,6 +39,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <BaseStyles />
       <Router>
+        <ScrollToTop />
         <Fragment>
           <Header />
 
