@@ -78,6 +78,7 @@ const ListingBillboard = ({ label, title, intro, items, slugPrefix }) => {
             onClickOutside={() => setNavOpen(false)}
             position={["bottom", "left"]}
             content={<PopoverNav items={items} slugPrefix={slugPrefix} />}
+            containerStyle={{ overflow: "visible" }}
           >
             <Title>
               <TitleButton onClick={() => setNavOpen(!navOpen)}>
