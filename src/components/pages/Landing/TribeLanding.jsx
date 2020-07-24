@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 // components
 import * as Layout from "#components/shared/Layout";
-import * as Text from "#components/shared/Text";
 import LandingBillboard from "#components/shared/LandingBillboard";
 import AlphabetLinks from "#components/shared/AlphabetLinks";
 import TribeList from "#components/shared/TribeList";
@@ -13,8 +12,9 @@ import TribeSearch from "#components/shared/TribeSearch";
 import { tribalNations } from "#modules/constants";
 import { groupObjectsByNameLetter } from "#modules/helpers";
 
-const Label = styled(Text.Label)`
+const Label = styled.p`
   color: ${(props) => props.theme.colors.white};
+  display: inline-block;
   margin-bottom: 1.5rem;
 `;
 
@@ -30,7 +30,7 @@ const TribeLanding = () => {
           activeLetters={Object.keys(groupedTribes)}
         />
 
-        <TribeSearch />
+        <TribeSearch tribalNations={tribalNations} />
       </LandingBillboard>
     );
   };
