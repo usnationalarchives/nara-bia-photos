@@ -67,6 +67,7 @@ const MenuItem = styled.li`
 const Root = styled.div`
   @media all and ${(props) => props.theme.breakpoints.medium} {
     padding-right: 1rem;
+  }
 `;
 
 const Item = (props) => {
