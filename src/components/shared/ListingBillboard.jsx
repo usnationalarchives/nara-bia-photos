@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Popover from "react-tiny-popover";
@@ -58,6 +58,7 @@ const TitleButton = styled.button`
 `;
 
 const ListingBillboard = ({ label, title, intro, items, slugPrefix }) => {
+  const popoverEl = useRef();
   const [navOpen, setNavOpen] = useState(false);
   const location = useLocation();
 
@@ -73,18 +74,21 @@ const ListingBillboard = ({ label, title, intro, items, slugPrefix }) => {
           <Label>{label}</Label>
           <Popover
             isOpen={navOpen}
-            align="start"
             disableReposition
             onClickOutside={() => setNavOpen(false)}
-            position={["bottom", "left"]}
+            contentLocation={{ top: 60, left: 0 }}
             content={<PopoverNav items={items} slugPrefix={slugPrefix} />}
+            contentDestination={popoverEl.current}
             containerStyle={{ overflow: "visible" }}
           >
-            <Title>
-              <TitleButton onClick={() => setNavOpen(!navOpen)}>
-                {title}
-              </TitleButton>
-            </Title>
+            <div style={{ position: "relative" }}>
+              <Title>
+                <TitleButton onClick={() => setNavOpen(!navOpen)}>
+                  {title}
+                </TitleButton>
+              </Title>
+              <div ref={popoverEl}></div>
+            </div>
           </Popover>
 
           <Intro>{intro}</Intro>

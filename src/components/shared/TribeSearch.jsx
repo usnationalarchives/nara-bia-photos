@@ -57,7 +57,6 @@ const TribeSearch = ({ tribalNations }) => {
       <div>
         <Popover
           isOpen={query}
-          align="start"
           disableReposition
           onClickOutside={resetSearch}
           contentLocation={{ top: 50, left: 0 }}
