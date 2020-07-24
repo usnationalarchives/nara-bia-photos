@@ -16,7 +16,10 @@ const index = elasticlunr(function () {
 
 const fullTextSearch = (query) => {
   if (query) {
-    const searchResults = index.search(query);
+    const searchResults = index.search(query, {
+      bool: "OR",
+      expand: true,
+    });
     const searchResultUUIDs = searchResults.map((result) => result.ref);
 
     return searchResultUUIDs;
