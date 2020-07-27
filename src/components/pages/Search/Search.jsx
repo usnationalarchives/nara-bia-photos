@@ -1,36 +1,72 @@
 // libraries
-import React, { useState, useEffect, lazy, Suspense } from "react";
-import qs from "qs";
+import React, { useState, useEffect, lazy, Suspense } from 'react';
+import qs from 'qs';
+import styled from 'styled-components';
 
 // components
-import * as Layout from "#components/shared/Layout";
-import Filters from "#components/shared/Filters";
-import Pagination from "#components/shared/Pagination";
-import QueryField from "./QueryField";
+import * as Layout from '#components/shared/Layout';
+import Filters from '#components/shared/Filters';
+import Pagination from '#components/shared/Pagination';
+import QueryField from './QueryField';
+import ResultsMeta from '#components/shared/ResultsMeta';
+import FidelitySlider from '#components/shared/FidelitySlider';
 
 // hooks
-import useRecords from "#hooks/useRecords";
-import useCheckboxes from "#hooks/useCheckboxes";
-import usePagination from "#hooks/usePagination";
-import useSearchHistory from "#hooks/useSearchHistory";
+import useRecords from '#hooks/useRecords';
+import useCheckboxes from '#hooks/useCheckboxes';
+import usePagination from '#hooks/usePagination';
+import useSearchHistory from '#hooks/useSearchHistory';
 
 // modules
-import fullTextSearch from "#modules/fullTextSearch";
+import fullTextSearch from '#modules/fullTextSearch';
 import {
   states as statesConstant,
   topics as topicsConstant,
   tribalNations,
-} from "#modules/constants";
+} from '#modules/constants';
 
 // Lazy Loads
-const Results = lazy(() => import("#components/shared/Results"));
+const Results = lazy(() => import('#components/shared/Results'));
+
+const Begin = styled.p`
+  padding: 2rem 0 2rem;
+  @media all and ${(props) => props.theme.breakpoints.medium} {
+    padding: 3rem 0 4rem;
+  }
+`;
+
+const ResultsWrapper = styled.div`
+  border-top: solid 1px ${(props) => props.theme.colors.mediumGrey};
+  margin-top: 2rem;
+  padding-top: 2rem;
+
+  @media all and ${(props) => props.theme.breakpoints.medium} {
+    margin-top: 3.2rem;
+    padding-top: 3.2rem;
+  }
+`;
+
+const ResultsHeaderWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  > * {
+    margin-top: 20px;
+  }
+
+  @media all and ${(props) => props.theme.breakpoints.medium} {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`;
 
 const Search = ({ ...props }) => {
   // fetch starting search parameters remove the leading ?
-  const search = qs.parse(props.location.search.replace("?", ""));
+  const search = qs.parse(props.location.search.replace('?', ''));
 
   // set up query state, seed with any starting search query
-  const [query, setQuery] = useState(search.q || "");
+  const [query, setQuery] = useState(search.q || '');
+  const [fidelity, setFidelity] = useState(60);
 
   // Set up checkboxes state, seed with any starting search filters
   const [tribes, dispatchTribes] = useCheckboxes(search.tribalNations || []);
@@ -52,9 +88,9 @@ const Search = ({ ...props }) => {
   useSearchHistory({
     query: query,
     filters: [
-      { label: "tribalNations", values: tribes },
-      { label: "topics", values: topics },
-      { label: "states", values: states },
+      { label: 'tribalNations', values: tribes },
+      { label: 'topics', values: topics },
+      { label: 'states', values: states },
     ],
   });
 
@@ -66,16 +102,17 @@ const Search = ({ ...props }) => {
     prevPage,
     nextPage,
     totalPages,
+    total,
     data,
   } = usePagination({
     items: results,
-    perPage: 30,
+    perPage: fidelity,
   });
 
   // Scroll to the top of the document when the page changes
   useEffect(() => {
     if (page !== 1) {
-      document.querySelector("html").scrollTop = 0;
+      document.querySelector('html').scrollTop = 0;
     }
   }, [page]);
 
@@ -86,7 +123,7 @@ const Search = ({ ...props }) => {
 
   const filters = [
     {
-      label: "Tribal Nations",
+      label: 'Tribal Nations',
       active: tribes,
       dispatch: dispatchTribes,
       dimension: dimensions.recordsByTribe,
@@ -94,7 +131,7 @@ const Search = ({ ...props }) => {
       totals: true,
     },
     {
-      label: "States",
+      label: 'States',
       active: states,
       dispatch: dispatchStates,
       dimension: dimensions.recordsByState,
@@ -102,7 +139,7 @@ const Search = ({ ...props }) => {
       totals: true,
     },
     {
-      label: "Topics",
+      label: 'Topics',
       active: topics,
       dispatch: dispatchTopics,
       dimension: dimensions.recordsByTag,
@@ -112,32 +149,48 @@ const Search = ({ ...props }) => {
   ];
 
   return (
-    <Layout.Padding style={{ marginTop: "1rem", marginBottom: "2rem" }}>
-      <Layout.Wrapper>
-        <QueryField defaultValue={query} setQuery={setQuery} />
+    <>
+      <QueryField defaultValue={search.q || query} setQuery={setQuery} />
+      <Layout.Padding style={{ marginTop: '1rem', marginBottom: '2rem' }}>
+        <Layout.Wrapper>
+          <Filters filters={filters} />
 
-        <Filters filters={filters} />
+          {query && !hasActiveFilters && <p>No Results</p>}
+          {!query && !hasActiveFilters && (
+            <Layout.Wrapper narrow="true">
+              <Begin>
+                Begin a search above by entering a keyword or phase, or
+                selecting any relevent filters.
+              </Begin>
+            </Layout.Wrapper>
+          )}
 
-        {query && !hasActiveFilters && <p>No Results</p>}
+          {hasActiveFilters && (
+            <Suspense fallback={<p>Loading...</p>}>
+              <ResultsWrapper>
+                <ResultsHeaderWrapper>
+                  <ResultsMeta count={data.length} page={page} total={total} />
+                  <FidelitySlider update={setFidelity}></FidelitySlider>
+                </ResultsHeaderWrapper>
 
-        {hasActiveFilters && (
-          <Suspense fallback={<p>Loading...</p>}>
-            <Results results={results} data={data} />
+                <Results results={results} data={data} fidelity={fidelity} />
 
-            <Pagination
-              style={{ marginBottom: "20px" }}
-              page={page}
-              setPage={page}
-              prevHandler={prevHandler}
-              nextHandler={nextHandler}
-              prevPage={prevPage}
-              nextPage={nextPage}
-              totalPages={totalPages}
-            />
-          </Suspense>
-        )}
-      </Layout.Wrapper>
-    </Layout.Padding>
+                <Pagination
+                  style={{ marginBottom: '20px' }}
+                  page={page}
+                  setPage={page}
+                  prevHandler={prevHandler}
+                  nextHandler={nextHandler}
+                  prevPage={prevPage}
+                  nextPage={nextPage}
+                  totalPages={totalPages}
+                />
+              </ResultsWrapper>
+            </Suspense>
+          )}
+        </Layout.Wrapper>
+      </Layout.Padding>
+    </>
   );
 };
 

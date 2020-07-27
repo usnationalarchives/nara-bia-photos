@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { fl_clearfix } from "#styles/frontline";
+import styled, { css } from 'styled-components';
+import { fl_clearfix } from '#styles/frontline';
 
 export const Padding = styled.div`
   width: 100%;

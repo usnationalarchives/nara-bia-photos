@@ -2,17 +2,17 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, text } from '@storybook/addon-knobs/react';
 
-import SelectedTerm from '../src/components/pages/Search/SelectedTerm';
+import SelectedFilter from '../src/components/shared/SelectedFilter';
 
 export default {
   title: 'Selected Term',
-  component: SelectedTerm,
+  component: SelectedFilter,
   decorators: [withKnobs],
   excludeStories: /.*Data$/,
 };
 
-export const valueData = 'Testing';
+export const valueData = 'Portraits';
 
 export const Default = () => (
-  <SelectedTerm value={text('valueData', valueData)} />
+  <SelectedFilter value={text('Filter Text', valueData)} />
 );

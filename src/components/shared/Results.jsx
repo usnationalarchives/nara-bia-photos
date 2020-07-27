@@ -1,19 +1,29 @@
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react';
 
 // components
-import Result from "#components/shared/Result";
+import Result from '#components/shared/Result';
+import styled from 'styled-components';
 
-const Results = ({ results, data }) => {
+const ResultsSyles = styled.ul`
+  margin: 20px -15px;
+
+  li {
+    margin-top: 2rem;
+    display: inline-block;
+    padding: 0 15px;
+    /* padding: 0 15px; */
+  }
+`;
+
+const Results = ({ results, data, fidelity }) => {
   return (
-    <Fragment>
-      <p style={{ marginBottom: "20px" }}>
-        {results.length} result{results.length !== 1 && "s"}
-      </p>
-
+    <ResultsSyles>
       {data.map((record) => (
-        <Result key={record.naId} record={record} />
+        <li>
+          <Result key={record.naId} record={record} scale={fidelity} />
+        </li>
       ))}
-    </Fragment>
+    </ResultsSyles>
   );
 };
 
