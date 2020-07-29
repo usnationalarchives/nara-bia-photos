@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import styled from "styled-components";
 
 // components
@@ -7,12 +7,12 @@ import Result from "#components/shared/Result";
 const ResultsStyles = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  margin: 20px -15px 0;
+  margin: 20px -10px 0;
 `;
 
 const Item = styled.li`
   flex: 1 0 auto;
-  padding: 15px;
+  padding: 10px;
   margin-bottom: 40px;
   position: relative;
 `;

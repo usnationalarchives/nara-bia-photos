@@ -9,6 +9,8 @@ import Filters from "#components/shared/Filters";
 import Pagination from "#components/shared/Pagination";
 import QueryField from "./QueryField";
 import ResultsMeta from "#components/shared/ResultsMeta";
+import ResultsWrapper from "#components/shared/ResultsWrapper";
+import ResultsHeaderWrapper from "#components/shared/ResultsHeaderWrapper";
 import FidelitySlider from "#components/shared/FidelitySlider";
 
 // hooks
@@ -35,38 +37,13 @@ const Begin = styled.p`
   }
 `;
 
-const ResultsWrapper = styled.div`
-  border-top: solid 1px ${(props) => props.theme.colors.mediumGrey};
-  margin-top: 2rem;
-  padding-top: 2rem;
-
-  @media all and ${(props) => props.theme.breakpoints.medium} {
-    margin-top: 3.2rem;
-    padding-top: 3.2rem;
-  }
-`;
-
-const ResultsHeaderWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  > * {
-    margin-top: 20px;
-  }
-
-  @media all and ${(props) => props.theme.breakpoints.medium} {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-`;
-
 const Search = ({ ...props }) => {
   // fetch starting search parameters remove the leading ?
   const search = qs.parse(props.location.search.replace("?", ""));
 
   // set up query state, seed with any starting search query
   const [query, setQuery] = useState(search.q || "");
-  const [fidelity, setFidelity] = useState(225);
+  const [fidelity, setFidelity] = useState(220);
 
   // Set up checkboxes state, seed with any starting search filters
   const [tribes, dispatchTribes] = useCheckboxes(search.tribalNations || []);
@@ -106,7 +83,7 @@ const Search = ({ ...props }) => {
     data,
   } = usePagination({
     items: results,
-    perPage: fidelity,
+    perPage: fidelity < 180 ? 60 : 30,
   });
 
   // Scroll to the top of the document when the page changes

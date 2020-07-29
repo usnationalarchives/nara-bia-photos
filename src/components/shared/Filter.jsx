@@ -1,9 +1,9 @@
-import React, { Fragment, useState, useRef, useEffect } from 'react';
+import React, { Fragment, useRef, useEffect } from "react";
 
-import { Label } from '#components/shared/Text';
-import styled, { css } from 'styled-components';
-import { ReactComponent as CaretIcon } from '#assets/icons/caret.svg';
-import { colors } from '#styles/theme';
+import { Label } from "#components/shared/Text";
+import styled from "styled-components";
+import { ReactComponent as CaretIcon } from "#assets/icons/caret.svg";
+import { colors } from "#styles/theme";
 
 const CheckboxList = styled.div`
   border: solid 1px ${(props) => props.theme.colors.mediumGrey};
@@ -22,7 +22,7 @@ const CheckboxList = styled.div`
     max-height: 400px;
   }
 
-  &[aria-hidden='true'] {
+  &[aria-hidden="true"] {
     display: none;
   }
 
@@ -106,11 +106,11 @@ const Filter = ({ filter, isActive, toggle, id }) => {
   return (
     <div>
       <Fieldset>
-        <legend style={{ marginBottom: '1.25rem' }}>
+        <legend style={{ marginBottom: "1.25rem" }}>
           <Label>{label}</Label>
         </legend>
 
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: "relative" }}>
           <SelectToggle
             aria-label={`Select ${label}`}
             aria-pressed={isActive}
@@ -141,11 +141,11 @@ const Filter = ({ filter, isActive, toggle, id }) => {
                       const checked = e.target.checked;
 
                       dispatch({
-                        type: checked ? 'add' : 'remove',
+                        type: checked ? "add" : "remove",
                         value: value,
                       });
                     }}
-                  />{' '}
+                  />{" "}
                   <label htmlFor={`${label}[${i}]`}>
                     {item.key}
                     {filter.totals && <Fragment>({item.value})</Fragment>}

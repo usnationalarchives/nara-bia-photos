@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import qs from "qs";
 
 // components
@@ -7,6 +7,10 @@ import Pagination from "#components/shared/Pagination";
 import Filters from "#components/shared/Filters";
 import Results from "#components/shared/Results";
 import ListingBillboard from "#components/shared/ListingBillboard";
+import ResultsMeta from "#components/shared/ResultsMeta";
+import ResultsWrapper from "#components/shared/ResultsWrapper";
+import ResultsHeaderWrapper from "#components/shared/ResultsHeaderWrapper";
+import FidelitySlider from "#components/shared/FidelitySlider";
 
 // hooks
 import useRecords from "#hooks/useRecords";
@@ -19,6 +23,7 @@ import useScopedFilters from "#hooks/useScopedFilters";
 import { states } from "#modules/constants";
 
 const StateListing = ({ ...props }) => {
+  const [fidelity, setFidelity] = useState(220);
   const slug = props.match.params.slug;
   const stateName = states.filter((state) => state.slug === slug)[0].name;
 
@@ -52,6 +57,7 @@ const StateListing = ({ ...props }) => {
     setPage,
     prevHandler,
     nextHandler,
+    total,
     prevPage,
     nextPage,
     totalPages,
@@ -96,18 +102,25 @@ const StateListing = ({ ...props }) => {
         <Layout.Wrapper>
           <Filters filters={filters} />
 
-          <Results results={results} data={data} />
+          <ResultsWrapper>
+            <ResultsHeaderWrapper>
+              <ResultsMeta count={data.length} page={page} total={total} />
+              <FidelitySlider update={setFidelity}></FidelitySlider>
+            </ResultsHeaderWrapper>
 
-          <Pagination
-            style={{ marginBottom: "20px" }}
-            page={page}
-            setPage={setPage}
-            prevHandler={prevHandler}
-            nextHandler={nextHandler}
-            prevPage={prevPage}
-            nextPage={nextPage}
-            totalPages={totalPages}
-          />
+            <Results results={results} data={data} fidelity={fidelity} />
+
+            <Pagination
+              style={{ marginBottom: "20px" }}
+              page={page}
+              setPage={setPage}
+              prevHandler={prevHandler}
+              nextHandler={nextHandler}
+              prevPage={prevPage}
+              nextPage={nextPage}
+              totalPages={totalPages}
+            />
+          </ResultsWrapper>
         </Layout.Wrapper>
       </Layout.Padding>
     </Fragment>
