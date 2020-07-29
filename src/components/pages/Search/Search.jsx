@@ -1,32 +1,32 @@
 // libraries
-import React, { useState, useEffect, lazy, Suspense } from 'react';
-import qs from 'qs';
-import styled from 'styled-components';
+import React, { useState, useEffect, lazy, Suspense } from "react";
+import qs from "qs";
+import styled from "styled-components";
 
 // components
-import * as Layout from '#components/shared/Layout';
-import Filters from '#components/shared/Filters';
-import Pagination from '#components/shared/Pagination';
-import QueryField from './QueryField';
-import ResultsMeta from '#components/shared/ResultsMeta';
-import FidelitySlider from '#components/shared/FidelitySlider';
+import * as Layout from "#components/shared/Layout";
+import Filters from "#components/shared/Filters";
+import Pagination from "#components/shared/Pagination";
+import QueryField from "./QueryField";
+import ResultsMeta from "#components/shared/ResultsMeta";
+import FidelitySlider from "#components/shared/FidelitySlider";
 
 // hooks
-import useRecords from '#hooks/useRecords';
-import useCheckboxes from '#hooks/useCheckboxes';
-import usePagination from '#hooks/usePagination';
-import useSearchHistory from '#hooks/useSearchHistory';
+import useRecords from "#hooks/useRecords";
+import useCheckboxes from "#hooks/useCheckboxes";
+import usePagination from "#hooks/usePagination";
+import useSearchHistory from "#hooks/useSearchHistory";
 
 // modules
-import fullTextSearch from '#modules/fullTextSearch';
+import fullTextSearch from "#modules/fullTextSearch";
 import {
   states as statesConstant,
   topics as topicsConstant,
   tribalNations,
-} from '#modules/constants';
+} from "#modules/constants";
 
 // Lazy Loads
-const Results = lazy(() => import('#components/shared/Results'));
+const Results = lazy(() => import("#components/shared/Results"));
 
 const Begin = styled.p`
   padding: 2rem 0 2rem;
@@ -62,11 +62,11 @@ const ResultsHeaderWrapper = styled.div`
 
 const Search = ({ ...props }) => {
   // fetch starting search parameters remove the leading ?
-  const search = qs.parse(props.location.search.replace('?', ''));
+  const search = qs.parse(props.location.search.replace("?", ""));
 
   // set up query state, seed with any starting search query
-  const [query, setQuery] = useState(search.q || '');
-  const [fidelity, setFidelity] = useState(60);
+  const [query, setQuery] = useState(search.q || "");
+  const [fidelity, setFidelity] = useState(225);
 
   // Set up checkboxes state, seed with any starting search filters
   const [tribes, dispatchTribes] = useCheckboxes(search.tribalNations || []);
@@ -88,9 +88,9 @@ const Search = ({ ...props }) => {
   useSearchHistory({
     query: query,
     filters: [
-      { label: 'tribalNations', values: tribes },
-      { label: 'topics', values: topics },
-      { label: 'states', values: states },
+      { label: "tribalNations", values: tribes },
+      { label: "topics", values: topics },
+      { label: "states", values: states },
     ],
   });
 
@@ -112,7 +112,7 @@ const Search = ({ ...props }) => {
   // Scroll to the top of the document when the page changes
   useEffect(() => {
     if (page !== 1) {
-      document.querySelector('html').scrollTop = 0;
+      document.querySelector("html").scrollTop = 0;
     }
   }, [page]);
 
@@ -123,7 +123,7 @@ const Search = ({ ...props }) => {
 
   const filters = [
     {
-      label: 'Tribal Nations',
+      label: "Tribal Nations",
       active: tribes,
       dispatch: dispatchTribes,
       dimension: dimensions.recordsByTribe,
@@ -131,7 +131,7 @@ const Search = ({ ...props }) => {
       totals: true,
     },
     {
-      label: 'States',
+      label: "States",
       active: states,
       dispatch: dispatchStates,
       dimension: dimensions.recordsByState,
@@ -139,7 +139,7 @@ const Search = ({ ...props }) => {
       totals: true,
     },
     {
-      label: 'Topics',
+      label: "Topics",
       active: topics,
       dispatch: dispatchTopics,
       dimension: dimensions.recordsByTag,
@@ -151,7 +151,7 @@ const Search = ({ ...props }) => {
   return (
     <>
       <QueryField defaultValue={search.q || query} setQuery={setQuery} />
-      <Layout.Padding style={{ marginTop: '1rem', marginBottom: '2rem' }}>
+      <Layout.Padding style={{ marginTop: "1rem", marginBottom: "2rem" }}>
         <Layout.Wrapper>
           <Filters filters={filters} />
 
@@ -176,7 +176,7 @@ const Search = ({ ...props }) => {
                 <Results results={results} data={data} fidelity={fidelity} />
 
                 <Pagination
-                  style={{ marginBottom: '20px' }}
+                  style={{ marginBottom: "20px" }}
                   page={page}
                   setPage={page}
                   prevHandler={prevHandler}
