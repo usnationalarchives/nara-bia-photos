@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import qs from "qs";
 
 // components
@@ -7,6 +7,10 @@ import Pagination from "#components/shared/Pagination";
 import Filters from "#components/shared/Filters";
 import Results from "#components/shared/Results";
 import ListingBillboard from "#components/shared/ListingBillboard";
+import ResultsMeta from "#components/shared/ResultsMeta";
+import ResultsWrapper from "#components/shared/ResultsWrapper";
+import ResultsHeaderWrapper from "#components/shared/ResultsHeaderWrapper";
+import FidelitySlider from "#components/shared/FidelitySlider";
 
 // hooks
 import useRecords from "#hooks/useRecords";
@@ -18,6 +22,7 @@ import useScopedFilters from "#hooks/useScopedFilters";
 import { topics } from "#modules/constants";
 
 const TopicListing = ({ ...props }) => {
+  const [fidelity, setFidelity] = useState(220);
   const slug = props.match.params.slug;
   const topicName = topics.filter((topic) => topic.slug === slug)[0].name;
 
@@ -51,13 +56,14 @@ const TopicListing = ({ ...props }) => {
     setPage,
     prevHandler,
     nextHandler,
+    total,
     prevPage,
     nextPage,
     totalPages,
     data,
   } = usePagination({
     items: results,
-    perPage: 30,
+    perPage: fidelity < 180 ? 60 : 30,
   });
 
   // Scroll to the top of the document when the page changes
@@ -94,19 +100,25 @@ const TopicListing = ({ ...props }) => {
       <Layout.Padding>
         <Layout.Wrapper>
           <Filters filters={filters} />
+          <ResultsWrapper>
+            <ResultsHeaderWrapper>
+              <ResultsMeta count={data.length} page={page} total={total} />
+              <FidelitySlider update={setFidelity}></FidelitySlider>
+            </ResultsHeaderWrapper>
 
-          <Results results={results} data={data} />
+            <Results results={results} data={data} fidelity={fidelity} />
 
-          <Pagination
-            style={{ marginBottom: "20px" }}
-            page={page}
-            setPage={setPage}
-            prevHandler={prevHandler}
-            nextHandler={nextHandler}
-            prevPage={prevPage}
-            nextPage={nextPage}
-            totalPages={totalPages}
-          />
+            <Pagination
+              style={{ marginBottom: "20px" }}
+              page={page}
+              setPage={setPage}
+              prevHandler={prevHandler}
+              nextHandler={nextHandler}
+              prevPage={prevPage}
+              nextPage={nextPage}
+              totalPages={totalPages}
+            />
+          </ResultsWrapper>
         </Layout.Wrapper>
       </Layout.Padding>
     </Fragment>

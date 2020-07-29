@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { debounce } from 'lodash';
-import styled, { css } from 'styled-components';
-import * as Layout from '#components/shared/Layout';
-import Button from '#components/shared/Button';
-import { ReactComponent as SearchIcon } from '#assets/icons/search.svg';
-import tinycolor from 'tinycolor2';
+import React from "react";
+import PropTypes from "prop-types";
+import { debounce } from "lodash";
+import styled from "styled-components";
+import * as Layout from "#components/shared/Layout";
+import Button from "#components/shared/Button";
+import { ReactComponent as SearchIcon } from "#assets/icons/search.svg";
+import tinycolor from "tinycolor2";
 
-import * as Text from '../../shared/Text';
+import * as Text from "../../shared/Text";
 
 const H1 = styled(Text.H1)`
   color: white;
@@ -39,7 +39,7 @@ const InputGroup = styled.div`
   }
 
   &:after {
-    content: '';
+    content: "";
     opacity: 0;
     background-color: ${(props) =>
       tinycolor(props.theme.colors.blue).darken(30).toString()};
@@ -88,7 +88,7 @@ const Input = styled.input`
 
 const QueryField = ({ defaultValue, setQuery }) => {
   const handleSearch = debounce((value) => {
-    setQuery('');
+    setQuery("");
     setQuery(value);
   }, 300);
 
@@ -109,7 +109,7 @@ const QueryField = ({ defaultValue, setQuery }) => {
                 onKeyUp={(event) => handleSearch(event.target.value)}
               />
               <span className="shirnk">
-                <StyledButton type="submit" scheme={'green'}>
+                <StyledButton type="submit" scheme={"green"}>
                   <SearchIcon width="20" fill="currentColor" />
                   <Text.Screenreader>Search</Text.Screenreader>
                 </StyledButton>
