@@ -1,29 +1,31 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
+import styled from "styled-components";
 
 // components
-import Result from '#components/shared/Result';
-import styled from 'styled-components';
+import Result from "#components/shared/Result";
 
-const ResultsSyles = styled.ul`
-  margin: 20px -15px;
+const ResultsStyles = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px -15px 0;
+`;
 
-  li {
-    margin-top: 2rem;
-    display: inline-block;
-    padding: 0 15px;
-    /* padding: 0 15px; */
-  }
+const Item = styled.li`
+  flex: 1 0 auto;
+  padding: 15px;
+  margin-bottom: 40px;
+  position: relative;
 `;
 
 const Results = ({ results, data, fidelity }) => {
   return (
-    <ResultsSyles>
+    <ResultsStyles>
       {data.map((record) => (
-        <li>
+        <Item key={record.slug} fidelity={fidelity}>
           <Result key={record.naId} record={record} scale={fidelity} />
-        </li>
+        </Item>
       ))}
-    </ResultsSyles>
+    </ResultsStyles>
   );
 };
 
