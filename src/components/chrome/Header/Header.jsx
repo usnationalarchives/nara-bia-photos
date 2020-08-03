@@ -25,10 +25,14 @@ const Inner = styled.div`
   background-color: ${(props) => props.theme.colors.darkGrey};
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 0.5rem;
   position: relative;
   width: 100%;
   z-index: ${(props) => props.theme.zIndex.header};
+
+  @media all and ${(props) => props.theme.breakpoints.medium} {
+    padding: 1rem;
+  }
 `;
 
 const TitleLink = styled(Link)`
