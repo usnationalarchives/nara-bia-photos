@@ -6,20 +6,21 @@ import styled from "styled-components";
 // styles
 import { fl_absoluteFill } from "#styles/frontline";
 
-const Root = styled.div`
-  caption-side: bottom;
-  display: table;
-`;
+const Root = styled.div``;
 
-const Image = styled.img`
-  height: ${(props) => props.scale}px;
+const ImageContainer = styled.div`
+  ${fl_absoluteFill}
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  bottom: 60px;
+  height: auto;
 `;
 
 const Title = styled.p`
   color: ${(props) => props.theme.colors.darkGrey};
-  display: table-caption;
   font-size: 0.8em;
-  margin-top: 0.5rem;
+  margin-top: ${(props) => props.scale + 10}px;
 `;
 
 const CoverLink = styled(Link)`
@@ -31,14 +32,12 @@ const Record = ({ record, scale }) => {
 
   return (
     <Root>
-      <Image
-        src={objects[0].thumbnail.url}
-        alt=""
-        aria-hidden="true"
+      <ImageContainer
         scale={scale}
-        aspectRatio={record.aspectRatio}
-      />
-      <Title>{record.title}</Title>
+        record={record}
+        style={{ backgroundImage: `url(${objects[0].thumbnail.url})` }}
+      ></ImageContainer>
+      <Title scale={scale}>{record.title}</Title>
       <CoverLink to={`/${record.slug}`} />
     </Root>
   );
