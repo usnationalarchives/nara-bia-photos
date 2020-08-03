@@ -22,8 +22,8 @@ const FidelitySlider = ({ update }) => {
     <SliderStyles>
       <SmallGridIcon width="30" style={{ marginRight: "20px" }}></SmallGridIcon>
       <Slider
-        min={80}
-        max={360}
+        min={120}
+        max={320}
         step={20}
         defaultValue={220}
         onChange={(val) => {
