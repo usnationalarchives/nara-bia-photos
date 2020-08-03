@@ -13,13 +13,17 @@ const ResultsStyles = styled.ul`
 const Item = styled.li`
   flex: auto;
   height: ${(props) => props.fidelity + 60}px;
-  margin: 10px 10px 40px;
+  margin: 10px 10px 20px;
   overflow: hidden;
   position: relative;
-  max-width: 50%;
   width: ${(props) =>
     props.fidelity *
     (props.record.aspectRatio ? props.record.aspectRatio : 1)}px;
+
+  @media all and ${(props) => props.theme.breakpoints.medium} {
+    max-width: 50%;
+    margin-bottom: 40px;
+  }
 `;
 
 const Results = ({ results, data, fidelity }) => {
