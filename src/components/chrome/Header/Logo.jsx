@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import styled from "styled-components";
 
 const Mobile = styled.div`
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${(props) => props.theme.breakpoints.full} {
     display: none;
   }
 `;
@@ -10,7 +10,7 @@ const Mobile = styled.div`
 const Desktop = styled.div`
   display: none;
 
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${(props) => props.theme.breakpoints.full} {
     display: inline-block;
   }
 `;

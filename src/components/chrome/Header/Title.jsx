@@ -17,7 +17,7 @@ const Line1 = styled.p`
   font-size: 0.65rem;
   font-weight: 200;
 
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${(props) => props.theme.breakpoints.large} {
     font-size: 0.8rem;
   }
 `;
@@ -26,7 +26,7 @@ const Line2 = styled.p`
   font-size: 0.85rem;
   font-weight: bold;
 
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${(props) => props.theme.breakpoints.large} {
     font-size: 1.25rem;
   }
 `;

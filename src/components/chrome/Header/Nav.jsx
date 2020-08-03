@@ -1,18 +1,29 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import { NavLink } from "react-router-dom";
+import { ReactComponent as SearchIcon } from "#assets/icons/search.svg";
+import Screenreader from "#components/shared/Screenreader";
 
 const Link = styled(NavLink)`
   color: ${(props) => props.theme.colors.white};
-  font-size: 1.15rem;
+  font-size: 1rem;
   text-decoration: none;
   text-transform: uppercase;
+  transition: all 200ms ease-in-out;
 
   &[aria-current],
   &:active,
   &:focus,
   &:hover {
     color: ${(props) => props.theme.colors.yellow};
+
+    svg {
+      fill: ${(props) => props.theme.colors.yellow};
+    }
+  }
+
+  @media all and ${(props) => props.theme.breakpoints.large} {
+    font-size: 1.15rem;
   }
 `;
 
@@ -38,23 +49,30 @@ const Menu = styled.ul`
     `};
 
   @media all and ${(props) => props.theme.breakpoints.medium} {
-    display: block;
+    flex-direction: row;
     padding: 0;
     position: static;
     right: auto;
     top: auto;
-    width: auto;
     transform: none !important;
+    width: auto;
+    z-index: ${(props) => props.theme.zIndex.header};
   }
 `;
 
 const MenuItem = styled.li`
-  display: inline-block;
   margin-bottom: 1rem;
   white-space: nowrap;
 
   &:last-child {
     margin: 0;
+  }
+
+  svg {
+    fill: ${(props) => props.theme.colors.white};
+    height: 18px;
+    transition: all 200ms ease-in-out;
+    width: 18px;
   }
 
   @media all and ${(props) => props.theme.breakpoints.medium} {
@@ -88,7 +106,10 @@ const Nav = ({ navOpen }) => {
         <Item to="/topics">Topics</Item>
         <Item to="/states">States</Item>
         <Item to="/about">About</Item>
-        <Item to="/search">Search</Item>
+        <Item to="/search">
+          <Screenreader>Search</Screenreader>
+          <SearchIcon />
+        </Item>
       </Menu>
     </Root>
   );
