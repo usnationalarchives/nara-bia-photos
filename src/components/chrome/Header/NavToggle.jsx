@@ -1,9 +1,9 @@
-import React from "react";
-import styled, { css } from "styled-components";
+import React from 'react';
+import styled, { css } from 'styled-components';
 
 // styles
-import { fl_burger, fl_burgerToCross } from "#styles/frontline";
-import { buttonReset } from "#styles/mixins";
+import { fl_burger, fl_burgerToCross } from '#styles/frontline';
+import { buttonReset } from '#styles/mixins';
 
 const Root = styled.button`
   ${buttonReset}
@@ -16,25 +16,25 @@ const Root = styled.button`
   text-transform: uppercase;
   width: 30px;
 
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${props => props.theme.breakpoints.medium} {
     display: none;
   }
 `;
 
 const Burger = styled.div`
   ${fl_burger({
-    color: "#fff",
+    color: '#fff',
     gutter: 5,
     height: 3,
     transitionDuration: 250,
     width: 30,
   })}
 
-  ${(props) =>
+  ${props =>
     props.navOpen &&
     css`
       ${fl_burgerToCross({
-        color: "#fff",
+        color: '#fff',
         burgerGutter: 5,
         burgerHeight: 3,
       })}
@@ -49,8 +49,8 @@ const NavToggle = ({ navOpen, setNavOpen }) => {
   return (
     <Root onClick={toggleNav}>
       <Burger navOpen={navOpen} />
-      {!navOpen && "Menu"}
-      {navOpen && "Close"}
+      {!navOpen && 'Menu'}
+      {navOpen && 'Close'}
     </Root>
   );
 };

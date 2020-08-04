@@ -9,10 +9,7 @@ const StyledSelectedFilters = styled(Button)`
 
 const SelectedFilter = ({ dispatchItems, value }) => {
   return (
-    <StyledSelectedFilters
-      scheme="blue"
-      onClick={() => dispatchItems({ type: 'remove', value: value })}
-    >
+    <StyledSelectedFilters scheme="blue" onClick={() => dispatchItems({ type: 'remove', value: value })}>
       {value} <SearchIcon width="11" fill="currentColor" />
     </StyledSelectedFilters>
   );

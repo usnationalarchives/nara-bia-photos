@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled, { css } from 'styled-components';
 
 // styles
-import { buttonReset } from "#styles/mixins";
+import { buttonReset } from '#styles/mixins';
 
 const Root = styled.div`
   align-items: center;
@@ -18,7 +18,7 @@ const CurrentPage = styled.div`
   margin-left: 10px;
   margin-right: 10px;
 
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${props => props.theme.breakpoints.medium} {
     font-size: 1rem;
     margin-left: 40px;
     margin-right: 40px;
@@ -28,7 +28,7 @@ const CurrentPage = styled.div`
 const Button = styled.button`
   ${buttonReset}
 
-  color: ${(props) => props.theme.colors.blue};
+  color: ${props => props.theme.colors.blue};
   font-size: 0.8rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -38,21 +38,21 @@ const Button = styled.button`
     outline: none;
   }
 
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${props => props.theme.breakpoints.medium} {
     font-size: 1rem;
   }
 
-  ${(props) =>
+  ${props =>
     props.next &&
     css`
       &:after {
-        border: 6px solid ${(props) => props.theme.colors.blue};
+        border: 6px solid ${props => props.theme.colors.blue};
         border-bottom-color: transparent;
         border-right-color: transparent;
         border-top-color: transparent;
 
         border-radius: 2px;
-        content: "";
+        content: '';
         display: inline-block;
         height: 12px;
         overflow: hidden;
@@ -60,17 +60,17 @@ const Button = styled.button`
       }
     `}
 
-  ${(props) =>
+  ${props =>
     props.prev &&
     css`
       &:before {
-        border: 6px solid ${(props) => props.theme.colors.blue};
+        border: 6px solid ${props => props.theme.colors.blue};
         border-bottom-color: transparent;
         border-left-color: transparent;
         border-top-color: transparent;
 
         border-radius: 2px;
-        content: "";
+        content: '';
         display: inline-block;
         height: 12px;
         overflow: hidden;
@@ -85,13 +85,13 @@ const SelectWrapper = styled.div`
 
   &:after {
     /* don't reorder these border properties */
-    border: 6px solid ${(props) => props.theme.colors.blue};
+    border: 6px solid ${props => props.theme.colors.blue};
     border-bottom-color: transparent;
     border-left-color: transparent;
     border-right-color: transparent;
 
     border-radius: 2px;
-    content: "";
+    content: '';
     display: block;
     height: 12px;
     overflow: hidden;
@@ -105,7 +105,7 @@ const SelectWrapper = styled.div`
 const Select = styled.select`
   appearance: none;
   background-color: #fff;
-  border: solid 1px ${(props) => props.theme.colors.mediumGrey};
+  border: solid 1px ${props => props.theme.colors.mediumGrey};
   border-radius: 23px;
   font-size: 0.75rem;
   padding: 14px 40px 14px 22px;
@@ -115,21 +115,12 @@ const Select = styled.select`
 
   &:focus {
     outline: none;
-    border: solid 1px ${(props) => props.theme.colors.darkGrey};
+    border: solid 1px ${props => props.theme.colors.darkGrey};
   }
 `;
 
-const Pagination = ({
-  page,
-  setPage,
-  prevHandler,
-  nextHandler,
-  prevPage,
-  nextPage,
-  totalPages,
-  ...props
-}) => {
-  const handleChange = (event) => {
+const Pagination = ({ page, setPage, prevHandler, nextHandler, prevPage, nextPage, totalPages, ...props }) => {
+  const handleChange = event => {
     const pageNumber = parseInt(event.target.value);
     setPage(pageNumber);
   };

@@ -16,13 +16,10 @@ const ResultsMeta = ({ count, page, total }) => {
     <MetaStyles
       aria-live="polite"
       aria-atomic="true"
-      aria-label={`Showing ${(page - 1) * step + 1} through ${
-        (page - 1) * step + count
-      } of ${total} results`}
+      aria-label={`Showing ${(page - 1) * step + 1} through ${(page - 1) * step + count} of ${total} results`}
     >
       <span aria-hidden="true">
-        Showing {(page - 1) * step + 1} - {(page - 1) * step + count} of {total}{' '}
-        results
+        Showing {(page - 1) * step + 1} - {(page - 1) * step + count} of {total} results
       </span>
     </MetaStyles>
   );

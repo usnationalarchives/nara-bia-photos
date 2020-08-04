@@ -3,7 +3,7 @@ const fs = require('fs');
 const url = require('url');
 
 const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 const envPublicUrl = process.env.PUBLIC_URL;
 
@@ -21,14 +21,12 @@ function ensureSlash(path, needsSlash) {
   return path;
 }
 
-const getPublicUrl = (appPackageJson) =>
-  envPublicUrl || require(appPackageJson).homepage;
+const getPublicUrl = appPackageJson => envPublicUrl || require(appPackageJson).homepage;
 
 function getServedPath(appPackageJson) {
   const publicUrl = getPublicUrl(appPackageJson);
 
-  const servedUrl =
-    envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : '/');
+  const servedUrl = envPublicUrl || (publicUrl ? url.parse(publicUrl).pathname : '/');
   return ensureSlash(servedUrl, true);
 }
 

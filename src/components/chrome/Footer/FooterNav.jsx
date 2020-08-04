@@ -1,15 +1,15 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import React from 'react';
+import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 // styles
-import { fl_allStates, fl_attention } from "#styles/frontline";
+import { fl_allStates, fl_attention } from '#styles/frontline';
 
 const Menu = styled.ul`
   margin-bottom: 30px;
   text-align: center;
 
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${props => props.theme.breakpoints.medium} {
     align-self: flex-end;
     text-align: left;
     margin-bottom: 0;
@@ -23,24 +23,24 @@ const MenuItem = styled.li`
   margin-top: 15px;
   text-transform: uppercase;
 
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${props => props.theme.breakpoints.medium} {
     width: 50%;
     padding-right: 30px;
   }
 
-  @media all and ${(props) => props.theme.breakpoints.large} {
+  @media all and ${props => props.theme.breakpoints.large} {
     width: auto;
   }
 `;
 
 const MenuLink = styled(Link)`
   ${fl_allStates(css`
-    color: ${(props) => props.theme.colors.white};
+    color: ${props => props.theme.colors.white};
     text-decoration: none;
   `)}
 
   ${fl_attention(css`
-    color: ${(props) => props.theme.colors.yellow};
+    color: ${props => props.theme.colors.yellow};
   `)}
 `;
 

@@ -1,44 +1,44 @@
-const trim = require("lodash").trim;
-const parameterize = require("../../../src/modules/helpers").parameterize;
+const trim = require('lodash').trim;
+const parameterize = require('../../../src/modules/helpers').parameterize;
 
 module.exports = {
-  naId: (result) => {
+  naId: result => {
     return result.naId;
   },
 
-  title: (result) => {
+  title: result => {
     return trim(result.description.item.title);
   },
 
-  slug: (result) => {
+  slug: result => {
     const title = result.description.item.title;
     let slugPart = parameterize(title);
     return `${slugPart}-${result.naId}`;
   },
 
-  parentSeriesNaId: (result) => {
+  parentSeriesNaId: result => {
     return result.description.item.parentSeries.naId;
   },
 
-  parentSeriesTitle: (result) => {
+  parentSeriesTitle: result => {
     return trim(result.description.item.parentSeries.title);
   },
 
-  objects: (result) => {
-    const mapObject = (object) => {
+  objects: result => {
+    const mapObject = object => {
       let json = {
-        type: (object.technicalMetadata || {})["mime"],
+        type: (object.technicalMetadata || {})['mime'],
         thumbnail: {
-          url: object.thumbnail["@url"],
+          url: object.thumbnail['@url'],
         },
         file: {
-          url: object.file["url"],
+          url: object.file['url'],
         },
       };
 
       if (object.imageTiles) {
         json.imageTiles = {};
-        json.imageTiles.url = object.imageTiles["@url"];
+        json.imageTiles.url = object.imageTiles['@url'];
       }
 
       return json;
@@ -47,7 +47,7 @@ module.exports = {
     const objects = result.objects.object;
 
     if (objects && Array.isArray(objects)) {
-      data = objects.map((object) => mapObject(object));
+      data = objects.map(object => mapObject(object));
     } else if (objects) {
       data = [mapObject(objects)];
     }
@@ -55,7 +55,7 @@ module.exports = {
     return JSON.stringify(data);
   },
 
-  aspectRatio: (result) => {
+  aspectRatio: result => {
     const object = result.objects.object;
     let width, height;
 
@@ -68,8 +68,8 @@ module.exports = {
     }
 
     if (object && width && height) {
-      width = width.replace("pixels", "").trim();
-      height = height.replace("pixels", "").trim();
+      width = width.replace('pixels', '').trim();
+      height = height.replace('pixels', '').trim();
 
       return parseInt(width) / parseInt(height);
     } else {
@@ -77,11 +77,11 @@ module.exports = {
     }
   },
 
-  tags: (result) => {
+  tags: result => {
     const tags = ((result.publicContributions || {}).tags || {}).tag;
 
     if (Array.isArray(tags)) {
-      return tags.map((tag) => tag.$).join("||");
+      return tags.map(tag => tag.$).join('||');
     } else if (tags) {
       return [tags.$];
     } else {
@@ -89,11 +89,11 @@ module.exports = {
     }
   },
 
-  tribes: (result) => {
+  tribes: result => {
     const tribes = result.description.item.organizationalReferenceArray;
 
     if (Array.isArray(tribes)) {
-      return tribes.map((tribe) => tribe.organizationName.termName).join("||");
+      return tribes.map(tribe => tribe.organizationName.termName).join('||');
     } else if (tribes) {
       return tribes.organizationName.termName;
     } else {
@@ -101,12 +101,12 @@ module.exports = {
     }
   },
 
-  states: (result) => {
+  states: result => {
     const geoReferences = result.description.item.geographicReferenceArray;
 
-    const terms = (termName) => {
+    const terms = termName => {
       if (Array.isArray(termName)) {
-        return termName.join("||");
+        return termName.join('||');
       } else if (termName) {
         return termName;
       } else {
@@ -115,9 +115,7 @@ module.exports = {
     };
 
     if (Array.isArray(geoReferences)) {
-      return geoReferences
-        .map((geoReference) => terms(geoReference.geographicPlaceName.termName))
-        .join("||");
+      return geoReferences.map(geoReference => terms(geoReference.geographicPlaceName.termName)).join('||');
     } else if (geoReferences) {
       return terms(geoReferences.geographicPlaceName.termName);
     } else {

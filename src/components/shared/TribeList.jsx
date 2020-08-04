@@ -1,12 +1,12 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import React from 'react';
+import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 // components
-import * as Text from "#components/shared/Text";
+import * as Text from '#components/shared/Text';
 
 // styles
-import { fl_allStates } from "#styles/frontline";
+import { fl_allStates } from '#styles/frontline';
 
 const Root = styled.ol``;
 
@@ -25,18 +25,18 @@ const SectionMeta = styled.p`
   line-height: 1.8;
   margin-left: 0.5rem;
 
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${props => props.theme.breakpoints.medium} {
     font-size: 1rem;
   }
 `;
 
 const Items = styled.ol`
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${props => props.theme.breakpoints.medium} {
     column-count: 2;
     column-gap: 2rem;
   }
 
-  @media all and ${(props) => props.theme.breakpoints.large} {
+  @media all and ${props => props.theme.breakpoints.large} {
     column-count: 4;
   }
 `;
@@ -51,7 +51,7 @@ const Item = styled.li`
 const ItemLink = styled(Link)`
   ${fl_allStates(css`
     text-decoration: none;
-    color: ${(props) => props.theme.colors.blue};
+    color: ${props => props.theme.colors.blue};
   `)}
 `;
 
@@ -61,18 +61,16 @@ const TribeList = ({ groupedTribes }) => {
       {Object.entries(groupedTribes).map((section, i) => (
         <Section key={i}>
           <SectionHeading>
-            <Text.H2 id={section[0].toLowerCase()}>{section[0]}</Text.H2>{" "}
+            <Text.H2 id={section[0].toLowerCase()}>{section[0]}</Text.H2>{' '}
             <SectionMeta>
               ({section[1].length} Tribal Nation
-              {section[1].length > 1 ? "s" : null})
+              {section[1].length > 1 ? 's' : null})
             </SectionMeta>
           </SectionHeading>
           <Items>
             {section[1].map((item, i) => (
               <Item key={i}>
-                <ItemLink to={`/tribal-nations/${item.slug}`}>
-                  {item.name}
-                </ItemLink>
+                <ItemLink to={`/tribal-nations/${item.slug}`}>{item.name}</ItemLink>
               </Item>
             ))}
           </Items>

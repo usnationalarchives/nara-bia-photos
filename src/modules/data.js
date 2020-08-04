@@ -1,28 +1,28 @@
-import crossfilter from "crossfilter2";
+import crossfilter from 'crossfilter2';
 
-import data from "../data/records.csv";
+import data from '../data/records.csv';
 
 // Set up a crossfilter with all records
 const records = crossfilter(data);
 
 // setup dimensions for filtering records by individual properties
-const recordsBySearchUUID = records.dimension((d) => {
+const recordsBySearchUUID = records.dimension(d => {
   return d.searchUUID;
 });
-const recordsByNaId = records.dimension((d) => {
+const recordsByNaId = records.dimension(d => {
   return d.naId;
 });
-const recordsByAspectRatio = records.dimension((d) => {
+const recordsByAspectRatio = records.dimension(d => {
   return d.aspectRatio;
 });
-const recordsByTag = records.dimension((d) => {
-  return (d.tags || "").split("||");
+const recordsByTag = records.dimension(d => {
+  return (d.tags || '').split('||');
 }, true);
-const recordsByTribe = records.dimension((d) => {
-  return (d.tribes || "").split("||");
+const recordsByTribe = records.dimension(d => {
+  return (d.tribes || '').split('||');
 }, true);
-const recordsByState = records.dimension((d) => {
-  return (d.states || "").split("||");
+const recordsByState = records.dimension(d => {
+  return (d.states || '').split('||');
 }, true);
 
 const dimensions = {
@@ -39,31 +39,31 @@ const dimensions = {
 const tribes = recordsByTribe.group().all();
 
 const topics = [
-  "Agriculture",
-  "Animals",
-  "Artistry and Artifacts",
-  "Buildings",
-  "Bureau Personnel",
-  "Camps",
-  "Children",
-  "Dances",
-  "Dress",
-  "Dwellings",
-  "Farming",
-  "Fishing",
-  "Food Preparation",
-  "Games and Recreation",
-  "Groups",
-  "Hunting",
-  "Landscapes",
-  "Leaders",
-  "Military Service",
-  "Portraits",
-  "Reservations",
-  "Schools",
-  "Transportation",
-  "Tribal Councils",
-  "Villages",
+  'Agriculture',
+  'Animals',
+  'Artistry and Artifacts',
+  'Buildings',
+  'Bureau Personnel',
+  'Camps',
+  'Children',
+  'Dances',
+  'Dress',
+  'Dwellings',
+  'Farming',
+  'Fishing',
+  'Food Preparation',
+  'Games and Recreation',
+  'Groups',
+  'Hunting',
+  'Landscapes',
+  'Leaders',
+  'Military Service',
+  'Portraits',
+  'Reservations',
+  'Schools',
+  'Transportation',
+  'Tribal Councils',
+  'Villages',
 ];
 
 const groups = {
@@ -89,7 +89,7 @@ const filterByValues = (dimension, values) => {
   }
 
   if ((values || []).length > 0) {
-    dimension.filterFunction((d) => {
+    dimension.filterFunction(d => {
       return values.includes(d);
     });
   }

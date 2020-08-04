@@ -8,7 +8,7 @@ import { colors } from '#styles/theme';
 import Screenreader from '#components/shared/Screenreader';
 
 const CheckboxList = styled.div`
-  border: solid 1px ${(props) => props.theme.colors.mediumGrey};
+  border: solid 1px ${props => props.theme.colors.mediumGrey};
   border-radius: 5px;
   background-color: #eeefee;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
@@ -18,9 +18,9 @@ const CheckboxList = styled.div`
   overflow-y: scroll;
   width: 280px;
   top: 50%;
-  z-index: ${(props) => props.theme.zIndex.skipLinks};
+  z-index: ${props => props.theme.zIndex.skipLinks};
 
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${props => props.theme.breakpoints.medium} {
     max-height: 400px;
   }
 
@@ -43,7 +43,7 @@ const Fieldset = styled.fieldset`
   position: relative;
   margin-bottom: 1.25rem;
 
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${props => props.theme.breakpoints.medium} {
     margin-bottom: 1.25rem;
   }
 `;
@@ -77,7 +77,7 @@ const Label = styled.label``;
 
 const SelectToggle = styled.button`
   background-color: #fff;
-  border: solid 1px ${(props) => props.theme.colors.mediumGrey};
+  border: solid 1px ${props => props.theme.colors.mediumGrey};
   border-radius: 23px;
   display: flex;
   font-size: 0.75rem;
@@ -89,7 +89,7 @@ const SelectToggle = styled.button`
 
   &:focus {
     outline: none;
-    border: solid 1px ${(props) => props.theme.colors.darkGrey};
+    border: solid 1px ${props => props.theme.colors.darkGrey};
   }
 
   .grow {
@@ -109,7 +109,7 @@ const Filter = ({ filter, isActive, toggle, id }) => {
   const { label, active, dispatch, dimension, all, permitted } = filter;
   const checkboxListRef = useRef(null);
 
-  const toggleFilter = (id) => {
+  const toggleFilter = id => {
     if (!!isActive) {
       toggle(false);
     } else {
@@ -130,7 +130,7 @@ const Filter = ({ filter, isActive, toggle, id }) => {
     dimension
       .group()
       .all()
-      .filter((i) => i.key && permitted.includes(i.key));
+      .filter(i => i.key && permitted.includes(i.key));
 
   return (
     <div>
@@ -140,21 +140,13 @@ const Filter = ({ filter, isActive, toggle, id }) => {
         </legend>
 
         <div style={{ position: 'relative' }}>
-          <SelectToggle
-            aria-label={`Select ${label}`}
-            aria-pressed={isActive}
-            onClick={() => toggleFilter(id)}
-          >
+          <SelectToggle aria-label={`Select ${label}`} aria-pressed={isActive} onClick={() => toggleFilter(id)}>
             <span className="grow">Select {label}</span>
             <span className="shrink">
               <CaretIcon width="10" fill={colors.blue}></CaretIcon>
             </span>
           </SelectToggle>
-          <CheckboxList
-            ref={checkboxListRef}
-            aria-hidden={!isActive}
-            aria-labelledby="sections-heading"
-          >
+          <CheckboxList ref={checkboxListRef} aria-hidden={!isActive} aria-labelledby="sections-heading">
             <DropDownCaret width="10" fill="#999"></DropDownCaret>
             <ul>
               {allItems.map((item, i) => (
@@ -166,7 +158,7 @@ const Filter = ({ filter, isActive, toggle, id }) => {
                     type="checkbox"
                     name={`${label}[${i}]`}
                     id={`${label}[${i}]`}
-                    onChange={(e) => {
+                    onChange={e => {
                       const value = e.target.value;
                       const checked = e.target.checked;
                       dispatch({
@@ -181,10 +173,7 @@ const Filter = ({ filter, isActive, toggle, id }) => {
                       <Fragment>
                         {' '}
                         ({item.value}
-                        <Screenreader>
-                          {pluralize('result', item.value)}
-                        </Screenreader>
-                        )
+                        <Screenreader>{pluralize('result', item.value)}</Screenreader>)
                       </Fragment>
                     )}
                   </Label>
