@@ -1,9 +1,11 @@
-import React, { Fragment, useRef, useEffect } from "react";
+import React, { Fragment, useRef, useEffect } from 'react';
+import pluralize from 'pluralize';
 
-import { Label } from "#components/shared/Text";
-import styled from "styled-components";
-import { ReactComponent as CaretIcon } from "#assets/icons/caret.svg";
-import { colors } from "#styles/theme";
+import { Label as Legend } from '#components/shared/Text';
+import styled from 'styled-components';
+import { ReactComponent as CaretIcon } from '#assets/icons/caret.svg';
+import { colors } from '#styles/theme';
+import Screenreader from '#components/shared/Screenreader';
 
 const CheckboxList = styled.div`
   border: solid 1px ${(props) => props.theme.colors.mediumGrey};
@@ -22,7 +24,7 @@ const CheckboxList = styled.div`
     max-height: 400px;
   }
 
-  &[aria-hidden="true"] {
+  &[aria-hidden='true'] {
     display: none;
   }
 
@@ -45,6 +47,33 @@ const Fieldset = styled.fieldset`
     margin-bottom: 1.25rem;
   }
 `;
+
+const DropdownItem = styled.li`
+  display: flex;
+  align-items: flex-start;
+
+  *:first-child {
+    flex: 0 0 20px;
+  }
+  *:last-child {
+    flex: 1;
+    padding-left: 8px;
+  }
+`;
+
+const Input = styled.input`
+  height: 20px;
+  width: 20px;
+
+  &:disabled {
+    opacity: 0.75;
+  }
+  &:disabled + label {
+    opacity: 0.75;
+  }
+`;
+
+const Label = styled.label``;
 
 const SelectToggle = styled.button`
   background-color: #fff;
@@ -106,11 +135,11 @@ const Filter = ({ filter, isActive, toggle, id }) => {
   return (
     <div>
       <Fieldset>
-        <legend style={{ marginBottom: "1.25rem" }}>
-          <Label>{label}</Label>
+        <legend style={{ marginBottom: '1.25rem' }}>
+          <Legend>{label}</Legend>
         </legend>
 
-        <div style={{ position: "relative" }}>
+        <div style={{ position: 'relative' }}>
           <SelectToggle
             aria-label={`Select ${label}`}
             aria-pressed={isActive}
@@ -129,28 +158,37 @@ const Filter = ({ filter, isActive, toggle, id }) => {
             <DropDownCaret width="10" fill="#999"></DropDownCaret>
             <ul>
               {allItems.map((item, i) => (
-                <li key={i}>
-                  <input
+                <DropdownItem key={i}>
+                  <Input
                     checked={active.includes(item.key)}
                     value={item.key}
+                    disabled={item.value >= 1 ? false : true}
                     type="checkbox"
                     name={`${label}[${i}]`}
                     id={`${label}[${i}]`}
                     onChange={(e) => {
                       const value = e.target.value;
                       const checked = e.target.checked;
-
                       dispatch({
-                        type: checked ? "add" : "remove",
+                        type: checked ? 'add' : 'remove',
                         value: value,
                       });
                     }}
-                  />{" "}
-                  <label htmlFor={`${label}[${i}]`}>
+                  />{' '}
+                  <Label htmlFor={`${label}[${i}]`}>
                     {item.key}
-                    {filter.totals && <Fragment>({item.value})</Fragment>}
-                  </label>
-                </li>
+                    {filter.totals && (
+                      <Fragment>
+                        {' '}
+                        ({item.value}
+                        <Screenreader>
+                          {pluralize('result', item.value)}
+                        </Screenreader>
+                        )
+                      </Fragment>
+                    )}
+                  </Label>
+                </DropdownItem>
               ))}
             </ul>
           </CheckboxList>

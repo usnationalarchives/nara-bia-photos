@@ -53,6 +53,14 @@ const Filters = ({ filters }) => {
     }
   });
 
+  useEventListener('keydown', (event) => {
+    // Close with escape key
+    console.log(event.which);
+    if (event.which === 27) {
+      setActiveFilter(false);
+    }
+  });
+
   return (
     <div>
       <H3 style={{ marginTop: '60px' }}>Filter Results</H3>
@@ -70,7 +78,7 @@ const Filters = ({ filters }) => {
 
       <SelectedFiltersList>
         {filters.map((filter, i) => (
-          <Fragment key={i}>
+          <Fragment key={`selectedFilter-${i}`}>
             {filter.active.map((active, i) => (
               <li>
                 <SelectedFilter

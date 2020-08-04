@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 // components
-import Result from "#components/shared/Result";
+import Result from '#components/shared/Result';
 
 const ResultsStyles = styled.ul`
   display: flex;
