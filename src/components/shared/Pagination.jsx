@@ -6,21 +6,40 @@ import styled, { css } from "styled-components";
 import { buttonReset } from "#styles/mixins";
 
 const Root = styled.div`
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
+`;
+
+const CurrentPage = styled.div`
+  align-items: center;
+  display: flex;
+  font-size: 0.8rem;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  @media all and ${(props) => props.theme.breakpoints.medium} {
+    font-size: 1rem;
+    margin-left: 40px;
+    margin-right: 40px;
+  }
 `;
 
 const Button = styled.button`
   ${buttonReset}
 
   color: ${(props) => props.theme.colors.blue};
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: bold;
   text-transform: uppercase;
+  white-space: nowrap;
 
   [data-whatinput="mouse"] & {
     outline: none;
+  }
+
+  @media all and ${(props) => props.theme.breakpoints.medium} {
+    font-size: 1rem;
   }
 
   ${(props) =>
@@ -62,7 +81,6 @@ const Button = styled.button`
 
 const SelectWrapper = styled.div`
   position: relative;
-  margin-left: 40px;
   margin-right: 6px;
 
   &:after {
@@ -133,12 +151,14 @@ const Pagination = ({
           Previous
         </Button>
       )}
-      <SelectWrapper>
-        <Select value={page} onChange={handleChange}>
-          {pageOptions}
-        </Select>
-      </SelectWrapper>
-      <p style={{ marginRight: "40px" }}>of {totalPages}</p>
+      <CurrentPage>
+        <SelectWrapper>
+          <Select value={page} onChange={handleChange}>
+            {pageOptions}
+          </Select>
+        </SelectWrapper>
+        <span>of {totalPages}</span>
+      </CurrentPage>
       {nextPage && (
         <Button next onClick={nextHandler}>
           Next
