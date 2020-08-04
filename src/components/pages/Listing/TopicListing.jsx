@@ -68,9 +68,7 @@ const TopicListing = ({ ...props }) => {
 
   // Scroll to the top of the document when the page changes
   useEffect(() => {
-    if (page !== 1) {
-      document.querySelector("html").scrollTop = 0;
-    }
+    document.querySelector("html").scrollTop = 0;
   }, [page]);
 
   const filters = [
@@ -109,7 +107,7 @@ const TopicListing = ({ ...props }) => {
             <Results results={results} data={data} fidelity={fidelity} />
 
             <Pagination
-              style={{ marginBottom: "20px" }}
+              style={{ marginBottom: "80px" }}
               page={page}
               setPage={setPage}
               prevHandler={prevHandler}
