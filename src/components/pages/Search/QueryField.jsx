@@ -105,7 +105,7 @@ const QueryField = ({ defaultValue, setQuery }) => {
                 id="query"
                 defaultValue={defaultValue}
                 className="grow"
-                placeholder="Enter a name"
+                placeholder="Enter a keyword or phrase"
                 onKeyUp={event => handleSearch(event.target.value)}
               />
               <span className="shirnk">
