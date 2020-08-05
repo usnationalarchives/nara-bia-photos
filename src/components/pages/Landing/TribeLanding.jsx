@@ -1,19 +1,19 @@
-import React, { Fragment } from "react";
-import styled from "styled-components";
+import React, { Fragment } from 'react';
+import styled from 'styled-components';
 
 // components
-import * as Layout from "#components/shared/Layout";
-import LandingBillboard from "#components/shared/LandingBillboard";
-import AlphabetLinks from "#components/shared/AlphabetLinks";
-import TribeList from "#components/shared/TribeList";
-import TribeSearch from "#components/shared/TribeSearch";
+import * as Layout from '#components/shared/Layout';
+import LandingBillboard from '#components/shared/LandingBillboard';
+import AlphabetLinks from '#components/shared/AlphabetLinks';
+import TribeList from '#components/shared/TribeList';
+import TribeSearch from '#components/shared/TribeSearch';
 
 // modules
-import { tribalNations } from "#modules/constants";
-import { groupObjectsByNameLetter } from "#modules/helpers";
+import { tribalNations } from '#modules/constants';
+import { groupObjectsByNameLetter } from '#modules/helpers';
 
 const Label = styled.p`
-  color: ${(props) => props.theme.colors.white};
+  color: ${props => props.theme.colors.white};
   display: inline-block;
   margin-bottom: 1.5rem;
 `;
@@ -25,10 +25,7 @@ const TribeLanding = () => {
     return (
       <LandingBillboard title="Tribal Nations">
         <Label>Select the first letter of a Tribal Nation's name</Label>
-        <AlphabetLinks
-          style={{ marginBottom: "1rem" }}
-          activeLetters={Object.keys(groupedTribes)}
-        />
+        <AlphabetLinks style={{ marginBottom: '1rem' }} activeLetters={Object.keys(groupedTribes)} />
 
         <TribeSearch tribalNations={tribalNations} />
       </LandingBillboard>
@@ -38,7 +35,7 @@ const TribeLanding = () => {
   return (
     <Fragment>
       <Billboard />
-      <Layout.Padding style={{ marginTop: "4rem", marginBottom: "4rem" }}>
+      <Layout.Padding style={{ marginTop: '4rem', marginBottom: '4rem' }}>
         <Layout.Wrapper>
           <TribeList groupedTribes={groupedTribes} />
         </Layout.Wrapper>

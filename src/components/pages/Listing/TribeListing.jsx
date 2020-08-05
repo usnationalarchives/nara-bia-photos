@@ -1,43 +1,41 @@
-import React, { Fragment, useState, useEffect } from "react";
-import qs from "qs";
+import React, { Fragment, useState, useEffect } from 'react';
+import qs from 'qs';
 
 // components
-import * as Layout from "#components/shared/Layout";
-import Pagination from "#components/shared/Pagination";
-import Filters from "#components/shared/Filters";
-import Results from "#components/shared/Results";
-import ListingBillboard from "#components/shared/ListingBillboard";
-import ResultsMeta from "#components/shared/ResultsMeta";
-import ResultsWrapper from "#components/shared/ResultsWrapper";
-import ResultsHeaderWrapper from "#components/shared/ResultsHeaderWrapper";
-import FidelitySlider from "#components/shared/FidelitySlider";
+import * as Layout from '#components/shared/Layout';
+import Pagination from '#components/shared/Pagination';
+import Filters from '#components/shared/Filters';
+import Results from '#components/shared/Results';
+import ListingBillboard from '#components/shared/ListingBillboard';
+import ResultsMeta from '#components/shared/ResultsMeta';
+import ResultsWrapper from '#components/shared/ResultsWrapper';
+import ResultsHeaderWrapper from '#components/shared/ResultsHeaderWrapper';
+import FidelitySlider from '#components/shared/FidelitySlider';
 
 // hooks
-import useRecords from "#hooks/useRecords";
-import usePagination from "#hooks/usePagination";
-import useCheckboxes from "#hooks/useCheckboxes";
-import useSearchHistory from "#hooks/useSearchHistory";
-import useScopedFilters from "#hooks/useScopedFilters";
+import useRecords from '#hooks/useRecords';
+import usePagination from '#hooks/usePagination';
+import useCheckboxes from '#hooks/useCheckboxes';
+import useSearchHistory from '#hooks/useSearchHistory';
+import useScopedFilters from '#hooks/useScopedFilters';
 
 // data
-import { tribalNations } from "#modules/constants";
+import { tribalNations } from '#modules/constants';
 
 const TribeListing = ({ ...props }) => {
   const [fidelity, setFidelity] = useState(220);
   const slug = props.match.params.slug;
-  const tribalNationName = tribalNations.filter(
-    (tribalNation) => tribalNation.slug === slug
-  )[0].name;
+  const tribalNationName = tribalNations.filter(tribalNation => tribalNation.slug === slug)[0].name;
 
   // fetch starting search parameters remove the leading ?
-  const search = qs.parse(props.location.search.replace("?", ""));
+  const search = qs.parse(props.location.search.replace('?', ''));
 
   // Set up checkboxes state, seed with any starting search filters
   const [states, dispatchStates] = useCheckboxes(search.states || []);
   const [topics, dispatchTopics] = useCheckboxes(search.topics || []);
 
-  const stateFilters = useScopedFilters(tribalNationName, "tribe", "states");
-  const topicFilters = useScopedFilters(tribalNationName, "tribe", "topics");
+  const stateFilters = useScopedFilters(tribalNationName, 'tribe', 'states');
+  const topicFilters = useScopedFilters(tribalNationName, 'tribe', 'topics');
 
   const [results] = useRecords({
     facets: {
@@ -49,35 +47,25 @@ const TribeListing = ({ ...props }) => {
 
   useSearchHistory({
     filters: [
-      { label: "states", values: states },
-      { label: "topics", values: topics },
+      { label: 'states', values: states },
+      { label: 'topics', values: topics },
     ],
   });
 
-  const {
-    page,
-    setPage,
-    prevHandler,
-    nextHandler,
-    total,
-    prevPage,
-    nextPage,
-    totalPages,
-    data,
-  } = usePagination({
+  const { page, setPage, prevHandler, nextHandler, total, prevPage, nextPage, totalPages, data } = usePagination({
     items: results,
     perPage: 30,
   });
 
   const filters = [
     {
-      label: "States",
+      label: 'States',
       active: states,
       dispatch: dispatchStates,
       all: stateFilters,
     },
     {
-      label: "Topics",
+      label: 'Topics',
       active: topics,
       dispatch: dispatchTopics,
       all: topicFilters,
@@ -86,7 +74,7 @@ const TribeListing = ({ ...props }) => {
 
   // Scroll to the top of the document when the page changes
   useEffect(() => {
-    document.querySelector("html").scrollTop = 0;
+    document.querySelector('html').scrollTop = 0;
   }, [page]);
 
   return (
@@ -111,7 +99,7 @@ const TribeListing = ({ ...props }) => {
             <Results results={results} data={data} fidelity={fidelity} />
 
             <Pagination
-              style={{ marginBottom: "80px" }}
+              style={{ marginBottom: '80px' }}
               page={page}
               setPage={setPage}
               prevHandler={prevHandler}

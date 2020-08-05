@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const horizontalGutter = 40;
 const verticalGutter = 60;
@@ -8,7 +8,7 @@ const Grid = styled.ul`
   flex-direction: column;
   margin: -${verticalGutter / 2}px -${horizontalGutter / 2}px;
 
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${props => props.theme.breakpoints.medium} {
     flex-direction: row;
     flex-wrap: wrap;
   }
@@ -17,11 +17,11 @@ const Grid = styled.ul`
 const GridItem = styled.li`
   padding: ${verticalGutter / 2}px ${horizontalGutter / 2}px;
 
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${props => props.theme.breakpoints.medium} {
     width: 50%;
   }
 
-  @media all and ${(props) => props.theme.breakpoints.large} {
+  @media all and ${props => props.theme.breakpoints.large} {
     width: 33.33%;
   }
 `;

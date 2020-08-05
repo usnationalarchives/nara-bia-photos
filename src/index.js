@@ -1,23 +1,23 @@
 // Detect input method in order to hide outlines in an accessible manner
 // https://github.com/ten1seven/what-input
-import "what-input";
+import 'what-input';
 
 // Threespot's CSS Reset
-import "frontline-css-reset";
+import 'frontline-css-reset';
 
 // Webfonts
-import "#assets/fonts/fonts.css";
+import '#assets/fonts/fonts.css';
 
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 // import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

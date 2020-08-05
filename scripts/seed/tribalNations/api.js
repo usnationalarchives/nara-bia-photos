@@ -1,10 +1,10 @@
-const axios = require("axios");
+const axios = require('axios');
 
 const config = {
-  endpoint: "https://catalog.archives.gov/api/v1",
+  endpoint: 'https://catalog.archives.gov/api/v1',
   params: {
-    type: "organization",
-    "publicContributions.tags": '"Native American Tribe"',
+    type: 'organization',
+    'publicContributions.tags': '"Native American Tribe"',
     rows: 5000,
   },
 };

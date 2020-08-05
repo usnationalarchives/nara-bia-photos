@@ -1,14 +1,14 @@
-import React from "react";
-import styled, { css } from "styled-components";
+import React from 'react';
+import styled, { css } from 'styled-components';
 
 // styles
-import { fl_allStates, fl_attention } from "#styles/frontline";
+import { fl_allStates, fl_attention } from '#styles/frontline';
 
 const Menu = styled.ul`
   display: flex;
   margin-top: 30px;
 
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${props => props.theme.breakpoints.medium} {
     margin-top: 0;
   }
 `;
@@ -22,8 +22,8 @@ const MenuItem = styled.li`
     position: absolute;
     top: 2px;
     right: 13px;
-    background-color: ${(props) => props.theme.colors.white};
-    content: "";
+    background-color: ${props => props.theme.colors.white};
+    content: '';
     display: inline-block;
     height: 14px;
     width: 1px;
@@ -36,7 +36,7 @@ const MenuItem = styled.li`
 
 const MenuLink = styled.a`
   ${fl_allStates(css`
-    color: ${(props) => props.theme.colors.white};
+    color: ${props => props.theme.colors.white};
     text-decoration: none;
   `)}
 

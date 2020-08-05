@@ -17,7 +17,7 @@ export const H2 = styled.h2`
   font-size: 1.25rem;
   line-height: 1.3;
 
-  @media ${(props) => props.theme.breakpoints.medium} {
+  @media ${props => props.theme.breakpoints.medium} {
     font-size: 2rem;
     line-height: 1.18;
   }
@@ -28,7 +28,7 @@ export const H3 = styled.h3`
   font-size: 1rem;
   line-height: 1.625;
 
-  @media ${(props) => props.theme.breakpoints.medium} {
+  @media ${props => props.theme.breakpoints.medium} {
     font-size: 1.375rem;
     line-height: 1.18;
   }
@@ -58,7 +58,7 @@ export const Intro = styled.p`
   font-size: 1.125rem;
   line-height: 1.55;
 
-  @media ${(props) => props.theme.breakpoints.medium} {
+  @media ${props => props.theme.breakpoints.medium} {
     font-size: 1.375rem;
     line-height: 1.6;
   }

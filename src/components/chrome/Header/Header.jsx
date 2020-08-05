@@ -1,43 +1,43 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import styled, { css } from "styled-components";
-import { fl_allStates } from "#styles/frontline";
-import { useLocation } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import styled, { css } from 'styled-components';
+import { fl_allStates } from '#styles/frontline';
+import { useLocation } from 'react-router-dom';
 
 // components
-import Logo from "./Logo";
-import Nav from "./Nav";
-import Title from "./Title";
-import NavToggle from "./NavToggle";
+import Logo from './Logo';
+import Nav from './Nav';
+import Title from './Title';
+import NavToggle from './NavToggle';
 
 const Root = styled.div`
-  background-color: ${(props) => props.theme.colors.darkGrey};
-  color: ${(props) => props.theme.colors.white};
+  background-color: ${props => props.theme.colors.darkGrey};
+  color: ${props => props.theme.colors.white};
   position: relative;
 
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${props => props.theme.breakpoints.medium} {
     display: flex;
     align-items: center;
   }
 `;
 
 const Inner = styled.div`
-  background-color: ${(props) => props.theme.colors.darkGrey};
+  background-color: ${props => props.theme.colors.darkGrey};
   display: flex;
   justify-content: space-between;
   padding: 0.5rem;
   position: relative;
   width: 100%;
-  z-index: ${(props) => props.theme.zIndex.header};
+  z-index: ${props => props.theme.zIndex.header};
 
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${props => props.theme.breakpoints.medium} {
     padding: 1rem;
   }
 `;
 
 const TitleLink = styled(Link)`
   ${fl_allStates(css`
-    color: ${(props) => props.theme.colors.white};
+    color: ${props => props.theme.colors.white};
     text-decoration: none;
   `)}
 `;

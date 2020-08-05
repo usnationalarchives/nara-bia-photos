@@ -1,26 +1,26 @@
-import elasticlunr from "elasticlunr";
+import elasticlunr from 'elasticlunr';
 
-import data from "../data/records.csv";
+import data from '../data/records.csv';
 
 // Define and create a search index using elasticlunr
 const index = elasticlunr(function () {
-  this.setRef("searchUUID");
-  this.addField("title");
-  this.addField("parentSeriesTitle");
-  this.addField("creatingOrg");
+  this.setRef('searchUUID');
+  this.addField('title');
+  this.addField('parentSeriesTitle');
+  this.addField('creatingOrg');
 
-  data.forEach((doc) => {
+  data.forEach(doc => {
     this.addDoc(doc);
   });
 });
 
-const fullTextSearch = (query) => {
+const fullTextSearch = query => {
   if (query) {
     const searchResults = index.search(query, {
-      bool: "OR",
+      bool: 'OR',
       expand: true,
     });
-    const searchResultUUIDs = searchResults.map((result) => result.ref);
+    const searchResultUUIDs = searchResults.map(result => result.ref);
 
     return searchResultUUIDs;
   }

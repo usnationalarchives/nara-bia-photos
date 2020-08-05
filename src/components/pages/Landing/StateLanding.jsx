@@ -1,12 +1,12 @@
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 // components
-import * as Layout from "#components/shared/Layout";
-import LandingBillboard from "#components/shared/LandingBillboard";
+import * as Layout from '#components/shared/Layout';
+import LandingBillboard from '#components/shared/LandingBillboard';
 
 // modules
-import { states } from "#modules/constants";
+import { states } from '#modules/constants';
 
 const Billboard = () => {
   return <LandingBillboard title="States" intro="Lorem Ipsum" />;
@@ -20,7 +20,7 @@ const StateLanding = () => {
       <Layout.Padding>
         <Layout.Wrapper>
           <ol>
-            {states.map((state) => (
+            {states.map(state => (
               <li key={state.slug}>
                 <Link to={`/states/${state.slug}`}>{state.name}</Link>
               </li>

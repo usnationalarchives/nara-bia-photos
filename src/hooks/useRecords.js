@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { records, dimensions, actions } from "../modules/data";
+import { useState, useEffect } from 'react';
+import { records, dimensions, actions } from '../modules/data';
 
 /**
  * This is a React hook used to interface with the records in the finding aid.

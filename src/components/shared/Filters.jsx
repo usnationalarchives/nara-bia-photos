@@ -13,7 +13,7 @@ const FiltersLayout = styled.div`
   justify-content: flex-start;
   margin: 15px -20px;
 
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${props => props.theme.breakpoints.medium} {
     margin: 30px -20px;
     flex-direction: row;
   }
@@ -22,10 +22,10 @@ const FiltersLayout = styled.div`
     flex: 1 0 100%;
     padding: 0 20px;
 
-    @media all and ${(props) => props.theme.breakpoints.medium} {
+    @media all and ${props => props.theme.breakpoints.medium} {
       flex: 0 0 ${(1 / 3) * 100}%;
     }
-    @media all and ${(props) => props.theme.breakpoints.large} {
+    @media all and ${props => props.theme.breakpoints.large} {
       flex: 0 0 25%;
     }
   }
@@ -43,17 +43,13 @@ const Filters = ({ filters }) => {
   const [activeFilter, setActiveFilter] = useState(false);
   const filterRef = useRef(null);
 
-  useEventListener('click', (event) => {
-    if (
-      filterRef.current &&
-      !filterRef.current.contains(event.target) &&
-      !!activeFilter
-    ) {
+  useEventListener('click', event => {
+    if (filterRef.current && !filterRef.current.contains(event.target) && !!activeFilter) {
       setActiveFilter(false);
     }
   });
 
-  useEventListener('keydown', (event) => {
+  useEventListener('keydown', event => {
     // Close with escape key
     console.log(event.which);
     if (event.which === 27) {
@@ -81,12 +77,7 @@ const Filters = ({ filters }) => {
           <Fragment key={`selectedFilter-${i}`}>
             {filter.active.map((active, i) => (
               <li>
-                <SelectedFilter
-                  scheme="blue"
-                  key={i}
-                  dispatchItems={filter.dispatch}
-                  value={active}
-                />
+                <SelectedFilter scheme="blue" key={i} dispatchItems={filter.dispatch} value={active} />
               </li>
             ))}
           </Fragment>

@@ -1,12 +1,12 @@
 export const colors = {
-  white: "#ffffff",
-  black: "#000000",
-  blue: "#345d96",
-  green: "#4d8055",
-  yellow: "#fad980",
-  darkGrey: "#333333",
-  mediumGrey: "#dddddd",
-  lightGrey: "#f6f6f6",
+  white: '#ffffff',
+  black: '#000000',
+  blue: '#345d96',
+  green: '#4d8055',
+  yellow: '#fad980',
+  darkGrey: '#333333',
+  mediumGrey: '#dddddd',
+  lightGrey: '#f6f6f6',
 };
 
 export const breakpoints = {
@@ -18,17 +18,17 @@ export const breakpoints = {
 
 export const font = {
   family: "'Public Sans', 'Helvetica Neue', Arial, sans-serif",
-  bodyCopySize: "16px",
+  bodyCopySize: '16px',
   bodyCopyLineHeight: 1.625,
 };
 
 export const layout = {
-  maxWidth: "1200px",
-  maxWidthNarrow: "600px",
-  maxWidthMedium: "900px",
-  maxWidthWide: "1400px",
-  minPadding: "15px",
-  maxPadding: "20px",
+  maxWidth: '1200px',
+  maxWidthNarrow: '600px',
+  maxWidthMedium: '900px',
+  maxWidthWide: '1400px',
+  minPadding: '15px',
+  maxPadding: '20px',
 };
 
 export const zIndex = {

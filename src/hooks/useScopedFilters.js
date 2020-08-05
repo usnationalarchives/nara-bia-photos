@@ -1,23 +1,23 @@
-import crossfilter from "crossfilter2";
+import crossfilter from 'crossfilter2';
 
-import data from "#data/records.csv";
+import data from '#data/records.csv';
 
-import { topics, states, tribalNations } from "#modules/constants";
+import { topics, states, tribalNations } from '#modules/constants';
 
 // create a crossfilter
 const records = crossfilter(data);
 
 // setup dimensions
-const recordsByTag = records.dimension((d) => {
-  return (d.tags || "").split("||");
+const recordsByTag = records.dimension(d => {
+  return (d.tags || '').split('||');
 }, true);
 
-const recordsByTribe = records.dimension((d) => {
-  return (d.tribes || "").split("||");
+const recordsByTribe = records.dimension(d => {
+  return (d.tribes || '').split('||');
 }, true);
 
-const recordsByState = records.dimension((d) => {
-  return (d.states || "").split("||");
+const recordsByState = records.dimension(d => {
+  return (d.states || '').split('||');
 }, true);
 
 const useScopedFilters = (term, type, filters) => {
@@ -25,13 +25,13 @@ const useScopedFilters = (term, type, filters) => {
   let permitted;
 
   switch (type) {
-    case "topic":
+    case 'topic':
       recordsByTag.filter(term);
       break;
-    case "tribe":
+    case 'tribe':
       recordsByTribe.filter(term);
       break;
-    case "state":
+    case 'state':
       recordsByState.filter(term);
       break;
     default:
@@ -39,15 +39,15 @@ const useScopedFilters = (term, type, filters) => {
   }
 
   switch (filters) {
-    case "topics":
+    case 'topics':
       dimension = recordsByTag;
       permitted = topics;
       break;
-    case "tribes":
+    case 'tribes':
       dimension = recordsByTribe;
       permitted = tribalNations;
       break;
-    case "states":
+    case 'states':
       dimension = recordsByState;
       permitted = states;
       break;
@@ -58,10 +58,7 @@ const useScopedFilters = (term, type, filters) => {
   const allItems = dimension
     .group()
     .all()
-    .filter(
-      (i) =>
-        i.key && i.value !== 0 && permitted.map((p) => p.name).includes(i.key)
-    );
+    .filter(i => i.key && i.value !== 0 && permitted.map(p => p.name).includes(i.key));
 
   dimension.dispose();
 

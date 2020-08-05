@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import OpenSeaDragon from "openseadragon";
+import React, { useEffect, useState } from 'react';
+import OpenSeaDragon from 'openseadragon';
 
 const ImageViewer = ({ objects }) => {
   const [viewer, setViewer] = useState();
@@ -7,13 +7,8 @@ const ImageViewer = ({ objects }) => {
   useEffect(() => {
     if (objects && viewer) {
       const tileSources = objects
-        .map((object) => object.imageTiles.url)
-        .map((url) =>
-          url.replace(
-            "catalog.archives.gov/catalogmedia",
-            "s3.amazonaws.com/NARAprodstorage"
-          )
-        );
+        .map(object => object.imageTiles.url)
+        .map(url => url.replace('catalog.archives.gov/catalogmedia', 's3.amazonaws.com/NARAprodstorage'));
 
       viewer.open(tileSources);
     }
@@ -36,8 +31,8 @@ const ImageViewer = ({ objects }) => {
     viewer && viewer.destroy();
 
     const newViewer = OpenSeaDragon({
-      id: "viewer",
-      prefixUrl: "/images/openseadragon/",
+      id: 'viewer',
+      prefixUrl: '/images/openseadragon/',
       sequenceMode: true,
       showReferenceStrip: true,
     });
@@ -45,7 +40,7 @@ const ImageViewer = ({ objects }) => {
     setViewer(newViewer);
   };
 
-  return <div id="viewer" style={{ height: "800px", width: "1200px" }}></div>;
+  return <div id="viewer" style={{ height: '800px', width: '1200px' }}></div>;
 };
 
 export default ImageViewer;

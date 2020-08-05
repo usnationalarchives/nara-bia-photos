@@ -3,12 +3,12 @@ import { fl_clearfix } from '#styles/frontline';
 
 export const Padding = styled.div`
   width: 100%;
-  padding-left: ${(props) => props.theme.layout.minPadding};
-  padding-right: ${(props) => props.theme.layout.minPadding};
+  padding-left: ${props => props.theme.layout.minPadding};
+  padding-right: ${props => props.theme.layout.minPadding};
 
-  @media all and ${(props) => props.theme.breakpoints.medium} {
-    padding-left: ${(props) => props.theme.layout.maxPadding};
-    padding-right: ${(props) => props.theme.layout.maxPadding};
+  @media all and ${props => props.theme.breakpoints.medium} {
+    padding-left: ${props => props.theme.layout.maxPadding};
+    padding-right: ${props => props.theme.layout.maxPadding};
   }
 
   @media print {
@@ -22,24 +22,24 @@ export const Wrapper = styled.div`
 
   margin-left: auto;
   margin-right: auto;
-  max-width: ${(props) => props.theme.layout.maxWidth};
+  max-width: ${props => props.theme.layout.maxWidth};
 
-  ${(props) =>
+  ${props =>
     props.wide &&
     css`
-      max-width: ${(props) => props.theme.layout.maxWidthWide} !important;
+      max-width: ${props => props.theme.layout.maxWidthWide} !important;
     `};
 
-  ${(props) =>
+  ${props =>
     props.medium &&
     css`
-      max-width: ${(props) => props.theme.layout.maxWidthMedium} !important;
+      max-width: ${props => props.theme.layout.maxWidthMedium} !important;
     `};
 
-  ${(props) =>
+  ${props =>
     props.narrow &&
     css`
-      max-width: ${(props) => props.theme.layout.maxWidthNarrow} !important;
+      max-width: ${props => props.theme.layout.maxWidthNarrow} !important;
     `};
 
   @media print {

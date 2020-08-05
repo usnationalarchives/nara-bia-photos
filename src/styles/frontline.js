@@ -1,9 +1,9 @@
-import { css } from "styled-components";
+import { css } from 'styled-components';
 
 export const fl_clearfix = css`
   &:after {
     clear: both;
-    content: "";
+    content: '';
     display: table;
   }
 `;
@@ -41,7 +41,7 @@ export const fl_printHide = css`
   }
 `;
 
-export const fl_attention = (content) => {
+export const fl_attention = content => {
   return css`
     &:hover,
     &:focus,
@@ -51,7 +51,7 @@ export const fl_attention = (content) => {
   `;
 };
 
-export const fl_static = (content) => {
+export const fl_static = content => {
   return css`
     &,
     &:link,
@@ -61,7 +61,7 @@ export const fl_static = (content) => {
   `;
 };
 
-export const fl_allStates = (content) => {
+export const fl_allStates = content => {
   return css`
     &,
     &:link,
@@ -74,15 +74,8 @@ export const fl_allStates = (content) => {
   `;
 };
 
-export const fl_burger = (options) => {
-  const {
-    color,
-    gutter,
-    height,
-    transitionDuration,
-    width,
-    borderRadius,
-  } = options;
+export const fl_burger = options => {
+  const { color, gutter, height, transitionDuration, width, borderRadius } = options;
 
   return css`
     margin-bottom: ${height + gutter}px;
@@ -127,7 +120,7 @@ export const fl_burger = (options) => {
     `;
 };
 
-export const fl_burgerToCross = (options) => {
+export const fl_burgerToCross = options => {
   const { color, burgerGutter, burgerHeight } = options;
 
   return css`
@@ -136,7 +129,7 @@ export const fl_burgerToCross = (options) => {
     }
 
     ${
-      color !== "auto" &&
+      color !== 'auto' &&
       css`
         &:before,
         &:after {

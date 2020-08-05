@@ -15,10 +15,10 @@ const H1 = styled(Text.H1)`
 `;
 
 const Banner = styled.div`
-  background-color: ${(props) => props.theme.colors.blue};
+  background-color: ${props => props.theme.colors.blue};
   padding: 1rem 0 2rem;
 
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${props => props.theme.breakpoints.medium} {
     padding: 3rem 0 4rem;
   }
 `;
@@ -28,7 +28,7 @@ const InputGroup = styled.div`
 
   > * {
     background-color: #fff;
-    border: solid 2px ${(props) => props.theme.colors.blue};
+    border: solid 2px ${props => props.theme.colors.blue};
     border-radius: 23px;
     display: flex;
     flex-direction: row;
@@ -41,8 +41,7 @@ const InputGroup = styled.div`
   &:after {
     content: '';
     opacity: 0;
-    background-color: ${(props) =>
-      tinycolor(props.theme.colors.blue).darken(30).toString()};
+    background-color: ${props => tinycolor(props.theme.colors.blue).darken(30).toString()};
     border-radius: 56px;
     height: 100%;
     left: 0;
@@ -87,7 +86,7 @@ const Input = styled.input`
 `;
 
 const QueryField = ({ defaultValue, setQuery }) => {
-  const handleSearch = debounce((value) => {
+  const handleSearch = debounce(value => {
     setQuery('');
     setQuery(value);
   }, 300);
@@ -106,8 +105,8 @@ const QueryField = ({ defaultValue, setQuery }) => {
                 id="query"
                 defaultValue={defaultValue}
                 className="grow"
-                placeholder="Enter a name"
-                onKeyUp={(event) => handleSearch(event.target.value)}
+                placeholder="Enter a keyword or phrase"
+                onKeyUp={event => handleSearch(event.target.value)}
               />
               <span className="shirnk">
                 <StyledButton type="submit" scheme={'green'}>

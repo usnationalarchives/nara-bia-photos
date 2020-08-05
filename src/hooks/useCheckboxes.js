@@ -1,14 +1,14 @@
-import { useReducer } from "react";
+import { useReducer } from 'react';
 
-const useCheckboxes = (defaultValue) => {
+const useCheckboxes = defaultValue => {
   const [activeItems, dispatchItems] = useReducer(
     (activeItems, { type, value }) => {
       switch (type) {
-        case "add":
+        case 'add':
           return [...activeItems, value];
-        case "remove":
-          return activeItems.filter((n) => n !== value);
-        case "clear":
+        case 'remove':
+          return activeItems.filter(n => n !== value);
+        case 'clear':
           return [];
         default:
           return activeItems;
