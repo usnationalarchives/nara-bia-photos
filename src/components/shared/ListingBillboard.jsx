@@ -79,7 +79,7 @@ const ListingBillboard = ({ label, title, intro, items, slugPrefix }) => {
             contentLocation={{ top: 60, left: 0 }}
             content={<PopoverNav items={items} slugPrefix={slugPrefix} />}
             contentDestination={popoverEl.current}
-            containerStyle={{ overflow: "visible" }}
+            containerStyle={{ overflow: "visible", zIndex: "100" }}
           >
             <div style={{ position: "relative" }}>
               <Title>
