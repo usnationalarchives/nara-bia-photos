@@ -1,11 +1,11 @@
-import React from "react";
-import styled, { css } from "styled-components";
+import React from 'react';
+import styled, { css } from 'styled-components';
 
 // modules
-import { alphabet } from "#modules/helpers";
+import { alphabet } from '#modules/helpers';
 
 // styles
-import { fl_allStates } from "#styles/frontline";
+import { fl_allStates } from '#styles/frontline';
 
 const Root = styled.div`
   display: flex;
@@ -30,7 +30,7 @@ const Link = styled.a`
   }
 
   ${fl_allStates(css`
-    color: ${(props) => props.theme.colors.white};
+    color: ${props => props.theme.colors.white};
     text-decoration: none;
   `)}
 `;
@@ -39,11 +39,7 @@ const AlphabetLinks = ({ activeLetters, ...props }) => {
   return (
     <Root {...props}>
       {alphabet().map((letter, i) => (
-        <Link
-          key={i}
-          href={`#${letter}`}
-          disabled={activeLetters.indexOf(letter.toUpperCase()) < 0}
-        >
+        <Link key={i} href={`#${letter}`} disabled={activeLetters.indexOf(letter.toUpperCase()) < 0}>
           {letter}
         </Link>
       ))}

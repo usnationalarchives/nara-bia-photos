@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 // styles
-import { fl_absoluteFill } from "#styles/frontline";
+import { fl_absoluteFill } from '#styles/frontline';
 
 const Root = styled.div``;
 
@@ -18,9 +18,9 @@ const ImageContainer = styled.div`
 `;
 
 const Title = styled.p`
-  color: ${(props) => props.theme.colors.darkGrey};
+  color: ${props => props.theme.colors.darkGrey};
   font-size: 0.8em;
-  margin-top: ${(props) => props.scale + 10}px;
+  margin-top: ${props => props.scale + 10}px;
 `;
 
 const CoverLink = styled(Link)`

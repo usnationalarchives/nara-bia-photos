@@ -4,6 +4,4 @@ import { addDecorator } from '@storybook/react';
 import { ThemeProvider } from 'styled-components';
 import * as theme from '#styles/theme';
 
-addDecorator((storyFn) => (
-  <ThemeProvider theme={theme}>{storyFn()}</ThemeProvider>
-));
+addDecorator(storyFn => <ThemeProvider theme={theme}>{storyFn()}</ThemeProvider>);

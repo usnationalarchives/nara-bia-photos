@@ -1,15 +1,15 @@
-import React, { Fragment, useState, useRef } from "react";
-import styled from "styled-components";
-import { debounce } from "lodash";
-import elasticlunr from "elasticlunr";
-import Popover from "react-tiny-popover";
+import React, { Fragment, useState, useRef } from 'react';
+import styled from 'styled-components';
+import { debounce } from 'lodash';
+import elasticlunr from 'elasticlunr';
+import Popover from 'react-tiny-popover';
 
 // componnts
-import * as Input from "#components/shared/Input";
-import PopoverNav from "#components/shared/PopoverNav";
+import * as Input from '#components/shared/Input';
+import PopoverNav from '#components/shared/PopoverNav';
 
 const Label = styled.label`
-  color: ${(props) => props.theme.colors.white};
+  color: ${props => props.theme.colors.white};
   display: inline-block;
   margin-bottom: 1.5rem;
 `;
@@ -21,39 +21,35 @@ const TribeSearch = ({ tribalNations }) => {
 
   // create a search index
   const index = elasticlunr(function () {
-    this.setRef("searchUUID");
-    this.addField("name");
-    this.addField("naId");
+    this.setRef('searchUUID');
+    this.addField('name');
+    this.addField('naId');
 
-    tribalNations.forEach((doc) => {
+    tribalNations.forEach(doc => {
       this.addDoc(doc);
     });
   });
 
-  const handleSearch = debounce((value) => {
+  const handleSearch = debounce(value => {
     setQuery(value);
     const search = index.search(value, {
-      bool: "OR",
+      bool: 'OR',
       expand: true,
     });
-    const resultUUIDs = search.map((result) => result.ref);
+    const resultUUIDs = search.map(result => result.ref);
 
-    const searchResults = tribalNations.filter((tribalNation) =>
-      resultUUIDs.includes(tribalNation.searchUUID)
-    );
+    const searchResults = tribalNations.filter(tribalNation => resultUUIDs.includes(tribalNation.searchUUID));
 
     setResults(searchResults);
   }, 300);
 
   const resetSearch = () => {
-    setQuery("");
+    setQuery('');
   };
 
   return (
     <Fragment>
-      <Label htmlFor="tribalNationQuery">
-        Search for a specific Tribal Nation
-      </Label>
+      <Label htmlFor="tribalNationQuery">Search for a specific Tribal Nation</Label>
       <div>
         <Popover
           isOpen={query}
@@ -62,15 +58,15 @@ const TribeSearch = ({ tribalNations }) => {
           contentLocation={{ top: 50, left: 0 }}
           content={<PopoverNav items={results} slugPrefix="tribal-nations" />}
           contentDestination={popoverEl.current}
-          containerStyle={{ overflow: "visible" }}
+          containerStyle={{ overflow: 'visible' }}
         >
-          <div style={{ position: "relative" }}>
+          <div style={{ position: 'relative' }}>
             <Input.Text
               id="tribalNationQuery"
               defaultValue={query}
               placeholder="Enter a name"
-              onChange={(event) => handleSearch(event.target.value)}
-              onFocus={(event) => handleSearch(event.target.value)}
+              onChange={event => handleSearch(event.target.value)}
+              onFocus={event => handleSearch(event.target.value)}
             />
 
             <div ref={popoverEl}></div>

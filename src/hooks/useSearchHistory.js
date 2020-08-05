@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 /**
  * A custom react hoook for managing the router history when applying filters.
@@ -30,7 +30,7 @@ const useSearchHistory = (options = {}) => {
 
     // combine the params into a single array, remove any null/empty params
     params = filters
-      .map((filter) => {
+      .map(filter => {
         return joinParams(filter.label, filter.values);
       })
       .filter(Boolean);
@@ -41,7 +41,7 @@ const useSearchHistory = (options = {}) => {
     }
 
     // join the params into a valid search string
-    const searchString = "?" + params.join("&");
+    const searchString = '?' + params.join('&');
 
     // push the new search url to the history
     history.replace(searchString);
@@ -53,7 +53,7 @@ const useSearchHistory = (options = {}) => {
 // helper function for serializing parameters
 // returns format: foo[0]=bar&foo[1]=baz
 const joinParams = (label, values) => {
-  return values.map((value, i) => `${label}[${i}]=${value}`).join("&");
+  return values.map((value, i) => `${label}[${i}]=${value}`).join('&');
 };
 
 export default useSearchHistory;

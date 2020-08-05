@@ -13,6 +13,4 @@ export default {
 
 export const valueData = 'Portraits';
 
-export const Default = () => (
-  <SelectedFilter value={text('Filter Text', valueData)} />
-);
+export const Default = () => <SelectedFilter value={text('Filter Text', valueData)} />;

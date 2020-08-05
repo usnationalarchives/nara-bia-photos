@@ -12,20 +12,18 @@ const ResultsStyles = styled.ul`
 
 const Item = styled.li`
   flex: auto;
-  height: ${(props) => props.fidelity + 60}px;
+  height: ${props => props.fidelity + 60}px;
   margin: 10px 10px 20px;
   overflow: hidden;
   position: relative;
-  width: ${(props) =>
-    props.fidelity *
-    (props.record.aspectRatio ? props.record.aspectRatio : 1)}px;
+  width: ${props => props.fidelity * (props.record.aspectRatio ? props.record.aspectRatio : 1)}px;
 
-  &:nth-child(${(props) => props.data.length}),
-  &:nth-child(${(props) => props.data.length - 1}) {
+  &:nth-child(${props => props.data.length}),
+  &:nth-child(${props => props.data.length - 1}) {
     flex-grow: 0;
   }
 
-  @media all and ${(props) => props.theme.breakpoints.medium} {
+  @media all and ${props => props.theme.breakpoints.medium} {
     max-width: 50%;
     margin-bottom: 40px;
   }
@@ -34,7 +32,7 @@ const Item = styled.li`
 const Results = ({ results, data, fidelity }) => {
   return (
     <ResultsStyles>
-      {data.map((record) => (
+      {data.map(record => (
         <Item key={record.slug} data={data} record={record} fidelity={fidelity}>
           <Result key={record.naId} record={record} scale={fidelity} />
         </Item>

@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import { css } from 'styled-components';
 
 export const buttonReset = css`
   background-color: transparent;
@@ -9,6 +9,6 @@ export const buttonReset = css`
   display: inline-block;
   line-height: 1;
   text-align: center;
-  transition: background-color 150ms ease-in-out, border 150ms ease-in-out,
-    color 150ms ease-in-out, transform 50ms ease-in-out;
+  transition: background-color 150ms ease-in-out, border 150ms ease-in-out, color 150ms ease-in-out,
+    transform 50ms ease-in-out;
 `;

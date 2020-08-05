@@ -1,12 +1,12 @@
-const recordsCsv = require("./records/csv");
-const recordsApi = require("./records/api");
+const recordsCsv = require('./records/csv');
+const recordsApi = require('./records/api');
 
-const tribalNationsCsv = require("./tribalNations/csv");
-const tribalNationsApi = require("./tribalNations/api");
+const tribalNationsCsv = require('./tribalNations/csv');
+const tribalNationsApi = require('./tribalNations/api');
 
 const createRecordsCsv = async () => {
   // Set the initial cursorMark
-  let nextCursorMark = "*";
+  let nextCursorMark = '*';
 
   do {
     let response;
@@ -21,12 +21,12 @@ const createRecordsCsv = async () => {
     if (response) {
       const apiResults = response.data.opaResponse.results.result, // pull out results from the response
         rows = recordsCsv.mapRows(apiResults), // map the results to CSV rows
-        append = nextCursorMark !== "*"; // append unless this is the first page
+        append = nextCursorMark !== '*'; // append unless this is the first page
 
       recordsCsv.writer({ append: append }).writeRecords(rows); // write out to the csv
       nextCursorMark = response.data.opaResponse.results.nextCursorMark; // update the cursor mark
     }
-  } while (typeof nextCursorMark !== "undefined");
+  } while (typeof nextCursorMark !== 'undefined');
 };
 
 const createTribalNationsCsv = async () => {

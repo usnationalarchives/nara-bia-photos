@@ -7,7 +7,7 @@ import tinycolor from 'tinycolor2';
 export const buttonStyles = css`
   ${buttonReset}
   border-radius: 23px;
-  border: 1px solid ${(props) => props.theme.colors.white};
+  border: 1px solid ${props => props.theme.colors.white};
   display: inline-block;
   font-size: 0.75rem;
   font-weight: bold;
@@ -40,12 +40,7 @@ export const ButtonLink = styled.a`
  */
 const ButtonBase = ({ className, onClick, disabled, style, children }) => {
   return (
-    <button
-      className={className}
-      onClick={onClick}
-      disabled={disabled}
-      style={style}
-    >
+    <button className={className} onClick={onClick} disabled={disabled} style={style}>
       {children}
     </button>
   );
@@ -61,41 +56,38 @@ ButtonBase.propTypes = {
 const Button = styled(ButtonBase)`
   ${buttonStyles}
 
-  ${(props) =>
+  ${props =>
     props.scheme === 'green' &&
     css`
-      background-color: ${(props) => props.theme.colors.green};
+      background-color: ${props => props.theme.colors.green};
       color: #fff;
 
       &:focus,
       &:hover {
-        background-color: ${(props) =>
-          tinycolor(props.theme.colors.green).darken(10).toString()};
+        background-color: ${props => tinycolor(props.theme.colors.green).darken(10).toString()};
       }
     `};
 
-  ${(props) =>
+  ${props =>
     props.scheme === 'blue' &&
     css`
-      background-color: ${(props) => props.theme.colors.blue};
+      background-color: ${props => props.theme.colors.blue};
       color: #fff;
 
       &:focus,
       &:hover {
-        background-color: ${(props) =>
-          tinycolor(props.theme.colors.blue).darken(10).toString()};
+        background-color: ${props => tinycolor(props.theme.colors.blue).darken(10).toString()};
       }
     `};
 
-  ${(props) =>
+  ${props =>
     props.disabled === 'true' &&
     css`
-      background-color: ${(props) => props.theme.colors.mediumGrey};
+      background-color: ${props => props.theme.colors.mediumGrey};
 
       &:focus,
       &:hover {
-        background-color: ${(props) =>
-          tinycolor(props.theme.colors.mediumGrey).darken(3).toString()};};
+        background-color: ${props => tinycolor(props.theme.colors.mediumGrey).darken(3).toString()};};
       }
     `};
 `;

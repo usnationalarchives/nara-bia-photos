@@ -1,41 +1,41 @@
-import React, { Fragment, useState, useEffect } from "react";
-import qs from "qs";
+import React, { Fragment, useState, useEffect } from 'react';
+import qs from 'qs';
 
 // components
-import * as Layout from "#components/shared/Layout";
-import Pagination from "#components/shared/Pagination";
-import Filters from "#components/shared/Filters";
-import Results from "#components/shared/Results";
-import ListingBillboard from "#components/shared/ListingBillboard";
-import ResultsMeta from "#components/shared/ResultsMeta";
-import ResultsWrapper from "#components/shared/ResultsWrapper";
-import ResultsHeaderWrapper from "#components/shared/ResultsHeaderWrapper";
-import FidelitySlider from "#components/shared/FidelitySlider";
+import * as Layout from '#components/shared/Layout';
+import Pagination from '#components/shared/Pagination';
+import Filters from '#components/shared/Filters';
+import Results from '#components/shared/Results';
+import ListingBillboard from '#components/shared/ListingBillboard';
+import ResultsMeta from '#components/shared/ResultsMeta';
+import ResultsWrapper from '#components/shared/ResultsWrapper';
+import ResultsHeaderWrapper from '#components/shared/ResultsHeaderWrapper';
+import FidelitySlider from '#components/shared/FidelitySlider';
 
 // hooks
-import useRecords from "#hooks/useRecords";
-import usePagination from "#hooks/usePagination";
-import useCheckboxes from "#hooks/useCheckboxes";
-import useSearchHistory from "#hooks/useSearchHistory";
-import useScopedFilters from "#hooks/useScopedFilters";
+import useRecords from '#hooks/useRecords';
+import usePagination from '#hooks/usePagination';
+import useCheckboxes from '#hooks/useCheckboxes';
+import useSearchHistory from '#hooks/useSearchHistory';
+import useScopedFilters from '#hooks/useScopedFilters';
 
 // modules
-import { states } from "#modules/constants";
+import { states } from '#modules/constants';
 
 const StateListing = ({ ...props }) => {
   const [fidelity, setFidelity] = useState(220);
   const slug = props.match.params.slug;
-  const stateName = states.filter((state) => state.slug === slug)[0].name;
+  const stateName = states.filter(state => state.slug === slug)[0].name;
 
   // fetch starting search parameters remove the leading ?
-  const search = qs.parse(props.location.search.replace("?", ""));
+  const search = qs.parse(props.location.search.replace('?', ''));
 
   // Set up checkboxes state, seed with any starting search filters
   const [tribes, dispatchTribes] = useCheckboxes(search.tribalNations || []);
   const [topics, dispatchTopics] = useCheckboxes(search.topics || []);
 
-  const topicFilters = useScopedFilters(stateName, "state", "topics");
-  const tribeFilters = useScopedFilters(stateName, "state", "tribes");
+  const topicFilters = useScopedFilters(stateName, 'state', 'topics');
+  const tribeFilters = useScopedFilters(stateName, 'state', 'tribes');
 
   const [results] = useRecords({
     facets: {
@@ -47,40 +47,30 @@ const StateListing = ({ ...props }) => {
 
   useSearchHistory({
     filters: [
-      { label: "tribalNations", values: tribes },
-      { label: "topics", values: topics },
+      { label: 'tribalNations', values: tribes },
+      { label: 'topics', values: topics },
     ],
   });
 
-  const {
-    page,
-    setPage,
-    prevHandler,
-    nextHandler,
-    total,
-    prevPage,
-    nextPage,
-    totalPages,
-    data,
-  } = usePagination({
+  const { page, setPage, prevHandler, nextHandler, total, prevPage, nextPage, totalPages, data } = usePagination({
     items: results,
     perPage: 30,
   });
 
   // Scroll to the top of the document when the page changes
   useEffect(() => {
-    document.querySelector("html").scrollTop = 0;
+    document.querySelector('html').scrollTop = 0;
   }, [page]);
 
   const filters = [
     {
-      label: "Tribal Nations",
+      label: 'Tribal Nations',
       active: tribes,
       dispatch: dispatchTribes,
       all: tribeFilters,
     },
     {
-      label: "Topics",
+      label: 'Topics',
       active: topics,
       dispatch: dispatchTopics,
       all: topicFilters,
@@ -89,13 +79,7 @@ const StateListing = ({ ...props }) => {
 
   return (
     <Fragment>
-      <ListingBillboard
-        label="State"
-        title={stateName}
-        intro="Lorem Ipsum"
-        items={states}
-        slugPrefix="states"
-      />
+      <ListingBillboard label="State" title={stateName} intro="Lorem Ipsum" items={states} slugPrefix="states" />
       <Layout.Padding>
         <Layout.Wrapper>
           <Filters filters={filters} />
@@ -109,7 +93,7 @@ const StateListing = ({ ...props }) => {
             <Results results={results} data={data} fidelity={fidelity} />
 
             <Pagination
-              style={{ marginBottom: "80px" }}
+              style={{ marginBottom: '80px' }}
               page={page}
               setPage={setPage}
               prevHandler={prevHandler}

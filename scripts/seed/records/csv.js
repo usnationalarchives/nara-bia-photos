@@ -1,9 +1,9 @@
-const createCsvWriter = require("csv-writer").createObjectCsvWriter;
-const uuidv1 = require("uuid").v1;
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+const uuidv1 = require('uuid').v1;
 
-const dataMap = require("./dataMap");
+const dataMap = require('./dataMap');
 
-const mapRow = (result) => {
+const mapRow = result => {
   return {
     searchUUID: uuidv1(),
     naId: dataMap.naId(result),
@@ -22,25 +22,25 @@ const mapRow = (result) => {
 module.exports = {
   writer: (options = {}) => {
     return createCsvWriter({
-      path: "src/data/records.csv",
+      path: 'src/data/records.csv',
       header: [
-        { id: "searchUUID", title: "searchUUID" },
-        { id: "naId", title: "naId" },
-        { id: "title", title: "title" },
-        { id: "parentSeriesNaId", title: "parentSeriesNaId" },
-        { id: "parentSeriesTitle", title: "parentSeriesTitle" },
-        { id: "objects", title: "objects" },
-        { id: "aspectRatio", title: "aspectRatio" },
-        { id: "tags", title: "tags" },
-        { id: "tribes", title: "tribes" },
-        { id: "states", title: "states" },
-        { id: "slug", title: "slug" },
+        { id: 'searchUUID', title: 'searchUUID' },
+        { id: 'naId', title: 'naId' },
+        { id: 'title', title: 'title' },
+        { id: 'parentSeriesNaId', title: 'parentSeriesNaId' },
+        { id: 'parentSeriesTitle', title: 'parentSeriesTitle' },
+        { id: 'objects', title: 'objects' },
+        { id: 'aspectRatio', title: 'aspectRatio' },
+        { id: 'tags', title: 'tags' },
+        { id: 'tribes', title: 'tribes' },
+        { id: 'states', title: 'states' },
+        { id: 'slug', title: 'slug' },
       ],
       append: options.append || false,
     });
   },
 
-  mapRows: (apiResults) => {
-    return apiResults.map((result) => mapRow(result));
+  mapRows: apiResults => {
+    return apiResults.map(result => mapRow(result));
   },
 };

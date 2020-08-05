@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 const usePagination = (options = { items: [], perPage: 20 }) => {
   const { items, perPage } = options;

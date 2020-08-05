@@ -1,11 +1,11 @@
-import { createGlobalStyle } from "styled-components";
-import * as frontline from "#styles/frontline";
+import { createGlobalStyle } from 'styled-components';
+import * as frontline from '#styles/frontline';
 
 const BaseStyles = createGlobalStyle`
   html {
-    background-color: ${(props) => props.theme.colors.white};
-    color: ${(props) => props.theme.colors.darkGrey};
-    font-family: ${(props) => props.theme.font.family};
+    background-color: ${props => props.theme.colors.white};
+    color: ${props => props.theme.colors.darkGrey};
+    font-family: ${props => props.theme.font.family};
     scroll-behavior: smooth;
   }
 
@@ -56,7 +56,7 @@ const BaseStyles = createGlobalStyle`
 
     a {
       ${frontline.fl_static(`
-        color: ${(props) => props.theme.colors.blue}
+        color: ${props => props.theme.colors.blue}
       `)}
 
       &:visited {

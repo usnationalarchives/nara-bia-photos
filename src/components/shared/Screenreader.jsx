@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 // styles
-import { fl_visuallyHidden } from "#styles/frontline";
+import { fl_visuallyHidden } from '#styles/frontline';
 
 const Root = styled.span`
   ${fl_visuallyHidden}
