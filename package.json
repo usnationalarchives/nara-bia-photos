@@ -87,7 +87,8 @@
     "test": "node scripts/test.js",
     "seed": "node scripts/seed/seed.js",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "prettier-format-all": "npx prettier --config-precedence prefer-file --write \"**/*.{js,jsx}\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -164,6 +165,8 @@
     "@storybook/addon-knobs": "^5.3.19",
     "@storybook/addon-links": "^5.3.19",
     "@storybook/addons": "^5.3.19",
-    "@storybook/react": "^5.3.19"
-  }
+    "@storybook/react": "^5.3.19",
+    "@threespot/prettier-config": "^1.0.0"
+  },
+  "prettier": "@threespot/prettier-config"
 }
