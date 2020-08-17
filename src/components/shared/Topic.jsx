@@ -2,14 +2,23 @@ import React, { Fragment } from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
+// hooks
+import useRecords from '#hooks/useRecords';
+
+// modules
+import iiifImage from '#modules/iiifImage';
+
 // styles
 import { fl_allStates, fl_absoluteFill } from '#styles/frontline';
 
-const ImagePlaceholder = styled.div`
+const Image = styled.div`
   background-color: ${props => props.theme.colors.mediumGrey};
+  background-image: url(${props => props.thumbnailUrl});
+  background-size: cover;
   height: 0;
   padding-top: 56.25%;
 `;
+
 const Inner = styled.div`
   padding: 1rem 1.5rem;
 `;
@@ -29,9 +38,22 @@ const CoverLink = styled(Link)`
 `;
 
 const Topic = ({ topic }) => {
+  const [results] = useRecords({
+    facets: {
+      naIds: [topic.thumbnailNaId],
+    },
+  });
+
+  let thumbnailUrl;
+  if (results.length) {
+    // FIXME: update when IIIF server is working
+    // thumbnailUrl = iiifImage(results[0], 600);
+    thumbnailUrl = JSON.parse(results[0].objects)[0].thumbnail.url;
+  }
+
   return (
     <Fragment>
-      <ImagePlaceholder />
+      <Image thumbnailUrl={thumbnailUrl} />
       <Inner>
         <Label to={`/topics/${topic.slug}`}>{topic.name}</Label>
       </Inner>

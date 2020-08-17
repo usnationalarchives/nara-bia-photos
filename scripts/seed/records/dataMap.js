@@ -32,7 +32,8 @@ module.exports = {
           url: object.thumbnail['@url'],
         },
         file: {
-          url: object.file['url'],
+          url: object.file['@url'],
+          path: object.file['@path'],
         },
       };
 
