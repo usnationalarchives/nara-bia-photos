@@ -43,7 +43,7 @@ const TitleButton = styled.button`
   }
 
   &:after {
-    // don't alphabetize these, the order is important
+    /* don't alphabetize these border properties, the order is important */
     border: 8px solid white;
     border-bottom-color: transparent;
     border-left-color: transparent;
@@ -79,7 +79,7 @@ const ListingBillboard = ({ label, title, intro, items, slugPrefix }) => {
             contentLocation={{ top: 60, left: 0 }}
             content={<PopoverNav items={items} slugPrefix={slugPrefix} />}
             contentDestination={popoverEl.current}
-            containerStyle={{ overflow: "visible", zIndex: "100" }}
+            containerStyle={{ overflow: 'visible', zIndex: '100' }}
           >
             <div style={{ position: 'relative' }}>
               <Title>
