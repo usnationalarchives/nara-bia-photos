@@ -7,9 +7,13 @@ import LandingBillboard from '#components/shared/LandingBillboard';
 import { Grid, GridItem } from '#components/shared/Grid';
 import Card from '#components/shared/Card';
 import Topic from '#components/shared/Topic';
+import Select from '#components/shared/Select';
 
 // modules
 import { topics } from '#modules/constants';
+
+// config
+import content from '#config/content';
 
 const TopicLanding = () => {
   const Billboard = () => {
@@ -21,15 +25,15 @@ const TopicLanding = () => {
     };
 
     return (
-      <LandingBillboard title="Topics" intro="Lorem Ipsum">
-        <select style={{ marginTop: '1rem' }} onChange={handleSelect}>
-          <option value="">Select a Topic</option>
+      <LandingBillboard title={content.topics.title} intro={content.topics.intro} introHelp={content.topics.help}>
+        <Select transparent style={{ marginTop: '2.5rem' }} onChange={handleSelect}>
+          <option value="">{content.topics.selectPrompt}</option>
           {topics.map(topic => (
             <option value={topic.slug} key={topic.slug}>
               {topic.name}
             </option>
           ))}
-        </select>
+        </Select>
       </LandingBillboard>
     );
   };
