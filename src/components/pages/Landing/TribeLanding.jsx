@@ -7,10 +7,12 @@ import LandingBillboard from '#components/shared/LandingBillboard';
 import AlphabetLinks from '#components/shared/AlphabetLinks';
 import TribeList from '#components/shared/TribeList';
 import TribeSearch from '#components/shared/TribeSearch';
+import PopoverInfo from '#components/shared/PopoverInfo';
 
 // modules
 import { tribalNations } from '#modules/constants';
 import { groupObjectsByNameLetter } from '#modules/helpers';
+import content from '#config/content';
 
 const Label = styled.p`
   color: ${props => props.theme.colors.white};
@@ -24,7 +26,10 @@ const TribeLanding = () => {
   const Billboard = () => {
     return (
       <LandingBillboard title="Tribal Nations">
-        <Label>Select the first letter of a Tribal Nation's name</Label>
+        <Label>
+          Select the first letter of a Tribal Nation's name
+          <PopoverInfo content={content.tribalNations.help} />
+        </Label>
         <AlphabetLinks style={{ maxWidth: '650px', marginBottom: '3rem' }} activeLetters={Object.keys(groupedTribes)} />
 
         <TribeSearch tribalNations={tribalNations} />

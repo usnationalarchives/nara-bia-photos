@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import useRecords from '#hooks/useRecords';
 
 // modules
-import iiifImage from '#modules/iiifImage';
+// import iiifImage from '#modules/iiifImage';
 
 // styles
 import { fl_allStates, fl_absoluteFill } from '#styles/frontline';

@@ -6,6 +6,9 @@ module.exports = {
     help: 'This is content for the intro help popover.',
     selectPrompt: 'Select a Topic',
   },
+  tribalNations: {
+    help: 'This is content for the intro help popover.',
+  },
   footer: {
     summary:
       'If you are having difficulty finding information on this guide related to your research, ask an expert on History Hub',

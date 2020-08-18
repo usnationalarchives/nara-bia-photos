@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 // components
 import * as Text from '#components/shared/Text';
+import TribeThumbnails from '#components/shared/TribeThumbnails';
 
 // styles
 import { fl_allStates } from '#styles/frontline';
@@ -60,6 +61,8 @@ const TribeList = ({ groupedTribes }) => {
     <Root>
       {Object.entries(groupedTribes).map((section, i) => (
         <Section key={i}>
+          <TribeThumbnails letter={section[0]} />
+
           <SectionHeading>
             <Text.H2 id={section[0].toLowerCase()}>{section[0]}</Text.H2>{' '}
             <SectionMeta>
