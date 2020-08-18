@@ -70,7 +70,7 @@ const TribeSearch = ({ tribalNations }) => {
           contentLocation={{ top: 50, left: 0 }}
           content={<PopoverNav items={results} slugPrefix="tribal-nations" />}
           contentDestination={popoverEl.current}
-          containerStyle={{ overflow: 'visible' }}
+          containerStyle={{ overflow: 'visible', zIndex: 100 }}
         >
           <div style={{ position: 'relative', display: 'inline-block' }}>
             <Input.Text
