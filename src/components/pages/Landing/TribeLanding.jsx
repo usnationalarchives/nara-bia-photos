@@ -25,7 +25,7 @@ const TribeLanding = () => {
     return (
       <LandingBillboard title="Tribal Nations">
         <Label>Select the first letter of a Tribal Nation's name</Label>
-        <AlphabetLinks style={{ marginBottom: '1rem' }} activeLetters={Object.keys(groupedTribes)} />
+        <AlphabetLinks style={{ maxWidth: '650px', marginBottom: '3rem' }} activeLetters={Object.keys(groupedTribes)} />
 
         <TribeSearch tribalNations={tribalNations} />
       </LandingBillboard>
