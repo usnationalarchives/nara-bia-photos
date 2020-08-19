@@ -18,6 +18,10 @@ const Image = styled.div`
 
 const Inner = styled.div`
   padding: 1rem 1.5rem;
+  display: flex;
+  flex: 2 0 auto;
+  flex-direction: row;
+  align-items: center;
 `;
 
 const Label = styled(Link)`

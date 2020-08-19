@@ -7,6 +7,7 @@ const Root = styled.div`
   align-items: stretch;
   flex-direction: column;
   position: relative;
+  width: 100%;
 `;
 
 const Card = ({ ...props }) => {
