@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { joinParams } from '#modules/helpers';
 
 /**
  * A custom react hoook for managing the router history when applying filters.
@@ -48,12 +49,6 @@ const useSearchHistory = (options = {}) => {
 
     //eslint-disable-next-line
   }, [serializedOptions]);
-};
-
-// helper function for serializing parameters
-// returns format: foo[0]=bar&foo[1]=baz
-const joinParams = (label, values) => {
-  return values.map((value, i) => `${label}[${i}]=${value}`).join('&');
 };
 
 export default useSearchHistory;

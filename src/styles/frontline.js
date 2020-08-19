@@ -1,4 +1,24 @@
 import { css } from 'styled-components';
+import toPercentage from 'to-percentage';
+
+const percentage = num => {
+  return num + '%';
+};
+
+export const fl_aspectRatio = ratio => {
+  console.log(ratio);
+  return css`
+    display: block;
+    overflow: hidden;
+    position: relative;
+
+    &:before {
+      content: '';
+      display: block;
+      padding-top: ${toPercentage(1 / ratio, 9)};
+    }
+  `;
+};
 
 export const fl_clearfix = css`
   &:after {

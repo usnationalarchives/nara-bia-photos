@@ -6,7 +6,8 @@ const verticalGutter = 60;
 const Grid = styled.ul`
   display: flex;
   flex-direction: column;
-  margin: -${verticalGutter / 2}px -${horizontalGutter / 2}px;
+  margin: 0 -${horizontalGutter / 2}px; /* FIXME - disabled vertical negative margin */
+  /* margin: -${verticalGutter / 2}px -${horizontalGutter / 2}px; */
 
   @media all and ${props => props.theme.breakpoints.medium} {
     flex-direction: row;
@@ -16,6 +17,8 @@ const Grid = styled.ul`
 
 const GridItem = styled.li`
   padding: ${verticalGutter / 2}px ${horizontalGutter / 2}px;
+  display: flex;
+  align-items: stretch;
 
   @media all and ${props => props.theme.breakpoints.medium} {
     width: 50%;

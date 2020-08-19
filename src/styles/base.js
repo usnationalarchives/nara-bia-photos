@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 import * as frontline from '#styles/frontline';
 
+import BackgroundStyles from '#styles/helpers/background';
+
 const BaseStyles = createGlobalStyle`
   html {
     background-color: ${props => props.theme.colors.white};
@@ -19,6 +21,8 @@ const BaseStyles = createGlobalStyle`
       outline: none
     }
   }
+
+  ${BackgroundStyles}
 
   @media print {
     * {

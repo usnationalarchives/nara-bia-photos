@@ -52,4 +52,31 @@ module.exports = {
 
     return sorted;
   },
+
+  getObjectCount: items => {
+    let count = 0;
+    items.forEach(item => {
+      if (item.objects) {
+        count++;
+      }
+    });
+    return count;
+  },
+
+  // helper function for serializing parameters
+  // returns format: foo[0]=bar&foo[1]=baz
+  joinParams: (label, values) => {
+    return values.map((value, i) => `${label}[${i}]=${value}`).join('&');
+  },
+
+  /**
+   * States by Region
+   * Return a subset of objects based on their `region` property
+   * @param {array} states array of state objects
+   * @param {string} region slug
+   * @returns {array} states filtered list
+   */
+  statesByRegion: (states, region) => {
+    return states.filter(state => state.region === region);
+  },
 };
