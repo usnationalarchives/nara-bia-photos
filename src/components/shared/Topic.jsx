@@ -2,9 +2,6 @@ import React, { Fragment } from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
-// hooks
-import useRecords from '#hooks/useRecords';
-
 // modules
 // import iiifImage from '#modules/iiifImage';
 
@@ -37,20 +34,7 @@ const CoverLink = styled(Link)`
   ${fl_absoluteFill}
 `;
 
-const Topic = ({ topic }) => {
-  const [results] = useRecords({
-    facets: {
-      naIds: [topic.thumbnailNaId],
-    },
-  });
-
-  let thumbnailUrl;
-  if (results.length) {
-    // FIXME: update when IIIF server is working
-    // thumbnailUrl = iiifImage(results[0], 600);
-    thumbnailUrl = JSON.parse(results[0].objects)[0].thumbnail.url;
-  }
-
+const Topic = ({ topic, thumbnailUrl }) => {
   return (
     <Fragment>
       <Image thumbnailUrl={thumbnailUrl} />

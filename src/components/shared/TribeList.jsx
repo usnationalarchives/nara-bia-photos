@@ -4,7 +4,13 @@ import { Link } from 'react-router-dom';
 
 // components
 import * as Text from '#components/shared/Text';
-import TribeThumbnails from '#components/shared/TribeThumbnails';
+import Results from '#components/shared/Results';
+
+// hooks
+import useRecords from '#hooks/useRecords';
+
+// modules
+import { tribalNationThumbnails } from '#modules/constants';
 
 // styles
 import { fl_allStates } from '#styles/frontline';
@@ -57,11 +63,23 @@ const ItemLink = styled(Link)`
 `;
 
 const TribeList = ({ groupedTribes }) => {
+  const [thumbnailResults] = useRecords({
+    facets: {
+      naIds: Object.values(tribalNationThumbnails).flat(),
+    },
+  });
+
   return (
     <Root>
       {Object.entries(groupedTribes).map((section, i) => (
         <Section key={i}>
-          <TribeThumbnails letter={section[0]} />
+          <Results
+            singleRow
+            data={thumbnailResults.filter(result =>
+              tribalNationThumbnails[section[0].toLowerCase()].includes(result.naId)
+            )}
+            fidelity={250}
+          />
 
           <SectionHeading>
             <Text.H2 id={section[0].toLowerCase()}>{section[0]}</Text.H2>{' '}
