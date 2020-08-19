@@ -2172,6 +2172,11 @@
   resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-7.2.1.tgz#2ad4e844175a3738cb9e7064be5ea070b8863a1c"
   integrity sha512-oZ0Ib5I4Z2pUEcoo95cT1cr6slco9WY7yiPpG+RGNkj8YcYgJnM7pXmYmorNOReh8MIGcKSqXyeGjxnr8YiZbA==
 
+"@threespot/object-fit-image@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@threespot/object-fit-image/-/object-fit-image-1.0.9.tgz#a6835396128d39a7f95060acd6f620db146317d8"
+  integrity sha512-gnMt4KzRE4uMzLy17bml6+v1zTWHKvZpIjAijT9HNkQ+H204cB7nyuaKjWjB5BONlh/DQTkjeydNkvwKlj24JA==
+
 "@threespot/prettier-config@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@threespot/prettier-config/-/prettier-config-1.0.0.tgz#e270e88fef6aa2e039b567db851f13d9d3cc7e82"
@@ -12942,6 +12947,11 @@ to-object-path@^0.3.0:
   integrity sha1-KXWIt7Dn4KwI4E5nL4XB9JmeF68=
   dependencies:
     kind-of "^3.0.2"
+
+to-percentage@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/to-percentage/-/to-percentage-1.0.0.tgz#3d99c4fe3d6e6ea755fe8102432be685f63bac40"
+  integrity sha1-PZnE/j1ubqdV/oECQyvmhfY7rEA=
 
 to-regex-range@^2.1.0:
   version "2.1.1"
