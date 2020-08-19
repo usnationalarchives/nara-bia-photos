@@ -3,6 +3,9 @@ import styled from 'styled-components';
 
 const Root = styled.div`
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
   position: relative;
 `;
 

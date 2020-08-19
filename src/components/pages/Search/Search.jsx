@@ -45,6 +45,7 @@ const Search = ({ ...props }) => {
   const [tribes, dispatchTribes] = useCheckboxes(search.tribalNations || []);
   const [topics, dispatchTopics] = useCheckboxes(search.topics || []);
   const [states, dispatchStates] = useCheckboxes(search.states || []);
+  console.log(states);
 
   // state for search UUIDs
   const [searchUUIDs, setSearchUUIDs] = useState();
