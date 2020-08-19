@@ -9,6 +9,9 @@ import Card from '#components/shared/Card';
 import Topic from '#components/shared/Topic';
 import Select from '#components/shared/Select';
 
+// hooks
+import useRecords from '#hooks/useRecords';
+
 // modules
 import { topics } from '#modules/constants';
 
@@ -16,6 +19,23 @@ import { topics } from '#modules/constants';
 import content from '#config/content';
 
 const TopicLanding = () => {
+  const thumbnailNaIds = topics.map(t => t.thumbnailNaId);
+
+  const [results] = useRecords({
+    facets: {
+      naIds: thumbnailNaIds,
+    },
+  });
+
+  const thumbnailUrl = naId => {
+    const result = results.filter(result => result.naId === naId)[0];
+
+    if (result) {
+      const url = JSON.parse(result.objects)[0].thumbnail.url;
+      return url;
+    }
+  };
+
   const Billboard = () => {
     const history = useHistory();
 
@@ -44,7 +64,7 @@ const TopicLanding = () => {
         {topics.map(topic => (
           <GridItem key={topic.slug}>
             <Card>
-              <Topic topic={topic} />
+              <Topic topic={topic} thumbnailUrl={thumbnailUrl(topic.thumbnailNaId)} />
             </Card>
           </GridItem>
         ))}
