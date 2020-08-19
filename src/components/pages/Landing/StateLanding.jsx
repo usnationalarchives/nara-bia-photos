@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as Text from '#components/shared/Text';
 import { statesByRegion, joinParams } from '#modules/helpers';
@@ -6,6 +6,10 @@ import { Grid, GridItem } from '#components/shared/Grid';
 import Card from '#components/shared/Card';
 import State from '#components/shared/State';
 import styled, { css } from 'styled-components';
+import ReactTooltip from 'react-tooltip';
+
+// assets
+import { ReactComponent as PhotoIcon } from '#assets/icons/photo.svg';
 
 // hooks
 import useRecords from '#hooks/useRecords';
@@ -13,6 +17,7 @@ import useRecords from '#hooks/useRecords';
 // components
 import * as Layout from '#components/shared/Layout';
 import LandingBillboard from '#components/shared/LandingBillboard';
+import RegionMap from '#components/shared/RegionMap';
 
 // modules
 import { states, regions } from '#modules/constants';
@@ -56,6 +61,7 @@ const RegionGroupStyled = styled.div`
 
 const StateLanding = () => {
   const thumbnailNaIds = states.map(t => t.thumbnailNaId);
+  const [activeMapState, setActiveMapState] = useState('');
 
   const [results] = useRecords({
     facets: {
@@ -125,6 +131,39 @@ const StateLanding = () => {
       )
     );
   };
+  const PhotoIconStyled = styled(PhotoIcon)`
+    display: inline-block;
+    margin-right: 6px;
+  `;
+
+  const StyledTooltipContent = styled.div`
+    font-weight: bold;
+    font-size: 14px;
+    span {
+      display: block;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+  `;
+
+  const TooltipContent = ({ activeMapState }) => {
+    if (activeMapState) {
+      const state = states.find(state => state.val == activeMapState);
+      if (!!state) {
+        return (
+          <StyledTooltipContent>
+            <span>{state.name}</span>
+            <PhotoIconStyled width="15"></PhotoIconStyled> ## Records
+          </StyledTooltipContent>
+        );
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  };
 
   return (
     <Fragment>
@@ -132,6 +171,10 @@ const StateLanding = () => {
 
       <Layout.Padding>
         <Layout.Wrapper>
+          <RegionMap setTooltipContent={setActiveMapState} />
+          <ReactTooltip backgroundColor="#fff" textColor="#333" borderColor="#DDD" border={true}>
+            {activeMapState && <TooltipContent activeMapState={activeMapState}></TooltipContent>}
+          </ReactTooltip>
           {regions.map(region => (
             <RegionGroup key={region.slug} region={region}></RegionGroup>
           ))}
