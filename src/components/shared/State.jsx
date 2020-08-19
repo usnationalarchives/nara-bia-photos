@@ -88,19 +88,12 @@ const TribeLink = styled(Link)`
   `)}
 `;
 
-const State = ({ state, results }) => {
+const State = ({ state, thumbnailUrl, results }) => {
   const [thumbnailResults] = useRecords({
     facets: {
       naIds: [state.thumbnailNaId],
     },
   });
-
-  let thumbnailUrl;
-  if (thumbnailResults.length) {
-    // FIXME: update when IIIF server is working
-    // thumbnailUrl = iiifImage(results[0], 600);
-    thumbnailUrl = JSON.parse(thumbnailResults[0].objects)[0].thumbnail.url;
-  }
 
   function formatRecordCount(num) {
     if (num > 9999) {

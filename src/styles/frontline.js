@@ -6,7 +6,6 @@ const percentage = num => {
 };
 
 export const fl_aspectRatio = ratio => {
-  console.log(ratio);
   return css`
     display: block;
     overflow: hidden;
