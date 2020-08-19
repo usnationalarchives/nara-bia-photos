@@ -53,6 +53,16 @@ const useRecords = (options = {}) => {
 
     setResults(records.allFiltered());
 
+    // dispose all filters when unmounting
+    return () => {
+      recordsByNaId.dispose();
+      recordsBySearchUUID.dispose();
+      recordsByAspectRatio.dispose();
+      recordsByTag.dispose();
+      recordsByTribe.dispose();
+      recordsByState.dispose();
+    };
+
     // We are only looking for changes to the serialized options string to re-run.
     // Ignore other dependencies
     // eslint-disable-next-line
