@@ -55,7 +55,7 @@ const MapChart = ({ setTooltipContent }) => {
                 {geographies.map(geo => {
                   const fill = getFill(geo.id);
                   const stroke = tinycolor(fill).darken(10).toString();
-                  const hoverFill = tinycolor(fill).darken(8).toString();
+                  const hoverFill = tinycolor(fill).darken(25).toString();
                   return (
                     <Geography
                       style={{
