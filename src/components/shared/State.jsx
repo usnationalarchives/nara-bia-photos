@@ -10,7 +10,7 @@ import { tribalNations } from '#modules/constants';
 // helpers
 import { joinParams, parameterize } from '#modules/helpers';
 
-// svgs
+// assets
 import { ReactComponent as PhotoIcon } from '#assets/icons/photo.svg';
 
 // hooks
