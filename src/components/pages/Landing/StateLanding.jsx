@@ -7,9 +7,11 @@ import Card from '#components/shared/Card';
 import State from '#components/shared/State';
 import styled, { css } from 'styled-components';
 import ReactTooltip from 'react-tooltip';
+import { useHistory } from 'react-router-dom';
 
 // assets
 import { ReactComponent as PhotoIcon } from '#assets/icons/photo.svg';
+import { ReactComponent as InfoIcon } from '#assets/icons/info.svg';
 
 // hooks
 import useRecords from '#hooks/useRecords';
@@ -18,6 +20,7 @@ import useRecords from '#hooks/useRecords';
 import * as Layout from '#components/shared/Layout';
 import LandingBillboard from '#components/shared/LandingBillboard';
 import RegionMap from '#components/shared/RegionMap';
+import Select from '#components/shared/Select';
 
 // modules
 import { states, regions } from '#modules/constants';
@@ -60,14 +63,20 @@ const RegionGroupStyled = styled.div`
 `;
 
 const StateLanding = () => {
-  const thumbnailNaIds = states.map(t => t.thumbnailNaId);
   const [activeMapState, setActiveMapState] = useState('');
+  const thumbnailNaIds = states.map(t => t.thumbnailNaId);
+  const history = useHistory();
 
   const [results] = useRecords({
     facets: {
       naIds: thumbnailNaIds,
     },
   });
+
+  const handleSelect = event => {
+    const slug = event.target.value;
+    history.push('/states/' + slug);
+  };
 
   const thumbnailUrl = naId => {
     const result = results.filter(result => result.naId === naId)[0];
@@ -131,6 +140,7 @@ const StateLanding = () => {
       )
     );
   };
+
   const PhotoIconStyled = styled(PhotoIcon)`
     display: inline-block;
     margin-right: 6px;
@@ -171,7 +181,24 @@ const StateLanding = () => {
 
       <Layout.Padding>
         <Layout.Wrapper>
+          <p>Select a state from the map or list below to see photograghs organized by state.</p>
+          <Select style={{ marginTop: '2.5rem', width: '250px' }} onChange={handleSelect}>
+            <option value="">Select a state</option>
+            {states.map(state => (
+              <option value={state.slug} key={state.slug}>
+                {state.name}
+              </option>
+            ))}
+          </Select>
           <RegionMap setTooltipContent={setActiveMapState} />
+          <div>
+            <InfoIcon width="17" fill="#345d96"></InfoIcon>
+            <p>
+              The state map and list below are organized loosely by BIA regional office jurisdictions for readability.
+              In reality, Eastern Oklahoma Region, Navajo Region, the border between the Northwestern and Rocky Mountain
+              regions as well as many other other jurisdictional borders do not correspond U.S. state borders.
+            </p>
+          </div>
           <ReactTooltip backgroundColor="#fff" textColor="#333" borderColor="#DDD" border={true}>
             {activeMapState && <TooltipContent activeMapState={activeMapState}></TooltipContent>}
           </ReactTooltip>

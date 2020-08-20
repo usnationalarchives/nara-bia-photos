@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, memo } from 'react';
 import { geoCentroid } from 'd3-geo';
 import { ComposableMap, Geographies, Geography, Marker, Annotation } from 'react-simple-maps';
 import { states, regions } from '#modules/constants';
@@ -93,4 +93,4 @@ const MapChart = ({ setTooltipContent }) => {
   );
 };
 
-export default MapChart;
+export default memo(MapChart);
