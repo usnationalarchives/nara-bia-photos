@@ -81,6 +81,18 @@ const MapChart = ({}) => {
     }
   };
 
+  const RegionMarker = () => {
+    return (
+      <g key="adsfasdfasdfas">
+        <Marker coordinates={[-116.8, 30.7]}>
+          <text y="2" fontSize={10} textAnchor="middle">
+            Alaska Region
+          </text>
+        </Marker>
+      </g>
+    );
+  };
+
   return (
     <div>
       <ReactTooltip backgroundColor="#fff" textColor="#333" borderColor="#DDD" border={true}>
@@ -125,10 +137,96 @@ const MapChart = ({}) => {
                     />
                   );
                 })}
+                {geographies.map(geo => {
+                  const centroid = geoCentroid(geo);
+                  const cur = states.find(s => s.val === geo.id);
+                  console.log(centroid, geo.properties.name);
+                  return null;
+                  // <g key={geo.rsmKey + '-name'}>
+                  //   {cur && centroid[0] > -160 && centroid[0] < -67 && (
+                  //     <Marker coordinates={centroid}>
+                  //       <text y="2" fontSize={14} textAnchor="middle">
+                  //         {cur.id}
+                  //       </text>
+                  //     </Marker>
+                  //   )}
+                  // </g>
+                })}
               </>
             );
           }}
         </Geographies>
+        <Marker coordinates={[-119.97292512079247, 37.18397337102898]} fill="#777">
+          <text textAnchor="middle" fill="#333333" fontSize={10}>
+            California
+          </text>
+        </Marker>{' '}
+        <Marker coordinates={[-119.97292512079247, 36.58397337102898]} fill="#777">
+          <text textAnchor="middle" fill="#333333" fontSize={10}>
+            Region
+          </text>
+        </Marker>
+        <Marker coordinates={[-105.54795634775779, 36.997256788375054]} fill="#777">
+          <text textAnchor="middle" fill="#333333" fontSize={10}>
+            Western Region
+          </text>
+        </Marker>
+        <Marker coordinates={[-113.67014978137767, 37.70563386025311]} fill="#777">
+          <text textAnchor="middle" fill="#333333" fontSize={10}>
+            Southwest Region
+          </text>
+        </Marker>
+        <Marker coordinates={[-85.30200559812172, 37.53502330485163]} fill="#777">
+          <text textAnchor="middle" fill="#333333" fontSize={10}>
+            Eastern Region
+          </text>
+        </Marker>
+        <Marker coordinates={[-118.56200520337062, 43.93465032631577]} fill="#777">
+          <text textAnchor="middle" fill="#333333" fontSize={10}>
+            Northwest Region
+          </text>
+        </Marker>
+        <Marker coordinates={[-152.3794192251042, 63.92441825088091]} fill="#777">
+          <text textAnchor="middle" fill="#333333" fontSize={10}>
+            Alaska Region
+          </text>
+        </Marker>
+        <Marker coordinates={[-100.22752309700857, 44.4445012204703]} fill="#777">
+          <text textAnchor="middle" fill="#333333" fontSize={10}>
+            Great Plains Region
+          </text>
+        </Marker>
+        <Marker coordinates={[-109.63302925840122, 47.0524662795163]} fill="#777">
+          <text textAnchor="middle" fill="#333333" fontSize={10}>
+            Rocky Mountain Region
+          </text>
+        </Marker>
+        <Marker coordinates={[-91.9931633606855, 44.62584839989349]} fill="#777">
+          <text textAnchor="middle" fill="#333333" fontSize={10}>
+            Midwest Region
+          </text>
+        </Marker>
+        <Marker coordinates={[-98.79322972354891, 33.58832303946829]} fill="#777">
+          <text textAnchor="middle" fill="#333333" fontSize={10}>
+            Southern Plains Region &
+          </text>
+        </Marker>
+        <Marker coordinates={[-98.79322972354891, 32.88832303946829]} fill="#777">
+          <text textAnchor="middle" fill="#333333" fontSize={10}>
+            Eastern Oklahoma Region
+          </text>
+        </Marker>
+        {/*
+        <Marker coordinates={[115.8, 30.7]} fill="#777">
+          <text textAnchor="middle" fill="#F53">
+            USA
+          </text>
+        </Marker>
+        <Marker coordinates={[114.8, 30.7]} fill="#777">
+          <text textAnchor="middle" fill="#F53">
+            Mexico
+          </text>
+        </Marker> */}
       </ComposableMap>
     </div>
   );

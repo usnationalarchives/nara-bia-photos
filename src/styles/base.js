@@ -26,6 +26,11 @@ const BaseStyles = createGlobalStyle`
     cursor: pointer;
   }
 
+  text {
+    font-size: 10px;
+    
+  }
+
   ${BackgroundStyles}
 
   @media print {
