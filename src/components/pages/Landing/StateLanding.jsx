@@ -94,6 +94,27 @@ const Item = withStateThumbnails(({ state, stateThumbnailContext }) => {
   }
 });
 
+const MapSelect = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 50px auto 0;
+  max-width: 600px;
+
+  @media all and ${props => props.theme.breakpoints.medium} {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: -80px;
+
+    > *:first-child {
+      flex: 1 1 70%;
+      padding-right: 40px;
+    }
+    > *:last-child {
+      flex: 1 1 30%;
+    }
+  }
+`;
+
 const RegionGroup = ({ region }) => {
   const regionStates = getStatesByRegion(states, region.slug);
   // Query records this specific state
@@ -150,15 +171,19 @@ const StateLanding = () => {
 
       <Layout.Padding>
         <Layout.Wrapper>
-          <p>Select a state from the map or list below to see photograghs organized by state.</p>
-          <Select style={{ marginTop: '2.5rem', width: '250px' }} onChange={handleSelect}>
-            <option value="">Select a state</option>
-            {states.map(state => (
-              <option value={state.slug} key={state.slug}>
-                {state.name}
-              </option>
-            ))}
-          </Select>
+          <MapSelect>
+            <p>Select a state from the map or list below to see photograghs organized by state.</p>
+            <span>
+              <Select style={{ width: '250px' }} onChange={handleSelect}>
+                <option value="">Select a state</option>
+                {states.map(state => (
+                  <option value={state.slug} key={state.slug}>
+                    {state.name}
+                  </option>
+                ))}
+              </Select>
+            </span>
+          </MapSelect>
           <RegionMap />
           <div>
             <InfoIcon width="17" fill="#345d96"></InfoIcon>
