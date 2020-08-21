@@ -22,6 +22,10 @@ const BaseStyles = createGlobalStyle`
     }
   }
 
+  .rsm-geography:hover {
+    cursor: pointer;
+  }
+
   ${BackgroundStyles}
 
   @media print {

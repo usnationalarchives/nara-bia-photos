@@ -96,22 +96,47 @@ const Item = withStateThumbnails(({ state, stateThumbnailContext }) => {
 
 const MapSelect = styled.div`
   display: flex;
+  align-items: center;
   flex-direction: column;
-  margin: 50px auto 0;
+  margin: 50px auto -20px;
   max-width: 600px;
 
   @media all and ${props => props.theme.breakpoints.medium} {
     flex-direction: row;
     align-items: center;
     margin-bottom: -80px;
+  }
 
-    > *:first-child {
+  > *:first-child {
+    @media all and ${props => props.theme.breakpoints.medium} {
       flex: 1 1 70%;
       padding-right: 40px;
     }
-    > *:last-child {
+  }
+  > *:last-child {
+    padding-top: 20px;
+    @media all and ${props => props.theme.breakpoints.medium} {
+      padding-top: 0;
       flex: 1 1 30%;
     }
+  }
+`;
+const MapInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  @media all and ${props => props.theme.breakpoints.medium} {
+    margin-top: -50px;
+  }
+
+  > *:first-child {
+    flex: 1 0 auto;
+    padding-right: 5px;
+    margin-top: 3px;
+  }
+  > *:last-child {
+    flex: 1 1 auto;
   }
 `;
 
@@ -185,14 +210,19 @@ const StateLanding = () => {
             </span>
           </MapSelect>
           <RegionMap />
-          <div>
-            <InfoIcon width="17" fill="#345d96"></InfoIcon>
-            <p>
-              The state map and list below are organized loosely by BIA regional office jurisdictions for readability.
-              In reality, Eastern Oklahoma Region, Navajo Region, the border between the Northwestern and Rocky Mountain
-              regions as well as many other other jurisdictional borders do not correspond U.S. state borders.
-            </p>
-          </div>
+          <Layout.Wrapper narrow>
+            <MapInfo>
+              <span>
+                <InfoIcon width="17" fill="#345d96"></InfoIcon>
+              </span>
+              <p>
+                The state map and list below are organized loosely by BIA regional office jurisdictions for readability.
+                In reality, Eastern Oklahoma Region, Navajo Region, the border between the Northwestern and Rocky
+                Mountain regions as well as many other other jurisdictional borders do not correspond U.S. state
+                borders.
+              </p>
+            </MapInfo>
+          </Layout.Wrapper>
           {regions.map(region => (
             <RegionGroup key={region.slug} region={region}></RegionGroup>
           ))}
