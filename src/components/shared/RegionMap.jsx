@@ -4,6 +4,9 @@ import { ComposableMap, Geographies, Geography, Marker, Annotation } from 'react
 import { states, regions } from '#modules/constants';
 import _ from 'lodash';
 import { useHistory } from 'react-router-dom';
+import ReactTooltip from 'react-tooltip';
+import styled, { css } from 'styled-components';
+import { ReactComponent as PhotoIcon } from '#assets/icons/photo.svg';
 
 import tinycolor from 'tinycolor2';
 
@@ -21,8 +24,9 @@ const offsets = {
   DC: [49, 21],
 };
 
-const MapChart = ({ setTooltipContent }) => {
+const MapChart = ({}) => {
   const history = useHistory();
+  const [activeMapState, setActiveMapState] = useState('');
 
   const getState = geoID => {
     const state = _.find(states, state => {
@@ -43,8 +47,45 @@ const MapChart = ({ setTooltipContent }) => {
     return hue;
   };
 
+  const StyledTooltipContent = styled.div`
+    font-weight: bold;
+    font-size: 14px;
+    span {
+      display: block;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+  `;
+
+  const PhotoIconStyled = styled(PhotoIcon)`
+    display: inline-block;
+    margin-right: 6px;
+  `;
+
+  const TooltipContent = ({ activeMapState }) => {
+    if (activeMapState) {
+      const state = states.find(state => state.val == activeMapState);
+      if (!!state) {
+        return (
+          <StyledTooltipContent>
+            <span>{state.name}</span>
+            <PhotoIconStyled width="15"></PhotoIconStyled> ## Records
+          </StyledTooltipContent>
+        );
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  };
+
   return (
     <div>
+      <ReactTooltip backgroundColor="#fff" textColor="#333" borderColor="#DDD" border={true}>
+        {activeMapState && <TooltipContent activeMapState={activeMapState}></TooltipContent>}
+      </ReactTooltip>
       <ComposableMap projection="geoAlbersUsa" data-tip="">
         <Geographies geography={geoUrl}>
           {({ geographies }) => {
@@ -73,10 +114,10 @@ const MapChart = ({ setTooltipContent }) => {
                       }}
                       onMouseEnter={() => {
                         const { name } = geo.properties;
-                        setTooltipContent(geo.id);
+                        setActiveMapState(geo.id);
                       }}
                       onMouseLeave={() => {
-                        setTooltipContent();
+                        setActiveMapState(null);
                       }}
                       stroke={stroke}
                       geography={geo}

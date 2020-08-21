@@ -33,7 +33,6 @@ const Description = styled.p`
 
 const Image = styled.div`
   background-color: ${props => props.theme.colors.mediumGrey};
-  background-image: url(${props => props.thumbnailUrl});
   background-size: cover;
   height: 0;
   padding-top: 56.25%;
@@ -89,12 +88,6 @@ const TribeLink = styled(Link)`
 `;
 
 const State = ({ state, thumbnailUrl, results }) => {
-  const [thumbnailResults] = useRecords({
-    facets: {
-      naIds: [state.thumbnailNaId],
-    },
-  });
-
   function formatRecordCount(num) {
     if (num > 9999) {
       num = numeral(num).format('0a');
@@ -125,7 +118,6 @@ const State = ({ state, thumbnailUrl, results }) => {
     const tribe = _.find(tribalNations, tribe => {
       return tribe.name === tribeName;
     });
-    console.log(tribe);
     return tribe.slug; //tribe.slug;
   }
 
@@ -135,7 +127,7 @@ const State = ({ state, thumbnailUrl, results }) => {
 
   return (
     <Fragment>
-      <Image thumbnailUrl={thumbnailUrl} />
+      <Image style={{ backgroundImage: `url(${thumbnailUrl})` }} />
       <Inner>
         <Meta>
           <Label to={`/states/${state.slug}`}>{state.name}</Label>

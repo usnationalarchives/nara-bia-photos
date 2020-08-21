@@ -8,6 +8,8 @@ import 'frontline-css-reset';
 // Webfonts
 import '#assets/fonts/fonts.css';
 
+import './wdyr';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
