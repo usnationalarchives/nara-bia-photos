@@ -9,6 +9,9 @@ import styled, { css } from 'styled-components';
 import ReactTooltip from 'react-tooltip';
 import { useHistory } from 'react-router-dom';
 
+// config
+import content from '#config/content';
+
 // context
 import { withStateThumbnails } from '#context/StateThumbnails';
 
@@ -31,12 +34,7 @@ import { states, regions } from '#modules/constants';
 import * as frontline from '#styles/frontline';
 
 const Billboard = () => {
-  return (
-    <LandingBillboard
-      title="States"
-      intro="Lorem Ipsum Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."
-    />
-  );
+  return <LandingBillboard title={content.states.title} intro={content.states.intro} introHelp={content.states.help} />;
 };
 
 // const statesExtended = states.map((state, index) => {
@@ -197,10 +195,10 @@ const StateLanding = () => {
       <Layout.Padding>
         <Layout.Wrapper>
           <MapSelect>
-            <p>Select a state from the map or list below to see photograghs organized by state.</p>
+            <p>{content.states.mapDirections}</p>
             <span>
               <Select style={{ width: '250px' }} onChange={handleSelect}>
-                <option value="">Select a state</option>
+                <option value="">{content.states.selectPrompt}</option>
                 {states.map(state => (
                   <option value={state.slug} key={state.slug}>
                     {state.name}
@@ -215,12 +213,7 @@ const StateLanding = () => {
               <span>
                 <InfoIcon width="17" fill="#345d96"></InfoIcon>
               </span>
-              <p>
-                The state map and list below are organized loosely by BIA regional office jurisdictions for readability.
-                In reality, Eastern Oklahoma Region, Navajo Region, the border between the Northwestern and Rocky
-                Mountain regions as well as many other other jurisdictional borders do not correspond U.S. state
-                borders.
-              </p>
+              <p>{content.states.disclaimer}</p>
             </MapInfo>
           </Layout.Wrapper>
           {regions.map(region => (
