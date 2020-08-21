@@ -133,20 +133,66 @@ export const topics = [
 ];
 
 export const regions = [
-  { name: 'Northwest Region', slug: 'northwest', hue: '#F2948C' },
-  { name: 'Pacific Region & Alaska Region', slug: 'pacific-alaska', hue: '#E596B3' },
-  { name: 'Western Region', slug: 'western', hue: '#5FBC95' },
-  { name: 'Rocky Mountain Region', slug: 'rocky-mountain', hue: '#9AB773' },
-  { name: 'Southwest Region', slug: 'southwest', hue: '#C8AC47' },
-  { name: 'Great Plains Region', slug: 'great-plains', hue: '#5DC0CF' },
+  {
+    name: 'Northwest Region',
+    slug: 'northwest',
+    hue: '#F2948C',
+    mapLabelCooridnates: [-120.56200520337062, 45.93465032631577],
+  },
+  {
+    name: 'Pacific Region & Alaska Region',
+    slug: 'pacific-alaska',
+    hue: '#E596B3',
+    mapLabelCooridnates: [-157.1794192251042, 66.42441825088091],
+  },
+  {
+    name: 'Western Region',
+    slug: 'western',
+    hue: '#5FBC95',
+    mapLabelCooridnates: [-107.54795634775779, 37.597256788375054],
+  },
+  {
+    name: 'Rocky Mountain Region',
+    slug: 'rocky-mountain',
+    hue: '#9AB773',
+    mapLabelCooridnates: [-109.63302925840122, 45.6524662795163],
+  },
+  {
+    name: 'Southwest Region',
+    slug: 'southwest',
+    hue: '#C8AC47',
+    mapLabelCooridnates: [-115.27014978137767, 38.40563386025311],
+  },
+  {
+    name: 'Great Plains Region',
+    slug: 'great-plains',
+    hue: '#5DC0CF',
+    mapLabelCooridnates: [-101.22752309700857, 45.3445012204703],
+  },
   {
     name: 'Southern Plains Region & Eastern Oklahoma Region',
     slug: 'southern-plains-eastern-oklahoma',
     hue: '#72B3E9',
+    mapLabelCooridnates: [-100.79322972354891, 35.58832303946829],
   },
-  { name: 'Midwest Region', slug: 'midwest', hue: '#A5A8EC' },
-  { name: 'Eastern Region', slug: 'eastern', hue: '#BAA1E4' },
-  { name: 'California Region', slug: 'california', hue: '#F19860' },
+  {
+    name: 'Midwest Region',
+    slug: 'midwest',
+    hue: '#A5A8EC',
+    mapLabelCooridnates: [-93.2931633606855, 44.02584839989349],
+  },
+  {
+    name: 'Eastern Region',
+    slug: 'eastern',
+    hue: '#BAA1E4',
+    mapLabelCooridnates: [-85.30200559812172, 37.53502330485163],
+  },
+  {
+    name: 'California Region',
+    slug: 'california',
+    hue: '#F19860',
+    mapLabelCooridnates: [-121.57292512079247, 37.18397337102898],
+  },
 ];
 
 // export const stateThumbnailNaids = [

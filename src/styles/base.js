@@ -26,10 +26,9 @@ const BaseStyles = createGlobalStyle`
     cursor: pointer;
   }
 
-  text {
+  /* text {
     font-size: 10px;
-    
-  }
+  } */
 
   ${BackgroundStyles}
 
