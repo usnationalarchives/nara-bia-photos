@@ -27,6 +27,39 @@ const offsets = {
 
 // console.log(new TextBox().data([{ text: 'testing' }]));
 
+const RegionMarker = ({ region, fill }) => {
+  const regionLabel = createRef();
+
+  let { name, slug, mapLabelCooridnates } = region;
+
+  useEffect(() => {
+    var width = 55;
+    // eslint-disable-next-line default-case
+    switch (slug) {
+      case 'southern-plains-eastern-oklahoma':
+        width = 70;
+        break;
+      case 'pacific-alaska':
+        name = 'Alaska Region';
+        break;
+    }
+    name = name.toUpperCase();
+    new TextBox()
+      .select(regionLabel.current)
+      .data([{ text: name }])
+      .fontColor(fill)
+      .fontSize(8)
+      .width(width)
+      .render();
+  }, []);
+
+  return (
+    <Marker coordinates={mapLabelCooridnates}>
+      <g ref={regionLabel} />
+    </Marker>
+  );
+};
+
 const MapChart = ({}) => {
   const history = useHistory();
   const [activeMapState, setActiveMapState] = useState('');
@@ -66,61 +99,15 @@ const MapChart = ({}) => {
     margin-right: 6px;
   `;
 
-  const TooltipContent = ({ activeMapState }) => {
-    if (activeMapState) {
-      const state = states.find(state => state.val == activeMapState);
-      if (!!state) {
-        return (
-          <StyledTooltipContent>
-            <span>{state.name}</span>
-            <PhotoIconStyled width="15"></PhotoIconStyled> ## Records
-          </StyledTooltipContent>
-        );
-      } else {
-        return null;
-      }
-    } else {
-      return null;
-    }
-  };
-
-  const RegionMarker = ({ region, fill }) => {
-    const regionLabel = createRef();
-
-    let { name, slug, mapLabelCooridnates } = region;
-
-    useEffect(() => {
-      var width = 55;
-      // eslint-disable-next-line default-case
-      switch (slug) {
-        case 'southern-plains-eastern-oklahoma':
-          width = 70;
-          break;
-        case 'pacific-alaska':
-          name = 'Alaska Region';
-          break;
-      }
-      name = name.toUpperCase();
-      new TextBox()
-        .select(regionLabel.current)
-        .data([{ text: name }])
-        .fontColor(fill)
-        .fontSize(8)
-        .width(width)
-        .render();
-    });
-
-    return (
-      <Marker coordinates={mapLabelCooridnates}>
-        <g ref={regionLabel} />
-      </Marker>
-    );
-  };
-
   return (
     <div>
       <ReactTooltip backgroundColor="#fff" textColor="#333" borderColor="#DDD" border={true}>
-        {activeMapState && <TooltipContent activeMapState={activeMapState}></TooltipContent>}
+        {!!activeMapState && (
+          <StyledTooltipContent>
+            <span>{activeMapState.name}</span>
+            <PhotoIconStyled width="15"></PhotoIconStyled> ## Records
+          </StyledTooltipContent>
+        )}
       </ReactTooltip>
       <ComposableMap projection="geoAlbersUsa" data-tip="">
         <Geographies geography={geoUrl}>
@@ -149,8 +136,7 @@ const MapChart = ({}) => {
                         history.push(`/states/${getState(geo.id).slug}`);
                       }}
                       onMouseEnter={() => {
-                        const { name } = geo.properties;
-                        setActiveMapState(geo.id);
+                        setActiveMapState(states.find(state => state.val == geo.id));
                       }}
                       onMouseLeave={() => {
                         setActiveMapState(null);
