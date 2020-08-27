@@ -1,8 +1,5 @@
 import React, { useEffect, createRef, Children } from 'react';
-import styled, { css } from 'styled-components';
-import { findIndex } from 'lodash';
 import ObjectFitImage from '@threespot/object-fit-image';
-import * as frontline from '#styles/frontline';
 
 const BackgroundImage = ({ className, children }) => {
   const containerRef = createRef();

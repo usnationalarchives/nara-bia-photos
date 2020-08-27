@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+// modules
+import iiifImage from '#modules/iiifImage';
+
 // styles
 import { fl_absoluteFill } from '#styles/frontline';
 
@@ -28,14 +31,13 @@ const CoverLink = styled(Link)`
 `;
 
 const Record = ({ record, scale }) => {
-  const objects = JSON.parse(record.objects);
-
   return (
     <Root>
       <ImageContainer
         scale={scale}
         record={record}
-        style={{ backgroundImage: `url(${objects[0].thumbnail.url})` }}
+        // style={{ backgroundImage: `url(${objects[0].thumbnail.url})` }}
+        style={{ backgroundImage: `url(${iiifImage(record, 600)})` }}
       ></ImageContainer>
       <Title scale={scale}>{record.title}</Title>
       <CoverLink to={`/${record.slug}`} />
