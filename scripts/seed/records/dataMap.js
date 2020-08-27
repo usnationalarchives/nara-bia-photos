@@ -37,6 +37,13 @@ module.exports = {
         },
       };
 
+      let width = (object.technicalMetadata || {}).width;
+      let height = (object.technicalMetadata || {}).height;
+
+      if (width && height) {
+        json.aspectRatio = parseInt(width) / parseInt(height);
+      }
+
       if (object.imageTiles) {
         json.imageTiles = {};
         json.imageTiles.url = object.imageTiles['@url'];
@@ -61,8 +68,9 @@ module.exports = {
     let width, height;
 
     if (object && Array.isArray(object)) {
-      width = (object[0].technicalMetadata || {}).width;
-      height = (object[0].technicalMetadata || {}).height;
+      const filteredObjects = object.filter(obj => obj.technicalMetadata.width && obj.technicalMetadata.height);
+      width = (filteredObjects[0] || {}).width;
+      height = (filteredObjects[0] || {}).height;
     } else if (object) {
       width = (object.technicalMetadata || {}).width;
       height = (object.technicalMetadata || {}).height;

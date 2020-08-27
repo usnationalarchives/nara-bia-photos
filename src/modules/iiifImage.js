@@ -1,4 +1,4 @@
-const iiifImage = (record, width = 'full') => {
+const iiifImage = (record, maxHeightWidth) => {
   const baseUrl = 'https://catalog.image.drupalme.net/iiif/2';
   const objects = JSON.parse(record.objects);
 
@@ -9,11 +9,14 @@ const iiifImage = (record, width = 'full') => {
   );
 
   let path;
+  let object;
   if (filteredObjects.length > 0) {
-    path = filteredObjects[0].file.path;
+    object = filteredObjects[0];
   } else {
-    path = objects[0].file.path;
+    object = objects[0];
   }
+
+  path = object.file.path;
 
   // remove possible leading slash from path
   path = path[0] === '/' ? path.substring(1) : path;
@@ -33,9 +36,7 @@ const iiifImage = (record, width = 'full') => {
   const encodedPath = encodeURIComponent(path);
 
   // create the image server URL
-  const imageUrl = `${baseUrl}/${bucketMapping}%2F${encodedPath}/full/${
-    width === 'full' ? 'full' : `${width},`
-  }/0/default.jpg`;
+  const imageUrl = `${baseUrl}/${bucketMapping}%2F${encodedPath}/full/!${maxHeightWidth},${maxHeightWidth}/0/default.jpg`;
 
   return imageUrl;
 };
