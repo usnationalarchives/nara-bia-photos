@@ -4,26 +4,17 @@ import numeral from 'numeral';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
 
-// constants
-import { tribalNations } from '#modules/constants';
-
 // helpers
-import { joinParams, parameterize } from '#modules/helpers';
+import { joinParams } from '#modules/helpers';
 
 // svgs
 import { ReactComponent as PhotoIcon } from '#assets/icons/photo.svg';
-
-// hooks
-import useRecords from '#hooks/useRecords';
-
-// modules
-import iiifImage from '#modules/iiifImage';
 
 // components
 import CoverLink from '#components/shared/CoverLink';
 
 // styles
-import { fl_allStates, fl_absoluteFill, fl_static, fl_attention } from '#styles/frontline';
+import { fl_allStates, fl_static, fl_attention } from '#styles/frontline';
 
 const Description = styled.p`
   color: ${props => props.theme.colors.darkGrey};
@@ -89,12 +80,6 @@ const TribeLink = styled(Link)`
 `;
 
 const State = ({ state, thumbnailUrl, results }) => {
-  const [thumbnailResults] = useRecords({
-    facets: {
-      naIds: [state.thumbnailNaId],
-    },
-  });
-
   function formatRecordCount(num) {
     if (num > 9999) {
       num = numeral(num).format('0a');
@@ -119,14 +104,6 @@ const State = ({ state, thumbnailUrl, results }) => {
     tribes = _.compact(tribes);
     let result = _.head(_(tribes).countBy().entries().maxBy(_.last));
     return result;
-  }
-
-  function getTribeSlug(tribeName) {
-    const tribe = _.find(tribalNations, tribe => {
-      return tribe.name === tribeName;
-    });
-    console.log(tribe);
-    return tribe.slug; //tribe.slug;
   }
 
   const prominantTribeName = getProminentTribe(results);

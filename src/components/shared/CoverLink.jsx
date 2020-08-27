@@ -1,9 +1,9 @@
-import React, { Fragment, forwardRef } from 'react';
-import styled, { css } from 'styled-components';
+import React from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 // styles
-import { fl_allStates, fl_absoluteFill } from '#styles/frontline';
+import { fl_absoluteFill } from '#styles/frontline';
 
 const StyledLink = styled(Link)`
   &:before {

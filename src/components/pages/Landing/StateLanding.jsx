@@ -75,7 +75,7 @@ const StateLanding = () => {
 
   const Item = ({ state }) => {
     // Query records specific to this state
-    const [results, dimensions, hasActiveFilters] = useRecords({
+    const [results] = useRecords({
       facets: { states: [state.name] },
     });
 

@@ -1,9 +1,9 @@
 import { css } from 'styled-components';
 import toPercentage from 'to-percentage';
 
-const percentage = num => {
-  return num + '%';
-};
+// const percentage = num => {
+//   return num + '%';
+// };
 
 export const fl_aspectRatio = ratio => {
   return css`
@@ -110,12 +110,10 @@ export const fl_burger = options => {
     &::before,
     &::after {
       background-color: ${color};
-      ${
-        borderRadius !== 0 &&
-        css`
-          border-radius: ${borderRadius}px;
-        `
-      }
+      ${borderRadius !== 0 &&
+      css`
+        border-radius: ${borderRadius}px;
+      `}
       height: ${height}px;
       transition-duration: ${transitionDuration}ms;
       transition-property: background-color, transform;
@@ -136,7 +134,7 @@ export const fl_burger = options => {
     &::after {
       top: ${height + gutter}px;
     }
-    `;
+  `;
 };
 
 export const fl_burgerToCross = options => {

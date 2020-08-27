@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import * as frontline from '#styles/frontline';
 
@@ -12,11 +12,11 @@ import * as Layout from '#components/shared/Layout';
 import PopoverInfo from '#components/shared/PopoverInfo';
 import BackgroundImage from '#components/shared/BackgroundImage';
 
-const BackgroundImageStyle = styled.div`
-  display: block;
-  position: relative;
-  ${frontline.fl_aspectRatio(16 / 9)}
-`;
+// const BackgroundImageStyle = styled.div`
+//   display: block;
+//   position: relative;
+//   ${frontline.fl_aspectRatio(16 / 9)}
+// `;
 
 const Root = styled.div`
   background-color: ${props => props.theme.colors.blue};
@@ -102,7 +102,13 @@ const Billboard = ({ title, intro, introHelp, ...props }) => {
             </div>
             <div className="layout-col--secondary">
               <BackgroundImage className="desktopImage">
-                <img srcSet={`${bannerImage} 1x, ${bannerImage2x} 2x`} src={bannerImage}></img>
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  role="presentation"
+                  srcSet={`${bannerImage} 1x, ${bannerImage2x} 2x`}
+                  src={bannerImage}
+                ></img>
               </BackgroundImage>
             </div>
           </LandingBillboardLayout>
