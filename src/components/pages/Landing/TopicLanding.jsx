@@ -14,6 +14,7 @@ import useRecords from '#hooks/useRecords';
 
 // modules
 import { topics } from '#modules/constants';
+import iiifImage from '#modules/iiifImage';
 
 // config
 import content from '#config/content';
@@ -31,7 +32,7 @@ const TopicLanding = () => {
     const result = results.filter(result => result.naId === naId)[0];
 
     if (result) {
-      const url = JSON.parse(result.objects)[0].thumbnail.url;
+      const url = iiifImage(result, 600);
       return url;
     }
   };

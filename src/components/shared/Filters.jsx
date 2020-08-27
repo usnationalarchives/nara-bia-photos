@@ -51,7 +51,6 @@ const Filters = ({ filters }) => {
 
   useEventListener('keydown', event => {
     // Close with escape key
-    console.log(event.which);
     if (event.which === 27) {
       setActiveFilter(false);
     }
