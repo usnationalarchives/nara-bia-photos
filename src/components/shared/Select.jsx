@@ -41,6 +41,7 @@ const SelectMenu = styled.select`
   text-decoration: none;
   text-align: left;
   text-transform: uppercase;
+  width: 100%;
 
   option {
     color: ${props => props.theme.colors.black};

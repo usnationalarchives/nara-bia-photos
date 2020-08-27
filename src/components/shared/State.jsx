@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 // helpers
 import { joinParams } from '#modules/helpers';
 
-// svgs
+// assets
 import { ReactComponent as PhotoIcon } from '#assets/icons/photo.svg';
 
 // components
@@ -24,7 +24,6 @@ const Description = styled.p`
 
 const Image = styled.div`
   background-color: ${props => props.theme.colors.mediumGrey};
-  background-image: url(${props => props.thumbnailUrl});
   background-size: cover;
   height: 0;
   padding-top: 56.25%;
@@ -112,7 +111,7 @@ const State = ({ state, thumbnailUrl, results }) => {
 
   return (
     <Fragment>
-      <Image thumbnailUrl={thumbnailUrl} />
+      <Image style={{ backgroundImage: `url(${thumbnailUrl})` }} />
       <Inner>
         <Meta>
           <Label to={`/states/${state.slug}`}>{state.name}</Label>

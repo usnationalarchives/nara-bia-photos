@@ -4,6 +4,7 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { ReactComponent as SmallGridIcon } from '#assets/icons/grid-small.svg';
 import { ReactComponent as LargeGridIcon } from '#assets/icons/grid-large.svg';
+import { colors } from '#styles/theme';
 
 const SliderStyles = styled.div`
   align-items: center;
@@ -25,6 +26,12 @@ const FidelitySlider = ({ update }) => {
         min={120}
         max={320}
         step={20}
+        trackStyle={{ height: '2px', backgroundColor: colors.blue }}
+        railStyle={{ height: '2px', backgroundColor: colors.blue }}
+        handleStyle={{
+          boxShadow: 'none',
+          borderColor: colors.blue,
+        }}
         defaultValue={220}
         onChange={val => {
           update(val);
