@@ -1,12 +1,15 @@
-import styled from "styled-components";
-import { fl_visuallyHidden } from "#styles/frontline";
+import styled from 'styled-components';
+import { fl_visuallyHidden } from '#styles/frontline';
+import { buttonReset } from '#styles/mixins';
+import { colors } from '#styles/theme';
+import tinycolor from 'tinycolor2';
 
 export const H1 = styled.h1`
   font-weight: bold;
   font-size: 2rem;
   line-height: 1.18;
 
-  @media ${(props) => props.theme.breakpoints.medium} {
+  @media ${props => props.theme.breakpoints.medium} {
     font-size: 3rem;
     line-height: 1.2;
   }
@@ -107,6 +110,43 @@ export const Rich = styled.div`
       &:empty {
         display: none !important;
       }
+    }
+
+    h2 {
+      font-weight: bold;
+      font-size: 1.25rem;
+      line-height: 1.3;
+
+      @media ${props => props.theme.breakpoints.medium} {
+        font-size: 2rem;
+        line-height: 1.18;
+      }
+    }
+    h3 {
+      font-weight: bold;
+      font-size: 1.25rem;
+      line-height: 1.3;
+
+      @media ${props => props.theme.breakpoints.medium} {
+        font-size: 1.375rem;
+        line-height: 1.18;
+      }
+    }
+    h4 {
+      font-weight: bold;
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+    h5 {
+      font-weight: bold;
+      font-size: 0.9375rem;
+      line-height: 1.33;
+    }
+    h6 {
+      font-weight: normal;
+      font-size: 0.8125rem;
+      line-height: 1.23;
+      text-transform: uppercase;
     }
 
     h1,
@@ -237,4 +277,29 @@ export const Rich = styled.div`
   small {
     display: inline-block;
   }
+
+  .btn {
+
+
+    ${buttonReset}
+    border-radius: 23px;
+    border: 1px solid #fff;
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: bold;
+    line-height: 1rem;
+    padding: 16px 22px;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    background-color: ${props => props.theme.colors.green};
+    color: #fff;
+
+      &:focus,
+      &:hover {
+        background-color: ${props => tinycolor(props.theme.colors.green).darken(10).toString()};
+      }
+
+  }
+}
 `;
