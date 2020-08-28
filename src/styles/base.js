@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import * as frontline from '#styles/frontline';
 
 import BackgroundStyles from '#styles/helpers/background';
+import RCSlider from '#styles/lib/rc-slider';
 
 const BaseStyles = createGlobalStyle`
   html {
@@ -31,6 +32,7 @@ const BaseStyles = createGlobalStyle`
   } */
 
   ${BackgroundStyles}
+  ${RCSlider}
 
   @media print {
     * {
