@@ -24,6 +24,12 @@ const recordsByTribe = records.dimension(d => {
 const recordsByState = records.dimension(d => {
   return (d.states || '').split('||');
 }, true);
+const recordsByParentSeriesTitle = records.dimension(d => {
+  return d.parentSeriesTitle;
+});
+const recordsByParentSeriesNaId = records.dimension(d => {
+  return d.parentSeriesNaId;
+});
 
 const dimensions = {
   recordsBySearchUUID,
@@ -32,6 +38,8 @@ const dimensions = {
   recordsByTag,
   recordsByTribe,
   recordsByState,
+  recordsByParentSeriesTitle,
+  recordsByParentSeriesNaId,
 };
 
 // Setup groups for each dimension, this creates a list of all values in the

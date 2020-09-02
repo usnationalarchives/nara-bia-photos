@@ -14,6 +14,7 @@ import { records, dimensions, actions } from '../modules/data';
  *     location: "A Location",
  *     creatingOrg: "A creating organization",
  *     parentSeriesTitle: "A parent series title",
+ *     parentSeriesNaId: 298560,
  *     apsectRatioRange: [0.9, 1.1],
  *     searchUUIDs: []
  *   }
@@ -22,7 +23,10 @@ import { records, dimensions, actions } from '../modules/data';
 const useRecords = (options = {}) => {
   const serializedOptions = JSON.stringify(options);
   const [results, setResults] = useState([]);
-  const { facets } = options;
+  const { facets = {} } = options;
+
+  console.log(serializedOptions);
+  console.log('facets', facets);
 
   const { filterByValues, filterByRange } = actions;
   const {
@@ -32,6 +36,8 @@ const useRecords = (options = {}) => {
     recordsByTag,
     recordsByTribe,
     recordsByState,
+    recordsByParentSeriesTitle,
+    recordsByParentSeriesNaId,
   } = dimensions;
 
   const hasActiveFilters =
@@ -40,7 +46,9 @@ const useRecords = (options = {}) => {
     recordsByAspectRatio.hasCurrentFilter() ||
     recordsByTag.hasCurrentFilter() ||
     recordsByTribe.hasCurrentFilter() ||
-    recordsByState.hasCurrentFilter();
+    recordsByState.hasCurrentFilter() ||
+    recordsByParentSeriesTitle.hasCurrentFilter() ||
+    recordsByParentSeriesNaId.hasCurrentFilter();
 
   useEffect(() => {
     // Apply filters from incoming facets
@@ -49,6 +57,8 @@ const useRecords = (options = {}) => {
     filterByValues(recordsByTag, facets.topics);
     filterByValues(recordsByTribe, facets.tribes);
     filterByValues(recordsByState, facets.states);
+    filterByValues(recordsByParentSeriesTitle, facets.parentSeriesTitle);
+    filterByValues(recordsByParentSeriesNaId, facets.parentSeriesNaId);
     filterByRange(recordsByAspectRatio, facets.aspectRatioRange);
 
     setResults(records.allFiltered());
@@ -61,6 +71,8 @@ const useRecords = (options = {}) => {
       recordsByTag.dispose();
       recordsByTribe.dispose();
       recordsByState.dispose();
+      recordsByParentSeriesTitle.dispose();
+      recordsByParentSeriesNaId.dispose();
     };
 
     // We are only looking for changes to the serialized options string to re-run.

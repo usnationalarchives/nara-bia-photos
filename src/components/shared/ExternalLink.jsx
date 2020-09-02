@@ -5,6 +5,9 @@ import { fl_allStates, fl_static, fl_attention } from '#styles/frontline';
 import { ReactComponent as ExternalIcon } from '#assets/icons/external-link.svg';
 
 const LinkStyled = styled.a`
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
   text-transform: uppercase;
   font-size: 14px;
 
@@ -13,9 +16,9 @@ const LinkStyled = styled.a`
   `)}
 `;
 
-const ExternalLink = ({ children }) => {
+const ExternalLink = ({ href, children }) => {
   return (
-    <LinkStyled>
+    <LinkStyled href={href}>
       {children}
       <ExternalIcon style={{ marginLeft: '12px' }} width={15} fill="currentColor" />
     </LinkStyled>

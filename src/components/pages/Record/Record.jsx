@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect, createRef } from 'react';
 import styled from 'styled-components';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Results from '#components/shared/Results';
+import { sampleSize } from 'lodash';
 // import 'react-tabs/style/react-tabs.css';
 
 import { ReactComponent as CitationIcon } from '#assets/icons/citations.svg';
@@ -12,7 +13,7 @@ import { ReactComponent as SeriesIcon } from '#assets/icons/series.svg';
 import { getRecordTopics } from '#modules/helpers';
 
 // constants
-import { tribalNations } from '#modules/constants';
+import { tribalNations, externalUrls } from '#modules/constants';
 
 // components
 import * as Text from '#components/shared/Text';
@@ -75,11 +76,6 @@ const Record = ({ ...props }) => {
       naIds: [naId],
     },
   });
-  // const [thumbnailResults] = useRecords({
-  //   facets: {
-  //     naIds: Object.values(tribalNationThumbnails).flat(),
-  //   },
-  // });
 
   const record = results[0];
 
@@ -88,6 +84,17 @@ const Record = ({ ...props }) => {
     var recordTopics = getRecordTopics(record.tags);
   }
 
+  var [thumbnailResults] = useRecords(
+    record
+      ? {
+          facets: {
+            // parentSeriesNaId: record.parentSeriesNaId,
+            parentSeriesTitle: record.parentSeriesTitle,
+          },
+        }
+      : false
+  );
+
   useEffect(() => {
     if (record) {
       setObjects(JSON.parse(record.objects).filter(o => o.imageTiles));
@@ -95,6 +102,7 @@ const Record = ({ ...props }) => {
   }, [record]);
 
   console.log(record);
+  console.log(thumbnailResults.length);
 
   return (
     !!record && (
@@ -116,7 +124,7 @@ const Record = ({ ...props }) => {
                       ]}
                     ></MetaStyled>
                   )}
-                  <MetaStyled label="Date" outine items={[{ label: 'another test' }]}></MetaStyled>
+                  <MetaStyled label="Date" outine items={[{ label: 'FIXME' }]}></MetaStyled>
                   {!!recordTopics.length && (
                     <MetaStyled
                       label="Topics"
@@ -161,13 +169,13 @@ const Record = ({ ...props }) => {
                         </Text.Label>
                       </Table.LabelStyles>
                       <Table.ValueStyles>
-                        <p>{record.naId}</p>
+                        <a href={`${externalUrls.catalogRecordDetail}/${record.naId}`}>{record.naId}</a>
                       </Table.ValueStyles>
                     </Table.RowStyles>
                     <Table.RowStyles>
                       <Table.LabelStyles>&nbsp;</Table.LabelStyles>
                       <Table.ValueStyles>
-                        <ExternalLink href="#FIXME">Catalog</ExternalLink>
+                        <ExternalLink href={`${externalUrls.catalogRecordDetail}/${record.naId}`}>Catalog</ExternalLink>
                       </Table.ValueStyles>
                     </Table.RowStyles>
                   </TabPanel>
@@ -183,16 +191,21 @@ const Record = ({ ...props }) => {
               <SeriesIcon width={20}></SeriesIcon>
               <span>Also in this series</span>
             </SectionHeader>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
+            <div
+              style={{ alignItems: 'flex-start', display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}
+            >
               <p style={{ marginRight: '20px' }}>
-                There are FIXME other records in the archival series {record.parentSeriesTitle}
+                There are {thumbnailResults.length} other records in the archival series {record.parentSeriesTitle}
               </p>
 
-              <ExternalLink style={{}} href="#FIXME">
+              <ExternalLink
+                style={{ flex: '1 0 auto' }}
+                href={`https://catalog.archives.gov/search?q=*:*&f.ancestorNaIds=${record.parentSeriesNaId}&sort=naIdSort%20asc&f.materialsType=photographsandgraphics`}
+              >
                 View All
               </ExternalLink>
             </div>
-            {/* <Results singleRow data={thumbnailResults} fidelity={250} /> */}
+            <Results singleRow data={sampleSize(thumbnailResults, 3)} fidelity={250} />
           </Layout.Wrapper>
         </Layout.Padding>
       </>

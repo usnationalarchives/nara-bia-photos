@@ -1,5 +1,10 @@
 import tribalNationsData from '#data/tribalNations.csv';
 
+export const externalUrls = {
+  catalog: 'https://catalog.archives.gov',
+  catalogRecordDetail: 'https://catalog.archives.gov/id',
+};
+
 export const tribalNations = tribalNationsData.sort((a, b) => (a.name > b.name ? 1 : -1));
 
 export const tribalNationThumbnails = {
