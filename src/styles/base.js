@@ -3,6 +3,7 @@ import * as frontline from '#styles/frontline';
 
 import BackgroundStyles from '#styles/helpers/background';
 import RCSlider from '#styles/lib/rc-slider';
+import ReactTabsStyles from '#styles/lib/react-tabs';
 
 const BaseStyles = createGlobalStyle`
   html {
@@ -33,6 +34,7 @@ const BaseStyles = createGlobalStyle`
 
   ${BackgroundStyles}
   ${RCSlider}
+  ${ReactTabsStyles}
 
   @media print {
     * {

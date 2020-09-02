@@ -57,6 +57,24 @@ const Button = styled(ButtonBase)`
   ${buttonStyles}
 
   ${props =>
+    props.outline &&
+    css`
+      background: transparent;
+      border: solid 1px;
+      border-color: ${props.theme.colors.mediumGrey};
+      color: ${props.theme.colors.darkGrey};
+      font-weight: normal;
+      padding: 11px 20px;
+      text-transform: none;
+
+      &:focus,
+      &:hover {
+        border-color: ${props => props.theme.colors.blue};
+        color: ${props => props.theme.colors.blue};
+      }
+    `}
+
+  ${props =>
     props.scheme === 'green' &&
     css`
       background-color: ${props => props.theme.colors.green};
@@ -66,6 +84,14 @@ const Button = styled(ButtonBase)`
       &:hover {
         background-color: ${props => tinycolor(props.theme.colors.green).darken(10).toString()};
       }
+
+      ${props =>
+        props.outline &&
+        css`
+          background: transparent;
+          color: ${props.theme.colors.green}
+          border-color: ${props.theme.colors.green};
+        `}
     `};
 
   ${props =>
@@ -78,6 +104,14 @@ const Button = styled(ButtonBase)`
       &:hover {
         background-color: ${props => tinycolor(props.theme.colors.blue).darken(10).toString()};
       }
+
+      ${props =>
+        props.outline &&
+        css`
+          color: ${props.theme.colors.blue};
+          background: transparent;
+          border-color: ${props.theme.colors.blue};
+        `}
     `};
 
   ${props =>
@@ -89,6 +123,14 @@ const Button = styled(ButtonBase)`
       &:hover {
         background-color: ${props => tinycolor(props.theme.colors.mediumGrey).darken(3).toString()};};
       }
+
+        ${props =>
+          props.outline &&
+          css`
+            background: transparent;
+            border-color: ${props.theme.colors.mediumGrey};
+          `}
+
     `};
 `;
 
