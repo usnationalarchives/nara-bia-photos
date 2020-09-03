@@ -25,9 +25,6 @@ const useRecords = (options = {}) => {
   const [results, setResults] = useState([]);
   const { facets = {} } = options;
 
-  console.log(serializedOptions);
-  console.log('facets', facets);
-
   const { filterByValues, filterByRange } = actions;
   const {
     recordsByNaId,

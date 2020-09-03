@@ -10,7 +10,7 @@ import { ReactComponent as DetailsIcon } from '#assets/icons/details.svg';
 import { ReactComponent as ExternalIcon } from '#assets/icons/external-link.svg';
 import { ReactComponent as SeriesIcon } from '#assets/icons/series.svg';
 
-import { getRecordTopics } from '#modules/helpers';
+import { getRecordTopics, getRecordStates } from '#modules/helpers';
 
 // constants
 import { tribalNations, externalUrls } from '#modules/constants';
@@ -82,6 +82,7 @@ const Record = ({ ...props }) => {
   if (record) {
     var tribalNation = tribalNations.filter(tribalNation => tribalNation.name === record.tribes)[0];
     var recordTopics = getRecordTopics(record.tags);
+    var recordStates = getRecordStates(record.states);
   }
 
   var [thumbnailResults] = useRecords(
@@ -102,87 +103,92 @@ const Record = ({ ...props }) => {
   }, [record]);
 
   console.log(record);
-  console.log(thumbnailResults.length);
 
   return (
     !!record && (
       <>
         <Layout.Padding style={{ marginTop: '2rem', marginBottom: '3rem' }}>
           <Layout.Wrapper>
-            {record && (
-              <Fragment>
-                <Shave textRef={titleTextRef} maxHeight={130} options={{ character: '&nbsp; ' }}>
-                  <Text.H1 ref={titleTextRef}>{record.title}</Text.H1>
-                </Shave>
-                <MetaWrapper>
-                  {tribalNation && (
-                    <MetaStyled
-                      label="Tribal Nation"
-                      outine
-                      items={[
-                        { label: record.tribes, link: `/tribal-nations/${tribalNation ? tribalNation.slug : ''}` },
-                      ]}
-                    ></MetaStyled>
-                  )}
-                  <MetaStyled label="Date" outine items={[{ label: 'FIXME' }]}></MetaStyled>
-                  {!!recordTopics.length && (
-                    <MetaStyled
-                      label="Topics"
-                      outine
-                      items={recordTopics.map(topic => {
-                        return { label: topic.name, link: `/topics/${topic.slug}` };
-                      })}
-                    ></MetaStyled>
-                  )}
-                </MetaWrapper>
-                <ImageViewer objects={objects} />
+            <Shave textRef={titleTextRef} maxHeight={130} options={{ character: '&nbsp; ' }}>
+              <Text.H1 ref={titleTextRef}>{record.title}</Text.H1>
+            </Shave>
+            <MetaWrapper>
+              {tribalNation && (
+                <MetaStyled
+                  label="Tribal Nation"
+                  outine
+                  items={[{ label: record.tribes, link: `/tribal-nations/${tribalNation ? tribalNation.slug : ''}` }]}
+                ></MetaStyled>
+              )}
+              <MetaStyled label="Date" outine items={[{ label: 'FIXME' }]}></MetaStyled>
+              {!!recordTopics.length && (
+                <MetaStyled
+                  label="Topics"
+                  outine
+                  items={recordTopics.map(topic => {
+                    return { label: topic.name, link: `/topics/${topic.slug}` };
+                  })}
+                ></MetaStyled>
+              )}{' '}
+              {!!recordStates.length && (
+                <MetaStyled
+                  label="States"
+                  outine
+                  items={recordStates.map(state => {
+                    return { label: state.name, link: `/states/${state.slug}` };
+                  })}
+                ></MetaStyled>
+              )}
+            </MetaWrapper>
+          </Layout.Wrapper>
+        </Layout.Padding>
+        <ImageViewer record={record} objects={objects} />
+        <Layout.Padding style={{ marginTop: '2rem', marginBottom: '3rem' }}>
+          <Layout.Wrapper>
+            <Tabs>
+              <TabList>
+                <Tab>
+                  <DetailsIcon width={20} />
+                  <Text.Label>Details</Text.Label>
+                </Tab>
+                <Tab>
+                  <CitationIcon width={20} />
+                  <Text.Label>Citation</Text.Label>
+                </Tab>
+              </TabList>
 
-                <Tabs>
-                  <TabList>
-                    <Tab>
-                      <DetailsIcon width={20} />
-                      <Text.Label>Details</Text.Label>
-                    </Tab>
-                    <Tab>
-                      <CitationIcon width={20} />
-                      <Text.Label>Citation</Text.Label>
-                    </Tab>
-                  </TabList>
-
-                  <TabPanel>
-                    <Table.RowStyles>
-                      <Table.LabelStyles>
-                        <Text.Label style={{ fontSize: '13px', fontWeight: 'normal' }}>Description:</Text.Label>
-                      </Table.LabelStyles>
-                      <Table.ValueStyles>
-                        <p>
-                          Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus
-                          posuere velit aliquet. Cras mattis consectetur purus sit amet fermentum. Aenean eu leo quam.
-                          Pellentesque ornare sem lacinia quam venenatis vestibulum.
-                        </p>
-                      </Table.ValueStyles>
-                    </Table.RowStyles>
-                    <Table.RowStyles>
-                      <Table.LabelStyles>
-                        <Text.Label style={{ fontSize: '13px', fontWeight: 'normal' }}>
-                          National Archives Identifier:
-                        </Text.Label>
-                      </Table.LabelStyles>
-                      <Table.ValueStyles>
-                        <a href={`${externalUrls.catalogRecordDetail}/${record.naId}`}>{record.naId}</a>
-                      </Table.ValueStyles>
-                    </Table.RowStyles>
-                    <Table.RowStyles>
-                      <Table.LabelStyles>&nbsp;</Table.LabelStyles>
-                      <Table.ValueStyles>
-                        <ExternalLink href={`${externalUrls.catalogRecordDetail}/${record.naId}`}>Catalog</ExternalLink>
-                      </Table.ValueStyles>
-                    </Table.RowStyles>
-                  </TabPanel>
-                  <TabPanel></TabPanel>
-                </Tabs>
-              </Fragment>
-            )}
+              <TabPanel>
+                <Table.RowStyles>
+                  <Table.LabelStyles>
+                    <Text.Label style={{ fontSize: '13px', fontWeight: 'normal' }}>Description:</Text.Label>
+                  </Table.LabelStyles>
+                  <Table.ValueStyles>
+                    <p>
+                      Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus
+                      posuere velit aliquet. Cras mattis consectetur purus sit amet fermentum. Aenean eu leo quam.
+                      Pellentesque ornare sem lacinia quam venenatis vestibulum.
+                    </p>
+                  </Table.ValueStyles>
+                </Table.RowStyles>
+                <Table.RowStyles>
+                  <Table.LabelStyles>
+                    <Text.Label style={{ fontSize: '13px', fontWeight: 'normal' }}>
+                      National Archives Identifier:
+                    </Text.Label>
+                  </Table.LabelStyles>
+                  <Table.ValueStyles>
+                    <a href={`${externalUrls.catalogRecordDetail}/${record.naId}`}>{record.naId}</a>
+                  </Table.ValueStyles>
+                </Table.RowStyles>
+                <Table.RowStyles>
+                  <Table.LabelStyles>&nbsp;</Table.LabelStyles>
+                  <Table.ValueStyles>
+                    <ExternalLink href={`${externalUrls.catalogRecordDetail}/${record.naId}`}>Catalog</ExternalLink>
+                  </Table.ValueStyles>
+                </Table.RowStyles>
+              </TabPanel>
+              <TabPanel></TabPanel>
+            </Tabs>
           </Layout.Wrapper>
         </Layout.Padding>
         <Layout.Padding style={{ marginBottom: '3rem' }}>

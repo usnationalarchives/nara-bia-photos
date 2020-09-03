@@ -34,9 +34,14 @@ const iiifImage = (record, maxHeightWidth) => {
   }
 
   const encodedPath = encodeURIComponent(path);
+  let imageUrl = '';
 
   // create the image server URL
-  const imageUrl = `${baseUrl}/${bucketMapping}%2F${encodedPath}/full/!${maxHeightWidth},${maxHeightWidth}/0/default.jpg`;
+  if (maxHeightWidth == 'full') {
+    imageUrl = `${baseUrl}/${bucketMapping}%2F${encodedPath}/full/full/0/default.jpg`;
+  } else {
+    imageUrl = `${baseUrl}/${bucketMapping}%2F${encodedPath}/full/!${maxHeightWidth},${maxHeightWidth}/0/default.jpg`;
+  }
 
   return imageUrl;
 };

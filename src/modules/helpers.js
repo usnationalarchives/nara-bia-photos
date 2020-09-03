@@ -1,4 +1,4 @@
-import { topics } from '#modules/constants';
+import { topics, states } from '#modules/constants';
 
 export const parameterize = string => {
   string = string.replace(/^\s+|\s+$/g, ''); // trim
@@ -75,6 +75,32 @@ export const getRecordTopics = topicsList => {
     return topicsList.indexOf(topic.name) >= 0;
   });
   return filteredTopics;
+};
+
+/**
+ * State object constant type definitnion
+ * @typedef {Object} State
+ * @property {string} name
+ * @property {string} slug - url path an param reference
+ * @property {string} region - with which the state is included
+ * @property {string} val - cooresponding with GeoJSON data file
+ * @property {number} thumbnailNaId
+ */
+
+/**
+ * Get Record State
+ * Collects state constant values based on a passed record `states` string value
+ * @param {string} statesVal - `||` seperated list of states
+ * @returns {Array.State} - array of state
+ */
+export const getRecordStates = statesVal => {
+  let statesArray = [];
+  try {
+    statesArray = statesVal.split('||');
+  } catch (err) {
+    console.warn('function getRecordStates expects a `||` separated string to be passed for parsing');
+  }
+  return states.filter(state => statesArray.includes(state.name));
 };
 
 // helper function for serializing parameters
