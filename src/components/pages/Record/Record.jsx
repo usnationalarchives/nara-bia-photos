@@ -120,7 +120,7 @@ const Record = ({ ...props }) => {
                   items={[{ label: record.tribes, link: `/tribal-nations/${tribalNation ? tribalNation.slug : ''}` }]}
                 ></MetaStyled>
               )}
-              <MetaStyled label="Date" outine items={[{ label: 'FIXME' }]}></MetaStyled>
+              {!!record.date && <MetaStyled label="Date" outine items={[{ label: record.date }]}></MetaStyled>}
               {!!recordTopics.length && (
                 <MetaStyled
                   label="Topics"
@@ -158,18 +158,16 @@ const Record = ({ ...props }) => {
               </TabList>
 
               <TabPanel>
-                <Table.RowStyles>
-                  <Table.LabelStyles>
-                    <Text.Label style={{ fontSize: '13px', fontWeight: 'normal' }}>Description:</Text.Label>
-                  </Table.LabelStyles>
-                  <Table.ValueStyles>
-                    <p>
-                      Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus
-                      posuere velit aliquet. Cras mattis consectetur purus sit amet fermentum. Aenean eu leo quam.
-                      Pellentesque ornare sem lacinia quam venenatis vestibulum.
-                    </p>
-                  </Table.ValueStyles>
-                </Table.RowStyles>
+                {!!record.scopeContentNote && (
+                  <Table.RowStyles>
+                    <Table.LabelStyles>
+                      <Text.Label style={{ fontSize: '13px', fontWeight: 'normal' }}>Description:</Text.Label>
+                    </Table.LabelStyles>
+                    <Table.ValueStyles>
+                      <p>{record.scopeContentNote}</p>
+                    </Table.ValueStyles>
+                  </Table.RowStyles>
+                )}
                 <Table.RowStyles>
                   <Table.LabelStyles>
                     <Text.Label style={{ fontSize: '13px', fontWeight: 'normal' }}>
@@ -187,7 +185,16 @@ const Record = ({ ...props }) => {
                   </Table.ValueStyles>
                 </Table.RowStyles>
               </TabPanel>
-              <TabPanel></TabPanel>
+              <TabPanel>
+                <Table.RowStyles>
+                  <p>
+                    Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel
+                    scelerisque nisl consectetur et. Nulla vitae elit libero, a pharetra augue. Vestibulum id ligula
+                    porta felis euismod semper. Etiam porta sem malesuada magna mollis euismod. Praesent commodo cursus
+                    magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                  </p>
+                </Table.RowStyles>
+              </TabPanel>
             </Tabs>
           </Layout.Wrapper>
         </Layout.Padding>

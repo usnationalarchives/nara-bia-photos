@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import OpenSeaDragon from 'openseadragon';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import tinycolor from 'tinycolor2';
 
 import { fl_allStates, fl_static, fl_attention, fl_visuallyHidden } from '#styles/frontline';
@@ -29,9 +29,27 @@ const ViewerContols = styled.div`
   justify-content: space-between;
   position: absolute;
   padding: 30px 20px;
-  right: 0;
-  top: 0;
+  bottom: 0;
   z-index: 1000;
+
+  ${props => {
+    if (!!props.left) {
+      return css`
+        align-items: center;
+        justify-content: center;
+        left: 0;
+      `;
+    }
+    if (!!props.right) {
+      return css`
+        /* height: 50%; */
+        /* height: calc(50% + 41px); */
+        /* padding-top: 0; */
+        right: 0;
+        /* bottom: 0; */
+      `;
+    }
+  }}
 
   div > *:not(:first-child) {
     margin-top: 10px;
@@ -122,7 +140,8 @@ const ImageViewer = ({ record, objects }) => {
   return (
     <ViewerContainer>
       <ViewerStyled id="viewer"></ViewerStyled>
-      <ViewerContols>
+
+      {/* <ViewerContols left>
         <div>
           <ViewerButtonStyled id="osd-zoom_in">
             <ZoomInIcon width={20} fill="currentColor" />
@@ -133,7 +152,19 @@ const ImageViewer = ({ record, objects }) => {
             <Text.Screenreader>Zoom Out</Text.Screenreader>
           </ViewerButtonStyled>
         </div>
+      </ViewerContols> */}
+      <ViewerContols right>
         <div>
+          <ViewerButtonStyled id="osd-zoom_in">
+            <ZoomInIcon width={20} fill="currentColor" />
+            <Text.Screenreader>Zoom In</Text.Screenreader>
+          </ViewerButtonStyled>
+          <ViewerButtonStyled id="osd-zoom_out">
+            <ZoomOutIcon width={20} fill="currentColor" />
+            <Text.Screenreader>Zoom Out</Text.Screenreader>
+          </ViewerButtonStyled>
+        </div>
+        <div style={{ justifySelf: 'center' }}>
           <ViewerButtonStyled id="osd-home">
             <CenterIcon width={20} fill="currentColor" />
             <Text.Screenreader>Home</Text.Screenreader>
