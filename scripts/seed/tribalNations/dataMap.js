@@ -1,5 +1,5 @@
 const trim = require('lodash').trim;
-const parameterize = require('../../../src/modules/helpers').parameterize;
+const parameterize = require('../helpers').parameterize;
 
 module.exports = {
   naId: result => {
