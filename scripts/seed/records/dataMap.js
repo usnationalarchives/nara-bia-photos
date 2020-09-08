@@ -1,5 +1,5 @@
 const trim = require('lodash').trim;
-const parameterize = require('../../../src/modules/helpers').parameterize;
+const parameterize = require('../helpers').parameterize;
 
 module.exports = {
   naId: result => {
@@ -8,6 +8,23 @@ module.exports = {
 
   title: result => {
     return trim(result.description.item.title);
+  },
+
+  scopeContentNote: result => {
+    return trim(result.description.item.scopeAndContentNote);
+  },
+
+  date: result => {
+    const dateArray = result.description.item.productionDateArray;
+    let year;
+
+    if (dateArray && Array.isArray(dateArray)) {
+      year = dateArray[0].proposableQualifiableDate.year
+    } else if (dateArray) {
+      year = dateArray.proposableQualifiableDate.year
+    }
+
+    return year
   },
 
   slug: result => {
