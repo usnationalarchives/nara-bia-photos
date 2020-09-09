@@ -121,7 +121,7 @@ const State = ({ state, thumbnailUrl, results }) => {
           </span>
         </Meta>
         <Description>
-          Photos related to {tribeCount} tribal nations including{' '}
+          Records related to {tribeCount} Tribal Nations including{' '}
           <TribeLink style={{ position: 'relative', zIndex: 1000 }} to={tribeUrl}>
             {prominantTribeName}
           </TribeLink>
