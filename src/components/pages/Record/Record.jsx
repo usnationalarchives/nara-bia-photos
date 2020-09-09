@@ -113,12 +113,17 @@ const Record = ({ ...props }) => {
           <title>{record.title}</title>
           {/* <meta name="description" content={record.title}></meta> */}
           <meta name="" content="" />
+          <meta name="twitter:title" content={record.title} />
+          <meta name="twitter:site" content="@FIXME" />
+          {!!record.scopeContentNote && <meta name="twitter:card" content={record.scopeContentNote} />}
+          {!!record.scopeContentNote && <meta name="twitter:description" content={record.scopeContentNote} />}
+          <meta name="twitter:image" content={iiifImage(record, '1080')} />
           <meta property="og:title" content={record.title} />
-          <meta property="og:description" content="" />
+          {!!record.scopeContentNote && <meta name="og:description" content={record.scopeContentNote} />}
           <meta property="og:site_name" content="FIXME" />
           <meta property="og:url" content={window.location} />
           <meta property="og:type" content="article" />
-          <meta property="og:image" content={iiifImage(record, 'full')} />
+          <meta property="og:image" content={iiifImage(record, '1080')} />
         </Helmet>
         <Layout.Padding style={{ marginTop: '2rem', marginBottom: '3rem' }}>
           <Layout.Wrapper>
