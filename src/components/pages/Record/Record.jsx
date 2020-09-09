@@ -99,6 +99,9 @@ const Record = ({ ...props }) => {
         }
       : false
   );
+  thumbnailResults = thumbnailResults.filter(r => {
+    return r.naId !== record.naId;
+  });
 
   useEffect(() => {
     if (record) {
@@ -216,30 +219,37 @@ const Record = ({ ...props }) => {
             </Tabs>
           </Layout.Wrapper>
         </Layout.Padding>
-        <Layout.Padding style={{ marginBottom: '3rem' }}>
-          <Layout.Wrapper>
-            <SectionHeader>
-              <SeriesIcon width={20}></SeriesIcon>
-              <span>Also in this series</span>
-            </SectionHeader>
-            <div
-              style={{ alignItems: 'flex-start', display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}
-            >
-              <p style={{ marginRight: '20px' }}>
-                There are {thumbnailResults.length.toLocaleString('en')} other records in the archival series{' '}
-                {record.parentSeriesTitle}
-              </p>
-
-              <ExternalLink
-                style={{ flex: '1 0 auto' }}
-                href={`https://catalog.archives.gov/search?q=*:*&f.ancestorNaIds=${record.parentSeriesNaId}&sort=naIdSort%20asc&f.materialsType=photographsandgraphics`}
+        {thumbnailResults.length && (
+          <Layout.Padding style={{ marginBottom: '3rem' }}>
+            <Layout.Wrapper>
+              <SectionHeader>
+                <SeriesIcon width={20}></SeriesIcon>
+                <span>Also in this series</span>
+              </SectionHeader>
+              <div
+                style={{
+                  alignItems: 'flex-start',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  marginTop: '2rem',
+                }}
               >
-                View All
-              </ExternalLink>
-            </div>
-            <Results singleRow data={sampleSize(thumbnailResults, 3)} fidelity={250} />
-          </Layout.Wrapper>
-        </Layout.Padding>
+                <p style={{ marginRight: '20px' }}>
+                  There are {thumbnailResults.length.toLocaleString('en')} other records in the archival series{' '}
+                  {record.parentSeriesTitle}
+                </p>
+
+                <ExternalLink
+                  style={{ flex: '1 0 auto' }}
+                  href={`https://catalog.archives.gov/search?q=*:*&f.ancestorNaIds=${record.parentSeriesNaId}&sort=naIdSort%20asc&f.materialsType=photographsandgraphics`}
+                >
+                  View All
+                </ExternalLink>
+              </div>
+              <Results singleRow data={sampleSize(thumbnailResults, 3)} fidelity={250} />
+            </Layout.Wrapper>
+          </Layout.Padding>
+        )}
       </>
     )
   );
