@@ -226,7 +226,8 @@ const Record = ({ ...props }) => {
               style={{ alignItems: 'flex-start', display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}
             >
               <p style={{ marginRight: '20px' }}>
-                There are {thumbnailResults.length} other records in the archival series {record.parentSeriesTitle}
+                There are {thumbnailResults.length.toLocaleString('en')} other records in the archival series{' '}
+                {record.parentSeriesTitle}
               </p>
 
               <ExternalLink
