@@ -25,7 +25,9 @@ const useRecords = (options = {}) => {
   const [results, setResults] = useState([]);
   const { facets = {} } = options;
 
-  const { filterByValues, filterByRange } = actions;
+  console.log(facets);
+
+  const { filterByValues, filterByRange, filterByExact } = actions;
   const {
     recordsByNaId,
     recordsBySearchUUID,
@@ -54,14 +56,15 @@ const useRecords = (options = {}) => {
     filterByValues(recordsByTag, facets.topics);
     filterByValues(recordsByTribe, facets.tribes);
     filterByValues(recordsByState, facets.states);
-    filterByValues(recordsByParentSeriesTitle, facets.parentSeriesTitle);
-    filterByValues(recordsByParentSeriesNaId, facets.parentSeriesNaId);
+    filterByExact(recordsByParentSeriesTitle, facets.parentSeriesTitle);
+    filterByExact(recordsByParentSeriesNaId, facets.parentSeriesNaId);
     filterByRange(recordsByAspectRatio, facets.aspectRatioRange);
 
     setResults(records.allFiltered());
 
     // dispose all filters when unmounting
     return () => {
+      console.log('disposing');
       recordsByNaId.dispose();
       recordsBySearchUUID.dispose();
       recordsByAspectRatio.dispose();

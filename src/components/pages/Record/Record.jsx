@@ -90,11 +90,10 @@ const Record = ({ ...props }) => {
   }
 
   var [thumbnailResults] = useRecords(
-    record
+    !!record
       ? {
           facets: {
-            // parentSeriesNaId: record.parentSeriesNaId,
-            parentSeriesTitle: record.parentSeriesTitle,
+            parentSeriesNaId: record.parentSeriesNaId,
           },
         }
       : false

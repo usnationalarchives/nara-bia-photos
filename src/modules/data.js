@@ -90,6 +90,17 @@ const filterByValue = (dimension, value) => {
   }
 };
 
+// Filter results by column on a exact single value
+const filterByExact = (dimension, value) => {
+  if (dimension.hasCurrentFilter()) {
+    dimension.dispose();
+  }
+
+  if (value) {
+    dimension.filterExact(value);
+  }
+};
+
 // Filter results by column on multiple values
 const filterByValues = (dimension, values) => {
   if (dimension.hasCurrentFilter()) {
@@ -117,6 +128,7 @@ const actions = {
   filterByValue,
   filterByValues,
   filterByRange,
+  filterByExact,
 };
 
 export { records, dimensions, groups, actions };
