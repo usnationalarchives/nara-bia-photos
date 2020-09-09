@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Results from '#components/shared/Results';
 import { sampleSize } from 'lodash';
+import { Helmet } from 'react-helmet';
+
 // import 'react-tabs/style/react-tabs.css';
 
 import { ReactComponent as CitationIcon } from '#assets/icons/citations.svg';
@@ -14,6 +16,8 @@ import { getRecordTopics, getRecordStates } from '#modules/helpers';
 
 // constants
 import { tribalNations, externalUrls } from '#modules/constants';
+
+import iiifImage from '#modules/iiifImage';
 
 // components
 import * as Text from '#components/shared/Text';
@@ -102,11 +106,20 @@ const Record = ({ ...props }) => {
     }
   }, [record]);
 
-  console.log(record);
-
   return (
     !!record && (
       <>
+        <Helmet>
+          <title>{record.title}</title>
+          {/* <meta name="description" content={record.title}></meta> */}
+          <meta name="" content="" />
+          <meta property="og:title" content={record.title} />
+          <meta property="og:description" content="" />
+          <meta property="og:site_name" content="FIXME" />
+          <meta property="og:url" content={window.location} />
+          <meta property="og:type" content="article" />
+          <meta property="og:image" content={iiifImage(record, 'full')} />
+        </Helmet>
         <Layout.Padding style={{ marginTop: '2rem', marginBottom: '3rem' }}>
           <Layout.Wrapper>
             <Shave textRef={titleTextRef} maxHeight={130} options={{ character: '&nbsp; ' }}>

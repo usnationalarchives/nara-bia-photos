@@ -1,10 +1,16 @@
+/*eslint no-undef: "warn"*/
+/*eslint-env browser*/
 import React, { useEffect, useState } from 'react';
 import OpenSeaDragon from 'openseadragon';
 import styled, { css } from 'styled-components';
 import tinycolor from 'tinycolor2';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
+import Script from 'react-load-script';
 
 import { fl_allStates, fl_static, fl_attention, fl_visuallyHidden } from '#styles/frontline';
 import * as Text from '#components/shared/Text';
+import { colors } from '#styles/theme';
 
 import iiifImage from '#modules/iiifImage';
 
@@ -22,6 +28,7 @@ const ViewerContainer = styled.div`
 `;
 
 const ViewerContols = styled.div`
+  align-items: center;
   background-color: ${props => tinycolor(props.theme.colors.darkGrey).setAlpha(0.8).toRgbString()};
   display: flex;
   flex-direction: column;
@@ -46,12 +53,12 @@ const ViewerContols = styled.div`
         /* height: calc(50% + 41px); */
         /* padding-top: 0; */
         right: 0;
-        /* bottom: 0; */
+        bottom: 0;
       `;
     }
   }}
 
-  div > *:not(:first-child) {
+  div > *:not(:first-child):not(.at-share-btn-elements) {
     margin-top: 10px;
   }
 `;
@@ -63,10 +70,10 @@ const ViewerButtonStyled = styled.button`
   border-radius: 41px;
   color: #fff;
   display: flex !important;
-  height: 41px;
+  height: 48px;
   justify-content: center;
   text-align: center;
-  width: 41px;
+  width: 48px;
 
   span {
     display: inline-block;
@@ -89,6 +96,7 @@ const ViewerButton = styled.button`
 
 const ImageViewer = ({ record, objects }) => {
   const [viewer, setViewer] = useState();
+  const [zoomLevel, setZoomLevel] = useState();
 
   useEffect(() => {
     if (objects && viewer) {
@@ -102,16 +110,36 @@ const ImageViewer = ({ record, objects }) => {
     // eslint-disable-next-line
   }, [objects]);
 
+  // useEffect(() => {
+  //   if (typeof window.addthis !== 'undefined') {
+  //     console.log('addthis', addthis);
+  //     addthis.layers.refresh();
+  //   }
+  // }, []);
+
   useEffect(() => {
     initOpenSeaDragon();
 
     return () => {
       // clean up by destroying this viewer when unmounting
-      viewer && viewer.destroy();
+      if (viewer) {
+        viewer.world.viewer.removeAllHandlers();
+        viewer.destroy();
+      }
     };
     // we only want to run this once, dont worry about other dependencies
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (objects && viewer) {
+      // viewer.viewport.zoomTo(zoomLevel);
+    }
+  }, [zoomLevel]);
+
+  const handleAddThisLoad = () => {
+    // addthis.layers.refresh();
+  };
 
   const initOpenSeaDragon = () => {
     viewer && viewer.destroy();
@@ -126,6 +154,8 @@ const ImageViewer = ({ record, objects }) => {
         top: 30,
         bottom: 30,
       },
+      maxZoomLevel: 4,
+      minZoomLevel: 0,
       // Custom button selectors
       zoomInButton: 'osd-zoom_in',
       zoomOutButton: 'osd-zoom_out',
@@ -133,48 +163,72 @@ const ImageViewer = ({ record, objects }) => {
       fullPageButton: 'osd-full_page',
       // referenceStripElement: 'referenceStripElement', // this is broken. see: https://github.com/openseadragon/openseadragon/issues/333
     });
-
+    if (!!newViewer) {
+      newViewer.world.viewer.addHandler('zoom', level => {
+        setZoomLevel(level.zoom);
+      });
+    }
     setViewer(newViewer);
   };
 
   return (
     <ViewerContainer>
       <ViewerStyled id="viewer"></ViewerStyled>
-
-      {/* <ViewerContols left>
+      {/* 
+      <ViewerContols left>
         <div>
-          <ViewerButtonStyled id="osd-zoom_in">
-            <ZoomInIcon width={20} fill="currentColor" />
-            <Text.Screenreader>Zoom In</Text.Screenreader>
-          </ViewerButtonStyled>
-          <ViewerButtonStyled id="osd-zoom_out">
-            <ZoomOutIcon width={20} fill="currentColor" />
-            <Text.Screenreader>Zoom Out</Text.Screenreader>
-          </ViewerButtonStyled>
+
         </div>
       </ViewerContols> */}
       <ViewerContols right>
         <div>
+          {/* <ShareIcon width={20} fill="currentColor" />
+            <Text.Screenreader>Share</Text.Screenreader> */}
+          <Script
+            url="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50e7434a1e973d51"
+            onLoad={() => {
+              handleAddThisLoad();
+            }}
+          />
+          <div
+            style={{ border: 'solid 1px #fff', borderRadius: '49px' }}
+            className="addthis_inline_share_toolbox_biyw"
+          ></div>
+        </div>
+        <div>
           <ViewerButtonStyled id="osd-zoom_in">
             <ZoomInIcon width={20} fill="currentColor" />
             <Text.Screenreader>Zoom In</Text.Screenreader>
+          </ViewerButtonStyled>
+          {false && (
+            <Slider
+              min={viewer.viewport.getMinZoom()}
+              max={5}
+              step={0.25}
+              trackStyle={{ height: '2px', backgroundColor: colors.blue }}
+              railStyle={{ height: '2px', backgroundColor: colors.blue }}
+              handleStyle={{
+                boxShadow: 'none',
+                borderColor: colors.blue,
+              }}
+              defaultValue={viewer.viewport.getZoom(true)}
+              onChange={val => {
+                setZoomLevel(val);
+              }}
+              vertical={true}
+              value={zoomLevel}
+            />
+          )}
+          <ViewerButtonStyled id="osd-home">
+            <CenterIcon width={20} fill="currentColor" />
+            <Text.Screenreader>Home</Text.Screenreader>
           </ViewerButtonStyled>
           <ViewerButtonStyled id="osd-zoom_out">
             <ZoomOutIcon width={20} fill="currentColor" />
             <Text.Screenreader>Zoom Out</Text.Screenreader>
           </ViewerButtonStyled>
         </div>
-        <div style={{ justifySelf: 'center' }}>
-          <ViewerButtonStyled id="osd-home">
-            <CenterIcon width={20} fill="currentColor" />
-            <Text.Screenreader>Home</Text.Screenreader>
-          </ViewerButtonStyled>
-        </div>
         <div>
-          <ViewerButtonStyled>
-            <ShareIcon width={20} fill="currentColor" />
-            <Text.Screenreader>Share</Text.Screenreader>
-          </ViewerButtonStyled>
           <ViewerButtonStyled as="a" href={iiifImage(record, 'full')}>
             <DownloadIcon width={20} fill="currentColor" />
             <Text.Screenreader>Download</Text.Screenreader>
