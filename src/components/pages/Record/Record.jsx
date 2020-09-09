@@ -219,7 +219,7 @@ const Record = ({ ...props }) => {
             </Tabs>
           </Layout.Wrapper>
         </Layout.Padding>
-        {thumbnailResults.length && (
+        {!!thumbnailResults.length && (
           <Layout.Padding style={{ marginBottom: '3rem' }}>
             <Layout.Wrapper>
               <SectionHeader>
