@@ -13,7 +13,7 @@ import { useHistory } from 'react-router-dom';
 import content from '#config/content';
 
 // context
-import { withStateThumbnails } from '#context/StateThumbnails';
+import { StateThumbnailProvider, withStateThumbnails } from '#context/StateThumbnails';
 
 // assets
 import { ReactComponent as InfoIcon } from '#assets/icons/info.svg';
@@ -245,47 +245,49 @@ const StateLanding = () => {
         </RegionGroupStyled>
       )
     );
-  }
-  
+  };
+
   const handleSelect = event => {
     const slug = event.target.value;
     history.push('/states/' + slug);
   };
 
   return (
-    <Fragment>
-      <Billboard />
+    <StateThumbnailProvider>
+      <Fragment>
+        <Billboard />
 
-      <Layout.Padding>
-        <Layout.Wrapper>
-          <MapSelect>
-            <p>{content.states.mapDirections}</p>
-            <span>
-              <Select style={{ width: '250px' }} onChange={handleSelect}>
-                <option value="">{content.states.selectPrompt}</option>
-                {states.map(state => (
-                  <option value={state.slug} key={state.slug}>
-                    {state.name}
-                  </option>
-                ))}
-              </Select>
-            </span>
-          </MapSelect>
-          <RegionMap />
-          <Layout.Wrapper narrow>
-            <MapInfo>
+        <Layout.Padding>
+          <Layout.Wrapper>
+            <MapSelect>
+              <p>{content.states.mapDirections}</p>
               <span>
-                <InfoIcon width="17" fill="#345d96"></InfoIcon>
+                <Select style={{ width: '250px' }} onChange={handleSelect}>
+                  <option value="">{content.states.selectPrompt}</option>
+                  {states.map(state => (
+                    <option value={state.slug} key={state.slug}>
+                      {state.name}
+                    </option>
+                  ))}
+                </Select>
               </span>
-              <p>{content.states.disclaimer}</p>
-            </MapInfo>
+            </MapSelect>
+            <RegionMap />
+            <Layout.Wrapper narrow>
+              <MapInfo>
+                <span>
+                  <InfoIcon width="17" fill="#345d96"></InfoIcon>
+                </span>
+                <p>{content.states.disclaimer}</p>
+              </MapInfo>
+            </Layout.Wrapper>
+            {regions.map(region => (
+              <RegionGroup key={region.slug} region={region}></RegionGroup>
+            ))}
           </Layout.Wrapper>
-          {regions.map(region => (
-            <RegionGroup key={region.slug} region={region}></RegionGroup>
-          ))}
-        </Layout.Wrapper>
-      </Layout.Padding>
-    </Fragment>
+        </Layout.Padding>
+      </Fragment>
+    </StateThumbnailProvider>
   );
 };
 

@@ -73,21 +73,19 @@ const Record = ({ ...props }) => {
   const slugParts = slug.split('-');
   const naId = parseInt(slugParts[slugParts.length - 1]);
   const [objects, setObjects] = useState();
+  // const [record, setRecord] = useState(null);
   const titleTextRef = createRef();
 
-  const [results] = useRecords({
-    facets: {
-      naIds: [naId],
+  const [results] = useRecords(
+    {
+      facets: {
+        naIds: [naId],
+      },
     },
-  });
+    []
+  );
 
   const record = results[0];
-
-  if (record) {
-    var tribalNation = tribalNations.filter(tribalNation => tribalNation.name === record.tribes)[0];
-    var recordTopics = getRecordTopics(record.tags);
-    var recordStates = getRecordStates(record.states);
-  }
 
   var [thumbnailResults] = useRecords(
     !!record
@@ -98,9 +96,17 @@ const Record = ({ ...props }) => {
         }
       : false
   );
-  thumbnailResults = thumbnailResults.filter(r => {
-    return r.naId !== record.naId;
-  });
+
+  if (record) {
+    var tribalNation = tribalNations.filter(tribalNation => tribalNation.name === record.tribes)[0];
+    var recordTopics = getRecordTopics(record.tags);
+    var recordStates = getRecordStates(record.states);
+    console.log('record.parentSeriesNaId', record.parentSeriesNaId);
+    console.log('thumbnailResults', thumbnailResults);
+    thumbnailResults = thumbnailResults.filter(r => {
+      return r.naId !== record.naId;
+    });
+  }
 
   useEffect(() => {
     if (record) {

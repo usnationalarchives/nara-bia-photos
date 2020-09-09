@@ -9,8 +9,6 @@ import Footer from '#components/chrome/Footer/Footer';
 import PageLoader from '#components/shared/PageLoader';
 import ScrollToTop from '#components/shared/ScrollToTop';
 
-import { StateThumbnailProvider } from '#context/StateThumbnails';
-
 // Lazy load (via code splitting) the top level page components
 const Home = lazy(() => import('./components/pages/Home/Home'));
 const About = lazy(() => import('./components/pages/About/About'));
@@ -27,33 +25,31 @@ const Prototype = lazy(() => import('./components/pages/Prototype/Prototype'));
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <StateThumbnailProvider>
-        <BaseStyles />
-        <Router>
-          <ScrollToTop />
-          <Fragment>
-            <Header />
+      <BaseStyles />
+      <Router>
+        <ScrollToTop />
+        <Fragment>
+          <Header />
 
-            <Suspense fallback={<PageLoader />}>
-              <Switch>
-                <Route path="/about" component={About} />
-                <Route path="/search" component={Search} />
-                <Route path="/prototype" component={Prototype} />
-                <Route path="/states" exact component={StateLanding} />
-                <Route path="/topics" exact component={TopicLanding} />
-                <Route path="/tribal-nations" exact component={TribeLanding} />
-                <Route path="/states/:slug" exact component={StateListing} />
-                <Route path="/topics/:slug" exact component={TopicListing} />
-                <Route path="/tribal-nations/:slug" exact component={TribeListing} />
-                <Route path="/:slug" component={Record} />
-                <Route path="/" component={Home} />
-              </Switch>
-            </Suspense>
+          <Suspense fallback={<PageLoader />}>
+            <Switch>
+              <Route path="/about" component={About} />
+              <Route path="/search" component={Search} />
+              <Route path="/prototype" component={Prototype} />
+              <Route path="/states" exact component={StateLanding} />
+              <Route path="/topics" exact component={TopicLanding} />
+              <Route path="/tribal-nations" exact component={TribeLanding} />
+              <Route path="/states/:slug" exact component={StateListing} />
+              <Route path="/topics/:slug" exact component={TopicListing} />
+              <Route path="/tribal-nations/:slug" exact component={TribeListing} />
+              <Route path="/:slug" component={Record} />
+              <Route path="/" component={Home} />
+            </Switch>
+          </Suspense>
 
-            <Footer />
-          </Fragment>
-        </Router>
-      </StateThumbnailProvider>
+          <Footer />
+        </Fragment>
+      </Router>
     </ThemeProvider>
   );
 };

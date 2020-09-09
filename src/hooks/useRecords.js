@@ -64,7 +64,6 @@ const useRecords = (options = {}) => {
 
     // dispose all filters when unmounting
     return () => {
-      console.log('disposing');
       recordsByNaId.dispose();
       recordsBySearchUUID.dispose();
       recordsByAspectRatio.dispose();
