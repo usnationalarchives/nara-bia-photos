@@ -19,12 +19,12 @@ module.exports = {
     let year;
 
     if (dateArray && Array.isArray(dateArray)) {
-      year = dateArray[0].proposableQualifiableDate.year
+      year = dateArray[0].proposableQualifiableDate.year;
     } else if (dateArray) {
-      year = dateArray.proposableQualifiableDate.year
+      year = dateArray.proposableQualifiableDate.year;
     }
 
-    return year
+    return year;
   },
 
   slug: result => {
@@ -34,11 +34,11 @@ module.exports = {
   },
 
   parentSeriesNaId: result => {
-    return result.description.item.parentSeries.naId;
+    return (result.description.item.parentSeries || result.description.item.parentFileUnit.parentSeries).naId;
   },
 
   parentSeriesTitle: result => {
-    return trim(result.description.item.parentSeries.title);
+    return (result.description.item.parentSeries || result.description.item.parentFileUnit.parentSeries).title;
   },
 
   objects: result => {
@@ -85,7 +85,7 @@ module.exports = {
     let width, height;
 
     if (object && Array.isArray(object)) {
-      const filteredObjects = object.filter(obj => obj.technicalMetadata.width && obj.technicalMetadata.height);
+      const filteredObjects = object.filter(obj => obj.technicalMetadata);
       width = (filteredObjects[0] || {}).width;
       height = (filteredObjects[0] || {}).height;
     } else if (object) {
