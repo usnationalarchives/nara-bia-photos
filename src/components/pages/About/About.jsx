@@ -1,6 +1,7 @@
 import React, { Children } from 'react';
 import { fl_visuallyHidden } from '#styles/frontline';
 import styled, { css } from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 import * as Layout from '#components/shared/Layout';
 import * as Text from '#components/shared/Text';
@@ -34,6 +35,22 @@ const PageTitle = styled(Text.H1)`
 const About = () => {
   return (
     <>
+      <Helmet>
+        <title>About - Bureau Of Indian Affairs Photography Finding Aid</title>
+        {/* <meta name="description" content={content.topics.intro}></meta> */}
+        <meta name="" content="" />
+        <meta name="twitter:title" content="About - Bureau Of Indian Affairs Photography Finding Aid" />
+        <meta name="twitter:site" content="@FIXME" />
+        <meta name="twitter:card" content={'FIXME'} />
+        <meta name="twitter:description" content={'FIXME'} />
+        <meta name="twitter:image" content={'FIXME'} />
+        <meta property="og:title" content="About - Bureau Of Indian Affairs Photography Finding Aid" />
+        <meta name="og:description" content={'FIXME'} />
+        <meta property="og:site_name" content="FIXME" />
+        <meta property="og:url" content={window.location} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={'FIXME'} />
+      </Helmet>
       <PageTitle>About</PageTitle>
 
       {content.about.billboards.map((billboard, index) => (

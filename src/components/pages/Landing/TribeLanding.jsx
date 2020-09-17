@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 // components
 import * as Layout from '#components/shared/Layout';
@@ -25,7 +26,7 @@ const TribeLanding = () => {
 
   const Billboard = () => {
     return (
-      <LandingBillboard title="Tribal Nations">
+      <LandingBillboard title={content.tribalNations.title}>
         <Label>
           Select the first letter of a Tribal Nation's name
           <PopoverInfo content={content.tribalNations.help} />
@@ -39,6 +40,28 @@ const TribeLanding = () => {
 
   return (
     <Fragment>
+      <Helmet>
+        <title>{`${content.tribalNations.title} - Bureau Of Indian Affairs Photography Finding Aid`}</title>
+        {/* <meta name="description" content={content.topics.intro}></meta> */}
+        <meta name="" content="" />
+        <meta
+          name="twitter:title"
+          content={`${content.tribalNations.title} - Bureau Of Indian Affairs Photography Finding Aid`}
+        />
+        <meta name="twitter:site" content="@FIXME" />
+        <meta name="twitter:card" content={'FIXME'} />
+        <meta name="twitter:description" content={'FIXME'} />
+        <meta name="twitter:image" content={'FIXME'} />
+        <meta
+          property="og:title"
+          content={`${content.topics.title} - Bureau Of Indian Affairs Photography Finding Aid`}
+        />
+        <meta name="og:description" content={'FIXME'} />
+        <meta property="og:site_name" content="FIXME" />
+        <meta property="og:url" content={window.location} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={'FIXME'} />
+      </Helmet>
       <Billboard />
       <Layout.Padding style={{ marginTop: '4rem', marginBottom: '4rem' }}>
         <Layout.Wrapper>

@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import qs from 'qs';
+import { Helmet } from 'react-helmet';
 
 // components
 import * as Layout from '#components/shared/Layout';
@@ -11,6 +12,7 @@ import ResultsMeta from '#components/shared/ResultsMeta';
 import ResultsWrapper from '#components/shared/ResultsWrapper';
 import ResultsHeaderWrapper from '#components/shared/ResultsHeaderWrapper';
 import FidelitySlider from '#components/shared/FidelitySlider';
+import TribalNationMap from '#components/shared/TribalNationMap';
 
 // hooks
 import useRecords from '#hooks/useRecords';
@@ -79,6 +81,22 @@ const TribeListing = ({ ...props }) => {
 
   return (
     <Fragment>
+      <Helmet>
+        <title>{tribalNationName}</title>
+        {/* <meta name="description" content={tribalNationName}></meta> */}
+        <meta name="" content="" />
+        <meta name="twitter:title" content={tribalNationName} />
+        <meta name="twitter:site" content="@FIXME" />
+        <meta name="twitter:card" content={'FIXME'} />
+        <meta name="twitter:description" content={'FIXME'} />
+        <meta name="twitter:image" content={'FIXME'} />
+        <meta property="og:title" content={tribalNationName} />
+        <meta name="og:description" content={'FIXME'} />
+        <meta property="og:site_name" content="FIXME" />
+        <meta property="og:url" content={window.location} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={'FIXME'} />
+      </Helmet>
       <ListingBillboard
         label="Tribal Nation"
         title={tribalNationName}
@@ -86,6 +104,7 @@ const TribeListing = ({ ...props }) => {
         items={tribalNations}
         slugPrefix="tribal-nations"
       />
+      <TribalNationMap />
       <Layout.Padding>
         <Layout.Wrapper>
           <Filters filters={filters} />

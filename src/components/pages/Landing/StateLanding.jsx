@@ -8,6 +8,7 @@ import State from '#components/shared/State';
 import styled, { css } from 'styled-components';
 import ReactTooltip from 'react-tooltip';
 import { useHistory } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 // config
 import content from '#config/content';
@@ -255,6 +256,29 @@ const StateLanding = () => {
   return (
     <StateThumbnailProvider>
       <Fragment>
+        <Helmet>
+          <title>{`${content.states.title} - Bureau Of Indian Affairs Photography Finding Aid`}</title>
+          {/* <meta name="description" content={content.states.intro}></meta> */}
+          <meta name="" content="" />
+          <meta
+            name="twitter:title"
+            content={`${content.states.title} - Bureau Of Indian Affairs Photography Finding Aid`}
+          />
+          <meta name="twitter:site" content="@FIXME" />
+          <meta name="twitter:card" content={'FIXME'} />
+          <meta name="twitter:description" content={'FIXME'} />
+          <meta name="twitter:image" content={'FIXME'} />
+          <meta
+            property="og:title"
+            content={`${content.states.title} - Bureau Of Indian Affairs Photography Finding Aid`}
+          />
+          <meta name="og:description" content={'FIXME'} />
+          <meta property="og:site_name" content="FIXME" />
+          <meta property="og:url" content={window.location} />
+          <meta property="og:type" content="website" />
+          <meta property="og:image" content={'FIXME'} />
+        </Helmet>
+
         <Billboard />
 
         <Layout.Padding>

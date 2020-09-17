@@ -17,6 +17,7 @@ module.exports = {
     selectPrompt: 'Select a Topic',
   },
   tribalNations: {
+    title: 'Tribal Nations',
     help: 'This is content for the intro help popover.',
   },
   footer: {

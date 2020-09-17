@@ -2,6 +2,7 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import qs from 'qs';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 // components
 import * as Layout from '#components/shared/Layout';
@@ -111,6 +112,22 @@ const Search = ({ ...props }) => {
 
   return (
     <>
+      <Helmet>
+        <title>{`Search - Bureau Of Indian Affairs Photography Finding Aid`}</title>
+        {/* <meta name="description" content={content.topics.intro}></meta> */}
+        <meta name="" content="" />
+        <meta name="twitter:title" content={`Search - Bureau Of Indian Affairs Photography Finding Aid`} />
+        <meta name="twitter:site" content="@FIXME" />
+        <meta name="twitter:card" content={'FIXME'} />
+        <meta name="twitter:description" content={'FIXME'} />
+        <meta name="twitter:image" content={'FIXME'} />
+        <meta property="og:title" content={`Search - Bureau Of Indian Affairs Photography Finding Aid`} />
+        <meta name="og:description" content={'FIXME'} />
+        <meta property="og:site_name" content="FIXME" />
+        <meta property="og:url" content={window.location} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={'FIXME'} />
+      </Helmet>
       <QueryField defaultValue={search.q || query} setQuery={setQuery} />
       <Layout.Padding style={{ marginTop: '1rem', marginBottom: '2rem' }}>
         <Layout.Wrapper>
