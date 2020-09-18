@@ -144,61 +144,91 @@ export const regions = [
   {
     name: 'Northwest Region',
     slug: 'northwest',
-    hue: '#F8BFBA',
+    mapColors: {
+      region: '#F8BFBA',
+      listing: '#203B60',
+    },
     mapLabelCooridnates: [-120.56200520337062, 45.93465032631577],
   },
   {
     name: 'Pacific Region & Alaska Region',
     slug: 'pacific-alaska',
-    hue: '#F0C0D2',
+    mapColors: {
+      region: '#F0C0D2',
+      listing: '#325990',
+    },
     mapLabelCooridnates: [-157.1794192251042, 66.42441825088091],
   },
   {
     name: 'Western Region',
     slug: 'western',
-    hue: '#9FD7C0',
+    mapColors: {
+      region: '#9FD7C0',
+      listing: '#244168',
+    },
     mapLabelCooridnates: [-107.54795634775779, 37.597256788375054],
   },
   {
     name: 'Rocky Mountain Region',
     slug: 'rocky-mountain',
-    hue: '#C3D4AB',
+    mapColors: {
+      region: '#C3D4AB',
+      listing: '#2E5387',
+    },
     mapLabelCooridnates: [-109.63302925840122, 45.6524662795163],
   },
   {
     name: 'Southwest Region',
     slug: 'southwest',
-    hue: '#DECE91',
+    mapColors: {
+      region: '#DECE91',
+      listing: '#294A79',
+    },
     mapLabelCooridnates: [-115.27014978137767, 38.40563386025311],
   },
   {
     name: 'Great Plains Region',
     slug: 'great-plains',
-    hue: '#9EDAE3',
+    mapColors: {
+      region: '#9EDAE3',
+      listing: '#1F385B',
+    },
     mapLabelCooridnates: [-101.22752309700857, 45.3445012204703],
   },
   {
     name: 'Southern Plains Region & Eastern Oklahoma Region',
     slug: 'southern-plains-eastern-oklahoma',
-    hue: '#ABD2F2',
+    mapColors: {
+      region: '#ABD2F2',
+      listing: '#284876',
+    },
     mapLabelCooridnates: [-100.79322972354891, 35.58832303946829],
   },
   {
     name: 'Midwest Region',
     slug: 'midwest',
-    hue: '#C9CBF4',
+    mapColors: {
+      region: '#C9CBF4',
+      listing: '#2B4E7F',
+    },
     mapLabelCooridnates: [-93.2931633606855, 44.02584839989349],
   },
   {
     name: 'Eastern Region',
     slug: 'eastern',
-    hue: '#D6C7EF',
+    mapColors: {
+      region: '#D6C7EF',
+      listing: '#2E5386',
+    },
     mapLabelCooridnates: [-85.30200559812172, 37.53502330485163],
   },
   {
     name: 'California Region',
     slug: 'california',
-    hue: '#F7C2A0',
+    mapColors: {
+      region: '#F7C2A0',
+      listing: '#25436C',
+    },
     mapLabelCooridnates: [-121.57292512079247, 37.18397337102898],
   },
 ];

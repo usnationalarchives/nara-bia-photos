@@ -1,13 +1,14 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import qs from 'qs';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 
 // components
 import * as Layout from '#components/shared/Layout';
 import Pagination from '#components/shared/Pagination';
 import Filters from '#components/shared/Filters';
 import Results from '#components/shared/Results';
-import ListingBillboard from '#components/shared/ListingBillboard';
+import TribeBillboard from '#components/shared/TribeBillboard';
 import ResultsMeta from '#components/shared/ResultsMeta';
 import ResultsWrapper from '#components/shared/ResultsWrapper';
 import ResultsHeaderWrapper from '#components/shared/ResultsHeaderWrapper';
@@ -22,7 +23,7 @@ import useSearchHistory from '#hooks/useSearchHistory';
 import useScopedFilters from '#hooks/useScopedFilters';
 
 // data
-import { tribalNations } from '#modules/constants';
+import { tribalNations, states as stateConsts } from '#modules/constants';
 
 const TribeListing = ({ ...props }) => {
   const [fidelity, setFidelity] = useState(220);
@@ -79,6 +80,9 @@ const TribeListing = ({ ...props }) => {
     document.querySelector('html').scrollTop = 0;
   }, [page]);
 
+  const highlightedState = stateConsts.find(s => s.name === stateFilters[0].key);
+  console.log(highlightedState);
+
   return (
     <Fragment>
       <Helmet>
@@ -97,14 +101,21 @@ const TribeListing = ({ ...props }) => {
         <meta property="og:type" content="article" />
         <meta property="og:image" content={'FIXME'} />
       </Helmet>
-      <ListingBillboard
+      <TribeBillboard
         label="Tribal Nation"
         title={tribalNationName}
         intro="Lorem Ipsum"
         items={tribalNations}
         slugPrefix="tribal-nations"
-      />
-      <TribalNationMap />
+        superTitle="Tribal Nation"
+        alignment="left"
+      >
+        <TribalNationMap activeStates={stateFilters.map(s => s.key)} />
+        <p style={{ color: '#fff' }}>
+          There are {stateFilters[0].value} photographs associated with this Tribal Nation across{' '}
+          <Link to={`/states/${highlightedState.slug}`}>{highlightedState.name}</Link>
+        </p>
+      </TribeBillboard>
       <Layout.Padding>
         <Layout.Wrapper>
           <Filters filters={filters} />

@@ -13,19 +13,11 @@ import tinycolor from 'tinycolor2';
 
 const geoUrl = 'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json';
 
-const offsets = {
-  VT: [50, -8],
-  NH: [34, 2],
-  MA: [30, -1],
-  RI: [28, 2],
-  CT: [35, 10],
-  NJ: [34, 1],
-  DE: [33, 0],
-  MD: [47, 10],
-  DC: [49, 21],
-};
-
-// console.log(new TextBox().data([{ text: 'testing' }]));
+const RegionMapWrapper = styled.div`
+  .rsm-geography:hover {
+    cursor: pointer;
+  }
+`;
 
 const RegionMarker = ({ region, fill }) => {
   const regionLabel = createRef();
@@ -78,7 +70,7 @@ const MapChart = ({}) => {
       const region = _.find(regions, region => {
         return region.slug == state.region;
       });
-      hue = region.hue;
+      hue = region.mapColors.region;
     }
     return hue;
   };
@@ -100,7 +92,7 @@ const MapChart = ({}) => {
   `;
 
   return (
-    <div>
+    <RegionMapWrapper>
       <ReactTooltip backgroundColor="#fff" textColor="#333" borderColor="#DDD" border={true}>
         {!!activeMapState && (
           <StyledTooltipContent>
@@ -170,7 +162,7 @@ const MapChart = ({}) => {
           return <RegionMarker key={`region-${region.slug}`} region={region} fill="#333333"></RegionMarker>;
         })}
       </ComposableMap>
-    </div>
+    </RegionMapWrapper>
   );
 };
 

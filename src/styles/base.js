@@ -25,8 +25,8 @@ const BaseStyles = createGlobalStyle`
     }
   }
 
-  .rsm-geography:hover {
-    cursor: pointer;
+  .rsm-geography:focus {
+    outline: none;
   }
 
   /* text {
