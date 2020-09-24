@@ -18,26 +18,34 @@ const SliderStyles = styled.div`
   }
 `;
 
-const FidelitySlider = ({ update }) => {
+const FidelitySlider = ({
+  color = colors.blue,
+  min = 120,
+  max = 320,
+  step = 20,
+  defaultValue = 220,
+  update,
+  className,
+}) => {
   return (
-    <SliderStyles>
-      <SmallGridIcon width="30" style={{ marginRight: '20px' }}></SmallGridIcon>
+    <SliderStyles style={{ color: color }} className={className}>
+      <SmallGridIcon width="30" style={{ marginRight: '20px' }} fill={color}></SmallGridIcon>
       <Slider
-        min={120}
-        max={320}
-        step={20}
-        trackStyle={{ height: '2px', backgroundColor: colors.blue }}
-        railStyle={{ height: '2px', backgroundColor: colors.blue }}
+        min={min}
+        max={max}
+        step={step}
+        trackStyle={{ height: '2px', backgroundColor: color }}
+        railStyle={{ height: '2px', backgroundColor: color }}
         handleStyle={{
           boxShadow: 'none',
-          borderColor: colors.blue,
+          borderColor: color,
         }}
-        defaultValue={220}
+        defaultValue={defaultValue}
         onChange={val => {
           update(val);
         }}
       />
-      <LargeGridIcon width="30" style={{ marginLeft: '20px' }}></LargeGridIcon>
+      <LargeGridIcon width="30" style={{ marginLeft: '20px' }} fill={color}></LargeGridIcon>
     </SliderStyles>
   );
 };

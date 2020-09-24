@@ -10,7 +10,8 @@ export const toggleStyles = css`
   ${buttonReset}
   align-items: center;
   border-radius: 23px;
-  border: 1px solid ${props => props.theme.colors.black};
+  border: 1px solid currentColor;
+  color: currentColor;
   display: inline-flex;
   font-size: 0.75rem;
   font-weight: bold;
@@ -31,14 +32,33 @@ export const toggleStyles = css`
 `;
 
 const Text = styled.span`
-  color: #000;
+  color: currentColor;
 `;
 
 const Icon = styled.span`
   align-items: center;
   background-color: #000;
+  ${props =>
+    props.scheme === 'dark' &&
+    css`
+      background: #fff;
+    `}
+  ${props =>
+    props.scheme === 'light' &&
+    css`
+      background: #000;
+    `}
   border-radius: 36px;
-  color: #fff;
+  ${props =>
+    props.scheme === 'dark' &&
+    css`
+      color: #000;
+    `}
+  ${props =>
+    props.scheme === 'light' &&
+    css`
+      color: #fff;
+    `}
   display: flex;
   height: 36px;
   justify-content: center;
@@ -50,7 +70,16 @@ const Icon = styled.span`
 /**
  * Toggle Component
  */
-const ToggleBase = ({ className, onClick, disabled, style, children }) => {
+const ToggleBase = ({
+  activeText = 'Collapse',
+  defaultText = 'Expand',
+  className,
+  onClick,
+  disabled,
+  style,
+  scheme = 'dark',
+  children,
+}) => {
   const [active, setActive] = useState(false);
 
   function handleClick() {
@@ -60,8 +89,8 @@ const ToggleBase = ({ className, onClick, disabled, style, children }) => {
 
   return (
     <button className={className} onClick={handleClick} disabled={disabled} style={style}>
-      <Text>{!active ? 'Show full title' : 'Collapse'}</Text>
-      <Icon>
+      <Text>{!active ? defaultText : activeText}</Text>
+      <Icon scheme={scheme}>
         <span>
           {active && <CloseIcon width="11" fill="currentColor" />}
           {!active && <PlusIcon width="13" fill="currentColor" />}
@@ -72,9 +101,12 @@ const ToggleBase = ({ className, onClick, disabled, style, children }) => {
 };
 
 ToggleBase.propTypes = {
+  activeText: PropTypes.string,
+  defaultText: PropTypes.string,
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
   style: PropTypes.object,
+  scheme: PropTypes.string,
   children: PropTypes.node,
 };
 

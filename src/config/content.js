@@ -54,4 +54,19 @@ module.exports = {
       },
     ],
   },
+  home: {
+    intro: {
+      title: 'Explore over 18,000+ Bureau of Indian Affairs (BIA) Photograph Records',
+      text: 'This finding aid is your guide to all of the photography currently digitized in this record group.',
+      cta: 'Learn more about this project',
+    },
+    tribalNationExplorer: {
+      title: 'Explore Tribal Nations ',
+      text: 'Explore the breakdown of topics in the BIA photograph record group across featured Tribal Nations.',
+    },
+    photographExplorer: {
+      title: 'Explore Photographs of Famous Native Americans',
+      text: 'Discover photographs of Jim Thorpe, Chief Red Cloud, Jesse Cornplanter and other famous Native Americans.',
+    },
+  },
 };

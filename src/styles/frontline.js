@@ -34,7 +34,7 @@ export const fl_visuallyHidden = css`
   margin: -1px;
   overflow: hidden;
   padding: 0;
-  position: absolute;
+  position: absolute !important;
   white-space: nowrap;
   width: 1px;
 `;

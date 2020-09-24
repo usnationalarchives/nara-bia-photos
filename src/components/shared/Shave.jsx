@@ -56,7 +56,15 @@ const Shave = ({ maxHeight, options, children, textRef }) => {
   return (
     <>
       {renderText()}
-      {!!shaved && <Toggle style={{ marginTop: '20px' }} outline onClick={() => setActive(!active)}></Toggle>}
+      {!!shaved && (
+        <Toggle
+          defaultText="Show Full Title"
+          activeText="Collapse"
+          style={{ marginTop: '20px' }}
+          outline
+          onClick={() => setActive(!active)}
+        ></Toggle>
+      )}
     </>
   );
 };
