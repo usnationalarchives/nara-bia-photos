@@ -63,7 +63,7 @@ const TribeBillboardLayout = styled.div`
         @media all and ${props => props.theme.breakpoints.medium} {
           align-items: center;
           display: flex;
-          justify-content: flex-end;
+          justify-content: flex-start;
           flex: 0 0 55%;
         }
       }

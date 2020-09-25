@@ -80,8 +80,7 @@ const TribeListing = ({ ...props }) => {
     document.querySelector('html').scrollTop = 0;
   }, [page]);
 
-  const highlightedState = stateConsts.find(s => s.name === stateFilters[0].key);
-  console.log(highlightedState);
+  const highlightedState = !!stateFilters.length ? stateConsts.find(s => s.name === stateFilters[0].key) : [];
 
   return (
     <Fragment>
@@ -112,8 +111,13 @@ const TribeListing = ({ ...props }) => {
       >
         <TribalNationMap activeStates={stateFilters.map(s => s.key)} />
         <p style={{ color: '#fff' }}>
-          There are {stateFilters[0].value} photographs associated with this Tribal Nation across{' '}
-          <Link to={`/states/${highlightedState.slug}`}>{highlightedState.name}</Link>
+          There are {stateFilters.length ? stateFilters[0].value : 0} photographs associated with this Tribal Nation
+          {stateFilters.length > 0 && (
+            <>
+              {' '}
+              across <Link to={`/states/${highlightedState.slug}`}>{highlightedState.name}</Link>
+            </>
+          )}
         </p>
       </TribeBillboard>
       <Layout.Padding>
