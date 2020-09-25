@@ -4,7 +4,7 @@ const includePath = path.resolve(__dirname, '..');
 
 module.exports = {
   stories: ['../stories/**/*.stories.js'],
-  addons: ['@storybook/addon-actions', '@storybook/addon-links', '@storybook/addon-knobs'],
+  // addons: ['@storybook/addon-actions', '@storybook/addon-links', '@storybook/addon-knobs'],
   webpackFinal: async config => {
     // Update storybook to use svgr instead of the default file loader
     // Source: https://duncanleung.com/import-svg-storybook-webpack-loader/#:~:text=Element%20type%20is%20invalid%3A%20expected,up%20default%20and%20named%20imports.
