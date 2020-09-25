@@ -32,7 +32,6 @@ const IntroStyled = styled.div`
     margin-top: 25px;
 
     &:first-child {
-      display: block;
       margin-top: 0;
     }
   }
@@ -46,6 +45,29 @@ const IntroStyled = styled.div`
       text-decoration: underline;
     `)}
   }
+`;
+
+const IntroContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  > * {
+    margin-top: 19px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+`;
+
+const LinkStyled = styled(Link)`
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  ${fl_static(css`
+    color: #fff;
+  `)}
 `;
 
 const SectionLinks = styled.div`
@@ -113,12 +135,10 @@ const SectionLink = styled(Link)`
 const Intro = ({ className }) => {
   return (
     <IntroStyled className={className}>
-      <div style={{ maxWidth: '500px', margin: '0 auto' }}>
+      <IntroContent style={{ maxWidth: '500px', margin: '0 auto' }}>
         <Text.H2>{title}</Text.H2>
         <p>{text}</p>
-        <Link style={{ fontSize: '13px' }} to="/about">
-          {cta}
-        </Link>
+        <LinkStyled to="/about">{cta}</LinkStyled>
         <p
           style={{
             borderTop: 'solid 1px #fff',
@@ -152,7 +172,7 @@ const Intro = ({ className }) => {
             <span aria-label="State">State</span>
           </SectionLink>
         </SectionLinks>
-      </div>
+      </IntroContent>
     </IntroStyled>
   );
 };

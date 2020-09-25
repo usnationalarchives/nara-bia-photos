@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import reactPackeryComponent from 'react-packery-component';
-import { random } from 'lodash';
+import { random, shuffle } from 'lodash';
 import tinycolor from 'tinycolor2';
 import IPS from 'img-placeholder-src';
 
@@ -282,8 +282,12 @@ const Home = () => {
           </Grid>
         </div>
         <ImageGrid>
-          <Packery style={{ diplay: 'flex', alignItems: 'stretch' }} options={packeryOptions}>
-            {[...results, ...results].map((result, i) => {
+          <Packery
+            style={{ diplay: 'flex', alignItems: 'stretch' }}
+            options={packeryOptions}
+            disableImagesLoaded={true}
+          >
+            {shuffle([...results, ...results]).map((result, i) => {
               return (
                 <ImageSquareStyled
                   // image={ips.src({ height: 500, width: 500 }, 'lorempixel', { unique: i })}
