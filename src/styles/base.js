@@ -4,14 +4,17 @@ import * as frontline from '#styles/frontline';
 import BackgroundStyles from '#styles/helpers/background';
 import RCSlider from '#styles/lib/rc-slider';
 import ReactTabsStyles from '#styles/lib/react-tabs';
+import ReactResponsiveModalStyles from '#styles/lib/react-responsive-modal';
 import AddThis from '#styles/lib/add-this';
+
+import 'react-responsive-modal/styles.css';
 
 const BaseStyles = createGlobalStyle`
   html {
     background-color: ${props => props.theme.colors.white};
     color: ${props => props.theme.colors.darkGrey};
     font-family: ${props => props.theme.font.family};
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
   }
 
   body {
@@ -36,6 +39,7 @@ const BaseStyles = createGlobalStyle`
   ${BackgroundStyles}
   ${RCSlider}
   ${ReactTabsStyles}
+  ${ReactResponsiveModalStyles}
   ${AddThis}
 
   @media print {

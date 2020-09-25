@@ -36,9 +36,9 @@ const Wrapper = styled.div`
   }
 `;
 
-const ImageSquare = ({ image, bkg, className, size }) => {
+const ImageSquare = ({ image, bkg, className, size, onClick }) => {
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       <ImageSquareStyled size={size} bkg={bkg} className={className}>
         <img srcSet={`${image} 1x`} />
       </ImageSquareStyled>

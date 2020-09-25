@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import styled, { css } from 'styled-components';
 import reactPackeryComponent from 'react-packery-component';
 import { random, shuffle } from 'lodash';
 import tinycolor from 'tinycolor2';
 import IPS from 'img-placeholder-src';
+import { Modal } from 'react-responsive-modal';
 
 import { homepageGridThumbnailNaids } from '#modules/constants';
+import iiifImage from '#modules/iiifImage';
 
 // hooks
 import useRecords from '#hooks/useRecords';
 
 import { fl_absoluteFill } from '#styles/frontline';
-
-import iiifImage from '#modules/iiifImage';
 
 // components
 // page specific components
@@ -237,6 +237,9 @@ const Home = () => {
   const min = 4;
 
   const [gridSize, setGridSize] = useState(6);
+  const [open, setOpen] = useState(false);
+  const [imageIndex, setImageIndex] = useState(null);
+
   const items = Array.from({ length: 150 }, () => ({ bkg: random(1, 40) }));
   let inverseGridSize = gridSize * -1 + max + min;
   let size = 100 / ((inverseGridSize / max) * max);
@@ -247,8 +250,16 @@ const Home = () => {
     },
   });
 
+  const shuffleItems = items => {
+    return shuffle([...items, ...items]);
+  };
+
+  const gridItems = useMemo(() => {
+    return shuffleItems(results);
+  }, [results, gridSize]);
+
   return (
-    <div style={{ position: 'relative', overflow: 'visiible' }}>
+    <div style={{ position: 'relative' }}>
       <div>
         <Track>
           <FidelitySliderStyled
@@ -287,20 +298,39 @@ const Home = () => {
             options={packeryOptions}
             disableImagesLoaded={true}
           >
-            {shuffle([...results, ...results]).map((result, i) => {
+            {gridItems.map((result, i) => {
               return (
                 <ImageSquareStyled
                   // image={ips.src({ height: 500, width: 500 }, 'lorempixel', { unique: i })}
-                  image={iiifImage(result, 600)}
-                  size={size}
                   bkg={items[i].bkg}
+                  image={iiifImage(result, 600)}
                   key={`imageGrid-${i}`}
+                  onClick={() => {
+                    setOpen(true);
+                    setImageIndex(i);
+                  }}
+                  size={size}
                 ></ImageSquareStyled>
               );
             })}
           </Packery>
         </ImageGrid>
       </div>
+      <Modal
+        open={open}
+        onClose={() => {
+          setOpen(false);
+          setImageIndex(null);
+        }}
+        center
+      >
+        {gridItems.length > 0 && !!imageIndex && (
+          <>
+            <Text.H2 style={{ color: '#fff' }}>{gridItems[imageIndex].title}</Text.H2>
+            <img src={iiifImage(gridItems[imageIndex], 600)} alt="" />
+          </>
+        )}
+      </Modal>
     </div>
   );
 };
