@@ -49,7 +49,7 @@ export const fl_hideText = css`
 export const fl_absoluteFill = css`
   height: 100%;
   left: 0;
-  position: absolute;
+  position: absolute !important;
   top: 0;
   width: 100%;
 `;

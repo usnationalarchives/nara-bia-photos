@@ -103,7 +103,7 @@ const TribeListing = ({ ...props }) => {
       <TribeBillboard
         label="Tribal Nation"
         title={tribalNationName}
-        intro="Lorem Ipsum"
+        intro="Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui. Morbi leo risus, porta ac consectetur ac, vestibulum at eros."
         items={tribalNations}
         slugPrefix="tribal-nations"
         superTitle="Tribal Nation"

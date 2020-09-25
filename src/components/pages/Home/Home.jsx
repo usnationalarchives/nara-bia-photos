@@ -39,7 +39,7 @@ const ImageGrid = styled.div`
   ${fl_absoluteFill}
   background-color: ${props => tinycolor(props.theme.colors.blue).darken(15).toString()};
   overflow-y: hidden;
-  z-index: -1;
+  /* z-index: -; */
 `;
 
 const Grid = styled.div`
@@ -80,6 +80,7 @@ const IntroStyled = styled(Intro)`
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 3;
+  z-index: 2;
 
   ${props =>
     props.$columns === 4 &&
@@ -124,6 +125,7 @@ const ExplorePromoStyled1 = styled(ExplorePromo)`
   grid-row-start: 4;
   grid-row-end: 5;
   min-height: 20vw;
+  z-index: 2;
 
   ${props =>
     props.$columns === 4 &&
@@ -167,6 +169,7 @@ const ExplorePromoStyled2 = styled(ExplorePromo)`
   grid-column-end: 4;
   grid-row-start: 6;
   grid-row-end: 7;
+  z-index: 2;
 
   ${props =>
     props.$columns === 4 &&
@@ -213,17 +216,20 @@ const Track = styled.div`
   height: 100%;
   right: 0;
   position: absolute;
+  padding-top: 30px;
   top: 0;
   width: auto;
   overflow: visible;
-  z-index: 2;
 `;
 
 const FidelitySliderStyled = styled(FidelitySlider)`
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.6);
+  margin-right: 30px;
   padding: 10px;
-  /* position: sticky; */
-  top: 0;
+  position: relative;
+  position: sticky;
+  top: 30px;
+  z-index: 3;
 `;
 
 const Home = () => {
@@ -254,42 +260,43 @@ const Home = () => {
             update={setGridSize}
           />
         </Track>
-
-        <Grid $columns={inverseGridSize} $columnWidth={size}>
-          {/* <Layout.Padding> */}
-          {/* <Layout.Wrapper> */}
-          <IntroStyled $columns={inverseGridSize}></IntroStyled>
-          <ExplorePromoStyled1
-            $columns={inverseGridSize}
-            scheme="yellow"
-            title={content.home.tribalNationExplorer.title}
-            text={content.home.tribalNationExplorer.text}
-          ></ExplorePromoStyled1>
-          <ExplorePromoStyled2
-            $columns={inverseGridSize}
-            scheme="green"
-            title={content.home.photographExplorer.title}
-            text={content.home.photographExplorer.text}
-          ></ExplorePromoStyled2>
-          {/* </Layout.Wrapper> */}
-          {/* </Layout.Padding> */}
-        </Grid>
+        <div style={{ display: 'block' }}>
+          <Grid $columns={inverseGridSize} $columnWidth={size}>
+            {/* <Layout.Padding> */}
+            {/* <Layout.Wrapper> */}
+            <IntroStyled $columns={inverseGridSize}></IntroStyled>
+            <ExplorePromoStyled1
+              $columns={inverseGridSize}
+              scheme="yellow"
+              title={content.home.tribalNationExplorer.title}
+              text={content.home.tribalNationExplorer.text}
+            ></ExplorePromoStyled1>
+            <ExplorePromoStyled2
+              $columns={inverseGridSize}
+              scheme="green"
+              title={content.home.photographExplorer.title}
+              text={content.home.photographExplorer.text}
+            ></ExplorePromoStyled2>
+            {/* </Layout.Wrapper> */}
+            {/* </Layout.Padding> */}
+          </Grid>
+        </div>
+        <ImageGrid>
+          <Packery style={{ diplay: 'flex', alignItems: 'stretch' }} options={packeryOptions}>
+            {[...results, ...results].map((result, i) => {
+              return (
+                <ImageSquareStyled
+                  // image={ips.src({ height: 500, width: 500 }, 'lorempixel', { unique: i })}
+                  image={iiifImage(result, 600)}
+                  size={size}
+                  bkg={items[i].bkg}
+                  key={`imageGrid-${i}`}
+                ></ImageSquareStyled>
+              );
+            })}
+          </Packery>
+        </ImageGrid>
       </div>
-      <ImageGrid>
-        <Packery style={{ diplay: 'flex', alignItems: 'stretch' }} options={packeryOptions}>
-          {[...results, ...results].map((result, i) => {
-            return (
-              <ImageSquareStyled
-                // image={ips.src({ height: 500, width: 500 }, 'lorempixel', { unique: i })}
-                image={iiifImage(result, 600)}
-                size={size}
-                bkg={items[i].bkg}
-                key={`imageGrid-${i}`}
-              ></ImageSquareStyled>
-            );
-          })}
-        </Packery>
-      </ImageGrid>
     </div>
   );
 };
