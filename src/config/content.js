@@ -37,7 +37,7 @@ module.exports = {
           'This digital archival experience contains historical photographs from the Bureau of Indian Affairs (BIA).',
       },
       {
-        imageUrl: `${process.env.PUBLIC_URL}/images/content/records_digitized.png`,
+        imageUrl: `${process.env.PUBLIC_URL}/images/content/records_digitized.jpg`,
         intro:
           'Therefore, some Tribal Nations, topics, and geographic areas may not be fully represented. As NARA digitizes and makes more photographs publicly accessible, they will be made available through this project. ',
         // superTitle: 'Our records are still incomplete',

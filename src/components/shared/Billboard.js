@@ -49,7 +49,7 @@ const LandingBillboardLayout = styled.div`
   & .desktopImage {
     ${frontline.fl_aspectRatio(1 / 1)}
     margin: 0 auto;
-    max-width: 400px;
+    max-width: 500px;
     width: 100%;
   }
 
@@ -75,7 +75,7 @@ const LandingBillboardLayout = styled.div`
           margin: 0;
           display: flex;
           justify-content: flex-end;
-          flex: 0 0 35%;
+          flex: 0 0 43%;
         }
       }
     }
@@ -104,8 +104,8 @@ const LandingBillboardLayout = styled.div`
 const SuperTitle = styled.span`
   color: #fff;
   display: block;
-  font-size: 0.875rem;
-  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: bold;
 `;
 
 const Billboard = ({ alignment, title, imageUrl, intro, introIcon, introHelp, superTitle, ...props }) => {
@@ -133,9 +133,10 @@ const Billboard = ({ alignment, title, imageUrl, intro, introIcon, introHelp, su
               </div>
             </div>
             <div className="layout-col--secondary">
-              <BackgroundImage className="desktopImage">
-                <img srcSet={`${imageUrl} 1x, ${imageUrl} 2x`} src={imageUrl}></img>
-              </BackgroundImage>
+              {/* <BackgroundImage className="desktopImage">
+                <img style={{ objectFit: 'contain' }} srcSet={`${imageUrl} 1x, ${imageUrl} 2x`} src={imageUrl}></img>
+              </BackgroundImage> */}
+              <img style={{ width: '100%' }} srcSet={`${imageUrl} 1x, ${imageUrl} 2x`} src={imageUrl}></img>
             </div>
           </LandingBillboardLayout>
         </Layout.Wrapper>

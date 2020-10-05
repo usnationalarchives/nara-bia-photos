@@ -51,7 +51,7 @@ export const getObjectCount = items => {
  * @param {string} topicsList - example "bisfis-0759||nwfh20||montana||Native American genealogy"
  * @returns {array} filteredTopics - filtered list of topic constants
  */
-export const getRecordTopics = topicsList => {
+export const getRecordTopics = (topicsList = []) => {
   const filteredTopics = topics.filter(topic => {
     return topicsList.indexOf(topic.name) >= 0;
   });

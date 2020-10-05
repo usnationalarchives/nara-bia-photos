@@ -9,7 +9,7 @@ const ReactResponsiveModalStyles = css`
       box-shadow: none;
     }
     &-overlay {
-      background: ${props => tinycolor(props.theme.colors.darkGrey).setAlpha(0.8).toRgbString()};
+      background: ${props => tinycolor(props.theme.colors.darkGrey).setAlpha(0.96).toRgbString()};
     }
   }
 `;

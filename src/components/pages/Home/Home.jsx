@@ -4,7 +4,7 @@ import reactPackeryComponent from 'react-packery-component';
 import { random, shuffle } from 'lodash';
 import tinycolor from 'tinycolor2';
 import IPS from 'img-placeholder-src';
-import { Modal } from 'react-responsive-modal';
+import { Helmet } from 'react-helmet';
 
 import { homepageGridThumbnailNaids } from '#modules/constants';
 import iiifImage from '#modules/iiifImage';
@@ -23,6 +23,7 @@ import * as Text from '#components/shared/Text';
 import * as Layout from '#components/shared/Layout';
 import ImageSquare from '#components/shared/ImageSquare';
 import FidelitySlider from '#components/shared/FidelitySlider';
+import RecordModal from '#components/shared/RecordModal';
 
 // config
 import content from '#config/content';
@@ -251,7 +252,8 @@ const Home = () => {
   });
 
   const shuffleItems = items => {
-    return shuffle([...items, ...items]);
+    // return shuffle([...items, ...items]);
+    return [...items, ...items];
   };
 
   const gridItems = useMemo(() => {
@@ -260,6 +262,23 @@ const Home = () => {
 
   return (
     <div style={{ position: 'relative' }}>
+      <Helmet>
+        <title>Bureau Of Indian Affairs Photography Finding Aid</title>
+        {/* <meta name="description" content={content.topics.intro}></meta> */}
+        <meta name="" content="" />
+        <meta name="twitter:title" content="Bureau Of Indian Affairs Photography Finding Aid" />
+        <meta name="twitter:site" content="@FIXME" />
+        <meta name="twitter:card" content={'FIXME'} />
+        <meta name="twitter:description" content={'FIXME'} />
+        <meta name="twitter:image" content={'FIXME'} />
+        <meta property="og:title" content="Bureau Of Indian Affairs Photography Finding Aid" />
+        <meta name="og:description" content={'FIXME'} />
+        <meta property="og:site_name" content="FIXME" />
+        <meta property="og:url" content={window.location} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={'FIXME'} />
+      </Helmet>
+
       <div>
         <Track>
           <FidelitySliderStyled
@@ -306,8 +325,8 @@ const Home = () => {
                   image={iiifImage(result, 600)}
                   key={`imageGrid-${i}`}
                   onClick={() => {
-                    setOpen(true);
                     setImageIndex(i);
+                    setOpen(true);
                   }}
                   size={size}
                 ></ImageSquareStyled>
@@ -316,21 +335,13 @@ const Home = () => {
           </Packery>
         </ImageGrid>
       </div>
-      <Modal
+      <RecordModal
+        items={gridItems}
+        activeIndex={imageIndex}
         open={open}
-        onClose={() => {
-          setOpen(false);
-          setImageIndex(null);
-        }}
-        center
-      >
-        {gridItems.length > 0 && !!imageIndex && (
-          <>
-            <Text.H2 style={{ color: '#fff' }}>{gridItems[imageIndex].title}</Text.H2>
-            <img src={iiifImage(gridItems[imageIndex], 600)} alt="" />
-          </>
-        )}
-      </Modal>
+        setOpen={setOpen}
+        setImageIndex={setImageIndex}
+      />
     </div>
   );
 };
