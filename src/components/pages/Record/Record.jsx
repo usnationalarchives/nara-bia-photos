@@ -4,6 +4,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Results from '#components/shared/Results';
 import { sampleSize } from 'lodash';
 import { Helmet } from 'react-helmet';
+import { useHistory } from 'react-router-dom';
 
 // import 'react-tabs/style/react-tabs.css';
 
@@ -75,6 +76,7 @@ const Record = ({ ...props }) => {
   const [objects, setObjects] = useState();
   // const [record, setRecord] = useState(null);
   const titleTextRef = createRef();
+  const history = useHistory();
 
   const [results] = useRecords(
     {
@@ -143,7 +145,15 @@ const Record = ({ ...props }) => {
                 <MetaStyled
                   label="Tribal Nation"
                   outine
-                  items={[{ label: record.tribes, link: `/tribal-nations/${tribalNation ? tribalNation.slug : ''}` }]}
+                  items={[
+                    {
+                      label: record.tribes,
+                      link: `/tribal-nations/${tribalNation ? tribalNation.slug : ''}`,
+                      onClick: () => {
+                        history.push(`/tribal-nations/${tribalNation ? tribalNation.slug : ''}`);
+                      },
+                    },
+                  ]}
                 ></MetaStyled>
               )}
               {!!record.date && <MetaStyled label="Date" outine items={[{ label: record.date }]}></MetaStyled>}
@@ -152,7 +162,13 @@ const Record = ({ ...props }) => {
                   label="Topics"
                   outine
                   items={recordTopics.map(topic => {
-                    return { label: topic.name, link: `/topics/${topic.slug}` };
+                    return {
+                      label: topic.name,
+                      link: `/topics/${topic.slug}`,
+                      onClick: () => {
+                        history.push(`/topics/${topic.slug}`);
+                      },
+                    };
                   })}
                 ></MetaStyled>
               )}{' '}
@@ -161,7 +177,13 @@ const Record = ({ ...props }) => {
                   label="States"
                   outine
                   items={recordStates.map(state => {
-                    return { label: state.name, link: `/states/${state.slug}` };
+                    return {
+                      label: state.name,
+                      link: `/states/${state.slug}`,
+                      onClick: () => {
+                        history.push(`/states/${state.slug}`);
+                      },
+                    };
                   })}
                 ></MetaStyled>
               )}
