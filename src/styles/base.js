@@ -5,6 +5,7 @@ import BackgroundStyles from '#styles/helpers/background';
 import RCSlider from '#styles/lib/rc-slider';
 import ReactTabsStyles from '#styles/lib/react-tabs';
 import ReactResponsiveModalStyles from '#styles/lib/react-responsive-modal';
+import CarouselStyles from '#styles/lib/carousel';
 import AddThis from '#styles/lib/add-this';
 
 import 'react-responsive-modal/styles.css';
@@ -37,6 +38,7 @@ const BaseStyles = createGlobalStyle`
   } */
 
   ${BackgroundStyles}
+  ${CarouselStyles}
   ${RCSlider}
   ${ReactTabsStyles}
   ${ReactResponsiveModalStyles}
@@ -87,6 +89,10 @@ const BaseStyles = createGlobalStyle`
     }
 
     @page { margin: 0.75in 0.75in 1in; }
+  }
+
+  .screenreader {
+    ${frontline.fl_visuallyHidden}
   }
 
 `;

@@ -78,6 +78,7 @@ const Button = styled(ButtonBase)`
     props.scheme === 'green' &&
     css`
       background-color: ${props => props.theme.colors.green};
+      border-color: ${props => props.theme.colors.green};
       color: #fff;
 
       &:focus,
@@ -111,6 +112,26 @@ const Button = styled(ButtonBase)`
           color: ${props.theme.colors.blue};
           background: transparent;
           border-color: ${props.theme.colors.blue};
+        `}
+    `};
+
+  ${props =>
+    props.scheme === 'white' &&
+    css`
+      background-color: ${props => props.theme.colors.white};
+      color: #fff;
+
+      &:focus,
+      &:hover {
+        background-color: ${props => tinycolor(props.theme.colors.white).darken(10).toString()};
+      }
+
+      ${props =>
+        props.outline &&
+        css`
+          color: ${props.theme.colors.white};
+          background: transparent;
+          border-color: ${props.theme.colors.white};
         `}
     `};
 

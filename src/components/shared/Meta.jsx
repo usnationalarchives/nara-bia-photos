@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Button from '#components/shared/Button';
+import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+import tinycolor from 'tinycolor2';
 
 const Label = styled.span`
   font-size: 0.8125rem;
@@ -23,7 +25,7 @@ const Li = styled.li`
   margin: 5px 0 5px 15px;
 `;
 
-const Meta = ({ className, label, items = [] }) => {
+const Meta = ({ className, label, items = [], scheme = 'dark' }) => {
   const history = useHistory();
 
   return (
@@ -34,7 +36,14 @@ const Meta = ({ className, label, items = [] }) => {
           {items.map((item, index) => {
             return (
               <Li key={`meta-${index}`}>
-                <Item outline as={item.link ? Button : 'span'} onClick={() => history.push(item.link)}>
+                <Item
+                  outline
+                  scheme={scheme === 'light' ? 'white' : false}
+                  as={!!item.link ? Button : 'span'}
+                  onClick={() => {
+                    item.onClick();
+                  }}
+                >
                   {item.label}
                 </Item>
               </Li>
@@ -44,6 +53,13 @@ const Meta = ({ className, label, items = [] }) => {
       )}
     </div>
   );
+};
+
+Meta.propTypes = {
+  className: PropTypes.string,
+  label: PropTypes.string,
+  items: PropTypes.array,
+  scheme: PropTypes.string,
 };
 
 export default Meta;

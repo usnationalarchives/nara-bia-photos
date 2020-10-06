@@ -5,6 +5,8 @@ import { random, shuffle } from 'lodash';
 import tinycolor from 'tinycolor2';
 import IPS from 'img-placeholder-src';
 import { Helmet } from 'react-helmet';
+import { CarouselProvider } from 'pure-react-carousel';
+import 'pure-react-carousel/dist/react-carousel.es.css';
 
 import { homepageGridThumbnailNaids } from '#modules/constants';
 import iiifImage from '#modules/iiifImage';
@@ -335,13 +337,22 @@ const Home = () => {
           </Packery>
         </ImageGrid>
       </div>
-      <RecordModal
-        items={gridItems}
-        activeIndex={imageIndex}
-        open={open}
-        setOpen={setOpen}
-        setImageIndex={setImageIndex}
-      />
+      <CarouselProvider
+        currentSlide={imageIndex}
+        infinite={true}
+        naturalSlideWidth={16}
+        naturalSlideHeight={9}
+        isIntrinsicHeight={true}
+        totalSlides={gridItems.length}
+      >
+        <RecordModal
+          items={gridItems}
+          activeIndex={imageIndex}
+          open={open}
+          setOpen={setOpen}
+          setImageIndex={setImageIndex}
+        />
+      </CarouselProvider>
     </div>
   );
 };
