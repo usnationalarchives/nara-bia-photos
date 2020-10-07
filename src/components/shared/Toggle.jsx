@@ -73,6 +73,7 @@ const Icon = styled.span`
 const ToggleBase = ({
   activeText = 'Collapse',
   defaultText = 'Expand',
+  shouldActivate = true,
   className,
   onClick,
   disabled,
@@ -83,7 +84,7 @@ const ToggleBase = ({
   const [active, setActive] = useState(false);
 
   function handleClick() {
-    setActive(!active);
+    shouldActivate && setActive(!active);
     onClick();
   }
 
@@ -107,6 +108,7 @@ ToggleBase.propTypes = {
   disabled: PropTypes.bool,
   style: PropTypes.object,
   scheme: PropTypes.string,
+  shouldActivate: PropTypes.bool,
   children: PropTypes.node,
 };
 

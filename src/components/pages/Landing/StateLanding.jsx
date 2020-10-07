@@ -2,7 +2,6 @@ import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as Text from '#components/shared/Text';
 import { statesByRegion, joinParams } from '#modules/helpers';
-import { Grid, GridItem } from '#components/shared/Grid';
 import Card from '#components/shared/Card';
 import State from '#components/shared/State';
 import styled, { css } from 'styled-components';
@@ -27,6 +26,7 @@ import * as Layout from '#components/shared/Layout';
 import LandingBillboard from '#components/shared/LandingBillboard';
 import RegionMap from '#components/shared/RegionMap';
 import Select from '#components/shared/Select';
+import { Grid, GridItem } from '#components/shared/Grid';
 
 // modules
 import { states, regions } from '#modules/constants';

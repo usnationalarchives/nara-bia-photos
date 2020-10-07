@@ -48,7 +48,7 @@ const ExplorePromoStyled = styled.div`
   }
 `;
 
-const ExplorePromo = ({ title, text, scheme, className }) => {
+const ExplorePromo = ({ title, text, scheme, onClick, className }) => {
   return (
     <ExplorePromoStyled className={className} scheme={scheme}>
       <div>
@@ -56,13 +56,21 @@ const ExplorePromo = ({ title, text, scheme, className }) => {
         <p>{text}</p>
       </div>
       <div style={{ textAlign: 'center' }}>
-        <Toggle style={{ marginTop: '30px' }} outline scheme={scheme === 'yellow' ? 'light' : 'dark'}></Toggle>
+        <Toggle
+          onClick={onClick}
+          shouldActivate={false}
+          style={{ marginTop: '30px' }}
+          outline
+          scheme={scheme === 'yellow' ? 'light' : 'dark'}
+        ></Toggle>
       </div>
     </ExplorePromoStyled>
   );
 };
 
 ExplorePromo.propTypes = {
+  className: PropTypes.string,
+  onClick: PropTypes.func,
   title: PropTypes.string,
   text: PropTypes.string,
   scheme: PropTypes.string,

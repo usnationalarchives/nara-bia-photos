@@ -26,6 +26,7 @@ import * as Layout from '#components/shared/Layout';
 import ImageSquare from '#components/shared/ImageSquare';
 import FidelitySlider from '#components/shared/FidelitySlider';
 import RecordModal from '#components/shared/RecordModal';
+import TribalNationModal from '#components/shared/TribalNationModal';
 
 // config
 import content from '#config/content';
@@ -240,7 +241,8 @@ const Home = () => {
   const min = 4;
 
   const [gridSize, setGridSize] = useState(6);
-  const [open, setOpen] = useState(false);
+  const [recordModalOpen, setRecordModalOpen] = useState(false);
+  const [tribalNationModalOpen, setTribalNationModalOpen] = useState(false);
   const [imageIndex, setImageIndex] = useState(null);
 
   const items = Array.from({ length: 150 }, () => ({ bkg: random(1, 40) }));
@@ -254,8 +256,8 @@ const Home = () => {
   });
 
   const shuffleItems = items => {
-    // return shuffle([...items, ...items]);
-    return [...items, ...items];
+    // return shuffle(items);
+    return items;
   };
 
   const gridItems = useMemo(() => {
@@ -305,10 +307,15 @@ const Home = () => {
             ></ExplorePromoStyled1>
             <ExplorePromoStyled2
               $columns={inverseGridSize}
+              onClick={() => {
+                setTribalNationModalOpen(true);
+              }}
               scheme="green"
               title={content.home.photographExplorer.title}
               text={content.home.photographExplorer.text}
             ></ExplorePromoStyled2>
+            <TribalNationModal open={tribalNationModalOpen} setOpen={setTribalNationModalOpen} />
+
             {/* </Layout.Wrapper> */}
             {/* </Layout.Padding> */}
           </Grid>
@@ -328,7 +335,7 @@ const Home = () => {
                   key={`imageGrid-${i}`}
                   onClick={() => {
                     setImageIndex(i);
-                    setOpen(true);
+                    setRecordModalOpen(true);
                   }}
                   size={size}
                 ></ImageSquareStyled>
@@ -348,8 +355,8 @@ const Home = () => {
         <RecordModal
           items={gridItems}
           activeIndex={imageIndex}
-          open={open}
-          setOpen={setOpen}
+          open={recordModalOpen}
+          setOpen={setRecordModalOpen}
           setImageIndex={setImageIndex}
         />
       </CarouselProvider>

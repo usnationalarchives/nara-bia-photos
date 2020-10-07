@@ -69,8 +69,8 @@ const Button = styled(ButtonBase)`
 
       &:focus,
       &:hover {
-        border-color: ${props => props.theme.colors.blue};
-        color: ${props => props.theme.colors.blue};
+        border-color: ${props => props.theme.colors.white};
+        color: ${props => props.theme.colors.darkGrey};
       }
     `}
 
