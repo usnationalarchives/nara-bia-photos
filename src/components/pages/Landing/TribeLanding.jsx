@@ -28,7 +28,7 @@ const TribeLanding = () => {
     return (
       <LandingBillboard title={content.tribalNations.title}>
         <Label>
-          Select the first letter of a Tribal Nation's name
+          {content.tribalNations.intro}
           <PopoverInfo content={content.tribalNations.help} />
         </Label>
         <AlphabetLinks style={{ maxWidth: '650px', marginBottom: '3rem' }} activeLetters={Object.keys(groupedTribes)} />

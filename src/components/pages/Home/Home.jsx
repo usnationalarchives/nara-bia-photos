@@ -26,7 +26,7 @@ import * as Layout from '#components/shared/Layout';
 import ImageSquare from '#components/shared/ImageSquare';
 import FidelitySlider from '#components/shared/FidelitySlider';
 import RecordModal from '#components/shared/RecordModal';
-import TribalNationModal from '#components/shared/TribalNationModal';
+import NotableNativeAmericanModal from '#components/shared/NotableNativeAmericanModal';
 
 // config
 import content from '#config/content';
@@ -243,6 +243,7 @@ const Home = () => {
   const [gridSize, setGridSize] = useState(6);
   const [recordModalOpen, setRecordModalOpen] = useState(false);
   const [tribalNationModalOpen, setTribalNationModalOpen] = useState(false);
+  const [notableNativeAmericanModalOpen, setNotableNativeAmericanModalOpen] = useState(false);
   const [imageIndex, setImageIndex] = useState(null);
 
   const items = Array.from({ length: 150 }, () => ({ bkg: random(1, 40) }));
@@ -308,13 +309,16 @@ const Home = () => {
             <ExplorePromoStyled2
               $columns={inverseGridSize}
               onClick={() => {
-                setTribalNationModalOpen(true);
+                setNotableNativeAmericanModalOpen(true);
               }}
               scheme="green"
               title={content.home.photographExplorer.title}
               text={content.home.photographExplorer.text}
             ></ExplorePromoStyled2>
-            <TribalNationModal open={tribalNationModalOpen} setOpen={setTribalNationModalOpen} />
+            <NotableNativeAmericanModal
+              open={notableNativeAmericanModalOpen}
+              setOpen={setNotableNativeAmericanModalOpen}
+            />
 
             {/* </Layout.Wrapper> */}
             {/* </Layout.Padding> */}

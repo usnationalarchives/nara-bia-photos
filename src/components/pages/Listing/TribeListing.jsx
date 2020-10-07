@@ -3,6 +3,9 @@ import qs from 'qs';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
+// config
+import content from '#config/content';
+
 // components
 import * as Layout from '#components/shared/Layout';
 import Pagination from '#components/shared/Pagination';
@@ -81,20 +84,21 @@ const TribeListing = ({ ...props }) => {
   }, [page]);
 
   const highlightedState = !!stateFilters.length ? stateConsts.find(s => s.name === stateFilters[0].key) : [];
+  const description = content.tribalNation.intro.replace('${TRIBE}', tribalNationName);
 
   return (
     <Fragment>
       <Helmet>
         <title>{tribalNationName}</title>
-        {/* <meta name="description" content={tribalNationName}></meta> */}
+        <meta name="description" content={description}></meta>
         <meta name="" content="" />
         <meta name="twitter:title" content={tribalNationName} />
         <meta name="twitter:site" content="@FIXME" />
         <meta name="twitter:card" content={'FIXME'} />
-        <meta name="twitter:description" content={'FIXME'} />
+        <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={'FIXME'} />
         <meta property="og:title" content={tribalNationName} />
-        <meta name="og:description" content={'FIXME'} />
+        <meta name="og:description" content={description} />
         <meta property="og:site_name" content="FIXME" />
         <meta property="og:url" content={window.location} />
         <meta property="og:type" content="article" />
@@ -103,7 +107,7 @@ const TribeListing = ({ ...props }) => {
       <TribeBillboard
         label="Tribal Nation"
         title={tribalNationName}
-        intro="Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec sed odio dui. Morbi leo risus, porta ac consectetur ac, vestibulum at eros."
+        intro={description}
         items={tribalNations}
         slugPrefix="tribal-nations"
         superTitle="Tribal Nation"

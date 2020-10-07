@@ -2,23 +2,42 @@ module.exports = {
   states: {
     title: 'States',
     intro:
-      'Many photographs are associated with the location that they originated from. Select a state name to see a list of photographs organized by state.',
+      'Many photographs are associated with the state in which the photograph was taken. Select a state name to see a list of photographs organized by state.',
     help: 'Nullam id dolor id nibh ultricies vehicula ut id elit.',
     mapDirections: 'Select a state from the map or list below to see photograghs organized by state.',
     selectPrompt: 'Select a State',
     disclaimer:
       'The state map and list below are organized loosely by BIA regional office jurisdictions for readability. In reality, Eastern Oklahoma Region, Navajo Region, the border between the Northwestern and Rocky Mountain regions as well as many other other jurisdictional borders do not correspond U.S. state borders.',
   },
+  state: {
+    // * Interpolated string ${STATE}
+    intro:
+      'These photographs are associated with the state of ${STATE}. Use the filters below to narrow down this list by tribal nation and/or topic. Select an image to see it and get more information',
+  },
   topics: {
     title: 'Topics',
     intro:
       'Photographs are organized around common topics to help you discover digitized photos in this record group. Topics range from photos related to BIA history to Native American culture.',
-    help: 'This is content for the intro help popover.',
+    help: 'Topics associated with photographs were identified by citizen archivists.',
     selectPrompt: 'Select a Topic',
+  },
+  topic: {
+    // * Interpolated string ${TOPIC}
+    intro:
+      'This listing displays all of the photographs in this record group identified as relating to ${TOPIC}. Use the filters below to narrow down this list by tribal nation and/or state.',
+    portraitIntro:
+      'This listing displays all of the photographs in this record group identified as portraits. Use the filters below to narrow down this list by tribal nation and/or state.',
   },
   tribalNations: {
     title: 'Tribal Nations',
-    help: 'This is content for the intro help popover.',
+    intro: "Select the first letter of a Tribal Nation's name",
+    help:
+      'Tribal nations associated with photographs are based on either the known tribal nation or presumed tribal nation from the available metadata. Names used generally follow each tribal nation’s preferred name, but many tribes have variant names which can be searched upon as well.',
+  },
+  tribalNation: {
+    // * Interpolated string ${TRIBE}
+    intro:
+      'The photographs below represent the ${TRIBE}. Use the filters below to narrow down this list by topic and/or state. Select an image to view it larger and get more information.',
   },
   footer: {
     summary:
@@ -56,17 +75,17 @@ module.exports = {
   },
   home: {
     intro: {
-      title: 'Explore over 18,000+ Bureau of Indian Affairs (BIA) Photograph Records',
-      text: 'This finding aid is your guide to all of the photography currently digitized in this record group.',
+      title: 'Explore over 18,000 Photographs from the Bureau of Indian Affairs (Record Group 75)',
+      text: 'Use this finding aid to explore digitized photographs from from this record group',
       cta: 'Learn more about this project',
     },
     tribalNationExplorer: {
-      title: 'Explore Tribal Nations ',
-      text: 'Explore the breakdown of topics in the BIA photograph record group across featured Tribal Nations.',
+      title: 'Explore Tribal Nations',
+      text: 'Explore featured Tribal Nations and the topic areas that they cover in the BIA photograph record group.',
     },
     photographExplorer: {
-      title: 'Explore Photographs of Famous Native Americans',
-      text: 'Discover photographs of Jim Thorpe, Chief Red Cloud, Jesse Cornplanter and other famous Native Americans.',
+      title: 'Explore Photographs of Notable Native Americans',
+      text: 'Explore selected photographs of notable Native Americans throughout history.',
     },
   },
 };

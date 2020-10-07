@@ -1,6 +1,8 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import qs from 'qs';
 
+import content from '#config/content';
+
 // components
 import * as Layout from '#components/shared/Layout';
 import Pagination from '#components/shared/Pagination';
@@ -79,7 +81,13 @@ const StateListing = ({ ...props }) => {
 
   return (
     <Fragment>
-      <ListingBillboard label="State" title={stateName} intro="Lorem Ipsum" items={states} slugPrefix="states" />
+      <ListingBillboard
+        label="State"
+        title={stateName}
+        intro={content.state.intro.replace('${STATE}', stateName)}
+        items={states}
+        slugPrefix="states"
+      />
       <Layout.Padding>
         <Layout.Wrapper>
           <Filters filters={filters} />

@@ -40,7 +40,7 @@ const ResultsStyles = styled(Results)`
   }
 `;
 
-const TribalNationModal = ({ open, setOpen }) => {
+const NotableNativeAmericanModal = ({ open, setOpen }) => {
   const fidelity = 200;
   const history = useHistory();
 
@@ -71,4 +71,4 @@ const TribalNationModal = ({ open, setOpen }) => {
   );
 };
 
-export default TribalNationModal;
+export default NotableNativeAmericanModal;

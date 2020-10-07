@@ -1,5 +1,9 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import qs from 'qs';
+import { Helmet } from 'react-helmet';
+
+// config
+import content from '#config/content';
 
 // components
 import * as Layout from '#components/shared/Layout';
@@ -76,9 +80,32 @@ const TopicListing = ({ ...props }) => {
     },
   ];
 
+  const description =
+    slug !== 'portraits' ? content.topic.intro.replace('${TOPIC}', topicName) : content.topic.portraitIntro;
+
   return (
     <Fragment>
-      <ListingBillboard label="Topic" intro="Lorem Ipsum" title={topicName} items={topics} slugPrefix="topics" />
+      <Helmet>
+        <title>{`Photograph Topic ${topicName} - Bureau Of Indian Affairs Photography Finding Aid`}</title>
+        <meta name="description" content={description}></meta>
+        <meta name="" content="" />
+        <meta
+          name="twitter:title"
+          content={`${content.states.title} - Bureau Of Indian Affairs Photography Finding Aid`}
+        />
+        <meta name="twitter:site" content="@FIXME" />
+        <meta name="twitter:card" content={'FIXME'} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={'FIXME'} />
+        <meta property="og:title" content={`${topicName} - Bureau Of Indian Affairs Photography Finding Aid`} />
+        <meta name="og:description" content={description} />
+        <meta property="og:site_name" content="FIXME" />
+        <meta property="og:url" content={window.location} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={'FIXME'} />
+      </Helmet>
+
+      <ListingBillboard label="Topic" intro={description} title={topicName} items={topics} slugPrefix="topics" />
       <Layout.Padding>
         <Layout.Wrapper>
           <Filters filters={filters} />

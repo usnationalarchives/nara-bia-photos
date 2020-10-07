@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { css, createGlobalStyle } from 'styled-components';
 import * as frontline from '#styles/frontline';
 
 import BackgroundStyles from '#styles/helpers/background';
@@ -44,6 +44,22 @@ const BaseStyles = createGlobalStyle`
   ${ReactResponsiveModalStyles}
   ${AddThis}
 
+
+  .screenreader {
+    ${frontline.fl_visuallyHidden}
+  }
+
+  .result_link {
+    ${frontline.fl_static(css`
+      color: ${props => props.theme.colors.darkGrey};
+      text-decoration: none;
+    `)}
+
+    ${frontline.fl_attention(css`
+      color: ${props => props.theme.colors.darkGrey};
+      text-decoration: underline;
+    `)}
+  }
   @media print {
     * {
       background: transparent !important;
@@ -89,10 +105,6 @@ const BaseStyles = createGlobalStyle`
     }
 
     @page { margin: 0.75in 0.75in 1in; }
-  }
-
-  .screenreader {
-    ${frontline.fl_visuallyHidden}
   }
 
 `;
