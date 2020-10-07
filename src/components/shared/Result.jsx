@@ -45,7 +45,7 @@ const ImageContainer = styled.div`
 `;
 
 const Title = styled.span`
-  color: ${props => props.theme.colors.white};
+  color: currentColor;
   display: block;
   font-size: 0.8em;
   margin-top: ${props => props.scale + 10}px;
@@ -66,7 +66,7 @@ const Record = ({ record, scale }) => {
       >
         <div className="hover"></div>
       </ImageContainer>
-      <CoverLink to={`/${record.slug}`}>
+      <CoverLink className="result_link" to={`/${record.slug}`}>
         <Title scale={scale}>{record.title}</Title>
       </CoverLink>
     </Root>

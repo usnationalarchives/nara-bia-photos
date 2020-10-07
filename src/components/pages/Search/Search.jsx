@@ -1,7 +1,7 @@
 // libraries
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import qs from 'qs';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Helmet } from 'react-helmet';
 
 // components
@@ -24,6 +24,9 @@ import useSearchHistory from '#hooks/useSearchHistory';
 import fullTextSearch from '#modules/fullTextSearch';
 import { states as statesConstant, topics as topicsConstant, tribalNations } from '#modules/constants';
 
+// styles
+import * as frontline from '#styles/frontline';
+
 // Lazy Loads
 const Results = lazy(() => import('#components/shared/Results'));
 
@@ -31,6 +34,20 @@ const Begin = styled.p`
   padding: 2rem 0 2rem;
   @media all and ${props => props.theme.breakpoints.medium} {
     padding: 3rem 0 4rem;
+  }
+`;
+
+const ResultsStyles = styled(Results)`
+  .result_link {
+    ${frontline.fl_static(css`
+      color: ${props => props.theme.colors.darkGrey};
+      text-decoration: none;
+    `)}
+
+    ${frontline.fl_attention(css`
+      color: ${props => props.theme.colors.darkGrey};
+      text-decoration: underline;
+    `)}
   }
 `;
 
@@ -148,7 +165,7 @@ const Search = ({ ...props }) => {
                   <FidelitySlider update={setFidelity}></FidelitySlider>
                 </ResultsHeaderWrapper>
 
-                <Results results={results} data={data} fidelity={fidelity} />
+                <ResultsStyles results={results} data={data} fidelity={fidelity} />
 
                 <Pagination
                   style={{ marginBottom: '80px' }}

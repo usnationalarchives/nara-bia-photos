@@ -26,6 +26,20 @@ import Results from '#components/shared/Results';
 // styles
 import * as frontline from '#styles/frontline';
 
+const ResultsStyles = styled(Results)`
+  .result_link {
+    ${frontline.fl_static(css`
+      color: #fff;
+      text-decoration: none;
+    `)}
+
+    ${frontline.fl_attention(css`
+      color: #fff;
+      text-decoration: underline;
+    `)}
+  }
+`;
+
 const TribalNationModal = ({ open, setOpen }) => {
   const fidelity = 200;
   const history = useHistory();
@@ -35,13 +49,6 @@ const TribalNationModal = ({ open, setOpen }) => {
       naIds: notableNativeAmericansNaids,
     },
   });
-
-  console.log('notable', results);
-
-  // const { page, setPage, prevHandler, nextHandler, prevPage, nextPage, totalPages, total, data } = usePagination({
-  //   items: results,
-  //   perPage: fidelity < 180 ? 60 : 30,
-  // });
 
   return (
     <Modal
@@ -57,7 +64,7 @@ const TribalNationModal = ({ open, setOpen }) => {
       <Layout.Padding>
         <Layout.Wrapper medium>
           <Text.H3 style={{ color: '#fff' }}>{'Explore Photographs of Famous Native Americans'}</Text.H3>
-          {results.length > 0 && <Results singleRow results={results} data={results} fidelity={fidelity} />}
+          {results.length > 0 && <ResultsStyles singleRow results={results} data={results} fidelity={fidelity} />}
         </Layout.Wrapper>
       </Layout.Padding>
     </Modal>

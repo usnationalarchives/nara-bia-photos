@@ -33,9 +33,9 @@ const Item = styled.li`
   }
 `;
 
-const Results = ({ results, data, fidelity, singleRow }) => {
+const Results = ({ className, results, data, fidelity, singleRow }) => {
   return (
-    <ResultsStyles>
+    <ResultsStyles className={className}>
       {data.map(record => (
         <Item singleRow={singleRow} key={record.slug} data={data} record={record} fidelity={fidelity}>
           <Result key={record.naId} record={record} scale={fidelity} />
