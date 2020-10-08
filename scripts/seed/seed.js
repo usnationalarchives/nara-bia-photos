@@ -72,7 +72,7 @@ const createTribalNationsCsv = async () => {
 };
 
 const run = async () => {
-  // await createRecordsCsv();
+  await createRecordsCsv();
   await addRecordsFromFileUnits();
   await createTribalNationsCsv();
 };

@@ -116,12 +116,12 @@ module.exports = {
   },
 
   tribes: result => {
-    const tribes = result.description.item.organizationalReferenceArray;
+    const tribes = (result.description.item.organizationalReferenceArray || {}).organizationName;
 
     if (Array.isArray(tribes)) {
-      return tribes.map(tribe => tribe.organizationName.termName).join('||');
+      return tribes.map(tribe => tribe.termName).join('||');
     } else if (tribes) {
-      return tribes.organizationName.termName;
+      return tribes.termName;
     } else {
       return null;
     }
