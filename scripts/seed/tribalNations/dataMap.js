@@ -15,4 +15,16 @@ module.exports = {
     let slugPart = parameterize(name);
     return `${slugPart}-${result.naId}`;
   },
+
+  variantNames: result => {
+    const variantNames = result.authority.organization.organizationNameArray.organizationName.variantNameArray;
+
+    if (Array.isArray(variantNames)) {
+      return variantNames.map(name => name.variantOrganizationName.name).join('||');
+    } else if (variantNames) {
+      return variantNames.variantOrganizationName.name;
+    } else {
+      return null;
+    }
+  },
 };

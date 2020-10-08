@@ -8,6 +8,7 @@ const mapRow = result => {
     searchUUID: uuidv1(),
     naId: dataMap.naId(result),
     name: dataMap.name(result),
+    variantNames: dataMap.variantNames(result),
     slug: dataMap.slug(result),
   };
 };
@@ -20,6 +21,7 @@ module.exports = {
         { id: 'searchUUID', title: 'searchUUID' },
         { id: 'naId', title: 'naId' },
         { id: 'name', title: 'name' },
+        { id: 'variantNames', title: 'variantNames' },
         { id: 'slug', title: 'slug' },
       ],
       append: options.append || false,

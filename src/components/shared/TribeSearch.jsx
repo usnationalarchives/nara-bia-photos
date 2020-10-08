@@ -35,6 +35,7 @@ const TribeSearch = ({ tribalNations }) => {
   const index = elasticlunr(function () {
     this.setRef('searchUUID');
     this.addField('name');
+    this.addField('variantNames');
     this.addField('naId');
 
     tribalNations.forEach(doc => {
