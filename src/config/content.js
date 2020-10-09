@@ -3,7 +3,8 @@ module.exports = {
     title: 'States',
     intro:
       'Many photographs are associated with the state in which the photograph was taken. Select a state name to see a list of photographs organized by state.',
-    help: 'Nullam id dolor id nibh ultricies vehicula ut id elit.',
+    help:
+      'States associated with photographs are based on either the known location or presumed location from the available metadata.',
     mapDirections: 'Select a state from the map or list below to see photograghs organized by state.',
     selectPrompt: 'Select a State',
     disclaimer:
