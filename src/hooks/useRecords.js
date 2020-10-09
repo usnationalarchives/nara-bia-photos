@@ -1,5 +1,5 @@
 import { useState, useEffect, useLayoutEffect, useCallback } from 'react';
-import { records, dimensions, actions } from '../modules/data';
+import { records, dimensions, groups, actions } from '../modules/data';
 
 /**
  * This is a React hook used to interface with the records in the finding aid.
@@ -9,6 +9,7 @@ import { records, dimensions, actions } from '../modules/data';
  *
  * @example
  * const { results, totalCount } = useRecords({
+ *   purgeDimensions: true,
  *   facets: {
  *     naIds: [1, 2, 3],
  *     location: "A Location",
@@ -25,7 +26,11 @@ const useRecords = (options = {}) => {
   const [results, setResults] = useState([]);
   const { facets = {} } = options;
 
-  console.log(facets);
+  // Purge the current applied dimensions
+  // Used for views with subsequent useRecord hook calls
+  if (options.purgeDimensions) {
+    actions.disposeAllDimensions();
+  }
 
   const { filterByValues, filterByRange, filterByExact } = actions;
   const {
@@ -63,23 +68,14 @@ const useRecords = (options = {}) => {
     setResults(records.allFiltered());
 
     // dispose all filters when unmounting
-    return () => {
-      recordsByNaId.dispose();
-      recordsBySearchUUID.dispose();
-      recordsByAspectRatio.dispose();
-      recordsByTag.dispose();
-      recordsByTribe.dispose();
-      recordsByState.dispose();
-      recordsByParentSeriesTitle.dispose();
-      recordsByParentSeriesNaId.dispose();
-    };
+    return actions.disposeAllDimensions();
 
     // We are only looking for changes to the serialized options string to re-run.
     // Ignore other dependencies
     // eslint-disable-next-line
   }, [serializedOptions]);
 
-  return [results, dimensions, hasActiveFilters];
+  return [results, dimensions, hasActiveFilters, actions, groups];
 };
 
 export default useRecords;

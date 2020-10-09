@@ -173,7 +173,7 @@ const Filter = ({ filter, isActive, toggle, id }) => {
                       <Fragment>
                         {' '}
                         ({item.value}
-                        <Screenreader>{pluralize('result', item.value)}</Screenreader>)
+                        <Screenreader> {pluralize('result', item.value)}</Screenreader>)
                       </Fragment>
                     )}
                   </Label>

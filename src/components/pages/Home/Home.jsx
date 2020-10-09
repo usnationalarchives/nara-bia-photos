@@ -26,6 +26,7 @@ import * as Layout from '#components/shared/Layout';
 import ImageSquare from '#components/shared/ImageSquare';
 import FidelitySlider from '#components/shared/FidelitySlider';
 import RecordModal from '#components/shared/RecordModal';
+import TribalNationModal from '#components/shared/TribalNationModal';
 import NotableNativeAmericanModal from '#components/shared/NotableNativeAmericanModal';
 
 // config
@@ -250,7 +251,7 @@ const Home = () => {
   let inverseGridSize = gridSize * -1 + max + min;
   let size = 100 / ((inverseGridSize / max) * max);
 
-  const [results] = useRecords({
+  const [results, actions] = useRecords({
     facets: {
       naIds: homepageGridThumbnailNaids,
     },
@@ -303,9 +304,13 @@ const Home = () => {
             <ExplorePromoStyled1
               $columns={inverseGridSize}
               scheme="yellow"
+              onClick={() => {
+                setTribalNationModalOpen(true);
+              }}
               title={content.home.tribalNationExplorer.title}
               text={content.home.tribalNationExplorer.text}
             ></ExplorePromoStyled1>
+            <TribalNationModal open={tribalNationModalOpen} setOpen={setTribalNationModalOpen} />
             <ExplorePromoStyled2
               $columns={inverseGridSize}
               onClick={() => {

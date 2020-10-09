@@ -79,6 +79,17 @@ const groups = {
   tribes,
 };
 
+const disposeAllDimensions = () => {
+  recordsByNaId.dispose();
+  recordsBySearchUUID.dispose();
+  recordsByAspectRatio.dispose();
+  recordsByTag.dispose();
+  recordsByTribe.dispose();
+  recordsByState.dispose();
+  recordsByParentSeriesTitle.dispose();
+  recordsByParentSeriesNaId.dispose();
+};
+
 // Filter results by column on a single value
 const filterByValue = (dimension, value) => {
   if (dimension.hasCurrentFilter()) {
@@ -129,6 +140,7 @@ const actions = {
   filterByValues,
   filterByRange,
   filterByExact,
+  disposeAllDimensions,
 };
 
 export { records, dimensions, groups, actions };
