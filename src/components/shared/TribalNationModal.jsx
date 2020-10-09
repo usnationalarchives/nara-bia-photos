@@ -59,6 +59,7 @@ const TopicChartItem = styled.li`
     position: absolute;
     right: 0;
     width: 1px;
+    z-index: 2;
   }
 
   button {
@@ -77,6 +78,7 @@ const TopicChartItem = styled.li`
 
   span {
     display: block;
+    white-space: nowrap;
     ${props =>
       props.percentage <= 10 &&
       css`
@@ -104,12 +106,15 @@ const TribalNationModal = ({ open, setOpen }) => {
     .group()
     .top(10)
     .filter(i => i.key && tribalNations.map(i => i.name).includes(i.key));
-  const [activeTribalNation, setActiveTribalNation] = useState(groups[0].key);
-  ReactTooltip.rebuild();
+  const [activeTribalNation, setActiveTribalNation] = useState(null);
 
   useEffect(() => {
     ReactTooltip.rebuild();
-  }, [activeTribalNation, open]);
+  }, [activeTribalNation]);
+
+  useEffect(() => {
+    setActiveTribalNation(groups[0].key);
+  }, []);
 
   // Gets the records associated withe the active Tribal Nation
   const [results, dimensions, h, a, grps] = useRecords({
@@ -173,13 +178,17 @@ const TribalNationModal = ({ open, setOpen }) => {
 
   return (
     <>
-      <ReactTooltip className="tip" />
+      <ReactTooltip className="tip" effect="solid" />
+
       <Modal
         classNames={{
           overlay: 'react-responsive-modal-overlay--light',
           modal: 'customModal',
         }}
         animationDuration={300}
+        onAnimationEnd={() => {
+          ReactTooltip.rebuild();
+        }}
         closeIcon={<CrossIcon width={30} fill="#000" />}
         showCloseIcon={true}
         open={open}
@@ -222,7 +231,7 @@ const TribalNationModal = ({ open, setOpen }) => {
                   </p>
                 </div>
                 <div>
-                  <label for="tribal_nation">Select a featured Tribal Nation</label>
+                  <label htmlFor="tribal_nation">Select a featured Tribal Nation</label>
                   <Select
                     style={{ width: '100%', marginTop: '15px' }}
                     id="tribal_nation"
@@ -252,6 +261,7 @@ const TribalNationModal = ({ open, setOpen }) => {
                       key={topic.name}
                       percentage={topic.percentage}
                       color={topic.color}
+                      // data-for="tribalNationModalTooltip"
                       data-tip={topic.percentage <= 10 ? `${topic.name} ${topic.count}` : null}
                     >
                       <button
@@ -285,7 +295,9 @@ const TribalNationModal = ({ open, setOpen }) => {
                   outline={false}
                   onClick={() => {
                     setOpen(false);
-                    history.push(`/tribal-nations/${tribalNation.slug}`);
+                    setTimeout(() => {
+                      history.push(`/tribal-nations/${tribalNation.slug}`);
+                    }, 500);
                   }}
                 >
                   View all {results.length} photos
