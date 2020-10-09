@@ -128,22 +128,12 @@ module.exports = {
   },
 
   states: result => {
-    const geoReferences = result.description.item.geographicReferenceArray;
-
-    const terms = termName => {
-      if (Array.isArray(termName)) {
-        return termName.join('||');
-      } else if (termName) {
-        return termName;
-      } else {
-        return null;
-      }
-    };
+    const geoReferences = (result.description.item.geographicReferenceArray || {}).geographicPlaceName;
 
     if (Array.isArray(geoReferences)) {
-      return geoReferences.map(geoReference => terms(geoReference.geographicPlaceName.termName)).join('||');
+      return geoReferences.map(geoReference => geoReference.termName).join('||');
     } else if (geoReferences) {
-      return terms(geoReferences.geographicPlaceName.termName);
+      return geoReferences.termName;
     } else {
       return null;
     }
