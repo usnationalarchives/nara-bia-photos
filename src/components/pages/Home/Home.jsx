@@ -7,6 +7,7 @@ import IPS from 'img-placeholder-src';
 import { Helmet } from 'react-helmet';
 import { CarouselProvider } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
+import ReactTooltip from 'react-tooltip';
 
 import { homepageGridThumbnailNaids } from '#modules/constants';
 import iiifImage from '#modules/iiifImage';
@@ -243,7 +244,7 @@ const Home = () => {
 
   const [gridSize, setGridSize] = useState(6);
   const [recordModalOpen, setRecordModalOpen] = useState(false);
-  const [tribalNationModalOpen, setTribalNationModalOpen] = useState(false);
+  const [tribalNationModalOpen, setTribalNationModalOpen] = useState(true);
   const [notableNativeAmericanModalOpen, setNotableNativeAmericanModalOpen] = useState(false);
   const [imageIndex, setImageIndex] = useState(null);
 
@@ -305,6 +306,7 @@ const Home = () => {
               $columns={inverseGridSize}
               scheme="yellow"
               onClick={() => {
+                ReactTooltip.rebuild();
                 setTribalNationModalOpen(true);
               }}
               title={content.home.tribalNationExplorer.title}

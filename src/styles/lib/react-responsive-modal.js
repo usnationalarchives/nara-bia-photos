@@ -16,6 +16,9 @@ const ReactResponsiveModalStyles = css`
     }
     &-overlay {
       background: ${props => tinycolor(props.theme.colors.darkGrey).setAlpha(0.96).toRgbString()};
+      &--light {
+        background: ${props => tinycolor(props.theme.colors.white).setAlpha(0.96).toRgbString()};
+      }
     }
   }
 `;

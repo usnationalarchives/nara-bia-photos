@@ -4,6 +4,9 @@ import styled, { css } from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { countBy, concat, orderBy, fromPairs, uniqBy } from 'lodash';
 import { Link } from 'react-router-dom';
+import chroma, { scale } from 'chroma-js';
+import tinycolor from 'tinycolor2';
+import ReactTooltip from 'react-tooltip';
 
 import { ReactComponent as CrossIcon } from '#assets/icons/cross.svg';
 
@@ -11,6 +14,9 @@ import { ReactComponent as CrossIcon } from '#assets/icons/cross.svg';
 import { tribalNations } from '#modules/constants';
 import { getRecordTopics } from '#modules/helpers';
 import { records, actions, groups } from '#modules/data';
+
+// helpers
+import { joinParams } from '#modules/helpers';
 
 // modules
 import iiifImage from '#modules/iiifImage';
@@ -22,9 +28,71 @@ import useRecords from '#hooks/useRecords';
 import * as Text from '#components/shared/Text';
 import * as Layout from '#components/shared/Layout';
 import Select from '#components/shared/Select';
+import Button from '#components/shared/Button';
 
 // styles
 import * as frontline from '#styles/frontline';
+import { colors } from '#styles/theme';
+
+const TopicChart = styled.ul`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-top: 3rem;
+`;
+
+const TopicChartItem = styled.li`
+  /* background-color: ${props => props.color}; */
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 ${props => props.percentage}%;
+  height: 100px;
+  overflow-x: hidden;
+  position: relative;
+  justify-content: center;
+
+  &:before {
+    background-color: #fff;
+    content: '';
+    height: 100%;
+    position: absolute;
+    right: 0;
+    width: 1px;
+  }
+
+  button {
+    background-color: ${props => props.color};
+    color: ${props => props => tinycolor.mostReadable(props.color, ['#000', '#fff', { level: 'AA', size: 'large' }])};
+    transition: background-color 0.3s ease;
+    width: 100%;
+
+    ${frontline.fl_static(css`
+      background-color: ${props => props.color};
+    `)}
+    ${frontline.fl_attention(css`
+      background-color: ${props => tinycolor(props.color).darken(15).toString()};
+    `)}
+  }
+
+  span {
+    display: block;
+    ${props =>
+      props.percentage <= 10 &&
+      css`
+        opacity: 0.3;
+      `}
+  }
+
+  span:first-child {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  span:last-child {
+    font-size: 22px;
+    font-weight: normal;
+  }
+`;
 
 const TribalNationModal = ({ open, setOpen }) => {
   const history = useHistory();
@@ -37,10 +105,11 @@ const TribalNationModal = ({ open, setOpen }) => {
     .top(10)
     .filter(i => i.key && tribalNations.map(i => i.name).includes(i.key));
   const [activeTribalNation, setActiveTribalNation] = useState(groups[0].key);
+  ReactTooltip.rebuild();
 
   useEffect(() => {
-    // setActiveTribalNation(groups[0].key);
-  }, []);
+    ReactTooltip.rebuild();
+  }, [activeTribalNation, open]);
 
   // Gets the records associated withe the active Tribal Nation
   const [results, dimensions, h, a, grps] = useRecords({
@@ -71,90 +140,162 @@ const TribalNationModal = ({ open, setOpen }) => {
   // containing the topic data and it's count
   let calculatedTopics = uniqBy(topicsArray, t => t.name).map(topic => {
     topic.count = topicCount[topic.name];
+    topic.percentage = (topic.count / topicsArray.length) * 100;
     return topic;
   });
+  let smallOccuranceTopic = calculatedTopics.filter(topic => {
+    return topic.percentage < 2;
+  });
+  // calculatedTopics = calculatedTopics.filter(topic => {
+  //   return topic.percentage >= 2;
+  // });
+  // calculatedTopics = calculatedTopics.map(topic => {
+  //   topic.percentage = (topic.count / topicsArray.length) * 100;
+  // });
   // order the topic by their count
-  const orderedTopics = orderBy(
+  let orderedTopics = orderBy(
     calculatedTopics,
     x => {
       return x['count'];
     },
     'desc'
   );
-
-  console.log('orderedTopics', orderedTopics);
-  console.log('activeTribalNation', activeTribalNation);
+  const colorScale = chroma
+    .scale([colors.blue, '#BBCAE4', '9BD4CF', '#376462'])
+    .mode('lab')
+    .colors(orderedTopics.length);
+  orderedTopics = orderedTopics.map((topic, i) => {
+    topic.color = colorScale[i];
+    return topic;
+  });
 
   const tribalNation = tribalNations.filter(tn => tn.name === activeTribalNation)[0];
-  console.log('tribalNation', tribalNation);
 
   return (
-    <Modal
-      animationDuration={300}
-      closeIcon={<CrossIcon width={30} fill="#fff" />}
-      showCloseIcon={true}
-      open={open}
-      onClose={() => {
-        setOpen(false);
-      }}
-      center
-    >
-      <Layout.Padding style={{ color: '#fff' }}>
-        <Layout.Wrapper medium>
-          <Text.H3 style={{ color: '#fff' }}>{'Feature Tribal Nation'}</Text.H3>
-          {!!activeTribalNation && (
-            <>
-              <Text.H2 style={{ color: '#fff' }}>{tribalNation.name}</Text.H2>
-              <label>Select a featured Tribal Nation</label>
-              <Select
-                style={{ width: '250px' }}
-                onChange={event => {
-                  setActiveTribalNation(event.target.value);
-                }}
-              >
-                {groups.map(tribalNation => (
-                  <option value={tribalNation.key} key={tribalNation.key}>
-                    {tribalNation.key}
-                  </option>
-                ))}
-              </Select>
-              <p>
-                The chart below shows the breakdown of all photos known to be associated with the {activeTribalNation}.
-                Click on a topic to see related photos or select one of the other 10 featured Tribal Nations from the
-                menu on the right.{' '}
-              </p>
-              <p>
-                Interested in viewing all Tribal Nations? Visit the{' '}
-                <a
-                  href={`tribal-nations/${tribalNation.slug}`}
-                  onClick={() => {
-                    setOpen(false);
-                    // A timeout is required so the the scroll prevention is
-                    // removeed prior to navigating to a new route. The timeout
-                    // value is set to after the modals `animationDuration` prop
-                    setTimeout(() => {
-                      history.push(`tribal-nations/${tribalNation.slug}`);
-                    }, 400);
-                  }}
-                >
-                  Tribal Nations page
-                </a>
-                .
-              </p>
-              <ul>
+    <>
+      <ReactTooltip className="tip" />
+      <Modal
+        classNames={{
+          overlay: 'react-responsive-modal-overlay--light',
+          modal: 'customModal',
+        }}
+        animationDuration={300}
+        closeIcon={<CrossIcon width={30} fill="#000" />}
+        showCloseIcon={true}
+        open={open}
+        onClose={() => {
+          setOpen(false);
+        }}
+        center
+      >
+        <Layout.Padding style={{ color: '#000', marginTop: '5rem' }}>
+          <Layout.Wrapper large>
+            <Text.H4 style={{ color: '#000', textTransform: 'uppercase' }}>{'Feature Tribal Nation'}</Text.H4>
+            {!!activeTribalNation && (
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <div style={{ paddingRight: '50px' }}>
+                  <Text.H2 style={{ color: '#000', marginTop: '1rem', marginBottom: '1rem' }}>
+                    {tribalNation.name}
+                  </Text.H2>
+                  <p style={{ margin: '1.2rem 0' }}>
+                    The chart below shows the breakdown of all photos known to be associated with the{' '}
+                    {activeTribalNation}. Click on a topic to see related photos or select one of the other 10 featured
+                    Tribal Nations from the menu on the right.{' '}
+                  </p>
+                  <p>
+                    Interested in viewing all Tribal Nations? Visit the{' '}
+                    <a
+                      href={`/tribal-nations/${tribalNation.slug}`}
+                      onClick={() => {
+                        setOpen(false);
+                        // A timeout is required so the the scroll prevention is
+                        // removeed prior to navigating to a new route. The timeout
+                        // value is set to after the modals `animationDuration` prop
+                        setTimeout(() => {
+                          history.push(`/tribal-nations/${tribalNation.slug}`);
+                        }, 400);
+                      }}
+                    >
+                      Tribal Nations page
+                    </a>
+                    .
+                  </p>
+                </div>
+                <div>
+                  <label for="tribal_nation">Select a featured Tribal Nation</label>
+                  <Select
+                    style={{ width: '100%', marginTop: '15px' }}
+                    id="tribal_nation"
+                    name="tribal_nation"
+                    onChange={event => {
+                      setActiveTribalNation(event.target.value);
+                    }}
+                  >
+                    {groups.map(tribalNation => (
+                      <option value={tribalNation.key} key={tribalNation.key}>
+                        {tribalNation.key}
+                      </option>
+                    ))}
+                  </Select>
+                </div>
+              </div>
+            )}
+          </Layout.Wrapper>
+        </Layout.Padding>
+        {!!activeTribalNation && (
+          <Layout.Padding style={{ color: '#000' }}>
+            <Layout.Wrapper large>
+              <TopicChart>
                 {orderedTopics.map(topic => {
                   return (
-                    <li key={topic.name}>
-                      {topic.name} {topic.count}
-                    </li>
+                    <TopicChartItem
+                      key={topic.name}
+                      percentage={topic.percentage}
+                      color={topic.color}
+                      data-tip={topic.percentage <= 10 ? `${topic.name} ${topic.count}` : null}
+                    >
+                      <button
+                        style={{
+                          border: 'none',
+                          outline: 'none',
+                          paddingLeft: '15px',
+                          height: '100%',
+                          textAlign: 'left',
+                        }}
+                        onClick={() => {
+                          setOpen(false);
+                          // A timeout is required so the the scroll prevention is
+                          // removeed prior to navigating to a new route. The timeout
+                          // value is set to after the modals `animationDuration` prop
+                          setTimeout(() => {
+                            history.push(`/tribal-nations/${tribalNation.slug}?${joinParams('topics', [topic.name])}`);
+                          }, 400);
+                        }}
+                      >
+                        <span>{topic.name}</span>
+                        <span>{topic.count}</span>
+                      </button>
+                    </TopicChartItem>
                   );
                 })}
-              </ul>
-            </>
-          )}
-        </Layout.Wrapper>
-      </Layout.Padding>
-    </Modal>
+              </TopicChart>
+              <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+                <Button
+                  scheme="green"
+                  outline={false}
+                  onClick={() => {
+                    setOpen(false);
+                    history.push(`/tribal-nations/${tribalNation.slug}`);
+                  }}
+                >
+                  View all {results.length} photos
+                </Button>
+              </div>
+            </Layout.Wrapper>
+          </Layout.Padding>
+        )}
+      </Modal>
+    </>
   );
 };
 

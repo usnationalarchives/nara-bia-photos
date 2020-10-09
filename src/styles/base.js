@@ -49,6 +49,10 @@ const BaseStyles = createGlobalStyle`
     ${frontline.fl_visuallyHidden}
   }
 
+  .tip {
+      z-index: 1001 !important;
+  }
+
   .result_link {
     ${frontline.fl_static(css`
       color: ${props => props.theme.colors.darkGrey};

@@ -26,6 +26,7 @@ export const layout = {
   maxWidth: '1200px',
   maxWidthNarrow: '600px',
   maxWidthMedium: '900px',
+  maxWidthLarge: '1100px',
   maxWidthWide: '1400px',
   maxWidthFull: '1700px',
   minPadding: '15px',

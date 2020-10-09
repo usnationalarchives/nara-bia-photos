@@ -75,14 +75,6 @@ const Search = ({ ...props }) => {
   const [results, dimensions, hasActiveFilters] = useRecords({
     facets: { searchUUIDs, tribes, topics, states },
   });
-  console.log(
-    tribes,
-    results,
-    dimensions.recordsByTribe
-      .group()
-      .top(10)
-      .filter(i => i.key && tribalNations.map(i => i.name).includes(i.key))
-  );
 
   useSearchHistory({
     query: query,

@@ -43,6 +43,12 @@ export const Wrapper = styled.div`
     `};
 
   ${props =>
+    props.large &&
+    css`
+      max-width: ${props => props.theme.layout.maxWidthLarge} !important;
+    `};
+
+  ${props =>
     props.narrow &&
     css`
       max-width: ${props => props.theme.layout.maxWidthNarrow} !important;

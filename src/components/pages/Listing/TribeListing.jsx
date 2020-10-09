@@ -113,16 +113,21 @@ const TribeListing = ({ ...props }) => {
         superTitle="Tribal Nation"
         alignment="left"
       >
-        <TribalNationMap activeStates={stateFilters.map(s => s.key)} />
-        <p style={{ color: '#fff' }}>
-          There are {stateFilters.length ? stateFilters[0].value : 0} photographs associated with this Tribal Nation
-          {stateFilters.length > 0 && (
-            <>
-              {' '}
-              across <Link to={`/states/${highlightedState.slug}`}>{highlightedState.name}</Link>
-            </>
-          )}
-        </p>
+        {!!stateFilters.length && (
+          <>
+            <TribalNationMap activeStates={stateFilters.map(s => s.key)} />
+
+            <p style={{ color: '#fff' }}>
+              There are {stateFilters.length ? stateFilters[0].value : 0} photographs associated with this Tribal Nation
+              {stateFilters.length > 0 && (
+                <>
+                  {' '}
+                  across <Link to={`/states/${highlightedState.slug}`}>{highlightedState.name}</Link>
+                </>
+              )}
+            </p>
+          </>
+        )}
       </TribeBillboard>
       <Layout.Padding>
         <Layout.Wrapper>
