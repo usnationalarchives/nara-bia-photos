@@ -53,164 +53,384 @@ const Grid = styled.div`
   /* grid-template-columns: repeat(5, 20vw [col-start]);
   grid-template-rows: 1fr repeat(6, 20vw); */
 
-  ${props =>
-    props.$columns === 4 &&
-    css`
-      grid-template-columns: repeat(4, ${props.$columnWidth}vw [col-start]);
-      grid-template-rows: repeat(7, ${props.$columnWidth}vw);
-    `}
-  ${props =>
-    props.$columns === 5 &&
-    css`
-      grid-template-columns: repeat(5, ${props.$columnWidth}vw [col-start]);
-      grid-template-rows: repeat(7, ${props.$columnWidth}vw);
-    `}
-  ${props =>
-    props.$columns === 6 &&
-    css`
-      grid-template-columns: repeat(6, ${props.$columnWidth}vw [col-start]);
-      grid-template-rows: repeat(9, ${props.$columnWidth}vw);
-    `}  
-  ${props =>
-    props.$columns === 7 &&
-    css`
-      grid-template-columns: repeat(7, ${props.$columnWidth}vw [col-start]);
-      grid-template-rows: repeat(10, ${props.$columnWidth}vw);
-    `}
-`;
+  grid-template-columns: repeat(3, 33.333333vw [col-start]);
+  grid-template-rows: repeat(18, 33.333333vw); 
+
+  @media all and (min-width: 400px) {
+    grid-template-rows: repeat(13, 33.333333vw);
+  }    
+  
+  @media all and ${props => props.theme.breakpoints.medium} {
+    grid-template-rows: repeat(12, 33.333333vw);
+  }  
+
+  @media all and ${props => props.theme.breakpoints.full} {
+
+    ${props =>
+      props.$columns === 4 &&
+      css`
+        grid-template-columns: repeat(4, ${props.$columnWidth}vw [col-start]);
+        grid-template-rows: repeat(9, ${props.$columnWidth}vw);
+      `}
+    ${props =>
+      props.$columns === 5 &&
+      css`
+        grid-template-columns: repeat(5, ${props.$columnWidth}vw [col-start]);
+        grid-template-rows: repeat(10, ${props.$columnWidth}vw);
+      `}
+    ${props =>
+      props.$columns === 6 &&
+      css`
+        grid-template-columns: repeat(6, ${props.$columnWidth}vw [col-start]);
+        grid-template-rows: repeat(9, ${props.$columnWidth}vw);
+      `}  
+    ${props =>
+      props.$columns === 7 &&
+      css`
+        grid-template-columns: repeat(7, ${props.$columnWidth}vw [col-start]);
+        grid-template-rows: repeat(10, ${props.$columnWidth}vw);
+      `}
+    }  
+    
+    @media all and (min-width: 1200px) {
+
+    ${props =>
+      props.$columns === 4 &&
+      css`
+        grid-template-columns: repeat(4, ${props.$columnWidth}vw [col-start]);
+        grid-template-rows: repeat(7, ${props.$columnWidth}vw);
+      `}
+    ${props =>
+      props.$columns === 5 &&
+      css`
+        grid-template-columns: repeat(5, ${props.$columnWidth}vw [col-start]);
+        grid-template-rows: repeat(7, ${props.$columnWidth}vw);
+      `}
+    ${props =>
+      props.$columns === 6 &&
+      css`
+        grid-template-columns: repeat(6, ${props.$columnWidth}vw [col-start]);
+        grid-template-rows: repeat(9, ${props.$columnWidth}vw);
+      `}  
+    ${props =>
+      props.$columns === 7 &&
+      css`
+        grid-template-columns: repeat(7, ${props.$columnWidth}vw [col-start]);
+        grid-template-rows: repeat(10, ${props.$columnWidth}vw);
+      `}
+    }
+    
+  `;
 
 const IntroStyled = styled(Intro)`
   /* min-height: 40vw; */
-  grid-column-start: 2;
+  grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 1;
-  grid-row-end: 3;
-  z-index: 2;
-
-  ${props =>
-    props.$columns === 4 &&
-    css`
-      grid-column-start: 2;
-      grid-column-end: 4;
-      grid-row-start: 1;
-      grid-row-end: 3;
-    `}
-
-  ${props =>
-    props.$columns === 5 &&
-    css`
-      grid-column-start: 2;
-      grid-column-end: 4;
-      grid-row-start: 1;
-      grid-row-end: 3;
-    `}
-
-  ${props =>
-    props.$columns === 6 &&
-    css`
-      grid-column-start: 2;
-      grid-column-end: 5;
-      grid-row-start: 1;
-      grid-row-end: 3;
-    `}
-
-  ${props =>
-    props.$columns === 7 &&
-    css`
-      grid-column-start: 2;
-      grid-column-end: 5;
-      grid-row-start: [row-start];
-      grid-row-end: 4;
-    `}
-`;
-
-const ExplorePromoStyled1 = styled(ExplorePromo)`
-  grid-column-start: 3;
-  grid-column-end: 5;
-  grid-row-start: 4;
-  grid-row-end: 5;
-  min-height: 20vw;
-  z-index: 2;
-
-  ${props =>
-    props.$columns === 4 &&
-    css`
-      grid-column-start: 3;
-      grid-column-end: [column-end];
-      grid-row-start: 4;
-      grid-row-end: 5;
-    `}
-
-  ${props =>
-    props.$columns === 5 &&
-    css`
-      grid-column-start: 3;
-      grid-column-end: 5;
-      grid-row-start: 4;
-      grid-row-end: 5;
-    `}
-
-  ${props =>
-    props.$columns === 6 &&
-    css`
-      grid-column-start: 4;
-      grid-column-end: 6;
-      grid-row-start: 4;
-      grid-row-end: 6;
-    `}
-
-  ${props =>
-    props.$columns === 7 &&
-    css`
-      grid-column-start: 4;
-      grid-column-end: 7;
-      grid-row-start: 5;
-      grid-row-end: 7;
-    `}
-`;
-
-const ExplorePromoStyled2 = styled(ExplorePromo)`
-  grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 6;
   grid-row-end: 7;
   z-index: 2;
 
-  ${props =>
-    props.$columns === 4 &&
-    css`
-      grid-column-start: 1;
-      grid-column-end: 3;
-      grid-row-start: 6;
-      grid-row-end: 7;
-    `}
+  @media all and (min-width: 400px) {
+    grid-row-end: 6;
+  }  
 
-  ${props =>
-    props.$columns === 5 &&
-    css`
-      grid-column-start: 2;
-      grid-column-end: 4;
-      grid-row-start: 6;
-      grid-row-end: 7;
-    `}
+  @media all and (min-width: 460px) {
+    grid-row-end: 5;
+  }  
+  @media all and (min-width: 550px)  {
+    grid-row-end: 4;
+  }  
 
-  ${props =>
-    props.$columns === 6 &&
-    css`
-      grid-column-start: 2;
-      grid-column-end: 4;
-      grid-row-start: 7;
-      grid-row-end: 9;
-    `}
+  @media all and ${props => props.theme.breakpoints.medium} {
+    grid-row-end: 3;
+  }
 
-  ${props =>
-    props.$columns === 7 &&
-    css`
-      grid-column-start: 2;
-      grid-column-end: 5;
-      grid-row-start: 8;
-      grid-row-end: 10;
-    `}
+  @media all and ${props => props.theme.breakpoints.full} {
+    ${props =>
+      props.$columns === 4 &&
+      css`
+        grid-column-start: 2;
+        grid-column-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 3;
+      `}
+
+    ${props =>
+      props.$columns === 5 &&
+      css`
+        grid-column-start: 2;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 4;
+      `}
+
+    ${props =>
+      props.$columns === 6 &&
+      css`
+        grid-column-start: 2;
+        grid-column-end: 6;
+        grid-row-start: 1;
+        grid-row-end: 4;
+      `}
+
+    ${props =>
+      props.$columns === 7 &&
+      css`
+        grid-column-start: 2;
+        grid-column-end: 6;
+        grid-row-start: [row-start];
+        grid-row-end: 5;
+      `}
+  }
+
+  @media all and (min-width: 1200px) {
+    ${props =>
+      props.$columns === 4 &&
+      css`
+        grid-column-start: 2;
+        grid-column-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 3;
+      `}
+
+    ${props =>
+      props.$columns === 5 &&
+      css`
+        grid-column-start: 2;
+        grid-column-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 3;
+      `}
+
+    ${props =>
+      props.$columns === 6 &&
+      css`
+        grid-column-start: 2;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 3;
+      `}
+
+    ${props =>
+      props.$columns === 7 &&
+      css`
+        grid-column-start: 2;
+        grid-column-end: 5;
+        grid-row-start: [row-start];
+        grid-row-end: 4;
+      `}
+  }
+`;
+
+const ExplorePromoStyled1 = styled(ExplorePromo)`
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 9;
+  grid-row-end: 11;
+  min-height: 20vw;
+  z-index: 2;
+
+  @media all and (min-width: 400px) {
+    grid-row-start: 8;
+    grid-row-end: 10;
+  }  
+
+  @media all and (min-width: 460px) {
+    grid-row-start: 7;
+    grid-row-end: 9;
+  }  
+  @media all and (min-width: 550px)  {
+    grid-row-start: 6;
+    grid-row-end: 8;
+  }  
+
+  @media all and ${props => props.theme.breakpoints.medium} {
+    grid-row-start: 5;
+    grid-row-end: 7;
+  }
+
+  @media all and ${props => props.theme.breakpoints.full} {
+    ${props =>
+      props.$columns === 4 &&
+      css`
+        grid-column-start: 3;
+        grid-column-end: col-end;
+        grid-row-start: 4;
+        grid-row-end: 6;
+      `}
+
+    ${props =>
+      props.$columns === 5 &&
+      css`
+        grid-column-start: 3;
+        grid-column-end: 6;
+        grid-row-start: 5;
+        grid-row-end: 7;
+      `}
+
+    ${props =>
+      props.$columns === 6 &&
+      css`
+        grid-column-start: 3;
+        grid-column-end: 6;
+        grid-row-start: 5;
+        grid-row-end: 7;
+      `}
+
+    ${props =>
+      props.$columns === 7 &&
+      css`
+        grid-column-start: 4;
+        grid-column-end: 7;
+        grid-row-start: 6;
+        grid-row-end: 8;
+      `}
+    }
+  }
+
+  @media all and (min-width: 1200px) {
+
+    ${props =>
+      props.$columns === 4 &&
+      css`
+        grid-column-start: 3;
+        grid-column-end: col-end;
+        grid-row-start: 4;
+        grid-row-end: 5;
+      `}
+
+    ${props =>
+      props.$columns === 5 &&
+      css`
+        grid-column-start: 3;
+        grid-column-end: 5;
+        grid-row-start: 4;
+        grid-row-end: 5;
+      `}
+
+    ${props =>
+      props.$columns === 6 &&
+      css`
+        grid-column-start: 4;
+        grid-column-end: 6;
+        grid-row-start: 4;
+        grid-row-end: 6;
+      `}
+
+    ${props =>
+      props.$columns === 7 &&
+      css`
+        grid-column-start: 4;
+        grid-column-end: 7;
+        grid-row-start: 5;
+        grid-row-end: 7;
+      `}
+    }
+`;
+
+const ExplorePromoStyled2 = styled(ExplorePromo)`
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 14;
+  grid-row-end: 16;
+  z-index: 2;
+
+  @media all and (min-width: 400px) {
+    grid-row-start: 12;
+    grid-row-end: 14;
+  }  
+
+  @media all and (min-width: 460px) {
+    grid-row-start: 11;
+    grid-row-end: 13;
+  }  
+  @media all and (min-width: 550px)  {
+    grid-row-start: 10;
+    grid-row-end: 12;
+  }  
+
+  @media all and ${props => props.theme.breakpoints.medium} {
+    grid-row-start: 9;
+    grid-row-end: 11;
+  }
+
+  @media all and ${props => props.theme.breakpoints.full} {
+
+    ${props =>
+      props.$columns === 4 &&
+      css`
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 7;
+        grid-row-end: 9;
+      `}
+
+    ${props =>
+      props.$columns === 5 &&
+      css`
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 8;
+        grid-row-end: 10;
+      `}
+
+    ${props =>
+      props.$columns === 6 &&
+      css`
+        grid-column-start: 2;
+        grid-column-end: 5;
+        grid-row-start: 8;
+        grid-row-end: 10;
+      `}
+
+    ${props =>
+      props.$columns === 7 &&
+      css`
+        grid-column-start: 2;
+        grid-column-end: 5;
+        grid-row-start: 9;
+        grid-row-end: 11;
+      `}
+    }  
+
+  @media all and (min-width: 1200px) {
+
+    ${props =>
+      props.$columns === 4 &&
+      css`
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 6;
+        grid-row-end: 7;
+      `}
+
+    ${props =>
+      props.$columns === 5 &&
+      css`
+        grid-column-start: 2;
+        grid-column-end: 4;
+        grid-row-start: 6;
+        grid-row-end: 7;
+      `}
+
+    ${props =>
+      props.$columns === 6 &&
+      css`
+        grid-column-start: 2;
+        grid-column-end: 4;
+        grid-row-start: 7;
+        grid-row-end: 9;
+      `}
+
+    ${props =>
+      props.$columns === 7 &&
+      css`
+        grid-column-start: 2;
+        grid-column-end: 5;
+        grid-row-start: 8;
+        grid-row-end: 10;
+      `}
+    }
 `;
 
 const ImageSquareStyled = styled(ImageSquare)`
@@ -229,12 +449,17 @@ const Track = styled.div`
 
 const FidelitySliderStyled = styled(FidelitySlider)`
   background: rgba(0, 0, 0, 0.6);
+  display: none;
   margin-right: 30px;
   padding: 10px;
   position: relative;
   position: sticky;
   top: 30px;
   z-index: 3;
+
+  @media all and ${props => props.theme.breakpoints.full} {
+    display: flex;
+  }
 `;
 
 const Home = () => {
@@ -258,8 +483,7 @@ const Home = () => {
   });
 
   const shuffleItems = items => {
-    // return shuffle(items);
-    return items;
+    return shuffle(items);
   };
 
   const gridItems = useMemo(() => {

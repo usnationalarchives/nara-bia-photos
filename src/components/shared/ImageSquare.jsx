@@ -10,7 +10,11 @@ const ImageSquareStyled = styled(BackgroundImage)`
   background-color: ${props => tinycolor('#fff').darken(props.bkg).toString()};
   /* width: 20%; */
   position: relative;
-  width: ${props => `${props.size}vw`};
+  width: 33.3333333vw;
+
+  @media all and ${props => props.theme.breakpoints.full} {
+    width: ${props => `${props.size}vw`};
+  }
 `;
 
 const Wrapper = styled.div`
