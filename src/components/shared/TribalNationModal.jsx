@@ -148,15 +148,6 @@ const TribalNationModal = ({ open, setOpen }) => {
     topic.percentage = (topic.count / topicsArray.length) * 100;
     return topic;
   });
-  let smallOccuranceTopic = calculatedTopics.filter(topic => {
-    return topic.percentage < 2;
-  });
-  // calculatedTopics = calculatedTopics.filter(topic => {
-  //   return topic.percentage >= 2;
-  // });
-  // calculatedTopics = calculatedTopics.map(topic => {
-  //   topic.percentage = (topic.count / topicsArray.length) * 100;
-  // });
   // order the topic by their count
   let orderedTopics = orderBy(
     calculatedTopics,
@@ -165,10 +156,13 @@ const TribalNationModal = ({ open, setOpen }) => {
     },
     'desc'
   );
+  // Build a color array based on the number of topics
   const colorScale = chroma
     .scale([colors.blue, '#BBCAE4', '9BD4CF', '#376462'])
     .mode('lab')
     .colors(orderedTopics.length);
+  // add the corresponding color to the topic object
+  // used when rendering the visualization
   orderedTopics = orderedTopics.map((topic, i) => {
     topic.color = colorScale[i];
     return topic;
