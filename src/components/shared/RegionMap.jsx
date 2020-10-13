@@ -124,7 +124,6 @@ const MapChart = ({}) => {
                       }}
                       key={geo.rsmKey}
                       onClick={() => {
-                        console.log('click');
                         history.push(`/states/${getState(geo.id).slug}`);
                       }}
                       onMouseEnter={() => {
