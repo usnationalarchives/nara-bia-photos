@@ -20,10 +20,10 @@ const TribalNationMap = ({ activeStates }) => {
     let hue = '#ddd';
     const state = getState(geoID);
     if (state) {
-      const isActive = !activeStates.findIndex((element, index, arr) => {
+      const isActive = activeStates.findIndex((element, index, arr) => {
         return state.name === element;
       });
-      if (isActive) {
+      if (isActive >= 0) {
         hue = '#FAD980'; // active States are highlighted yellow
       } else {
         // Otherwise, their color is derived from the region they belong to
@@ -35,6 +35,7 @@ const TribalNationMap = ({ activeStates }) => {
     }
     return hue;
   };
+
   return (
     <div style={{ width: '100%' }}>
       <ComposableMap projection="geoAlbersUsa">
@@ -45,6 +46,7 @@ const TribalNationMap = ({ activeStates }) => {
             return (
               <>
                 {geographies.map(geo => {
+                  // console.log(geo);
                   const fill = getFill(geo.id);
                   const stroke = tinycolor('#253B5D').darken(10).toString();
                   return (
