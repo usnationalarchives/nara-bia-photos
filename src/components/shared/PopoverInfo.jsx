@@ -63,11 +63,11 @@ const PopoverInfo = ({ content }) => {
       containerStyle={{ overflow: 'visible', zIndex: '100' }}
     >
       <span style={{ position: 'relative' }}>
-        <StyledButton onClick={() => setOpen(!open)}>
-          <Text.Screenreader>Help</Text.Screenreader>
+        <StyledButton aria-describedby="billboarTooltip" onClick={() => setOpen(!open)}>
+          <Text.Screenreader>Toggle Help</Text.Screenreader>
           <Question />
         </StyledButton>
-        <span ref={contentEl}></span>
+        <span id="billboarTooltip" ref={contentEl} aria-live="assertive" role="tooltip"></span>
       </span>
     </Popover>
   );
