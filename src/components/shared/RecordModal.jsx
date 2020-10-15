@@ -80,8 +80,9 @@ const RecordModal = ({ activeIndex, items, open, setOpen, setImageIndex }) => {
   const history = useHistory();
   const carouselContext = useContext(CarouselContext);
   const [currentSlide, setCurrentSlide] = useState(carouselContext.state.currentSlide);
+  console.log(items, activeIndex);
 
-  if (!!activeIndex) {
+  if (activeIndex !== null) {
     var record = items[activeIndex];
     var tribalNation = tribalNations.filter(tribalNation => tribalNation.name === record.tribes)[0];
     var recordTopics = getRecordTopics(record.tags);
@@ -108,7 +109,7 @@ const RecordModal = ({ activeIndex, items, open, setOpen, setImageIndex }) => {
       }}
       center
     >
-      {items.length > 0 && !!activeIndex && (
+      {items.length > 0 && !!record && (
         <Layout.Padding>
           <Layout.Wrapper medium>
             <Text.H3 style={{ color: '#fff' }}>{record.title}</Text.H3>
