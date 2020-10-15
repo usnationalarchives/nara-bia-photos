@@ -57,7 +57,7 @@ const Filters = ({ filters }) => {
   });
 
   return (
-    <div>
+    <div role="region" aria-label="Filters">
       <H3 style={{ marginTop: '60px' }}>Filter Results</H3>
       <FiltersLayout ref={filterRef}>
         {filters.map((filter, i) => (

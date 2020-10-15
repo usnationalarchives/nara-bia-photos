@@ -35,7 +35,7 @@ const Item = styled.li`
 
 const Results = ({ className, results, data, fidelity, singleRow }) => {
   return (
-    <ResultsStyles className={className}>
+    <ResultsStyles className={className} role="main" aria-label="Results">
       {data.map(record => (
         <Item singleRow={singleRow} key={record.slug} data={data} record={record} fidelity={fidelity}>
           <Result key={record.naId} record={record} scale={fidelity} />

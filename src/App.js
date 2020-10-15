@@ -31,21 +31,23 @@ const App = () => {
         <Fragment>
           <Header />
 
-          <Suspense fallback={<PageLoader />}>
-            <Switch>
-              <Route path="/about" component={About} />
-              <Route path="/search" component={Search} />
-              <Route path="/prototype" component={Prototype} />
-              <Route path="/states" exact component={StateLanding} />
-              <Route path="/topics" exact component={TopicLanding} />
-              <Route path="/tribal-nations" exact component={TribeLanding} />
-              <Route path="/states/:slug" exact component={StateListing} />
-              <Route path="/topics/:slug" exact component={TopicListing} />
-              <Route path="/tribal-nations/:slug" exact component={TribeListing} />
-              <Route path="/:slug" component={Record} />
-              <Route path="/" component={Home} />
-            </Switch>
-          </Suspense>
+          <div aria-live="polite" aria-atomic="true">
+            <Suspense fallback={<PageLoader />}>
+              <Switch>
+                <Route path="/about" component={About} />
+                <Route path="/search" component={Search} />
+                <Route path="/prototype" component={Prototype} />
+                <Route path="/states" exact component={StateLanding} />
+                <Route path="/topics" exact component={TopicLanding} />
+                <Route path="/tribal-nations" exact component={TribeLanding} />
+                <Route path="/states/:slug" exact component={StateListing} />
+                <Route path="/topics/:slug" exact component={TopicListing} />
+                <Route path="/tribal-nations/:slug" exact component={TribeListing} />
+                <Route path="/:slug" component={Record} />
+                <Route path="/" component={Home} />
+              </Switch>
+            </Suspense>
+          </div>
 
           <Footer />
         </Fragment>
