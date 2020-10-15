@@ -84,8 +84,7 @@ const TribeList = ({ groupedTribes }) => {
           <SectionHeading>
             <Text.H2 id={section[0].toLowerCase()}>{section[0]}</Text.H2>{' '}
             <SectionMeta>
-              ({section[1].length} Tribal Nation
-              {section[1].length > 1 ? 's' : null})
+              ({section[1].length} Tribal {section[1].length > 1 ? 'Nations' : 'Nation'})
             </SectionMeta>
           </SectionHeading>
           <Items>
