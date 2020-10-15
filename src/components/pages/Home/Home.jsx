@@ -18,8 +18,9 @@ import { fl_absoluteFill } from '#styles/frontline';
 
 // components
 // page specific components
-import Intro from './Intro';
-import ExplorePromo from './ExplorePromo';
+import IntroStyled from './IntroStyled';
+import ExploreTribalNationsStyled from './ExploreTribalNationsStyled';
+import ExploreNativeAmericansStyled from './ExploreNativeAmericansStyled';
 // shared components
 import * as Text from '#components/shared/Text';
 import * as Layout from '#components/shared/Layout';
@@ -122,317 +123,6 @@ const Grid = styled.div`
     
   `;
 
-const IntroStyled = styled(Intro)`
-  /* min-height: 40vw; */
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 7;
-  z-index: 2;
-
-  @media all and (min-width: 400px) {
-    grid-row-end: 6;
-  }  
-
-  @media all and (min-width: 460px) {
-    grid-row-end: 5;
-  }  
-  @media all and (min-width: 550px)  {
-    grid-row-end: 4;
-  }  
-
-  @media all and ${props => props.theme.breakpoints.medium} {
-    grid-row-end: 3;
-  }
-
-  @media all and ${props => props.theme.breakpoints.full} {
-    ${props =>
-      props.$columns === 4 &&
-      css`
-        grid-column-start: 2;
-        grid-column-end: 4;
-        grid-row-start: 1;
-        grid-row-end: 3;
-      `}
-
-    ${props =>
-      props.$columns === 5 &&
-      css`
-        grid-column-start: 2;
-        grid-column-end: 5;
-        grid-row-start: 1;
-        grid-row-end: 4;
-      `}
-
-    ${props =>
-      props.$columns === 6 &&
-      css`
-        grid-column-start: 2;
-        grid-column-end: 6;
-        grid-row-start: 1;
-        grid-row-end: 4;
-      `}
-
-    ${props =>
-      props.$columns === 7 &&
-      css`
-        grid-column-start: 2;
-        grid-column-end: 6;
-        grid-row-start: [row-start];
-        grid-row-end: 5;
-      `}
-  }
-
-  @media all and (min-width: 1200px) {
-    ${props =>
-      props.$columns === 4 &&
-      css`
-        grid-column-start: 2;
-        grid-column-end: 4;
-        grid-row-start: 1;
-        grid-row-end: 3;
-      `}
-
-    ${props =>
-      props.$columns === 5 &&
-      css`
-        grid-column-start: 2;
-        grid-column-end: 4;
-        grid-row-start: 1;
-        grid-row-end: 3;
-      `}
-
-    ${props =>
-      props.$columns === 6 &&
-      css`
-        grid-column-start: 2;
-        grid-column-end: 5;
-        grid-row-start: 1;
-        grid-row-end: 3;
-      `}
-
-    ${props =>
-      props.$columns === 7 &&
-      css`
-        grid-column-start: 2;
-        grid-column-end: 5;
-        grid-row-start: [row-start];
-        grid-row-end: 4;
-      `}
-  }
-`;
-
-const ExplorePromoStyled1 = styled(ExplorePromo)`
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 9;
-  grid-row-end: 11;
-  min-height: 20vw;
-  z-index: 2;
-
-  @media all and (min-width: 400px) {
-    grid-row-start: 8;
-    grid-row-end: 10;
-  }  
-
-  @media all and (min-width: 460px) {
-    grid-row-start: 7;
-    grid-row-end: 9;
-  }  
-  @media all and (min-width: 550px)  {
-    grid-row-start: 6;
-    grid-row-end: 8;
-  }  
-
-  @media all and ${props => props.theme.breakpoints.medium} {
-    grid-row-start: 5;
-    grid-row-end: 7;
-  }
-
-  @media all and ${props => props.theme.breakpoints.full} {
-    ${props =>
-      props.$columns === 4 &&
-      css`
-        grid-column-start: 3;
-        grid-column-end: col-end;
-        grid-row-start: 4;
-        grid-row-end: 6;
-      `}
-
-    ${props =>
-      props.$columns === 5 &&
-      css`
-        grid-column-start: 3;
-        grid-column-end: 6;
-        grid-row-start: 5;
-        grid-row-end: 7;
-      `}
-
-    ${props =>
-      props.$columns === 6 &&
-      css`
-        grid-column-start: 3;
-        grid-column-end: 6;
-        grid-row-start: 5;
-        grid-row-end: 7;
-      `}
-
-    ${props =>
-      props.$columns === 7 &&
-      css`
-        grid-column-start: 4;
-        grid-column-end: 7;
-        grid-row-start: 6;
-        grid-row-end: 8;
-      `}
-    }
-  }
-
-  @media all and (min-width: 1200px) {
-
-    ${props =>
-      props.$columns === 4 &&
-      css`
-        grid-column-start: 3;
-        grid-column-end: col-end;
-        grid-row-start: 4;
-        grid-row-end: 5;
-      `}
-
-    ${props =>
-      props.$columns === 5 &&
-      css`
-        grid-column-start: 3;
-        grid-column-end: 5;
-        grid-row-start: 4;
-        grid-row-end: 5;
-      `}
-
-    ${props =>
-      props.$columns === 6 &&
-      css`
-        grid-column-start: 4;
-        grid-column-end: 6;
-        grid-row-start: 4;
-        grid-row-end: 6;
-      `}
-
-    ${props =>
-      props.$columns === 7 &&
-      css`
-        grid-column-start: 4;
-        grid-column-end: 7;
-        grid-row-start: 5;
-        grid-row-end: 7;
-      `}
-    }
-`;
-
-const ExplorePromoStyled2 = styled(ExplorePromo)`
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 14;
-  grid-row-end: 16;
-  z-index: 2;
-
-  @media all and (min-width: 400px) {
-    grid-row-start: 12;
-    grid-row-end: 14;
-  }  
-
-  @media all and (min-width: 460px) {
-    grid-row-start: 11;
-    grid-row-end: 13;
-  }  
-  @media all and (min-width: 550px)  {
-    grid-row-start: 10;
-    grid-row-end: 12;
-  }  
-
-  @media all and ${props => props.theme.breakpoints.medium} {
-    grid-row-start: 9;
-    grid-row-end: 11;
-  }
-
-  @media all and ${props => props.theme.breakpoints.full} {
-
-    ${props =>
-      props.$columns === 4 &&
-      css`
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 7;
-        grid-row-end: 9;
-      `}
-
-    ${props =>
-      props.$columns === 5 &&
-      css`
-        grid-column-start: 1;
-        grid-column-end: 4;
-        grid-row-start: 8;
-        grid-row-end: 10;
-      `}
-
-    ${props =>
-      props.$columns === 6 &&
-      css`
-        grid-column-start: 2;
-        grid-column-end: 5;
-        grid-row-start: 8;
-        grid-row-end: 10;
-      `}
-
-    ${props =>
-      props.$columns === 7 &&
-      css`
-        grid-column-start: 2;
-        grid-column-end: 5;
-        grid-row-start: 9;
-        grid-row-end: 11;
-      `}
-    }  
-
-  @media all and (min-width: 1200px) {
-
-    ${props =>
-      props.$columns === 4 &&
-      css`
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 6;
-        grid-row-end: 7;
-      `}
-
-    ${props =>
-      props.$columns === 5 &&
-      css`
-        grid-column-start: 2;
-        grid-column-end: 4;
-        grid-row-start: 6;
-        grid-row-end: 7;
-      `}
-
-    ${props =>
-      props.$columns === 6 &&
-      css`
-        grid-column-start: 2;
-        grid-column-end: 4;
-        grid-row-start: 7;
-        grid-row-end: 9;
-      `}
-
-    ${props =>
-      props.$columns === 7 &&
-      css`
-        grid-column-start: 2;
-        grid-column-end: 5;
-        grid-row-start: 8;
-        grid-row-end: 10;
-      `}
-    }
-`;
-
 const ImageSquareStyled = styled(ImageSquare)`
   /* width: ${props => `${props.$size}wv`}; */
 `;
@@ -522,10 +212,8 @@ const Home = () => {
         </Track>
         <div style={{ display: 'block' }}>
           <Grid $columns={inverseGridSize} $columnWidth={size}>
-            {/* <Layout.Padding> */}
-            {/* <Layout.Wrapper> */}
             <IntroStyled $columns={inverseGridSize}></IntroStyled>
-            <ExplorePromoStyled1
+            <ExploreTribalNationsStyled
               $columns={inverseGridSize}
               scheme="yellow"
               onClick={() => {
@@ -533,9 +221,9 @@ const Home = () => {
               }}
               title={content.home.tribalNationExplorer.title}
               text={content.home.tribalNationExplorer.text}
-            ></ExplorePromoStyled1>
+            ></ExploreTribalNationsStyled>
             <TribalNationModal open={tribalNationModalOpen} setOpen={setTribalNationModalOpen} />
-            <ExplorePromoStyled2
+            <ExploreNativeAmericansStyled
               $columns={inverseGridSize}
               onClick={() => {
                 setNotableNativeAmericanModalOpen(true);
@@ -543,14 +231,11 @@ const Home = () => {
               scheme="green"
               title={content.home.photographExplorer.title}
               text={content.home.photographExplorer.text}
-            ></ExplorePromoStyled2>
+            ></ExploreNativeAmericansStyled>
             <NotableNativeAmericanModal
               open={notableNativeAmericanModalOpen}
               setOpen={setNotableNativeAmericanModalOpen}
             />
-
-            {/* </Layout.Wrapper> */}
-            {/* </Layout.Padding> */}
           </Grid>
         </div>
         <ImageGrid>
