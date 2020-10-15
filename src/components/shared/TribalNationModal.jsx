@@ -273,7 +273,7 @@ const TribalNationModal = ({ open, setOpen }) => {
                           // value is set to after the modals `animationDuration` prop
                           setTimeout(() => {
                             history.push(`/tribal-nations/${tribalNation.slug}?${joinParams('topics', [topic.name])}`);
-                          }, 400);
+                          }, 500);
                         }}
                       >
                         <span>{topic.name}</span>
