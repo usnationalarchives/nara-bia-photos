@@ -129,26 +129,28 @@ const Pagination = ({ page, setPage, prevHandler, nextHandler, prevPage, nextPag
 
   for (let i = 1; i <= totalPages; i++) {
     pageOptions.push(
-      <option key={i} defaultChecked={page === i} value={i}>
+      <option key={`option-${i}`} defaultChecked={page === i} value={i} aria-label={`Page ${i}`}>
         {i}
       </option>
     );
   }
 
   return (
-    <Root {...props}>
+    <Root {...props} aria-label="pagination" role="region">
       {prevPage && (
         <Button prev onClick={prevHandler}>
-          Previous
+          Previous<span class="screenreader"> Page</span>
         </Button>
       )}
+      <p aria-live="polite" className="screenreader">Page {page} of {totalPages}</p>
       <CurrentPage>
         <SelectWrapper>
-          <Select value={page} onChange={handleChange}>
+          <label className="screenreader" htmlFor="pagination">Results Page</label>
+          <Select id="pagination" name="pagination" value={page} onChange={handleChange}>
             {pageOptions}
           </Select>
         </SelectWrapper>
-        <span>of {totalPages}</span>
+        <span aria-hidden="true">of {totalPages}</span>
       </CurrentPage>
       {nextPage && (
         <Button next onClick={nextHandler}>

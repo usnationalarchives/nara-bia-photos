@@ -95,27 +95,29 @@ const QueryField = ({ defaultValue, setQuery }) => {
     <Banner>
       <Layout.Padding>
         <Layout.Wrapper narrow="true">
-          <label htmlFor="query">
-            <H1>Search</H1>
-          </label>
-          <InputGroup>
-            <div>
-              <Input
-                type="text"
-                id="query"
-                defaultValue={defaultValue}
-                className="grow"
-                placeholder="Enter a keyword or phrase"
-                onKeyUp={event => handleSearch(event.target.value)}
-              />
-              <span className="shirnk">
-                <StyledButton type="submit" scheme={'green'}>
-                  <SearchIcon width="20" fill="currentColor" />
-                  <Text.Screenreader>Search</Text.Screenreader>
-                </StyledButton>
-              </span>
-            </div>
-          </InputGroup>
+          <form role="search">
+            <label htmlFor="query">
+              <H1>Search</H1>
+            </label>
+            <InputGroup>
+              <div>
+                <Input
+                  type="text"
+                  id="query"
+                  defaultValue={defaultValue}
+                  className="grow"
+                  placeholder="Enter a keyword or phrase"
+                  onKeyUp={event => handleSearch(event.target.value)}
+                />
+                <span className="shirnk">
+                  <StyledButton type="submit" scheme={'green'}>
+                    <SearchIcon width="20" fill="currentColor" />
+                    <Text.Screenreader>Search</Text.Screenreader>
+                  </StyledButton>
+                </span>
+              </div>
+            </InputGroup>
+            </form>
         </Layout.Wrapper>
       </Layout.Padding>
     </Banner>

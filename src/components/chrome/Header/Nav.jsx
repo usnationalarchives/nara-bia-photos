@@ -100,7 +100,7 @@ const Item = props => {
 
 const Nav = ({ navOpen }) => {
   return (
-    <Root>
+    <Root role="navigation">
       <Menu navOpen={navOpen}>
         <Item to="/tribal-nations">Tribal Nations</Item>
         <Item to="/topics">Topics</Item>
