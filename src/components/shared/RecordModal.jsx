@@ -190,7 +190,12 @@ const RecordModal = ({ activeIndex, items, open, setOpen, setImageIndex }) => {
                 outline={false}
                 onClick={() => {
                   setOpen(false);
-                  history.push(`/${record.slug}`);
+                  // A timeout is required so the the scroll prevention is
+                  // removeed prior to navigating to a new route. The timeout
+                  // value is set to after the modals `animationDuration` prop
+                  setTimeout(() => {
+                    history.push(`/${record.slug}`);
+                  }, 500);                  
                 }}
               >
                 Explore in more detail<span className="screenreader"> Photograph: {record.title}</span>
