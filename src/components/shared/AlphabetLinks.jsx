@@ -37,9 +37,15 @@ const Link = styled.a`
 
 const AlphabetLinks = ({ activeLetters, ...props }) => {
   return (
-    <Root {...props}>
+    <Root {...props} role="navigation" aria-label="Alphabet">
       {alphabet().map((letter, i) => (
-        <Link key={i} href={`#${letter}`} disabled={activeLetters.indexOf(letter.toUpperCase()) < 0}>
+        <Link
+          key={i}
+          id={`section-link-${letter}`}
+          aria-label={`${letter}. Jump to Tribal Nations starting with the letter ${letter}`}
+          href={`#section-${letter}`}
+          disabled={activeLetters.indexOf(letter.toUpperCase()) < 0}
+        >
           {letter}
         </Link>
       ))}

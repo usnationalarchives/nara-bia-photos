@@ -82,10 +82,21 @@ const TribeList = ({ groupedTribes }) => {
           />
 
           <SectionHeading>
-            <Text.H2 id={section[0].toLowerCase()}>{section[0]}</Text.H2>{' '}
+            <Text.H2>
+              <a
+                aria-label={`Tribal Nations starting with the letter ${section[0].toLowerCase()}`}
+                id={`section-${section[0].toLowerCase()}`}
+                href={`#section-${section[0].toLowerCase()}`}
+              >
+                {section[0]}
+              </a>
+            </Text.H2>
             <SectionMeta>
               ({section[1].length} Tribal {section[1].length > 1 ? 'Nations' : 'Nation'})
             </SectionMeta>
+            <a className="screenreader" href={`#section-link-${section[0].toLowerCase()}`}>
+              Back to Alphabet navigation
+            </a>
           </SectionHeading>
           <Items>
             {section[1].map((item, i) => (

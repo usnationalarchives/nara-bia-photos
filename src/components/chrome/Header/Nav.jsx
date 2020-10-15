@@ -100,7 +100,7 @@ const Item = props => {
 
 const Nav = ({ navOpen }) => {
   return (
-    <Root role="navigation">
+    <Root role="navigation" aria-label="Primary">
       <Menu navOpen={navOpen}>
         <Item to="/tribal-nations">Tribal Nations</Item>
         <Item to="/topics">Topics</Item>

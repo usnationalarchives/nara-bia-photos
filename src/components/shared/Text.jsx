@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { fl_visuallyHidden } from '#styles/frontline';
+import styled, { css } from 'styled-components';
+import { fl_visuallyHidden, fl_static, fl_attention } from '#styles/frontline';
 import { buttonReset } from '#styles/mixins';
 import { colors } from '#styles/theme';
 import tinycolor from 'tinycolor2';
@@ -23,6 +23,17 @@ export const H2 = styled.h2`
   @media ${props => props.theme.breakpoints.medium} {
     font-size: 2rem;
     line-height: 1.18;
+  }
+
+  a {
+    ${fl_static(css`
+      text-decoration: none;
+      color: inherit;
+    `)}
+    ${fl_attention(css`
+      text-decoration: underline;
+      color: inherit;
+    `)}
   }
 `;
 
