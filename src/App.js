@@ -26,12 +26,25 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <BaseStyles />
+      <div className="skip-links">
+        <ul>
+          <li>
+            <a href="#nav">Skip to navigation</a>
+          </li>
+          <li>
+            <a href="#main">Skip to main content</a>
+          </li>
+          <li>
+            <a href="#footer">Skip to footer</a>
+          </li>
+        </ul>
+      </div>
       <Router>
         <ScrollToTop />
         <Fragment>
           <Header />
 
-          <div aria-live="polite" aria-atomic="true">
+          <div role="main" id="main" aria-live="polite" aria-atomic="true">
             <Suspense fallback={<PageLoader />}>
               <Switch>
                 <Route path="/about" component={About} />

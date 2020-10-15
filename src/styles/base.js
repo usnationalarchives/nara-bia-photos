@@ -64,6 +64,27 @@ const BaseStyles = createGlobalStyle`
       text-decoration: underline;
     `)}
   }
+
+  .skip-links {
+    a {
+      background-color: #000;
+      color: #fff;
+      display: inline-block;
+      font-size: 16px;
+      position: absolute;
+      padding: 8px 15px;
+      line-height: 1.4;
+      right: 20px;
+      top: -200px; // Must be larger than the element's height
+      z-index: -1;
+
+      &:focus {
+        top: 2px;
+        z-index: 9999;
+      }
+    }
+  }
+
   @media print {
     * {
       background: transparent !important;
