@@ -38,17 +38,23 @@ const Link = styled.a`
 const AlphabetLinks = ({ activeLetters, ...props }) => {
   return (
     <Root {...props} role="navigation" aria-label="Alphabet">
-      {alphabet().map((letter, i) => (
-        <Link
-          key={i}
-          id={`section-link-${letter}`}
-          aria-label={`${letter}. Jump to Tribal Nations starting with the letter ${letter}`}
-          href={`#section-${letter}`}
-          disabled={activeLetters.indexOf(letter.toUpperCase()) < 0}
-        >
-          {letter}
-        </Link>
-      ))}
+      {alphabet().map((letter, i) => {
+        const hasTribalNations = activeLetters.indexOf(letter.toUpperCase()) >= 0;
+        return (
+          <Link
+            key={i}
+            id={`section-link-${letter}`}
+            aria-label={
+              hasTribalNations ? `${letter}. Jump to Tribal Nations starting with the letter ${letter}` : null
+            }
+            href={hasTribalNations ? `#section-${letter}` : null}
+            disabled={!hasTribalNations}
+            aria-hidden={!hasTribalNations}
+          >
+            {letter}
+          </Link>
+        );
+      })}
     </Root>
   );
 };
