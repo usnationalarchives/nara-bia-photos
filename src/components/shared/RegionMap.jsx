@@ -112,8 +112,10 @@ const MapChart = ({}) => {
                   const fill = getFill(geo.id);
                   const stroke = tinycolor(fill).darken(10).toString();
                   const hoverFill = tinycolor(fill).darken(25).toString();
+                  const state = getState(geo.id);
                   return (
                     <Geography
+                      aria-label={!!state ? state.name : ''}
                       style={{
                         default: {
                           fill: fill,
@@ -124,7 +126,7 @@ const MapChart = ({}) => {
                       }}
                       key={geo.rsmKey}
                       onClick={() => {
-                        history.push(`/states/${getState(geo.id).slug}`);
+                        history.push(`/states/${state.slug}`);
                       }}
                       onMouseEnter={() => {
                         setActiveMapState(states.find(state => state.val == geo.id));
