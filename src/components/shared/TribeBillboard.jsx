@@ -138,7 +138,7 @@ const TribeBillboard = ({ alignment, title, imageUrl, intro, introIcon, introHel
             <div className="layout-col--primary">
               <div className="layout-content">
                 {!!superTitle && <SuperTitle>{superTitle}</SuperTitle>}
-                <Title>{title}</Title>
+                <Title as="h1">{title}</Title>
                 <IntroWrapper>
                   {!!introIcon && introIcon === 'warning' && (
                     <ContentWarning style={{ flex: '0 0 100px', paddingRight: '20px' }} />

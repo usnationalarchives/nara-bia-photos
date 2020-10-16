@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useLocation } from 'react-router-dom';
 
 const Root = styled.div`
   border-left: 1px solid rgba(255, 255, 255, 0.5);
@@ -12,17 +13,19 @@ const Root = styled.div`
   }
 `;
 
-const Line1 = styled.p`
-  text-transform: uppercase;
+const Line1 = styled.span`
+  display: block;
   font-size: 0.65rem;
   font-weight: 200;
+  text-transform: uppercase;
 
   @media all and ${props => props.theme.breakpoints.large} {
     font-size: 0.8rem;
   }
 `;
 
-const Line2 = styled.p`
+const Line2 = styled.span`
+  display: block;
   font-size: 0.85rem;
   font-weight: bold;
 
@@ -32,8 +35,9 @@ const Line2 = styled.p`
 `;
 
 const Title = () => {
+  const location = useLocation();
   return (
-    <Root>
+    <Root as={location.pathname === '/' ? 'h1' : 'div'}>
       <Line1>Bureau of Indian Affairs</Line1>
       <Line2>Photography Finding Aid</Line2>
     </Root>
