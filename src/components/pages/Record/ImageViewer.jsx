@@ -231,7 +231,7 @@ const ImageViewer = ({ record, objects }) => {
         <div>
           <ViewerButtonStyled as="a" href={iiifImage(record, 'full')}>
             <DownloadIcon width={20} fill="currentColor" />
-            <Text.Screenreader>Download</Text.Screenreader>
+            <Text.Screenreader>Download original photograph of: {record.title}</Text.Screenreader>
           </ViewerButtonStyled>
         </div>
         {/* <ViewerButtonStyled id="osd-full_page">
