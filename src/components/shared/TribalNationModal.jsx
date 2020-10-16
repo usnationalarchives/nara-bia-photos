@@ -193,7 +193,7 @@ const TribalNationModal = ({ open, setOpen }) => {
       >
         <Layout.Padding style={{ color: '#000', marginTop: '5rem' }}>
           <Layout.Wrapper large>
-            <Text.H4 style={{ color: '#000', textTransform: 'uppercase' }}>{'Feature Tribal Nation'}</Text.H4>
+            <Text.H4 style={{ color: '#000', textTransform: 'uppercase' }}>{'Featured Tribal Nation'}</Text.H4>
             {!!activeTribalNation && (
               <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <div style={{ paddingRight: '50px' }}>
