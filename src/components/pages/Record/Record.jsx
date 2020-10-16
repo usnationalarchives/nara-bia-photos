@@ -4,7 +4,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Results from '#components/shared/Results';
 import { sampleSize } from 'lodash';
 import { Helmet } from 'react-helmet';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 // import 'react-tabs/style/react-tabs.css';
 
@@ -13,7 +13,7 @@ import { ReactComponent as DetailsIcon } from '#assets/icons/details.svg';
 import { ReactComponent as ExternalIcon } from '#assets/icons/external-link.svg';
 import { ReactComponent as SeriesIcon } from '#assets/icons/series.svg';
 
-import { getRecordTopics, getRecordStates } from '#modules/helpers';
+import { getRecordTopics, getRecordStates, getIdFromPathname } from '#modules/helpers';
 
 // constants
 import { tribalNations, externalUrls } from '#modules/constants';
@@ -77,6 +77,8 @@ const Record = ({ ...props }) => {
   // const [record, setRecord] = useState(null);
   const titleTextRef = createRef();
   const history = useHistory();
+  const location = useLocation();
+  console.log(location.pathname);
 
   const [results] = useRecords(
     {
@@ -103,8 +105,6 @@ const Record = ({ ...props }) => {
     var tribalNation = tribalNations.filter(tribalNation => tribalNation.name === record.tribes)[0];
     var recordTopics = getRecordTopics(record.tags);
     var recordStates = getRecordStates(record.states);
-    console.log('record.parentSeriesNaId', record.parentSeriesNaId);
-    console.log('thumbnailResults', thumbnailResults);
     thumbnailResults = thumbnailResults.filter(r => {
       return r.naId !== record.naId;
     });
@@ -116,170 +116,173 @@ const Record = ({ ...props }) => {
     }
   }, [record]);
 
-  return (
-    !!record && (
+    return (
       <>
         <Helmet>
-          <title>{record.title}</title>
-          {/* <meta name="description" content={record.title}></meta> */}
+          <title>{!!record ? record.title : getIdFromPathname(location.pathname)}</title>
+          {!!record && !!record.scopeContentNote && <meta name="description" content={record.scopeContentNote} />}
           <meta name="" content="" />
-          <meta name="twitter:title" content={record.title} />
+          <meta name="twitter:title" content={!!record ? record.title : getIdFromPathname(location.pathname)} />
           <meta name="twitter:site" content="@FIXME" />
-          {!!record.scopeContentNote && <meta name="twitter:card" content={record.scopeContentNote} />}
-          {!!record.scopeContentNote && <meta name="twitter:description" content={record.scopeContentNote} />}
-          <meta name="twitter:image" content={iiifImage(record, '1080')} />
-          <meta property="og:title" content={record.title} />
-          {!!record.scopeContentNote && <meta name="og:description" content={record.scopeContentNote} />}
+          {!!record && !!record.scopeContentNote && <meta name="twitter:card" content={record.scopeContentNote} />}
+          {!!record && !!record.scopeContentNote && <meta name="twitter:description" content={record.scopeContentNote} />}
+          {!!record && <meta name="twitter:image" content={iiifImage(record, '1080')} />}
+          <meta property="og:title" content={!!record ? record.title : getIdFromPathname(location.pathname)} />
+          {!!record && !!record.scopeContentNote && <meta name="og:description" content={record.scopeContentNote} />}
           <meta property="og:site_name" content="FIXME" />
           <meta property="og:url" content={window.location} />
           <meta property="og:type" content="article" />
-          <meta property="og:image" content={iiifImage(record, '1080')} />
+          {!!record && <meta property="og:image" content={iiifImage(record, '1080')} />}
         </Helmet>
-        <Layout.Padding style={{ marginTop: '2rem', marginBottom: '3rem' }}>
-          <Layout.Wrapper>
-            <Shave textRef={titleTextRef} maxHeight={130} options={{ character: '&nbsp; ' }}>
-              <Text.H1 ref={titleTextRef}>{record.title}</Text.H1>
-            </Shave>
-            <MetaWrapper>
-              {tribalNation && (
-                <MetaStyled
-                  label="Tribal Nation"
-                  outine
-                  items={[
-                    {
-                      label: record.tribes,
-                      link: `/tribal-nations/${tribalNation ? tribalNation.slug : ''}`,
-                      onClick: () => {
-                        history.push(`/tribal-nations/${tribalNation ? tribalNation.slug : ''}`);
-                      },
-                    },
-                  ]}
-                ></MetaStyled>
-              )}
-              {!!record.date && <MetaStyled label="Date" outine items={[{ label: record.date }]}></MetaStyled>}
-              {!!recordTopics.length && (
-                <MetaStyled
-                  label="Topics"
-                  outine
-                  items={recordTopics.map(topic => {
-                    return {
-                      label: topic.name,
-                      link: `/topics/${topic.slug}`,
-                      onClick: () => {
-                        history.push(`/topics/${topic.slug}`);
-                      },
-                    };
-                  })}
-                ></MetaStyled>
-              )}{' '}
-              {!!recordStates.length && (
-                <MetaStyled
-                  label="States"
-                  outine
-                  items={recordStates.map(state => {
-                    return {
-                      label: state.name,
-                      link: `/states/${state.slug}`,
-                      onClick: () => {
-                        history.push(`/states/${state.slug}`);
-                      },
-                    };
-                  })}
-                ></MetaStyled>
-              )}
-            </MetaWrapper>
-          </Layout.Wrapper>
-        </Layout.Padding>
-        <ImageViewer record={record} objects={objects} />
-        <Layout.Padding style={{ marginTop: '2rem', marginBottom: '3rem' }}>
-          <Layout.Wrapper>
-            <Tabs>
-              <TabList>
-                <Tab>
-                  <DetailsIcon width={20} />
-                  <Text.Label>Details</Text.Label>
-                </Tab>
-                <Tab>
-                  <CitationIcon width={20} />
-                  <Text.Label>Citation</Text.Label>
-                </Tab>
-              </TabList>
-
-              <TabPanel>
-                {!!record.scopeContentNote && (
-                  <Table.RowStyles>
-                    <Table.LabelStyles>
-                      <Text.Label style={{ fontSize: '13px', fontWeight: 'normal' }}>Description:</Text.Label>
-                    </Table.LabelStyles>
-                    <Table.ValueStyles>
-                      <p>{record.scopeContentNote}</p>
-                    </Table.ValueStyles>
-                  </Table.RowStyles>
-                )}
-                <Table.RowStyles>
-                  <Table.LabelStyles>
-                    <Text.Label style={{ fontSize: '13px', fontWeight: 'normal' }}>
-                      National Archives Identifier:
-                    </Text.Label>
-                  </Table.LabelStyles>
-                  <Table.ValueStyles>
-                    <a href={`${externalUrls.catalogRecordDetail}/${record.naId}`}>{record.naId}</a>
-                  </Table.ValueStyles>
-                </Table.RowStyles>
-                <Table.RowStyles>
-                  <Table.LabelStyles>&nbsp;</Table.LabelStyles>
-                  <Table.ValueStyles>
-                    <ExternalLink href={`${externalUrls.catalogRecordDetail}/${record.naId}`}>Catalog</ExternalLink>
-                  </Table.ValueStyles>
-                </Table.RowStyles>
-              </TabPanel>
-              <TabPanel>
-                <Table.RowStyles>
-                  <p>
-                    Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel
-                    scelerisque nisl consectetur et. Nulla vitae elit libero, a pharetra augue. Vestibulum id ligula
-                    porta felis euismod semper. Etiam porta sem malesuada magna mollis euismod. Praesent commodo cursus
-                    magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                  </p>
-                </Table.RowStyles>
-              </TabPanel>
-            </Tabs>
-          </Layout.Wrapper>
-        </Layout.Padding>
-        {!!thumbnailResults.length && (
-          <Layout.Padding style={{ marginBottom: '3rem' }}>
+        {!!record && <>
+          <Layout.Padding style={{ marginTop: '2rem', marginBottom: '3rem' }}>
             <Layout.Wrapper>
-              <SectionHeader>
-                <SeriesIcon width={20}></SeriesIcon>
-                <span>Also in this series</span>
-              </SectionHeader>
-              <div
-                style={{
-                  alignItems: 'flex-start',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  marginTop: '2rem',
-                }}
-              >
-                <p style={{ marginRight: '20px' }}>
-                  There are {thumbnailResults.length.toLocaleString('en')} other records in the archival series{' '}
-                  {record.parentSeriesTitle}
-                </p>
-
-                <ExternalLink
-                  style={{ flex: '1 0 auto' }}
-                  href={`https://catalog.archives.gov/search?q=*:*&f.ancestorNaIds=${record.parentSeriesNaId}&sort=naIdSort%20asc&f.materialsType=photographsandgraphics`}
-                >
-                  View All
-                </ExternalLink>
-              </div>
-              <Results singleRow data={sampleSize(thumbnailResults, 3)} fidelity={250} />
+              <Shave textRef={titleTextRef} maxHeight={130} options={{ character: '&nbsp; ' }}>
+                <Text.H1 ref={titleTextRef}>{record.title}</Text.H1>
+              </Shave>
+              <MetaWrapper>
+                {tribalNation && (
+                  <MetaStyled
+                    label="Tribal Nation"
+                    outine
+                    items={[
+                      {
+                        label: record.tribes,
+                        link: `/tribal-nations/${tribalNation ? tribalNation.slug : ''}`,
+                        onClick: () => {
+                          history.push(`/tribal-nations/${tribalNation ? tribalNation.slug : ''}`);
+                        },
+                      },
+                    ]}
+                  ></MetaStyled>
+                )}
+                {!!record.date && <MetaStyled label="Date" outine items={[{ label: record.date }]}></MetaStyled>}
+                {!!recordTopics.length && (
+                  <MetaStyled
+                    label="Topics"
+                    outine
+                    items={recordTopics.map(topic => {
+                      return {
+                        label: topic.name,
+                        link: `/topics/${topic.slug}`,
+                        onClick: () => {
+                          history.push(`/topics/${topic.slug}`);
+                        },
+                      };
+                    })}
+                  ></MetaStyled>
+                )}{' '}
+                {!!recordStates.length && (
+                  <MetaStyled
+                    label="States"
+                    outine
+                    items={recordStates.map(state => {
+                      return {
+                        label: state.name,
+                        link: `/states/${state.slug}`,
+                        onClick: () => {
+                          history.push(`/states/${state.slug}`);
+                        },
+                      };
+                    })}
+                  ></MetaStyled>
+                )}
+              </MetaWrapper>
             </Layout.Wrapper>
           </Layout.Padding>
-        )}
+          <ImageViewer record={record} objects={objects} />
+          <Layout.Padding style={{ marginTop: '2rem', marginBottom: '3rem' }}>
+            <Layout.Wrapper>
+              <Tabs>
+                <TabList>
+                  <Tab>
+                    <DetailsIcon width={20} />
+                    <Text.Label>Details</Text.Label>
+                  </Tab>
+                  <Tab>
+                    <CitationIcon width={20} />
+                    <Text.Label>Citation</Text.Label>
+                  </Tab>
+                </TabList>
+
+                <TabPanel>
+                  {!!record.scopeContentNote && (
+                    <Table.RowStyles>
+                      <Table.LabelStyles>
+                        <Text.Label style={{ fontSize: '13px', fontWeight: 'normal' }}>Description:</Text.Label>
+                      </Table.LabelStyles>
+                      <Table.ValueStyles>
+                        <p>{record.scopeContentNote}</p>
+                      </Table.ValueStyles>
+                    </Table.RowStyles>
+                  )}
+                  <Table.RowStyles>
+                    <Table.LabelStyles>
+                      <Text.Label style={{ fontSize: '13px', fontWeight: 'normal' }}>
+                        National Archives Identifier:
+                    </Text.Label>
+                    </Table.LabelStyles>
+                    <Table.ValueStyles>
+                      <a href={`${externalUrls.catalogRecordDetail}/${record.naId}`}>{record.naId}</a>
+                    </Table.ValueStyles>
+                  </Table.RowStyles>
+                  <Table.RowStyles>
+                    <Table.LabelStyles>&nbsp;</Table.LabelStyles>
+                    <Table.ValueStyles>
+                      <ExternalLink href={`${externalUrls.catalogRecordDetail}/${record.naId}`}>Catalog</ExternalLink>
+                    </Table.ValueStyles>
+                  </Table.RowStyles>
+                </TabPanel>
+                <TabPanel>
+                  <Table.RowStyles>
+                    <p>
+                      Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel
+                      scelerisque nisl consectetur et. Nulla vitae elit libero, a pharetra augue. Vestibulum id ligula
+                      porta felis euismod semper. Etiam porta sem malesuada magna mollis euismod. Praesent commodo cursus
+                      magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                  </p>
+                  </Table.RowStyles>
+                </TabPanel>
+              </Tabs>
+            </Layout.Wrapper>
+          </Layout.Padding>
+          {!!thumbnailResults.length && (
+            <Layout.Padding style={{ marginBottom: '3rem' }}>
+              <Layout.Wrapper>
+                <SectionHeader>
+                  <SeriesIcon width={20}></SeriesIcon>
+                  <span>Also in this series</span>
+                </SectionHeader>
+                <div
+                  style={{
+                    alignItems: 'flex-start',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    marginTop: '2rem',
+                  }}
+                >
+                  <p style={{ marginRight: '20px' }}>
+                    There are {thumbnailResults.length.toLocaleString('en')} other records in the archival series{' '}
+                    {record.parentSeriesTitle}
+                  </p>
+
+                  <ExternalLink
+                    style={{ flex: '1 0 auto' }}
+                    href={`https://catalog.archives.gov/search?q=*:*&f.ancestorNaIds=${record.parentSeriesNaId}&sort=naIdSort%20asc&f.materialsType=photographsandgraphics`}
+                  >
+                    View All
+                </ExternalLink>
+                </div>
+                <Results singleRow data={sampleSize(thumbnailResults, 3)} fidelity={250} />
+              </Layout.Wrapper>
+            </Layout.Padding>
+          )}
+        </>
+        }
       </>
-    )
-  );
+
+    );
+
 };
 
 export default Record;

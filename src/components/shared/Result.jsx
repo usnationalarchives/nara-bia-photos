@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
 // modules
@@ -66,7 +65,7 @@ const Record = ({ record, scale }) => {
       >
         <div className="hover"></div>
       </ImageContainer>
-      <CoverLink className="result_link" to={`/${record.slug}`}>
+      <CoverLink className="result_link" to={{pathname: `/${record.slug}`, state: { record: record }}}>
         <Title scale={scale}>{record.title}</Title>
       </CoverLink>
     </Root>

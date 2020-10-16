@@ -10,6 +10,15 @@ export const alphabet = () => {
   return list;
 };
 
+/**
+ * Get ID from path url
+ * @param {string} pathname - url of a specific route
+ */
+export const getIdFromPathname = pathname => {
+  const strings = pathname.split('-');
+  return strings.pop();
+};
+
 export const groupObjectsByNameLetter = items => {
   let grouped = {};
 
