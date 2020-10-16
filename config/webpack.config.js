@@ -637,6 +637,7 @@ module.exports = function (webpackEnv) {
       isEnvDevelopment &&
         new BundleAnalyzerPlugin({
           analyzerMode: 'static',
+          openAnalyzer: false,
         }),
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
