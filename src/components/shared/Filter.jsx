@@ -154,7 +154,7 @@ const Filter = ({ filter, isActive, toggle, id }) => {
                   <Input
                     checked={active.includes(item.key)}
                     value={item.key}
-                    disabled={item.value >= 1 ? false : true}
+                    disabled={isActive && item.value >= 1 ? false : true}
                     type="checkbox"
                     name={`${label}[${i}]`}
                     id={`${label}[${i}]`}
