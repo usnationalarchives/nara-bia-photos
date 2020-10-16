@@ -22,8 +22,8 @@ import IntroStyled from './IntroStyled';
 import ExploreTribalNationsStyled from './ExploreTribalNationsStyled';
 import ExploreNativeAmericansStyled from './ExploreNativeAmericansStyled';
 // shared components
-import * as Text from '#components/shared/Text';
-import * as Layout from '#components/shared/Layout';
+import {H1, H2, H3, H4, H5, H6, Intro, Label, Screenreader, Rich} from '#components/shared/Text';
+import {Padding, Wrapper, Center} from '#components/shared/Layout';
 import ImageSquare from '#components/shared/ImageSquare';
 import FidelitySlider from '#components/shared/FidelitySlider';
 import RecordModal from '#components/shared/RecordModal';

@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 // components
-import * as Text from '#components/shared/Text';
+import {H1, H2, H3, H4, H5, H6, Intro, Label, Screenreader, Rich} from '#components/shared/Text';
 import Results from '#components/shared/Results';
 
 // hooks
@@ -82,7 +82,7 @@ const TribeList = ({ groupedTribes }) => {
           />
 
           <SectionHeading>
-            <Text.H2>
+            <H2>
               <a
                 aria-label={`Tribal Nations starting with the letter ${section[0].toLowerCase()}`}
                 id={`section-${section[0].toLowerCase()}`}
@@ -90,7 +90,7 @@ const TribeList = ({ groupedTribes }) => {
               >
                 {section[0]}
               </a>
-            </Text.H2>
+            </H2>
             <SectionMeta>
               ({section[1].length} Tribal {section[1].length > 1 ? 'Nations' : 'Nation'})
             </SectionMeta>

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 
 // components
-import * as Layout from '#components/shared/Layout';
+import {Padding, Wrapper, Center} from '#components/shared/Layout';
 import LandingBillboard from '#components/shared/LandingBillboard';
 import AlphabetLinks from '#components/shared/AlphabetLinks';
 import TribeList from '#components/shared/TribeList';
@@ -63,11 +63,11 @@ const TribeLanding = () => {
         <meta property="og:image" content={'FIXME'} />
       </Helmet>
       <Billboard />
-      <Layout.Padding style={{ marginTop: '4rem', marginBottom: '4rem' }}>
-        <Layout.Wrapper>
+      <Padding style={{ marginTop: '4rem', marginBottom: '4rem' }}>
+        <Wrapper>
           <TribeList groupedTribes={groupedTribes} />
-        </Layout.Wrapper>
-      </Layout.Padding>
+        </Wrapper>
+      </Padding>
     </Fragment>
   );
 };

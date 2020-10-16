@@ -21,9 +21,9 @@ import { tribalNations, externalUrls } from '#modules/constants';
 import iiifImage from '#modules/iiifImage';
 
 // components
-import * as Text from '#components/shared/Text';
+import {H1, H2, H3, H4, H5, H6, Intro, Label, Screenreader, Rich} from '#components/shared/Text';
 import * as Table from '#components/shared/Table';
-import * as Layout from '#components/shared/Layout';
+import {Padding, Wrapper, Center} from '#components/shared/Layout';
 import ImageViewer from './ImageViewer';
 import Meta from '#components/shared/Meta';
 import Shave from '#components/shared/Shave';
@@ -57,7 +57,7 @@ const MetaWrapper = styled.div`
   }
 `;
 
-const SectionHeader = styled(Text.Label)`
+const SectionHeader = styled(Label)`
   align-items: center;
   border-bottom: 1px solid ${props => props.theme.colors.blue};
   display: flex;
@@ -135,10 +135,10 @@ const Record = ({ ...props }) => {
           {!!record && <meta property="og:image" content={iiifImage(record, '1080')} />}
         </Helmet>
         {!!record && <>
-          <Layout.Padding style={{ marginTop: '2rem', marginBottom: '3rem' }}>
-            <Layout.Wrapper>
+          <Padding style={{ marginTop: '2rem', marginBottom: '3rem' }}>
+            <Wrapper>
               <Shave textRef={titleTextRef} maxHeight={130} options={{ character: '&nbsp; ' }}>
-                <Text.H1 ref={titleTextRef}>{record.title}</Text.H1>
+                <H1 ref={titleTextRef}>{record.title}</H1>
               </Shave>
               <MetaWrapper>
                 {tribalNation && (
@@ -188,20 +188,20 @@ const Record = ({ ...props }) => {
                   ></MetaStyled>
                 )}
               </MetaWrapper>
-            </Layout.Wrapper>
-          </Layout.Padding>
+            </Wrapper>
+          </Padding>
           <ImageViewer record={record} objects={objects} />
-          <Layout.Padding style={{ marginTop: '2rem', marginBottom: '3rem' }}>
-            <Layout.Wrapper>
+          <Padding style={{ marginTop: '2rem', marginBottom: '3rem' }}>
+            <Wrapper>
               <Tabs>
                 <TabList>
                   <Tab>
                     <DetailsIcon width={20} />
-                    <Text.Label>Details</Text.Label>
+                    <Label>Details</Label>
                   </Tab>
                   <Tab>
                     <CitationIcon width={20} />
-                    <Text.Label>Citation</Text.Label>
+                    <Label>Citation</Label>
                   </Tab>
                 </TabList>
 
@@ -209,7 +209,7 @@ const Record = ({ ...props }) => {
                   {!!record.scopeContentNote && (
                     <Table.RowStyles>
                       <Table.LabelStyles>
-                        <Text.Label style={{ fontSize: '13px', fontWeight: 'normal' }}>Description:</Text.Label>
+                        <Label style={{ fontSize: '13px', fontWeight: 'normal' }}>Description:</Label>
                       </Table.LabelStyles>
                       <Table.ValueStyles>
                         <p>{record.scopeContentNote}</p>
@@ -218,9 +218,9 @@ const Record = ({ ...props }) => {
                   )}
                   <Table.RowStyles>
                     <Table.LabelStyles>
-                      <Text.Label style={{ fontSize: '13px', fontWeight: 'normal' }}>
+                      <Label style={{ fontSize: '13px', fontWeight: 'normal' }}>
                         National Archives Identifier:
-                    </Text.Label>
+                    </Label>
                     </Table.LabelStyles>
                     <Table.ValueStyles>
                       <a href={`${externalUrls.catalogRecordDetail}/${record.naId}`}>{record.naId}</a>
@@ -244,11 +244,11 @@ const Record = ({ ...props }) => {
                   </Table.RowStyles>
                 </TabPanel>
               </Tabs>
-            </Layout.Wrapper>
-          </Layout.Padding>
+            </Wrapper>
+          </Padding>
           {!!thumbnailResults.length && (
-            <Layout.Padding style={{ marginBottom: '3rem' }}>
-              <Layout.Wrapper>
+            <Padding style={{ marginBottom: '3rem' }}>
+              <Wrapper>
                 <SectionHeader>
                   <SeriesIcon width={20}></SeriesIcon>
                   <span>Also in this series</span>
@@ -274,8 +274,8 @@ const Record = ({ ...props }) => {
                 </ExternalLink>
                 </div>
                 <Results singleRow data={sampleSize(thumbnailResults, 3)} fidelity={250} />
-              </Layout.Wrapper>
-            </Layout.Padding>
+              </Wrapper>
+            </Padding>
           )}
         </>
         }

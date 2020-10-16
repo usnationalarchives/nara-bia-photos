@@ -18,8 +18,8 @@ import iiifImage from '#modules/iiifImage';
 import { getRecordTopics, getRecordStates } from '#modules/helpers';
 
 // shared components
-import * as Text from '#components/shared/Text';
-import * as Layout from '#components/shared/Layout';
+import {H1, H2, H3, H4, H5, H6, Intro, Label, Screenreader, Rich} from '#components/shared/Text';
+import {Padding, Wrapper, Center} from '#components/shared/Layout';
 import Meta from '#components/shared/Meta';
 import Button from '#components/shared/Button';
 
@@ -110,9 +110,9 @@ const RecordModal = ({ activeIndex, items, open, setOpen, setImageIndex }) => {
       center
     >
       {items.length > 0 && !!record && (
-        <Layout.Padding>
-          <Layout.Wrapper medium>
-            <Text.H3 style={{ color: '#fff' }}>{record.title}</Text.H3>
+        <Padding>
+          <Wrapper medium>
+            <H3 style={{ color: '#fff' }}>{record.title}</H3>
             <MetaWrapper>
               {tribalNation && (
                 <MetaStyled
@@ -202,8 +202,8 @@ const RecordModal = ({ activeIndex, items, open, setOpen, setImageIndex }) => {
                 Explore in more detail<span className="screenreader"> Photograph: {record.title}</span>
               </Button>
             </div>
-          </Layout.Wrapper>
-        </Layout.Padding>
+          </Wrapper>
+        </Padding>
       )}
     </Modal>
   );

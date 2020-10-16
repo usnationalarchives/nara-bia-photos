@@ -7,8 +7,8 @@ import bannerImage from '#assets/images/banner-state-landing.png';
 import bannerImage2x from '#assets/images/banner-state-landing@2x.png';
 
 // components
-import * as Text from '#components/shared/Text';
-import * as Layout from '#components/shared/Layout';
+import {H1, H2, H3, H4, H5, H6, Intro, Label, Screenreader, Rich} from '#components/shared/Text';
+import {Padding, Wrapper, Center} from '#components/shared/Layout';
 import PopoverInfo from '#components/shared/PopoverInfo';
 import BackgroundImage from '#components/shared/BackgroundImage';
 
@@ -23,12 +23,12 @@ const Root = styled.div`
   /* padding: 2rem 0; */
 `;
 
-const Title = styled(Text.H2)`
+const Title = styled(H2)`
   color: ${props => props.theme.colors.white};
   margin-bottom: 1rem;
 `;
 
-const Intro = styled(Text.Intro)`
+const Intro = styled(Intro)`
   color: ${props => props.theme.colors.white};
   max-width: 530px;
 `;
@@ -85,8 +85,8 @@ const LandingBillboardLayout = styled.div`
 const Billboard = ({ title, imageUrl, intro, introHelp, ...props }) => {
   return (
     <Root>
-      <Layout.Padding>
-        <Layout.Wrapper wide>
+      <Padding>
+        <Wrapper wide>
           <LandingBillboardLayout>
             <div className="layout-col--primary">
               <div>
@@ -106,8 +106,8 @@ const Billboard = ({ title, imageUrl, intro, introHelp, ...props }) => {
               </BackgroundImage>
             </div>
           </LandingBillboardLayout>
-        </Layout.Wrapper>
-      </Layout.Padding>
+        </Wrapper>
+      </Padding>
     </Root>
   );
 };

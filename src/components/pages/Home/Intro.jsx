@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import * as Text from '#components/shared/Text';
+import {H1, H2, H3, H4, H5, H6, Label, Screenreader, Rich} from '#components/shared/Text';
 
 // config
 import content from '#config/content';
@@ -136,7 +136,7 @@ const Intro = ({ className }) => {
   return (
     <IntroStyled className={className}>
       <IntroContent style={{ maxWidth: '500px', margin: '0 auto' }}>
-        <Text.H2>{title}</Text.H2>
+        <H2>{title}</H2>
         <p>{text}</p>
         <LinkStyled to="/about">{cta}</LinkStyled>
         <p

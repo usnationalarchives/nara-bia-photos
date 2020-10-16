@@ -3,8 +3,8 @@ import { fl_visuallyHidden } from '#styles/frontline';
 import styled, { css } from 'styled-components';
 import { Helmet } from 'react-helmet';
 
-import * as Layout from '#components/shared/Layout';
-import * as Text from '#components/shared/Text';
+import {Padding, Wrapper, Center} from '#components/shared/Layout';
+import {H1, H2, H3, H4, H5, H6, Intro, Label, Screenreader, Rich} from '#components/shared/Text';
 import Billboard from '#components/shared/Billboard';
 import ReactHtmlParser, { convertNodeToElement } from 'react-html-parser';
 
@@ -16,18 +16,18 @@ const getAlignment = count => {
   return count % 2 ? 'right' : 'left';
 };
 
-const PageTitle = styled(Text.H1)`
+const PageTitle = styled(H1)`
   ${fl_visuallyHidden}
 `;
 
 // const transform = (node, index) => {
 //   console.log(node);
 //   if (node.type === 'tag' && node.name === 'h2') {
-//     const newNode = <Text.H2 key={`${node.name}-${index}`}>{node.children[0].data}</Text.H2>;
+//     const newNode = <H2 key={`${node.name}-${index}`}>{node.children[0].data}</H2>;
 //     return newNode;
 //   }
 //   if (node.type === 'tag' && node.name === 'h3') {
-//     const newNode = <Text.H3 key={`${node.name}-${index}`}>{node.children[0].data}</Text.H3>;
+//     const newNode = <H3 key={`${node.name}-${index}`}>{node.children[0].data}</H3>;
 //     return newNode;
 //   }
 // };
@@ -64,11 +64,11 @@ const About = () => {
           imageUrl={billboard.imageUrl}
         />
       ))}
-      <Layout.Padding style={{ marginTop: '3rem', marginBottom: '4rem' }}>
-        <Layout.Wrapper medium>
-          <Text.Rich>{ReactHtmlParser(aboutText, {})}</Text.Rich>
-        </Layout.Wrapper>
-      </Layout.Padding>
+      <Padding style={{ marginTop: '3rem', marginBottom: '4rem' }}>
+        <Wrapper medium>
+          <Rich>{ReactHtmlParser(aboutText, {})}</Rich>
+        </Wrapper>
+      </Padding>
     </>
   );
 };

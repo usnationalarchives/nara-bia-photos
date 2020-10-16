@@ -19,8 +19,8 @@ import useRecords from '#hooks/useRecords';
 import usePagination from '#hooks/usePagination';
 
 // shared components
-import * as Text from '#components/shared/Text';
-import * as Layout from '#components/shared/Layout';
+import {H1, H2, H3, H4, H5, H6, Intro, Label, Screenreader, Rich} from '#components/shared/Text';
+import {Padding, Wrapper, Center} from '#components/shared/Layout';
 import Results from '#components/shared/Results';
 
 // styles
@@ -61,12 +61,12 @@ const NotableNativeAmericanModal = ({ open, setOpen }) => {
       }}
       center
     >
-      <Layout.Padding>
-        <Layout.Wrapper medium>
-          <Text.H3 style={{ color: '#fff' }}>{'Explore Photographs of Famous Native Americans'}</Text.H3>
+      <Padding>
+        <Wrapper medium>
+          <H3 style={{ color: '#fff' }}>{'Explore Photographs of Famous Native Americans'}</H3>
           {results.length > 0 && <ResultsStyles results={results} data={results} fidelity={fidelity} />}
-        </Layout.Wrapper>
-      </Layout.Padding>
+        </Wrapper>
+      </Padding>
     </Modal>
   );
 };

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import content from '#config/content';
 
 // components
-import * as Layout from '#components/shared/Layout';
+import {Padding, Wrapper, Center} from '#components/shared/Layout';
 import Pagination from '#components/shared/Pagination';
 import Filters from '#components/shared/Filters';
 import Results from '#components/shared/Results';
@@ -129,8 +129,8 @@ const TribeListing = ({ ...props }) => {
           </>
         )}
       </TribeBillboard>
-      <Layout.Padding>
-        <Layout.Wrapper>
+      <Padding>
+        <Wrapper>
           <Filters filters={filters} />
 
           <ResultsWrapper>
@@ -152,8 +152,8 @@ const TribeListing = ({ ...props }) => {
               totalPages={totalPages}
             />
           </ResultsWrapper>
-        </Layout.Wrapper>
-      </Layout.Padding>
+        </Wrapper>
+      </Padding>
     </Fragment>
   );
 };

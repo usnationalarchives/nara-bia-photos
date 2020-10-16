@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
 // components
-import * as Text from '#components/shared/Text';
+import {H1, H2, H3, H4, H5, H6, Intro, Label, Screenreader, Rich} from '#components/shared/Text';
 import Toggle from '#components/shared/Toggle';
 
 const ExplorePromoStyled = styled.div`
@@ -52,7 +52,7 @@ const ExplorePromo = ({ title, text, scheme, onClick, className }) => {
   return (
     <ExplorePromoStyled className={className} scheme={scheme}>
       <div>
-        <Text.H2>{title}</Text.H2>
+        <H2>{title}</H2>
         <p>{text}</p>
       </div>
       <div style={{ textAlign: 'center' }}>

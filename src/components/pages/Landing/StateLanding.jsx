@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
-import * as Text from '#components/shared/Text';
+import {H1, H2, H3, H4, H5, H6, Intro, Label, Screenreader, Rich} from '#components/shared/Text';
 import { statesByRegion, joinParams } from '#modules/helpers';
 import Card from '#components/shared/Card';
 import State from '#components/shared/State';
@@ -22,7 +22,7 @@ import { ReactComponent as InfoIcon } from '#assets/icons/info.svg';
 import useRecords from '#hooks/useRecords';
 
 // components
-import * as Layout from '#components/shared/Layout';
+import {Padding, Wrapper, Center} from '#components/shared/Layout';
 import LandingBillboard from '#components/shared/LandingBillboard';
 import RegionMap from '#components/shared/RegionMap';
 import Select from '#components/shared/Select';
@@ -150,7 +150,7 @@ const RegionGroup = ({ region }) => {
     regionResults.length > 0 &&
     region.slug !== 'california' && (
       <RegionGroupStyled key={region.slug}>
-        <Text.H3>
+        <H3>
           <LinkStyled
             to={() => ({
               pathname: '/search',
@@ -163,7 +163,7 @@ const RegionGroup = ({ region }) => {
           >
             {region.name}
           </LinkStyled>
-        </Text.H3>
+        </H3>
         <Grid>
           {regionStates.map(state => (
             <Item key={state.slug} state={state}></Item>
@@ -224,7 +224,7 @@ const StateLanding = () => {
       regionResults.length > 0 &&
       region.slug !== 'california' && (
         <RegionGroupStyled key={region.slug}>
-          <Text.H3>
+          <H3>
             <LinkStyled
               to={() => ({
                 pathname: '/search',
@@ -237,7 +237,7 @@ const StateLanding = () => {
             >
               {region.name}
             </LinkStyled>
-          </Text.H3>
+          </H3>
           <Grid>
             {regionStates.map(state => (
               <Item key={state.slug} state={state}></Item>
@@ -281,8 +281,8 @@ const StateLanding = () => {
 
         <Billboard />
 
-        <Layout.Padding>
-          <Layout.Wrapper>
+        <Padding>
+          <Wrapper>
             <MapSelect>
               <p>{content.states.mapDirections}</p>
               <span>
@@ -297,19 +297,19 @@ const StateLanding = () => {
               </span>
             </MapSelect>
             <RegionMap />
-            <Layout.Wrapper narrow>
+            <Wrapper narrow>
               <MapInfo>
                 <span>
                   <InfoIcon width="17" fill="#345d96"></InfoIcon>
                 </span>
                 <p>{content.states.disclaimer}</p>
               </MapInfo>
-            </Layout.Wrapper>
+            </Wrapper>
             {regions.map(region => (
               <RegionGroup key={region.slug} region={region}></RegionGroup>
             ))}
-          </Layout.Wrapper>
-        </Layout.Padding>
+          </Wrapper>
+        </Padding>
       </Fragment>
     </StateThumbnailProvider>
   );

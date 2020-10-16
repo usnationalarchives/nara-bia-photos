@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 // components
-import * as Layout from '#components/shared/Layout';
+import {Padding, Wrapper, Center} from '#components/shared/Layout';
 import LandingBillboard from '#components/shared/LandingBillboard';
 import { Grid, GridItem } from '#components/shared/Grid';
 import Card from '#components/shared/Card';
@@ -100,11 +100,11 @@ const TopicLanding = () => {
       </Helmet>
       <Billboard />
 
-      <Layout.Padding style={{ marginTop: '5rem', marginBottom: '5rem' }}>
-        <Layout.Wrapper>
+      <Padding style={{ marginTop: '5rem', marginBottom: '5rem' }}>
+        <Wrapper>
           <TopicsGrid />
-        </Layout.Wrapper>
-      </Layout.Padding>
+        </Wrapper>
+      </Padding>
     </Fragment>
   );
 };

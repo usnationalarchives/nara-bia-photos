@@ -1,12 +1,12 @@
 import React from 'react';
 
-import * as Layout from '#components/shared/Layout';
+import {Padding, Wrapper, Center} from '#components/shared/Layout';
 
 const PageLoader = () => {
   return (
-    <Layout.Padding style={{ marginTop: '1rem', marginBottom: '2rem' }}>
-      <Layout.Wrapper>Loading...</Layout.Wrapper>
-    </Layout.Padding>
+    <Padding style={{ marginTop: '1rem', marginBottom: '2rem' }}>
+      <Wrapper>Loading...</Wrapper>
+    </Padding>
   );
 };
 

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Popover, { ArrowContainer } from 'react-tiny-popover';
 
 // components
-import * as Text from '#components/shared/Text';
+import {H1, H2, H3, H4, H5, H6, Intro, Label, Screenreader, Rich} from '#components/shared/Text';
 import { ReactComponent as QuestionIcon } from '#assets/icons/question.svg';
 
 // styles
@@ -64,7 +64,7 @@ const PopoverInfo = ({ content }) => {
     >
       <span style={{ position: 'relative' }}>
         <StyledButton aria-describedby="billboarTooltip" onClick={() => setOpen(!open)}>
-          <Text.Screenreader>Toggle Help</Text.Screenreader>
+          <Screenreader>Toggle Help</Screenreader>
           <Question />
         </StyledButton>
         <span id="billboarTooltip" ref={contentEl} aria-live="assertive" role="tooltip"></span>

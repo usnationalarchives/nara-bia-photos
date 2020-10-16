@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 import { Helmet } from 'react-helmet';
 
 // components
-import * as Layout from '#components/shared/Layout';
+import {Padding, Wrapper, Center} from '#components/shared/Layout';
 import Filters from '#components/shared/Filters';
 import Pagination from '#components/shared/Pagination';
 import QueryField from './QueryField';
@@ -146,15 +146,15 @@ const Search = ({ ...props }) => {
         <meta property="og:image" content={'FIXME'} />
       </Helmet>
       <QueryField defaultValue={search.q || query} setQuery={setQuery} />
-      <Layout.Padding style={{ marginTop: '1rem', marginBottom: '2rem' }}>
-        <Layout.Wrapper>
+      <Padding style={{ marginTop: '1rem', marginBottom: '2rem' }}>
+        <Wrapper>
           <Filters filters={filters} />
 
           {query && !hasActiveFilters && <p>No Results</p>}
           {!query && !hasActiveFilters && (
-            <Layout.Wrapper narrow="true">
+            <Wrapper narrow="true">
               <Begin>Begin a search above by entering a keyword or phase, or selecting any relevent filters.</Begin>
-            </Layout.Wrapper>
+            </Wrapper>
           )}
 
           {hasActiveFilters && (
@@ -180,8 +180,8 @@ const Search = ({ ...props }) => {
               </ResultsWrapper>
             </Suspense>
           )}
-        </Layout.Wrapper>
-      </Layout.Padding>
+        </Wrapper>
+      </Padding>
     </>
   );
 };

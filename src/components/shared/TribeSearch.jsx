@@ -6,7 +6,7 @@ import Popover from 'react-tiny-popover';
 
 // componnts
 import * as Input from '#components/shared/Input';
-import * as Text from '#components/shared/Text';
+import {H1, H2, H3, H4, H5, H6, Intro, Screenreader, Rich} from '#components/shared/Text';
 import PopoverNav from '#components/shared/PopoverNav';
 import Button from '#components/shared/Button';
 import { ReactComponent as SearchIcon } from '#assets/icons/search.svg';
@@ -84,7 +84,7 @@ const TribeSearch = ({ tribalNations }) => {
             />
             <StyledButton type="submit" scheme={'green'}>
               <SearchIcon width="20" fill="currentColor" />
-              <Text.Screenreader>Search</Text.Screenreader>
+              <Screenreader>Search</Screenreader>
             </StyledButton>
 
             <div ref={popoverEl}></div>

@@ -25,8 +25,8 @@ import iiifImage from '#modules/iiifImage';
 import useRecords from '#hooks/useRecords';
 
 // shared components
-import * as Text from '#components/shared/Text';
-import * as Layout from '#components/shared/Layout';
+import {H1, H2, H3, H4, H5, H6, Intro, Label, Screenreader, Rich} from '#components/shared/Text';
+import {Padding, Wrapper, Center} from '#components/shared/Layout';
 import Select from '#components/shared/Select';
 import Button from '#components/shared/Button';
 
@@ -191,15 +191,15 @@ const TribalNationModal = ({ open, setOpen }) => {
         }}
         center
       >
-        <Layout.Padding style={{ color: '#000', marginTop: '5rem' }}>
-          <Layout.Wrapper large>
-            <Text.H4 style={{ color: '#000', textTransform: 'uppercase' }}>{'Feature Tribal Nation'}</Text.H4>
+        <Padding style={{ color: '#000', marginTop: '5rem' }}>
+          <Wrapper large>
+            <H4 style={{ color: '#000', textTransform: 'uppercase' }}>{'Feature Tribal Nation'}</H4>
             {!!activeTribalNation && (
               <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <div style={{ paddingRight: '50px' }}>
-                  <Text.H2 style={{ color: '#000', marginTop: '1rem', marginBottom: '1rem' }}>
+                  <H2 style={{ color: '#000', marginTop: '1rem', marginBottom: '1rem' }}>
                     {tribalNation.name}
-                  </Text.H2>
+                  </H2>
                   <p style={{ margin: '1.2rem 0' }}>
                     The chart below shows the breakdown of all photos known to be associated with the{' '}
                     {activeTribalNation}. Click on a topic to see related photos or select one of the other 10 featured
@@ -243,11 +243,11 @@ const TribalNationModal = ({ open, setOpen }) => {
                 </div>
               </div>
             )}
-          </Layout.Wrapper>
-        </Layout.Padding>
+          </Wrapper>
+        </Padding>
         {!!activeTribalNation && (
-          <Layout.Padding style={{ color: '#000' }}>
-            <Layout.Wrapper large>
+          <Padding style={{ color: '#000' }}>
+            <Wrapper large>
               <TopicChart>
                 {orderedTopics.map(topic => {
                   return (
@@ -297,8 +297,8 @@ const TribalNationModal = ({ open, setOpen }) => {
                   View all {results.length} photos
                 </Button>
               </div>
-            </Layout.Wrapper>
-          </Layout.Padding>
+            </Wrapper>
+          </Padding>
         )}
       </Modal>
     </>

@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import content from '#config/content';
 
 // components
-import * as Layout from '#components/shared/Layout';
+import {Padding, Wrapper, Center} from '#components/shared/Layout';
 import Pagination from '#components/shared/Pagination';
 import Filters from '#components/shared/Filters';
 import Results from '#components/shared/Results';
@@ -108,8 +108,8 @@ const StateListing = ({ ...props }) => {
         items={states}
         slugPrefix="states"
       />
-      <Layout.Padding>
-        <Layout.Wrapper>
+      <Padding>
+        <Wrapper>
           <Filters filters={filters} />
 
           <ResultsWrapper>
@@ -131,8 +131,8 @@ const StateListing = ({ ...props }) => {
               totalPages={totalPages}
             />
           </ResultsWrapper>
-        </Layout.Wrapper>
-      </Layout.Padding>
+        </Wrapper>
+      </Padding>
     </Fragment>
   );
 };

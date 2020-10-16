@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import content from '#config/content';
 
 //components
-import * as Layout from '#components/shared/Layout';
+import {Padding, Wrapper, Center} from '#components/shared/Layout';
 import { ButtonLink } from '#components/shared/Button';
 import Logo from './Logo';
 import FooterNav from './FooterNav';
@@ -53,8 +53,8 @@ const Help = styled.div`
 const Footer = () => {
   return (
     <Root id="footer">
-      <Layout.Padding>
-        <Layout.Wrapper>
+      <Padding>
+        <Wrapper>
           <Main>
             <Branding>
               <Logo />
@@ -69,8 +69,8 @@ const Footer = () => {
           </Main>
 
           <Copyright />
-        </Layout.Wrapper>
-      </Layout.Padding>
+        </Wrapper>
+      </Padding>
     </Root>
   );
 };

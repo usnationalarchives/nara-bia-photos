@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { debounce } from 'lodash';
 import styled from 'styled-components';
-import * as Layout from '#components/shared/Layout';
+import {Padding, Wrapper, Center} from '#components/shared/Layout';
 import Button from '#components/shared/Button';
 import { ReactComponent as SearchIcon } from '#assets/icons/search.svg';
 import tinycolor from 'tinycolor2';
 
-import * as Text from '../../shared/Text';
+import {H1 as Heading1, H2, H3, H4, H5, H6, Intro, Label, Screenreader, Rich} from '../../shared/Text';
 
-const H1 = styled(Text.H1)`
+const H1 = styled(Heading1)`
   color: white;
   line-height: 1;
 `;
@@ -93,8 +93,8 @@ const QueryField = ({ defaultValue, setQuery }) => {
 
   return (
     <Banner>
-      <Layout.Padding>
-        <Layout.Wrapper narrow="true">
+      <Padding>
+        <Wrapper narrow="true">
           <form role="search">
             <label htmlFor="query">
               <H1>Search</H1>
@@ -112,14 +112,14 @@ const QueryField = ({ defaultValue, setQuery }) => {
                 <span className="shirnk">
                   <StyledButton type="submit" scheme={'green'}>
                     <SearchIcon width="20" fill="currentColor" />
-                    <Text.Screenreader>Search</Text.Screenreader>
+                    <Screenreader>Search</Screenreader>
                   </StyledButton>
                 </span>
               </div>
             </InputGroup>
             </form>
-        </Layout.Wrapper>
-      </Layout.Padding>
+        </Wrapper>
+      </Padding>
     </Banner>
   );
 };

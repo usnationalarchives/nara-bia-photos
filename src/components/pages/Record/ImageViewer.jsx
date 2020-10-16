@@ -9,7 +9,7 @@ import 'rc-slider/assets/index.css';
 import Script from 'react-load-script';
 
 import { fl_allStates, fl_static, fl_attention, fl_visuallyHidden } from '#styles/frontline';
-import * as Text from '#components/shared/Text';
+import {H1, H2, H3, H4, H5, H6, Intro, Label, Screenreader, Rich} from '#components/shared/Text';
 import { colors } from '#styles/theme';
 
 import iiifImage from '#modules/iiifImage';
@@ -183,7 +183,7 @@ const ImageViewer = ({ record, objects }) => {
       <ViewerContols right>
         <div>
           {/* <ShareIcon width={20} fill="currentColor" />
-            <Text.Screenreader>Share</Text.Screenreader> */}
+            <Screenreader>Share</Screenreader> */}
           <Script
             url="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50e7434a1e973d51"
             onLoad={() => {
@@ -198,7 +198,7 @@ const ImageViewer = ({ record, objects }) => {
         <div>
           <ViewerButtonStyled id="osd-zoom_in">
             <ZoomInIcon width={20} fill="currentColor" />
-            <Text.Screenreader>Zoom In</Text.Screenreader>
+            <Screenreader>Zoom In</Screenreader>
           </ViewerButtonStyled>
           {false && (
             <Slider
@@ -221,21 +221,21 @@ const ImageViewer = ({ record, objects }) => {
           )}
           <ViewerButtonStyled id="osd-home">
             <CenterIcon width={20} fill="currentColor" />
-            <Text.Screenreader>Home</Text.Screenreader>
+            <Screenreader>Home</Screenreader>
           </ViewerButtonStyled>
           <ViewerButtonStyled id="osd-zoom_out">
             <ZoomOutIcon width={20} fill="currentColor" />
-            <Text.Screenreader>Zoom Out</Text.Screenreader>
+            <Screenreader>Zoom Out</Screenreader>
           </ViewerButtonStyled>
         </div>
         <div>
           <ViewerButtonStyled as="a" href={iiifImage(record, 'full')}>
             <DownloadIcon width={20} fill="currentColor" />
-            <Text.Screenreader>Download</Text.Screenreader>
+            <Screenreader>Download</Screenreader>
           </ViewerButtonStyled>
         </div>
         {/* <ViewerButtonStyled id="osd-full_page">
-          <Text.Screenreader>Full Page</Text.Screenreader>
+          <Screenreader>Full Page</Screenreader>
         </ViewerButtonStyled> */}
       </ViewerContols>
       <div id="referenceStripElement"></div>

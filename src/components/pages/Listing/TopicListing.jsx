@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet';
 import content from '#config/content';
 
 // components
-import * as Layout from '#components/shared/Layout';
+import {Padding, Wrapper, Center} from '#components/shared/Layout';
 import Pagination from '#components/shared/Pagination';
 import Filters from '#components/shared/Filters';
 import Results from '#components/shared/Results';
@@ -106,8 +106,8 @@ const TopicListing = ({ ...props }) => {
       </Helmet>
 
       <ListingBillboard label="Topic" intro={description} title={topicName} items={topics} slugPrefix="topics" />
-      <Layout.Padding>
-        <Layout.Wrapper>
+      <Padding>
+        <Wrapper>
           <Filters filters={filters} />
           <ResultsWrapper>
             <ResultsHeaderWrapper>
@@ -128,8 +128,8 @@ const TopicListing = ({ ...props }) => {
               totalPages={totalPages}
             />
           </ResultsWrapper>
-        </Layout.Wrapper>
-      </Layout.Padding>
+        </Wrapper>
+      </Padding>
     </Fragment>
   );
 };

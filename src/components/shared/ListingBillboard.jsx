@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import Popover from 'react-tiny-popover';
 
 // components
-import * as Layout from '#components/shared/Layout';
-import * as Text from '#components/shared/Text';
+import {Padding, Wrapper, Center} from '#components/shared/Layout';
+import {H1 as Heading1, H2, H3, H4, H5, H6, Intro as StyledIntro, Label as StyledLabel, Screenreader, Rich} from '#components/shared/Text';
 import PopoverNav from '#components/shared/PopoverNav';
 
 // styles
@@ -16,19 +16,19 @@ const Root = styled.div`
   padding: 2rem 0;
 `;
 
-const Label = styled(Text.Label)`
+const Label = styled(StyledLabel)`
   color: ${props => props.theme.colors.white};
   text-transform: uppercase;
 `;
 
-const Title = styled(Text.H1)`
+const Title = styled(Heading1)`
   color: ${props => props.theme.colors.white};
   margin-bottom: 1rem;
   margin-top: 0.75rem;
   max-width: 700px;
 `;
 
-const Intro = styled(Text.Intro)`
+const Intro = styled(StyledIntro)`
   color: ${props => props.theme.colors.white};
 `;
 
@@ -69,8 +69,8 @@ const ListingBillboard = ({ label, title, intro, items, slugPrefix }) => {
 
   return (
     <Root>
-      <Layout.Padding>
-        <Layout.Wrapper>
+      <Padding>
+        <Wrapper>
           <Label>{label}</Label>
           <Popover
             isOpen={navOpen}
@@ -90,8 +90,8 @@ const ListingBillboard = ({ label, title, intro, items, slugPrefix }) => {
           </Popover>
 
           <Intro>{intro}</Intro>
-        </Layout.Wrapper>
-      </Layout.Padding>
+        </Wrapper>
+      </Padding>
     </Root>
   );
 };
