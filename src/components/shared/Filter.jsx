@@ -132,7 +132,7 @@ const Filter = ({ filter, isActive, toggle, id }) => {
       .all()
       .filter(i => i.key && permitted.includes(i.key));
 
-  return (
+  return ( allItems.length > 0 &&
     <div>
       <Fieldset>
         <legend style={{ marginBottom: '1.25rem' }}>

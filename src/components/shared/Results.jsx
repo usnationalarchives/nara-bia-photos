@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
+
 // components
 import Result from '#components/shared/Result';
 
@@ -34,14 +35,18 @@ const Item = styled.li`
 `;
 
 const Results = ({ className, results, data, fidelity, singleRow }) => {
-  return (
-    <ResultsStyles className={className} role="main" aria-label="Results">
-      {data.map(record => (
-        <Item singleRow={singleRow} key={record.slug} data={data} record={record} fidelity={fidelity}>
-          <Result key={record.naId} record={record} scale={fidelity} />
-        </Item>
-      ))}
-    </ResultsStyles>
+  return ( <>
+    {
+      results.length > 0 && <ResultsStyles className={className} role="main" aria-label="Results">
+        {data.map(record => (
+          <Item singleRow={singleRow} key={record.slug} data={data} record={record} fidelity={fidelity}>
+            <Result key={record.naId} record={record} scale={fidelity} />
+          </Item>
+        ))}
+      </ResultsStyles>
+    }
+    {results.length < 1 && <p style={{ margin: '30px', textAlign: 'center'}}>There are no photographs</p>}
+    </>
   );
 };
 

@@ -110,7 +110,8 @@ const StateListing = ({ ...props }) => {
       />
       <Layout.Padding>
         <Layout.Wrapper>
-          <Filters filters={filters} />
+          {results.length > 0 &&
+            <Filters filters={filters} />}
 
           <ResultsWrapper>
             <ResultsHeaderWrapper>
@@ -130,7 +131,9 @@ const StateListing = ({ ...props }) => {
               nextPage={nextPage}
               totalPages={totalPages}
             />
-          </ResultsWrapper>
+            </ResultsWrapper>
+
+          
         </Layout.Wrapper>
       </Layout.Padding>
     </Fragment>
