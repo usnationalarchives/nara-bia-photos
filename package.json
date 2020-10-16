@@ -187,7 +187,8 @@
     "@storybook/addon-links": "^5.3.19",
     "@storybook/addons": "^5.3.19",
     "@storybook/react": "^5.3.19",
-    "@threespot/prettier-config": "^1.0.0"
+    "@threespot/prettier-config": "^1.0.0",
+    "webpack-bundle-analyzer": "^3.9.0"
   },
   "prettier": "@threespot/prettier-config"
 }
