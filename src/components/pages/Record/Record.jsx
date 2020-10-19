@@ -219,17 +219,11 @@ const Record = ({ ...props }) => {
                   <Table.RowStyles>
                     <Table.LabelStyles>
                       <Text.Label style={{ fontSize: '13px', fontWeight: 'normal' }}>
-                        National Archives Identifier:
+                        National Archives Catalog Identifier:
                     </Text.Label>
                     </Table.LabelStyles>
                     <Table.ValueStyles>
-                      <a href={`${externalUrls.catalogRecordDetail}/${record.naId}`}>{record.naId}</a>
-                    </Table.ValueStyles>
-                  </Table.RowStyles>
-                  <Table.RowStyles>
-                    <Table.LabelStyles>&nbsp;</Table.LabelStyles>
-                    <Table.ValueStyles>
-                      <ExternalLink href={`${externalUrls.catalogRecordDetail}/${record.naId}`}>Catalog</ExternalLink>
+                      <ExternalLink href={`${externalUrls.catalogRecordDetail}/${record.naId}`}>{record.naId}</ExternalLink>
                     </Table.ValueStyles>
                   </Table.RowStyles>
                 </TabPanel>
