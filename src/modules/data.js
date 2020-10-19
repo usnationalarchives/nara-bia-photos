@@ -1,6 +1,6 @@
 import crossfilter from 'crossfilter2';
 
-import data from '../data/records.csv';
+import data from '../data/records.json';
 
 // Set up a crossfilter with all records
 const records = crossfilter(data);
