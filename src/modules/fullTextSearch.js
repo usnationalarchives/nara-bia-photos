@@ -1,6 +1,6 @@
 import elasticlunr from 'elasticlunr';
 
-import data from '../data/records.csv';
+import data from '../data/records.json';
 
 // Define and create a search index using elasticlunr
 const index = elasticlunr(function () {

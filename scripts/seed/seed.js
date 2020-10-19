@@ -3,6 +3,8 @@ const recordsApi = require('./records/api');
 
 const tribalNationsCsv = require('./tribalNations/csv');
 const tribalNationsApi = require('./tribalNations/api');
+const fs = require('fs');
+const csvtojson = require('csvtojson');
 
 const createRecordsCsv = async () => {
   // Set the initial cursorMark
@@ -53,6 +55,18 @@ const addRecordsFromFileUnits = async () => {
   } while (typeof nextCursorMark !== 'undefined');
 };
 
+const convertRecordsToJSON = async () => {
+  try {
+    csvtojson({ checkType: true, colParser: { objects: 'string' } })
+      .fromFile('src/data/records.csv')
+      .then(json => {
+        fs.writeFileSync('src/data/records.json', JSON.stringify(json));
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const createTribalNationsCsv = async () => {
   let response;
 
@@ -73,6 +87,7 @@ const createTribalNationsCsv = async () => {
 
 const run = async () => {
   await createRecordsCsv();
+  await convertRecordsToJSON();
   await addRecordsFromFileUnits();
   await createTribalNationsCsv();
 };

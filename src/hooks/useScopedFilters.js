@@ -1,6 +1,6 @@
 import crossfilter from 'crossfilter2';
 
-import data from '#data/records.csv';
+import data from '#data/records.json';
 
 import { topics, states, tribalNations } from '#modules/constants';
 
