@@ -2,9 +2,12 @@ import React, { Fragment, useState, useEffect } from 'react';
 import qs from 'qs';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
+import { includes } from 'lodash';
 
 // config
 import content from '#config/content';
+
+import { joinParams } from '#modules/helpers';
 
 // components
 import * as Layout from '#components/shared/Layout';
@@ -83,8 +86,20 @@ const TribeListing = ({ ...props }) => {
     document.querySelector('html').scrollTop = 0;
   }, [page]);
 
-  const highlightedState = !!stateFilters.length ? stateConsts.find(s => s.name === stateFilters[0].key) : [];
+  const highlightedStates = !!stateFilters.length ? stateConsts.filter(state => includes(stateFilters.map(s => s.key), state.name))  : [];
   const description = content.tribalNation.intro.replace('${TRIBE}', tribalNationName);
+
+
+  const stateLinks = (activeStates) => {
+    return activeStates.map((state, i) => {
+      return <>
+        { activeStates.length > 1 && i !== 0 && i !== activeStates.length - 1 ? ', ' : ''}
+        { activeStates.length > 1 && i !== 0 && i === activeStates.length - 1 ? ' and ' : ''}
+        <Link key={`statelink-${state.name}`} to={`/states/${state.slug}?${joinParams('tribalNations', [tribalNationName])}`}>{state.name}</Link>
+      </>
+    });
+  }
+
 
   return (
     <Fragment>
@@ -118,11 +133,11 @@ const TribeListing = ({ ...props }) => {
             <TribalNationMap activeStates={stateFilters.map(s => s.key)} />
 
             <p style={{ color: '#fff' }}>
-              There are {stateFilters.length ? stateFilters[0].value : 0} photographs associated with this Tribal Nation
+              There are {stateFilters.length ? results.length : 0} photographs associated with this Tribal Nation
               {stateFilters.length > 0 && (
                 <>
                   {' '}
-                  across <Link to={`/states/${highlightedState.slug}`}>{highlightedState.name}</Link>
+                  across {stateLinks(highlightedStates)}
                 </>
               )}
             </p>
