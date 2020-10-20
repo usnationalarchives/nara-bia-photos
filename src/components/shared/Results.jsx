@@ -7,7 +7,7 @@ import Result from '#components/shared/Result';
 
 const ResultsStyles = styled.ul`
   display: flex;
-  /* flex-flow: row wrap; */
+  flex-flow: row wrap;
   margin: 20px -10px 0;
 
     ${props => 
