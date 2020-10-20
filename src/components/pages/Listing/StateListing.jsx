@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import qs from 'qs';
 import { Helmet } from 'react-helmet';
+import { includes } from 'lodash';
 
 import content from '#config/content';
 
@@ -39,6 +40,11 @@ const StateListing = ({ ...props }) => {
 
   const topicFilters = useScopedFilters(stateName, 'state', 'topics');
   const tribeFilters = useScopedFilters(stateName, 'state', 'tribes');
+
+  const [stateResults, dimensions] = useRecords({
+  });
+
+  const statesWithResults = dimensions.recordsByState.group().all().map(s => s.key);
 
   const [results] = useRecords({
     facets: {
@@ -105,7 +111,7 @@ const StateListing = ({ ...props }) => {
         label="State"
         title={stateName}
         intro={content.state.intro.replace('${STATE}', stateName)}
-        items={states}
+        items={states.filter(state => includes(statesWithResults, state.name) )}
         slugPrefix="states"
       />
       <Layout.Padding>
