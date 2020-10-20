@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
+import { sampleSize } from 'lodash';
 
 // components
 import * as Text from '#components/shared/Text';
@@ -75,9 +76,9 @@ const TribeList = ({ groupedTribes }) => {
         <Section key={i}>
           <Results
             singleRow
-            data={thumbnailResults.filter(result =>
+            data={sampleSize(thumbnailResults.filter(result =>
               tribalNationThumbnails[section[0].toLowerCase()].includes(result.naId)
-            )}
+            ), 3)}
             fidelity={250}
           />
 

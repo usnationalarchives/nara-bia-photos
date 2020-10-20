@@ -7,8 +7,15 @@ import Result from '#components/shared/Result';
 
 const ResultsStyles = styled.ul`
   display: flex;
-  flex-flow: row wrap;
+  /* flex-flow: row wrap; */
   margin: 20px -10px 0;
+
+    ${props => 
+  !!props.$singleRow &&
+    css`
+      flex-wrap: nowrap;
+    `
+    }
 `;
 
 const Item = styled.li`
@@ -37,7 +44,7 @@ const Item = styled.li`
 const Results = ({ className, results=[], data, fidelity, singleRow }) => {
   return ( <>
     {
-      data.length > 0 && <ResultsStyles className={className} role="main" aria-label="Results">
+      data.length > 0 && <ResultsStyles className={className} role="main" aria-label="Results" $singleRow={singleRow}>
         {data.map(record => (
           <Item singleRow={singleRow} key={record.slug} data={data} record={record} fidelity={fidelity}>
             <Result key={record.naId} record={record} scale={fidelity} />
