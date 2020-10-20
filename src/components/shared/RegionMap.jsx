@@ -2,14 +2,16 @@ import React, { Fragment, useState, memo, createRef, useEffect } from 'react';
 import { geoCentroid } from 'd3-geo';
 import { ComposableMap, Geographies, Geography, Marker, Annotation } from 'react-simple-maps';
 import { states, regions } from '#modules/constants';
-import _ from 'lodash';
+import { find, includes} from 'lodash';
 import { useHistory } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 import styled, { css } from 'styled-components';
 import d3plus, { TextBox } from 'd3plus-text';
 import { ReactComponent as PhotoIcon } from '#assets/icons/photo.svg';
-
 import tinycolor from 'tinycolor2';
+
+// hooks
+import useRecords from '#hooks/useRecords';
 
 const geoUrl = 'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json';
 
@@ -56,8 +58,13 @@ const MapChart = ({}) => {
   const history = useHistory();
   const [activeMapState, setActiveMapState] = useState('');
 
+  const [stateResults, dimensions] = useRecords({
+    purgeDimensions: true
+  });
+  const statesWithResults = dimensions.recordsByState.group().all();
+
   const getState = geoID => {
-    const state = _.find(states, state => {
+    const state = find(states, state => {
       return state.val == geoID;
     });
     return state;
@@ -67,7 +74,7 @@ const MapChart = ({}) => {
     let hue = '#ddd';
     const state = getState(geoID);
     if (state) {
-      const region = _.find(regions, region => {
+      const region = find(regions, region => {
         return region.slug == state.region;
       });
       hue = region.mapColors.region;
@@ -91,13 +98,22 @@ const MapChart = ({}) => {
     margin-right: 6px;
   `;
 
+  const getNumberOfStateResults = (states, state) => {
+    const filteredStates = states.filter(s => s.key === state.name);
+    if (filteredStates.length > 0) {
+      return filteredStates[0].value
+    } else {
+      return '0';
+    }
+  }
+
   return (
     <RegionMapWrapper>
       <ReactTooltip backgroundColor="#fff" textColor="#333" borderColor="#DDD" border={true}>
         {!!activeMapState && (
           <StyledTooltipContent>
             <span>{activeMapState.name}</span>
-            <PhotoIconStyled width="15"></PhotoIconStyled> ## Records
+            <PhotoIconStyled width="15"></PhotoIconStyled> {getNumberOfStateResults(statesWithResults, activeMapState)} Records
           </StyledTooltipContent>
         )}
       </ReactTooltip>
@@ -113,6 +129,7 @@ const MapChart = ({}) => {
                   const stroke = tinycolor(fill).darken(10).toString();
                   const hoverFill = tinycolor(fill).darken(25).toString();
                   const state = getState(geo.id);
+                  const hasResults = !!state && statesWithResults.map(s => s.key).includes(state.name);
                   return (
                     <Geography
                       aria-label={!!state ? state.name : ''}
@@ -121,12 +138,12 @@ const MapChart = ({}) => {
                           fill: fill,
                         },
                         hover: {
-                          fill: hoverFill,
+                          fill: hasResults ? hoverFill : fill,
                         },
                       }}
                       key={geo.rsmKey}
                       onClick={() => {
-                        history.push(`/states/${state.slug}`);
+                        hasResults && history.push(`/states/${state.slug}`);
                       }}
                       onMouseEnter={() => {
                         setActiveMapState(states.find(state => state.val == geo.id));
