@@ -256,7 +256,7 @@ const Record = ({ ...props }) => {
                   }}
                 >
                   <p style={{ marginRight: '20px' }}>
-                    There are {thumbnailResults.length.toLocaleString('en')} other records in the archival series{' '}
+                    There are {thumbnailResults.length.toLocaleString('en')} other digitized records in the archival series{' '}
                     {record.parentSeriesTitle}
                   </p>
 
