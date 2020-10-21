@@ -275,7 +275,7 @@ export const Rich = styled.div`
     }
   }
 
-  a {
+  a:not([class="btn"]){
     ${fl_static(css`
       color: ${props => props.theme.colors.blue}
     `)}    
