@@ -14,7 +14,7 @@ import useRecords from '#hooks/useRecords';
 import { tribalNationThumbnails } from '#modules/constants';
 
 // styles
-import { fl_allStates } from '#styles/frontline';
+import { fl_allStates, fl_static, fl_attention } from '#styles/frontline';
 
 const Root = styled.ol``;
 
@@ -57,9 +57,13 @@ const Item = styled.li`
 `;
 
 const ItemLink = styled(Link)`
-  ${fl_allStates(css`
-    text-decoration: none;
+  ${fl_static(css`
     color: ${props => props.theme.colors.blue};
+    text-decoration: none;
+  `)}
+
+    ${fl_attention(css`
+    text-decoration: underline;
   `)}
 `;
 

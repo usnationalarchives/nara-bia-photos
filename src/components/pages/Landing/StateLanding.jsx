@@ -51,7 +51,7 @@ const LinkStyled = styled(Link)`
   `)}
 
   ${frontline.fl_attention(css`
-    color: ${props => props.theme.colors.blue}
+    color: ${props => props.theme.colors.blue};
     text-decoration: underline;
   `)}
 `;
