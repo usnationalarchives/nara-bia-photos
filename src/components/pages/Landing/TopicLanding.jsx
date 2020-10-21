@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import styled, { css } from 'styled-components';
 
 // components
 import * as Layout from '#components/shared/Layout';
@@ -9,6 +10,8 @@ import { Grid, GridItem } from '#components/shared/Grid';
 import Card from '#components/shared/Card';
 import Topic from '#components/shared/Topic';
 import Select from '#components/shared/Select';
+
+import { fl_attention } from '#styles/frontline';
 
 // hooks
 import useRecords from '#hooks/useRecords';
@@ -19,6 +22,13 @@ import iiifImage from '#modules/iiifImage';
 
 // config
 import content from '#config/content';
+
+const CardStyled = styled(Card)`
+  ${fl_attention(css`
+    outline: 2px solid ${props => props.theme.colors.blue};
+    outline-offset: -2px;
+  `)}
+`;
 
 const TopicLanding = () => {
   const thumbnailNaIds = topics.map(t => t.thumbnailNaId);
@@ -65,9 +75,9 @@ const TopicLanding = () => {
       <Grid>
         {topics.map(topic => (
           <GridItem key={topic.slug}>
-            <Card>
+            <CardStyled>
               <Topic topic={topic} thumbnailUrl={thumbnailUrl(topic.thumbnailNaId)} />
-            </Card>
+            </CardStyled>
           </GridItem>
         ))}
       </Grid>

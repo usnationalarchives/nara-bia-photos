@@ -11,7 +11,7 @@ const Root = styled.div`
 `;
 
 const Card = ({ ...props }) => {
-  return <Root>{props.children}</Root>;
+  return <Root className={props.className}>{props.children}</Root>;
 };
 
 export default Card;
