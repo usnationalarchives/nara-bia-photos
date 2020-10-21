@@ -17,7 +17,7 @@ import CoverLink from '#components/shared/CoverLink';
 import { fl_allStates, fl_static, fl_attention } from '#styles/frontline';
 
 const Description = styled.p`
-  color: ${props => props.theme.colors.darkGrey};
+  color: #5c5c5c;
   flex: 1 1 auto;
   font-size: 0.9375rem;
 `;
@@ -44,7 +44,7 @@ const Label = styled(CoverLink)`
   text-decoration: none;
 
   ${fl_allStates(css`
-    color: ${props => props.theme.colors.darkGrey};
+    color: #5c5c5c;
   `)}
 `;
 
@@ -69,7 +69,7 @@ const TribeLink = styled(Link)`
   z-index: 999;
 
   ${fl_static(css`
-    color: ${props => props.theme.colors.darkGrey};
+    color: #5c5c5c;
     text-decoration: underline;
   `)}
 
