@@ -56,9 +56,10 @@ const MetaWrapper = styled.div`
 `;
 
 const carouselButtonStyles = css`
+  height: 100%;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
+  width: 100px;
 
   ${frontline.fl_static(css`
     background: none;
@@ -181,8 +182,8 @@ const RecordModal = ({ activeIndex, items, open, setOpen, setImageIndex }) => {
                 <ArrowLeftIcon width={20} fill="#fff"></ArrowLeftIcon>
               </ButtonBackStyled>
               <ButtonNextStyled>
-                <ArrowRightIcon width={20} fill="#fff"></ArrowRightIcon>
                 <span className="screenreader">Next Slide</span>
+                <ArrowRightIcon width={20} fill="#fff"></ArrowRightIcon>
               </ButtonNextStyled>
             </div>
             <div style={{ textAlign: 'center', marginTop: '1rem' }}>
@@ -196,7 +197,7 @@ const RecordModal = ({ activeIndex, items, open, setOpen, setImageIndex }) => {
                   // value is set to after the modals `animationDuration` prop
                   setTimeout(() => {
                     history.push(`/${record.slug}`);
-                  }, 500);                  
+                  }, 500);
                 }}
               >
                 Explore in more detail<span className="screenreader"> Photograph: {record.title}</span>
