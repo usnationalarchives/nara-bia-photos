@@ -120,12 +120,17 @@ const State = ({ state, thumbnailUrl, results }) => {
             <RecordCount>{formatRecordCount(results.length)}</RecordCount>
           </span>
         </Meta>
-        <Description>
-          Records related to {tribeCount} Tribal Nations including{' '}
-          <TribeLink style={{ position: 'relative', zIndex: 1000 }} to={tribeUrl}>
-            {prominantTribeName}
-          </TribeLink>
-        </Description>
+        {tribeCount > 0 && (
+          <Description>
+            Records related to {tribeCount} Tribal Nations including{' '}
+            <TribeLink style={{ position: 'relative', zIndex: 1000 }} to={tribeUrl}>
+              {prominantTribeName}
+            </TribeLink>
+          </Description>
+        )}
+        {tribeCount < 1 && (
+          <Description>There are no Tribal Nations associated with the digitized records</Description>
+        )}
       </Inner>
     </Fragment>
   );
