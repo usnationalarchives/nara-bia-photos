@@ -2,8 +2,6 @@ import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as Text from '#components/shared/Text';
 import { statesByRegion, joinParams } from '#modules/helpers';
-import Card from '#components/shared/Card';
-import State from '#components/shared/State';
 import styled, { css } from 'styled-components';
 import ReactTooltip from 'react-tooltip';
 import { useHistory } from 'react-router-dom';
@@ -24,6 +22,8 @@ import useRecords from '#hooks/useRecords';
 
 // components
 import * as Layout from '#components/shared/Layout';
+import Card from '#components/shared/Card';
+import State from '#components/shared/State';
 import LandingBillboard from '#components/shared/LandingBillboard';
 import RegionMap from '#components/shared/RegionMap';
 import Select from '#components/shared/Select';
@@ -69,6 +69,13 @@ const thumbnailUrl = (results, naId) => {
   }
 };
 
+const CardStyled = styled(Card)`
+  ${frontline.fl_attention(css`
+    outline: 2px solid ${props => props.theme.colors.blue};
+    outline-offset: -2px;
+  `)}
+`;
+
 const Item = withStateThumbnails(({ state, stateThumbnailContext }) => {
   // Query records specific to this state
   const [results, dimensions, hasActiveFilters] = useRecords({
@@ -80,9 +87,9 @@ const Item = withStateThumbnails(({ state, stateThumbnailContext }) => {
     state.total = results.length;
     return (
       <GridItem key={state.slug}>
-        <Card>
+        <CardStyled>
           <State state={state} results={results} thumbnailUrl={thumbnailUrl(thumbnailResults, state.thumbnailNaId)} />
-        </Card>
+        </CardStyled>
       </GridItem>
     );
   } else {
@@ -207,9 +214,9 @@ const StateLanding = () => {
       state.total = results.length;
       return (
         <GridItem key={state.slug}>
-          <Card>
+          <CardStyled>
             <State state={state} results={results} thumbnailUrl={thumbnailUrl(state.thumbnailNaId)} />
-          </Card>
+          </CardStyled>
         </GridItem>
       );
     } else {
