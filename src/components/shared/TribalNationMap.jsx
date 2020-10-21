@@ -1,19 +1,32 @@
 import React, { Fragment, useState, memo, createRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { geoCentroid } from 'd3-geo';
 import { ComposableMap, Geographies, Geography, Marker, Annotation } from 'react-simple-maps';
 import { states, regions } from '#modules/constants';
 import styled, { css } from 'styled-components';
 import { useHistory } from 'react-router-dom';
-
 import tinycolor from 'tinycolor2';
 
+import { colors } from '#styles/theme';
+
 const geoUrl = 'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json';
+// Offsets for small state lables
+const offsets = {
+  VT: [-80, -20],
+  NH: [-30, -55],
+  MA: [50, -40],
+  RI: [50, -10],
+  CT: [40, 25],
+  NJ: [40, 30],
+  DE: [30, 45],
+  MD: [48, 80],
+  DC: [51, 21]
+};
 
 const TribalNationMapWrapper = styled.div`
-  .rsm-geography.active:hover {
+  .rsm-geography.active:hover,
+  .rsm-annotation-text:hover {
     cursor: pointer;
-
-
   }
 `;
 
@@ -38,6 +51,20 @@ const TribalNationMap = ({ activeStates }) => {
     }
   }
 
+  const renderAnnotation = (id) => {
+    if (id === 'VT' || id === 'NH') {
+      return (<text x="-8" textAnchor="end" fill={colors.yellow} style={{ fontSize: '35px', fontWeight: 'bold' }} x={4} fontSize={16} alignmentBaseline="middle">
+        {id}
+      </text>)
+    } else {
+      return (
+        <text fill={colors.yellow} style={{ fontSize: '35px', fontWeight: 'bold' }} x={4} fontSize={16} alignmentBaseline="middle">
+          {id}
+        </text>
+      )
+    }
+  }
+
   const getFill = state => {
     let hue = '#ddd';
     if (state) {
@@ -57,7 +84,8 @@ const TribalNationMap = ({ activeStates }) => {
 
   return (
     <TribalNationMapWrapper style={{ width: '100%' }}>
-      <ComposableMap projection="geoAlbersUsa">
+      <ComposableMap projection="geoAlbersUsa" width={900}
+        height={600}>
         <Geographies geography={geoUrl}>
           {({ geographies }) => {
             /* Remove Hawaii */
@@ -73,7 +101,7 @@ const TribalNationMap = ({ activeStates }) => {
                   const stroke = tinycolor('#253B5D').darken(10).toString();
                   return (
                     <Geography
-                      className={active ? 'active': ''}
+                      className={active ? 'active' : ''}
                       style={{
                         default: {
                           fill: fill,
@@ -91,6 +119,34 @@ const TribalNationMap = ({ activeStates }) => {
                       fill={fill}
                     />
                   );
+                })}
+                {geographies.map(geo => {
+                  const centroid = geoCentroid(geo);
+                  const cur = states.find(s => s.val === geo.id);
+                  const state = getState(geo.id);
+                  const active = isActive(state);
+                  return cur && active &&
+                    Object.keys(offsets).indexOf(cur.id) !== -1 &&
+                    (
+                      <g key={geo.rsmKey + '-name'}>
+
+                        <Annotation
+                        subject={centroid}
+                        dx={offsets[cur.id][0]}
+                        dy={offsets[cur.id][1]}
+                        className="rsm-annotation-text"
+                        onClick={() => {
+                          history.push(`/states/${getState(geo.id).slug}`);
+                        }}
+                        connectorProps={{
+                          stroke: colors.yellow
+                        }}
+                        >
+                          {renderAnnotation(cur.id)}
+                        </Annotation>
+
+                      </g>
+                    )
                 })}
               </>
             );

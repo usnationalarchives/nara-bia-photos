@@ -1,5 +1,4 @@
 import React, { Fragment, useState, memo, createRef, useEffect } from 'react';
-import { geoCentroid } from 'd3-geo';
 import { ComposableMap, Geographies, Geography, Marker, Annotation } from 'react-simple-maps';
 import { states, regions } from '#modules/constants';
 import { find, includes} from 'lodash';
@@ -14,7 +13,6 @@ import tinycolor from 'tinycolor2';
 import useRecords from '#hooks/useRecords';
 
 const geoUrl = 'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json';
-
 const RegionMapWrapper = styled.div`
   .rsm-geography:hover {
     cursor: pointer;
@@ -156,21 +154,6 @@ const MapChart = ({}) => {
                       fill={fill}
                     />
                   );
-                })}
-                {geographies.map(geo => {
-                  const centroid = geoCentroid(geo);
-                  const cur = states.find(s => s.val === geo.id);
-                  // console.log(centroid, geo.properties.name);
-                  return null;
-                  // <g key={geo.rsmKey + '-name'}>
-                  //   {cur && centroid[0] > -160 && centroid[0] < -67 && (
-                  //     <Marker coordinates={centroid}>
-                  //       <text y="2" fontSize={14} textAnchor="middle">
-                  //         {cur.id}
-                  //       </text>
-                  //     </Marker>
-                  //   )}
-                  // </g>
                 })}
               </>
             );
