@@ -20,18 +20,6 @@ const PageTitle = styled(Text.H1)`
   ${fl_visuallyHidden}
 `;
 
-// const transform = (node, index) => {
-//   console.log(node);
-//   if (node.type === 'tag' && node.name === 'h2') {
-//     const newNode = <Text.H2 key={`${node.name}-${index}`}>{node.children[0].data}</Text.H2>;
-//     return newNode;
-//   }
-//   if (node.type === 'tag' && node.name === 'h3') {
-//     const newNode = <Text.H3 key={`${node.name}-${index}`}>{node.children[0].data}</Text.H3>;
-//     return newNode;
-//   }
-// };
-
 const About = () => {
   return (
     <>

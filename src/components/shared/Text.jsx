@@ -275,6 +275,15 @@ export const Rich = styled.div`
     }
   }
 
+  a {
+    ${fl_static(css`
+      color: ${props => props.theme.colors.blue}
+    `)}    
+    ${fl_static(css`
+      text-decoration: underline;
+    `)}
+  }
+
   b,
   strong {
     font-weight: bold;
