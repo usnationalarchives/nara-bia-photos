@@ -118,9 +118,11 @@ const MapSelect = styled.div`
   }
 `;
 const MapInfo = styled.div`
-  display: flex;
-  flex-direction: row;
   align-items: flex-start;
+  display: flex;
+  font-size: 13px;
+  flex-direction: row;
+  line-height: 20px;
 
   @media all and ${props => props.theme.breakpoints.medium} {
     margin-top: -50px;
