@@ -58,14 +58,19 @@ const TopicLanding = () => {
 
     return (
       <LandingBillboard title={content.topics.title} intro={content.topics.intro} introHelp={content.topics.help}>
-        <Select transparent style={{ marginTop: '2.5rem' }} onChange={handleSelect}>
-          <option value="">{content.topics.selectPrompt}</option>
-          {topics.map(topic => (
-            <option value={topic.slug} key={topic.slug}>
-              {topic.name}
-            </option>
-          ))}
-        </Select>
+        <form>
+          <label className="screenreader" for="topic">
+            Topics
+          </label>
+          <Select transparent id="topic" name="topic" style={{ marginTop: '2.5rem' }} onChange={handleSelect}>
+            <option value="">{content.topics.selectPrompt}</option>
+            {topics.map(topic => (
+              <option value={topic.slug} key={topic.slug}>
+                {topic.name}
+              </option>
+            ))}
+          </Select>
+        </form>
       </LandingBillboard>
     );
   };
