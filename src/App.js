@@ -23,6 +23,8 @@ import Prototype from '#components/pages/Prototype/Prototype';
 // Lazy load the home page to improve time to first paint on the most popular entry point
 const Home = lazy(() => import('./components/pages/Home/Home'));
 
+console.log(process.env.PUBLIC_URL);
+
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
@@ -40,7 +42,7 @@ const App = () => {
           </li>
         </ul>
       </div>
-      <Router>
+      <Router basename="/research/native-americans/bia/photos">
         <ScrollToTop />
         <Fragment>
           <Header />
