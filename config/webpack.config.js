@@ -355,12 +355,14 @@ module.exports = function (webpackEnv) {
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
             {
               test: /\.(js|mjs|jsx|ts|tsx)$/,
-              include: paths.appSrc,
+              include: [paths.appSrc, paths.appNodeModules],
               loader: require.resolve('babel-loader'),
               options: {
                 customize: require.resolve('babel-preset-react-app/webpack-overrides'),
 
                 plugins: [
+                  '@babel/plugin-syntax-dynamic-import',
+                  '@babel/plugin-transform-arrow-functions',
                   [
                     require.resolve('babel-plugin-named-asset-import'),
                     {
