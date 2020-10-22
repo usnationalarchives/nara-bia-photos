@@ -40,16 +40,24 @@ const Wrapper = styled.div`
   }
 `;
 
-const ImageSquare = ({ image, bkg, className, size, onClick }) => {
+const ImageSquare = ({ image, bkg, className, size, onClick, alt = '' }) => {
+  console.log(alt);
   return (
     <Wrapper onClick={onClick}>
       <ImageSquareStyled size={size} bkg={bkg} className={className}>
-        <img srcSet={`${image} 1x`} />
+        <img srcSet={`${image} 1x`} alt={alt} />
       </ImageSquareStyled>
     </Wrapper>
   );
 };
 
-// ImageSquare.proptypes = {};
+ImageSquare.propTypes = {
+  image: PropTypes.string,
+  bkg: PropTypes.string,
+  className: PropTypes.string,
+  size: PropTypes.number,
+  onClick: PropTypes.func,
+  alt: PropTypes.string,
+};
 
 export default ImageSquare;

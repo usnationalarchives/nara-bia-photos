@@ -55,18 +55,17 @@ const Grid = styled.div`
   grid-template-rows: 1fr repeat(6, 20vw); */
 
   grid-template-columns: repeat(3, 33.333333vw [col-start]);
-  grid-template-rows: repeat(18, 33.333333vw); 
+  grid-template-rows: repeat(18, 33.333333vw);
 
   @media all and (min-width: 400px) {
     grid-template-rows: repeat(13, 33.333333vw);
-  }    
-  
+  }
+
   @media all and ${props => props.theme.breakpoints.medium} {
     grid-template-rows: repeat(12, 33.333333vw);
-  }  
+  }
 
   @media all and ${props => props.theme.breakpoints.full} {
-
     ${props =>
       props.$columns === 4 &&
       css`
@@ -91,10 +90,9 @@ const Grid = styled.div`
         grid-template-columns: repeat(7, ${props.$columnWidth}vw [col-start]);
         grid-template-rows: repeat(10, ${props.$columnWidth}vw);
       `}
-    }  
-    
-    @media all and (min-width: 1200px) {
+  }
 
+  @media all and (min-width: 1200px) {
     ${props =>
       props.$columns === 4 &&
       css`
@@ -119,9 +117,8 @@ const Grid = styled.div`
         grid-template-columns: repeat(7, ${props.$columnWidth}vw [col-start]);
         grid-template-rows: repeat(10, ${props.$columnWidth}vw);
       `}
-    }
-    
-  `;
+  }
+`;
 
 const ImageSquareStyled = styled(ImageSquare)`
   /* width: ${props => `${props.$size}wv`}; */
@@ -248,6 +245,7 @@ const Home = () => {
               return (
                 <ImageSquareStyled
                   // image={ips.src({ height: 500, width: 500 }, 'lorempixel', { unique: i })}
+                  alt={`Photograph Titled: ${result.title}` || ''}
                   bkg={items[i].bkg}
                   image={iiifImage(result, 600)}
                   key={`imageGrid-${i}`}

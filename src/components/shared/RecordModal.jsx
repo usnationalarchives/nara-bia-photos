@@ -171,7 +171,7 @@ const RecordModal = ({ activeIndex, items, open, setOpen, setImageIndex }) => {
                 {items.map((record, index) => {
                   return (
                     <Slide index={index}>
-                      <Image style={{ margin: 'auto' }} src={iiifImage(record, 600)} alt="" />
+                      <Image style={{ margin: 'auto' }} src={iiifImage(record, 600)} alt={record.title || ''} />
                     </Slide>
                   );
                 })}
