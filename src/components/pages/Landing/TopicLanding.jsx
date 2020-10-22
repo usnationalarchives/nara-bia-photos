@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import styled, { css } from 'styled-components';
+import { orderBy } from 'lodash';
 
 // components
 import * as Layout from '#components/shared/Layout';
@@ -78,7 +79,7 @@ const TopicLanding = () => {
   const TopicsGrid = () => {
     return (
       <Grid>
-        {topics.map(topic => (
+        {orderBy(topics, 'name').map(topic => (
           <GridItem key={topic.slug}>
             <CardStyled>
               <Topic topic={topic} thumbnailUrl={thumbnailUrl(topic.thumbnailNaId)} />
