@@ -1,3 +1,6 @@
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
+
 // Detect input method in order to hide outlines in an accessible manner
 // https://github.com/ten1seven/what-input
 import 'what-input';
