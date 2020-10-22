@@ -1,11 +1,19 @@
 import tribalNationsData from '#data/tribalNations.csv';
+import { groups } from '#modules/data';
 
 export const externalUrls = {
   catalog: 'https://catalog.archives.gov',
   catalogRecordDetail: 'https://catalog.archives.gov/id',
 };
 
-export const tribalNations = tribalNationsData.sort((a, b) => (a.name > b.name ? 1 : -1));
+// get list of authority record names included in the dataset
+const permittedTribalNationNames = groups.tribes.map(t => t.key);
+
+// filter out tribal nations that arent represented by an authority record
+// in the dataset
+export const tribalNations = tribalNationsData
+  .filter(row => permittedTribalNationNames.includes(row.name))
+  .sort((a, b) => (a.name > b.name ? 1 : -1));
 
 export const tribalNationThumbnails = {
   a: [298622, 170100671, 170100673, 298621, 170102771],
