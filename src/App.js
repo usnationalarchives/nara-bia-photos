@@ -9,18 +9,19 @@ import Footer from '#components/chrome/Footer/Footer';
 import PageLoader from '#components/shared/PageLoader';
 import ScrollToTop from '#components/shared/ScrollToTop';
 
-// Lazy load (via code splitting) the top level page components
+import About from '#components/pages/About/About';
+import Search from '#components/pages/Search/Search';
+import Record from '#components/pages/Record/Record';
+import StateLanding from '#components/pages/Landing/StateLanding';
+import TopicLanding from '#components/pages/Landing/TopicLanding';
+import TribeLanding from '#components/pages/Landing/TribeLanding';
+import StateListing from '#components/pages/Listing/StateListing';
+import TopicListing from '#components/pages/Listing/TopicListing';
+import TribeListing from '#components/pages/Listing/TribeListing';
+import Prototype from '#components/pages/Prototype/Prototype';
+
+// Lazy load the home page to improve time to first paint on the most popular entry point
 const Home = lazy(() => import('./components/pages/Home/Home'));
-const About = lazy(() => import('./components/pages/About/About'));
-const Search = lazy(() => import('./components/pages/Search/Search'));
-const Record = lazy(() => import('./components/pages/Record/Record'));
-const StateLanding = lazy(() => import('./components/pages/Landing/StateLanding'));
-const TopicLanding = lazy(() => import('./components/pages/Landing/TopicLanding'));
-const TribeLanding = lazy(() => import('./components/pages/Landing/TribeLanding'));
-const StateListing = lazy(() => import('./components/pages/Listing/StateListing'));
-const TopicListing = lazy(() => import('./components/pages/Listing/TopicListing'));
-const TribeListing = lazy(() => import('./components/pages/Listing/TribeListing'));
-const Prototype = lazy(() => import('./components/pages/Prototype/Prototype'));
 
 const App = () => {
   return (
