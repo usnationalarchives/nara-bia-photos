@@ -81,7 +81,6 @@ const RecordModal = ({ activeIndex, items, open, setOpen, setImageIndex }) => {
   const history = useHistory();
   const carouselContext = useContext(CarouselContext);
   const [currentSlide, setCurrentSlide] = useState(carouselContext.state.currentSlide);
-  console.log(items, activeIndex);
 
   if (activeIndex !== null) {
     var record = items[activeIndex];

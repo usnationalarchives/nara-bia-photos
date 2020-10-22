@@ -18,6 +18,11 @@ const SliderStyles = styled.div`
   }
 `;
 
+const Handle = props => {
+  console.log(props);
+  return <div className="rc-slider-handle"></div>;
+};
+
 const FidelitySlider = ({
   color = colors.blue,
   min = 120,
@@ -34,12 +39,14 @@ const FidelitySlider = ({
         min={min}
         max={max}
         step={step}
+        ariaLabelForHandle={'fidelity-slider'}
         trackStyle={{ height: '2px', backgroundColor: color }}
         railStyle={{ height: '2px', backgroundColor: color }}
         handleStyle={{
           boxShadow: 'none',
           borderColor: color,
         }}
+        // handle={Handle}
         defaultValue={defaultValue}
         onChange={val => {
           update(val);
