@@ -91,7 +91,7 @@ const State = ({ state, thumbnailUrl, results }) => {
       return record.tribes;
     });
 
-    let count = _.compact(tribes).length;
+    let count = _.uniq(_.compact(tribes)).length;
     return count;
   }
 
@@ -128,9 +128,7 @@ const State = ({ state, thumbnailUrl, results }) => {
             </TribeLink>
           </Description>
         )}
-        {tribeCount < 1 && (
-          <Description>There are no Tribal Nations associated with the digitized records</Description>
-        )}
+        {tribeCount < 1 && <Description>There are no Tribal Nations associated with the digitized records</Description>}
       </Inner>
     </Fragment>
   );
