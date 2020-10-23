@@ -134,7 +134,7 @@ export const topics = [
   { name: 'Fishing', slug: 'fishing', thumbnailNaId: 285703 },
   { name: 'Food Preparation', slug: 'food-preparation', thumbnailNaId: 519166 },
   { name: 'Groups', slug: 'groups', thumbnailNaId: 595392 },
-  { name: 'Dwellings', slug: 'dwellings', thumbnailNaId: 285903 },
+  { name: 'Dwellings', slug: 'dwellings', thumbnailNaId: 7867735 },
   { name: 'Hunting', slug: 'hunting', thumbnailNaId: 285719 },
   { name: 'Portraits', slug: 'portraits', thumbnailNaId: 285690 },
   { name: 'Recreation', slug: 'recreation', thumbnailNaId: 158884346 },
