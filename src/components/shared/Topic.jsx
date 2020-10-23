@@ -11,6 +11,11 @@ import { fl_allStates, fl_absoluteFill } from '#styles/frontline';
 const Image = styled.div`
   background-color: ${props => props.theme.colors.mediumGrey};
   background-image: url(${props => props.thumbnailUrl});
+  ${props =>
+    !!props.$position &&
+    css`
+      background-position: ${props.$position};
+    `}
   background-size: cover;
   height: 0;
   padding-top: 56.25%;
@@ -41,7 +46,7 @@ const CoverLink = styled(Link)`
 const Topic = ({ topic, thumbnailUrl }) => {
   return (
     <Fragment>
-      <Image thumbnailUrl={thumbnailUrl} />
+      <Image thumbnailUrl={thumbnailUrl} $position={topic.slug === 'portraits' ? 'center 30%' : null} />
       <Inner>
         <Label to={`/topics/${topic.slug}`}>{topic.name}</Label>
       </Inner>
