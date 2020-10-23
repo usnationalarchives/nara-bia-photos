@@ -8,17 +8,13 @@ import BackgroundImage from '#components/shared/BackgroundImage';
 const ImageSquareStyled = styled(BackgroundImage)`
   ${fl_aspectRatio(1 / 1)}
   background-color: ${props => tinycolor('#fff').darken(props.bkg).toString()};
-  /* width: 20%; */
   position: relative;
-  width: 33.3333333vw;
-
-  @media all and ${props => props.theme.breakpoints.full} {
-    width: ${props => `${props.size}vw`};
-  }
+  width: 100%;
 `;
 
 const Wrapper = styled.div`
   position: relative;
+  width: 33.33333333%;
 
   ${fl_attention(css`
     cursor: pointer;
@@ -27,6 +23,10 @@ const Wrapper = styled.div`
       visibility: visible;
     }
   `)}
+
+  @media all and ${props => props.theme.breakpoints.full} {
+    width: ${props => `${props.size}%`};
+  }
 
   &:before {
     ${fl_absoluteFill}
@@ -43,7 +43,7 @@ const Wrapper = styled.div`
 const ImageSquare = ({ image, bkg, className, size, onClick, alt = '' }) => {
   console.log(alt);
   return (
-    <Wrapper onClick={onClick}>
+    <Wrapper onClick={onClick} size={size}>
       <ImageSquareStyled size={size} bkg={bkg} className={className}>
         <img srcSet={`${image} 1x`} alt={alt} />
       </ImageSquareStyled>

@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import styled, { css } from 'styled-components';
-import reactPackeryComponent from 'react-packery-component';
+// import reactPackeryComponent from 'react-packery-component';
 import { random, shuffle } from 'lodash';
 import tinycolor from 'tinycolor2';
 import IPS from 'img-placeholder-src';
@@ -33,17 +33,21 @@ import NotableNativeAmericanModal from '#components/shared/NotableNativeAmerican
 // config
 import content from '#config/content';
 
-const Packery = reactPackeryComponent(React); // inject React
+// const Packery = reactPackeryComponent(React); // inject React
 const ips = new IPS();
 
 const packeryOptions = {
   percentPosition: true,
   transitionDuration: '0.5s',
+  resize: false,
+  columnWidth: 0,
 };
 
 const ImageGrid = styled.div`
   ${fl_absoluteFill}
   background-color: ${props => tinycolor(props.theme.colors.blue).darken(15).toString()};
+  display: flex;
+  flex-wrap: wrap;
   overflow-y: hidden;
   /* z-index: -; */
 `;
@@ -236,28 +240,28 @@ const Home = () => {
           </Grid>
         </div>
         <ImageGrid>
-          <Packery
+          {/* <Packery
             style={{ diplay: 'flex', alignItems: 'stretch' }}
             options={packeryOptions}
             disableImagesLoaded={true}
-          >
-            {gridItems.map((result, i) => {
-              return (
-                <ImageSquareStyled
-                  // image={ips.src({ height: 500, width: 500 }, 'lorempixel', { unique: i })}
-                  alt={`Photograph Titled: ${result.title}` || ''}
-                  bkg={items[i].bkg}
-                  image={iiifImage(result, 600)}
-                  key={`imageGrid-${i}`}
-                  onClick={() => {
-                    setImageIndex(i);
-                    setRecordModalOpen(true);
-                  }}
-                  size={size}
-                ></ImageSquareStyled>
-              );
-            })}
-          </Packery>
+          > */}
+          {gridItems.map((result, i) => {
+            return (
+              <ImageSquareStyled
+                // image={ips.src({ height: 500, width: 500 }, 'lorempixel', { unique: i })}
+                alt={`Photograph Titled: ${result.title}` || ''}
+                bkg={items[i].bkg}
+                image={iiifImage(result, 600)}
+                key={`imageGrid-${i}`}
+                onClick={() => {
+                  setImageIndex(i);
+                  setRecordModalOpen(true);
+                }}
+                size={size}
+              ></ImageSquareStyled>
+            );
+          })}
+          {/* </Packery> */}
         </ImageGrid>
       </div>
       <CarouselProvider
