@@ -1,21 +1,29 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-
 // components
 import Result from '#components/shared/Result';
 
+const ResultsWrapper = styled.div`
+  ${props =>
+    !!props.$singleRow &&
+    css`
+      width: 100%;
+      overflow-x: scroll;
+    `}
+`;
 const ResultsStyles = styled.ul`
   display: flex;
   flex-flow: row wrap;
   margin: 20px -10px 0;
 
-    ${props => 
-  !!props.$singleRow &&
+  ${props =>
+    !!props.$singleRow &&
     css`
       flex-wrap: nowrap;
-    `
-    }
+      min-width: 800px;
+      /* overflow-x: scroll; */
+    `}
 `;
 
 const Item = styled.li`
@@ -41,18 +49,21 @@ const Item = styled.li`
   }
 `;
 
-const Results = ({ className, results=[], data, fidelity, singleRow }) => {
-  return ( <>
-    {
-      data.length > 0 && <ResultsStyles className={className} role="main" aria-label="Results" $singleRow={singleRow}>
-        {data.map(record => (
-          <Item singleRow={singleRow} key={record.slug} data={data} record={record} fidelity={fidelity}>
-            <Result key={record.naId} record={record} scale={fidelity} />
-          </Item>
-        ))}
-      </ResultsStyles>
-    }
-    {data.length < 1 && <p style={{ margin: '30px', textAlign: 'center'}}>There are no photographs</p>}
+const Results = ({ className, results = [], data, fidelity, singleRow }) => {
+  return (
+    <>
+      {data.length > 0 && (
+        <ResultsWrapper $singleRow={singleRow}>
+          <ResultsStyles className={className} role="main" aria-label="Results" $singleRow={singleRow}>
+            {data.map(record => (
+              <Item singleRow={singleRow} key={record.slug} data={data} record={record} fidelity={fidelity}>
+                <Result key={record.naId} record={record} scale={fidelity} />
+              </Item>
+            ))}
+          </ResultsStyles>
+        </ResultsWrapper>
+      )}
+      {data.length < 1 && <p style={{ margin: '30px', textAlign: 'center' }}>There are no photographs</p>}
     </>
   );
 };
