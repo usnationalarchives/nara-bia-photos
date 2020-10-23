@@ -6,7 +6,7 @@ import styled, { css } from 'styled-components';
 import ReactTooltip from 'react-tooltip';
 import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { includes } from 'lodash'
+import { includes } from 'lodash';
 
 // config
 import content from '#config/content';
@@ -191,9 +191,12 @@ const StateLanding = () => {
   });
 
   const [stateResults, dimensions] = useRecords({
-    purgeDimensions: true
+    purgeDimensions: true,
   });
-  const statesWithResults = dimensions.recordsByState.group().all().map(s => s.key);
+  const statesWithResults = dimensions.recordsByState
+    .group()
+    .all()
+    .map(s => s.key);
 
   const thumbnailUrl = naId => {
     const result = results.filter(result => result.naId === naId)[0];
@@ -298,11 +301,13 @@ const StateLanding = () => {
               <span>
                 <Select style={{ width: '250px' }} onChange={handleSelect}>
                   <option value="">{content.states.selectPrompt}</option>
-                  {states.filter(state => includes(statesWithResults, state.name) ).map(state => (
-                    <option value={state.slug} key={state.slug}>
-                      {state.name}
-                    </option> 
-                  ))}
+                  {states
+                    .filter(state => includes(statesWithResults, state.name))
+                    .map(state => (
+                      <option value={state.slug} key={state.slug}>
+                        {state.name}
+                      </option>
+                    ))}
                 </Select>
               </span>
             </MapSelect>

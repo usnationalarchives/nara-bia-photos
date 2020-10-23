@@ -10,7 +10,8 @@ const StyledSelectedFilters = styled(Button)`
 const SelectedFilter = ({ dispatchItems, value }) => {
   return (
     <StyledSelectedFilters scheme="blue" onClick={() => dispatchItems({ type: 'remove', value: value })}>
-      <span className="screenreader">Filter: </span>{value} <SearchIcon width="11" fill="currentColor" />
+      <span className="screenreader">Filter: </span>
+      {value} <SearchIcon width="11" fill="currentColor" />
     </StyledSelectedFilters>
   );
 };

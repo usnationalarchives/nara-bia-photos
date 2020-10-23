@@ -277,7 +277,7 @@ export const Rich = styled.div`
 
   a:not([class="btn"]){
     ${fl_static(css`
-      color: ${props => props.theme.colors.blue}
+      color: ${props => props.theme.colors.blue};
     `)}    
     ${fl_static(css`
       text-decoration: underline;

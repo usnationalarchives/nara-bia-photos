@@ -117,7 +117,7 @@ const QueryField = ({ defaultValue, setQuery }) => {
                 </span>
               </div>
             </InputGroup>
-            </form>
+          </form>
         </Layout.Wrapper>
       </Layout.Padding>
     </Banner>

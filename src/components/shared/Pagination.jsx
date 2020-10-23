@@ -34,7 +34,7 @@ const Button = styled.button`
   text-transform: uppercase;
   white-space: nowrap;
 
-  [data-whatinput="mouse"] & {
+  [data-whatinput='mouse'] & {
     outline: none;
   }
 
@@ -142,10 +142,14 @@ const Pagination = ({ page, setPage, prevHandler, nextHandler, prevPage, nextPag
           Previous<span class="screenreader"> Page</span>
         </Button>
       )}
-      <p aria-live="polite" className="screenreader">Page {page} of {totalPages}</p>
+      <p aria-live="polite" className="screenreader">
+        Page {page} of {totalPages}
+      </p>
       <CurrentPage>
         <SelectWrapper>
-          <label className="screenreader" htmlFor="pagination">Results Page</label>
+          <label className="screenreader" htmlFor="pagination">
+            Results Page
+          </label>
           <Select id="pagination" name="pagination" value={page} onChange={handleChange}>
             {pageOptions}
           </Select>

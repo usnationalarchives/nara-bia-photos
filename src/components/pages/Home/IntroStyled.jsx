@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 import Intro from './Intro';
 
 const IntroStyled = styled(Intro)`
@@ -12,14 +12,14 @@ const IntroStyled = styled(Intro)`
 
   @media all and (min-width: 400px) {
     grid-row-end: 6;
-  }  
+  }
 
   @media all and (min-width: 460px) {
     grid-row-end: 5;
-  }  
-  @media all and (min-width: 550px)  {
+  }
+  @media all and (min-width: 550px) {
     grid-row-end: 4;
-  }  
+  }
 
   @media all and ${props => props.theme.breakpoints.medium} {
     grid-row-end: 3;

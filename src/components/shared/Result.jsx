@@ -65,7 +65,7 @@ const Record = ({ record, scale }) => {
       >
         <div className="hover"></div>
       </ImageContainer>
-      <CoverLink className="result_link" to={{pathname: `/${record.slug}`, state: { record: record }}}>
+      <CoverLink className="result_link" to={{ pathname: `/${record.slug}`, state: { record: record } }}>
         <Title scale={scale}>{record.title}</Title>
       </CoverLink>
     </Root>

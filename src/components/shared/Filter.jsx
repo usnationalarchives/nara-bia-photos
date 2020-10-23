@@ -132,58 +132,60 @@ const Filter = ({ filter, isActive, toggle, id }) => {
       .all()
       .filter(i => i.key && permitted.includes(i.key));
 
-  return ( allItems.length > 0 &&
-    <div>
-      <Fieldset>
-        <legend style={{ marginBottom: '1.25rem' }}>
-          <Legend>{label}</Legend>
-        </legend>
+  return (
+    allItems.length > 0 && (
+      <div>
+        <Fieldset>
+          <legend style={{ marginBottom: '1.25rem' }}>
+            <Legend>{label}</Legend>
+          </legend>
 
-        <div style={{ position: 'relative' }}>
-          <SelectToggle aria-label={`Select ${label}`} aria-pressed={isActive} onClick={() => toggleFilter(id)}>
-            <span className="grow">Select {label}</span>
-            <span className="shrink">
-              <CaretIcon width="10" fill={colors.blue}></CaretIcon>
-            </span>
-          </SelectToggle>
-          <CheckboxList ref={checkboxListRef} aria-hidden={!isActive} aria-labelledby="sections-heading">
-            <DropDownCaret width="10" fill="#999"></DropDownCaret>
-            <ul>
-              {allItems.map((item, i) => (
-                <DropdownItem key={i}>
-                  <Input
-                    checked={active.includes(item.key)}
-                    value={item.key}
-                    disabled={isActive && item.value >= 1 ? false : true}
-                    type="checkbox"
-                    name={`${label}[${i}]`}
-                    id={`${label}[${i}]`}
-                    onChange={e => {
-                      const value = e.target.value;
-                      const checked = e.target.checked;
-                      dispatch({
-                        type: checked ? 'add' : 'remove',
-                        value: value,
-                      });
-                    }}
-                  />{' '}
-                  <Label htmlFor={`${label}[${i}]`}>
-                    {item.key}
-                    {filter.totals && (
-                      <Fragment>
-                        {' '}
-                        ({item.value}
-                        <Screenreader> {pluralize('result', item.value)}</Screenreader>)
-                      </Fragment>
-                    )}
-                  </Label>
-                </DropdownItem>
-              ))}
-            </ul>
-          </CheckboxList>
-        </div>
-      </Fieldset>
-    </div>
+          <div style={{ position: 'relative' }}>
+            <SelectToggle aria-label={`Select ${label}`} aria-pressed={isActive} onClick={() => toggleFilter(id)}>
+              <span className="grow">Select {label}</span>
+              <span className="shrink">
+                <CaretIcon width="10" fill={colors.blue}></CaretIcon>
+              </span>
+            </SelectToggle>
+            <CheckboxList ref={checkboxListRef} aria-hidden={!isActive} aria-labelledby="sections-heading">
+              <DropDownCaret width="10" fill="#999"></DropDownCaret>
+              <ul>
+                {allItems.map((item, i) => (
+                  <DropdownItem key={i}>
+                    <Input
+                      checked={active.includes(item.key)}
+                      value={item.key}
+                      disabled={isActive && item.value >= 1 ? false : true}
+                      type="checkbox"
+                      name={`${label}[${i}]`}
+                      id={`${label}[${i}]`}
+                      onChange={e => {
+                        const value = e.target.value;
+                        const checked = e.target.checked;
+                        dispatch({
+                          type: checked ? 'add' : 'remove',
+                          value: value,
+                        });
+                      }}
+                    />{' '}
+                    <Label htmlFor={`${label}[${i}]`}>
+                      {item.key}
+                      {filter.totals && (
+                        <Fragment>
+                          {' '}
+                          ({item.value}
+                          <Screenreader> {pluralize('result', item.value)}</Screenreader>)
+                        </Fragment>
+                      )}
+                    </Label>
+                  </DropdownItem>
+                ))}
+              </ul>
+            </CheckboxList>
+          </div>
+        </Fieldset>
+      </div>
+    )
   );
 };
 

@@ -86,20 +86,32 @@ const TribeListing = ({ ...props }) => {
     document.querySelector('html').scrollTop = 0;
   }, [page]);
 
-  const highlightedStates = !!stateFilters.length ? stateConsts.filter(state => includes(stateFilters.map(s => s.key), state.name))  : [];
+  const highlightedStates = !!stateFilters.length
+    ? stateConsts.filter(state =>
+        includes(
+          stateFilters.map(s => s.key),
+          state.name
+        )
+      )
+    : [];
   const description = content.tribalNation.intro.replace('${TRIBE}', tribalNationName);
 
-
-  const stateLinks = (activeStates) => {
+  const stateLinks = activeStates => {
     return activeStates.map((state, i) => {
-      return <>
-        { activeStates.length > 1 && i !== 0 && i !== activeStates.length - 1 ? ', ' : ''}
-        { activeStates.length > 1 && i !== 0 && i === activeStates.length - 1 ? ' and ' : ''}
-        <Link key={`statelink-${state.name}`} to={`/states/${state.slug}?${joinParams('tribalNations', [tribalNationName])}`}>{state.name}</Link>
-      </>
+      return (
+        <>
+          {activeStates.length > 1 && i !== 0 && i !== activeStates.length - 1 ? ', ' : ''}
+          {activeStates.length > 1 && i !== 0 && i === activeStates.length - 1 ? ' and ' : ''}
+          <Link
+            key={`statelink-${state.name}`}
+            to={`/states/${state.slug}?${joinParams('tribalNations', [tribalNationName])}`}
+          >
+            {state.name}
+          </Link>
+        </>
+      );
     });
-  }
-
+  };
 
   return (
     <Fragment>
@@ -134,12 +146,7 @@ const TribeListing = ({ ...props }) => {
 
             <p style={{ color: '#fff' }}>
               There are {stateFilters.length ? results.length : 0} photographs associated with this Tribal Nation
-              {stateFilters.length > 0 && (
-                <>
-                  {' '}
-                  across {stateLinks(highlightedStates)}
-                </>
-              )}
+              {stateFilters.length > 0 && <> across {stateLinks(highlightedStates)}</>}
             </p>
           </>
         )}

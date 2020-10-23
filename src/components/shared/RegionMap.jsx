@@ -1,7 +1,7 @@
 import React, { Fragment, useState, memo, createRef, useEffect } from 'react';
 import { ComposableMap, Geographies, Geography, Marker, Annotation } from 'react-simple-maps';
 import { states, regions } from '#modules/constants';
-import { find, includes} from 'lodash';
+import { find, includes } from 'lodash';
 import { useHistory } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 import styled, { css } from 'styled-components';
@@ -57,7 +57,7 @@ const MapChart = ({}) => {
   const [activeMapState, setActiveMapState] = useState('');
 
   const [stateResults, dimensions] = useRecords({
-    purgeDimensions: true
+    purgeDimensions: true,
   });
   const statesWithResults = dimensions.recordsByState.group().all();
 
@@ -99,11 +99,11 @@ const MapChart = ({}) => {
   const getNumberOfStateResults = (states, state) => {
     const filteredStates = states.filter(s => s.key === state.name);
     if (filteredStates.length > 0) {
-      return filteredStates[0].value
+      return filteredStates[0].value;
     } else {
       return '0';
     }
-  }
+  };
 
   return (
     <RegionMapWrapper>
@@ -111,7 +111,8 @@ const MapChart = ({}) => {
         {!!activeMapState && (
           <StyledTooltipContent>
             <span>{activeMapState.name}</span>
-            <PhotoIconStyled width="15"></PhotoIconStyled> {getNumberOfStateResults(statesWithResults, activeMapState)} Records
+            <PhotoIconStyled width="15"></PhotoIconStyled> {getNumberOfStateResults(statesWithResults, activeMapState)}{' '}
+            Records
           </StyledTooltipContent>
         )}
       </ReactTooltip>

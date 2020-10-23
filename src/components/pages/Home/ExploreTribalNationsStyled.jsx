@@ -1,6 +1,5 @@
-
 import React from 'react';
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 import ExplorePromo from './ExplorePromo';
 
 const ExploreTribalNationsStyled = styled(ExplorePromo)`

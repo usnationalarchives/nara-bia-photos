@@ -1,5 +1,5 @@
 module.exports = {
-  parameterize:  (string) => {
+  parameterize: string => {
     string = string.replace(/^\s+|\s+$/g, ''); // trim
     string = string.toLowerCase();
 
@@ -16,5 +16,5 @@ module.exports = {
       .replace(/-+/g, '-'); // collapse dashes
 
     return string;
-  }
-}
+  },
+};

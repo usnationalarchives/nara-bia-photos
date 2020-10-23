@@ -57,13 +57,13 @@ const ExplorePromo = ({ title, text, scheme, onClick, className }) => {
       </div>
       <div style={{ textAlign: 'center' }}>
         <Toggle
-          activeText={(<>
-            Collapse
-          </>)}
-          defaultText={(<>
-            Expand
-            <span className="screenreader"> details for: {title}</span>
-          </>)}
+          activeText={<>Collapse</>}
+          defaultText={
+            <>
+              Expand
+              <span className="screenreader"> details for: {title}</span>
+            </>
+          }
           onClick={onClick}
           shouldActivate={false}
           style={{ marginTop: '30px' }}

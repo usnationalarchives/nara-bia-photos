@@ -20,7 +20,7 @@ const offsets = {
   NJ: [40, 30],
   DE: [30, 45],
   MD: [48, 80],
-  DC: [51, 21]
+  DC: [51, 21],
 };
 
 const TribalNationMapWrapper = styled.div`
@@ -40,7 +40,7 @@ const TribalNationMap = ({ activeStates }) => {
     return state;
   };
 
-  const isActive = (state) => {
+  const isActive = state => {
     if (state) {
       const index = activeStates.findIndex((element, index, arr) => {
         return state.name === element;
@@ -49,21 +49,37 @@ const TribalNationMap = ({ activeStates }) => {
     } else {
       return false;
     }
-  }
+  };
 
-  const renderAnnotation = (id) => {
+  const renderAnnotation = id => {
     if (id === 'VT' || id === 'NH') {
-      return (<text x="-8" textAnchor="end" fill={colors.yellow} style={{ fontSize: '35px', fontWeight: 'bold' }} x={4} fontSize={16} alignmentBaseline="middle">
-        {id}
-      </text>)
-    } else {
       return (
-        <text fill={colors.yellow} style={{ fontSize: '35px', fontWeight: 'bold' }} x={4} fontSize={16} alignmentBaseline="middle">
+        <text
+          x="-8"
+          textAnchor="end"
+          fill={colors.yellow}
+          style={{ fontSize: '35px', fontWeight: 'bold' }}
+          x={4}
+          fontSize={16}
+          alignmentBaseline="middle"
+        >
           {id}
         </text>
-      )
+      );
+    } else {
+      return (
+        <text
+          fill={colors.yellow}
+          style={{ fontSize: '35px', fontWeight: 'bold' }}
+          x={4}
+          fontSize={16}
+          alignmentBaseline="middle"
+        >
+          {id}
+        </text>
+      );
     }
-  }
+  };
 
   const getFill = state => {
     let hue = '#ddd';
@@ -84,8 +100,7 @@ const TribalNationMap = ({ activeStates }) => {
 
   return (
     <TribalNationMapWrapper style={{ width: '100%' }}>
-      <ComposableMap projection="geoAlbersUsa" width={900}
-        height={600}>
+      <ComposableMap projection="geoAlbersUsa" width={900} height={600}>
         <Geographies geography={geoUrl}>
           {({ geographies }) => {
             /* Remove Hawaii */
@@ -125,28 +140,28 @@ const TribalNationMap = ({ activeStates }) => {
                   const cur = states.find(s => s.val === geo.id);
                   const state = getState(geo.id);
                   const active = isActive(state);
-                  return cur && active &&
-                    Object.keys(offsets).indexOf(cur.id) !== -1 &&
-                    (
+                  return (
+                    cur &&
+                    active &&
+                    Object.keys(offsets).indexOf(cur.id) !== -1 && (
                       <g key={geo.rsmKey + '-name'}>
-
                         <Annotation
-                        subject={centroid}
-                        dx={offsets[cur.id][0]}
-                        dy={offsets[cur.id][1]}
-                        className="rsm-annotation-text"
-                        onClick={() => {
-                          history.push(`/states/${getState(geo.id).slug}`);
-                        }}
-                        connectorProps={{
-                          stroke: colors.yellow
-                        }}
+                          subject={centroid}
+                          dx={offsets[cur.id][0]}
+                          dy={offsets[cur.id][1]}
+                          className="rsm-annotation-text"
+                          onClick={() => {
+                            history.push(`/states/${getState(geo.id).slug}`);
+                          }}
+                          connectorProps={{
+                            stroke: colors.yellow,
+                          }}
                         >
                           {renderAnnotation(cur.id)}
                         </Annotation>
-
                       </g>
                     )
+                  );
                 })}
               </>
             );
