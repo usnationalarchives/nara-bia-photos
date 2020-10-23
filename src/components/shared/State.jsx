@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components';
 import numeral from 'numeral';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
+import pluralize from 'pluralize';
+
 
 // helpers
 import { joinParams } from '#modules/helpers';
@@ -122,7 +124,7 @@ const State = ({ state, thumbnailUrl, results }) => {
         </Meta>
         {tribeCount > 0 && (
           <Description>
-            Records related to {tribeCount} Tribal Nations including{' '}
+            Records related to {tribeCount} Tribal {pluralize('Nation', tribeCount)} including{' '}
             <TribeLink style={{ position: 'relative', zIndex: 1000 }} to={tribeUrl}>
               {prominantTribeName}
             </TribeLink>
