@@ -124,7 +124,7 @@ export const topics = [
   { name: 'Buildings', slug: 'buildings', thumbnailNaId: 12084828 },
   { name: 'Bureau of Indian Affairs Personnel', slug: 'bia-personnel', thumbnailNaId: 292868 },
   { name: 'Camps', slug: 'camps', thumbnailNaId: 285803 },
-  { name: 'Children', slug: 'children', thumbnailNaId: 296123 },
+  { name: 'Children', slug: 'children', thumbnailNaId: 12460729 },
   { name: 'Clothing', slug: 'clothing', thumbnailNaId: 298648 },
   { name: 'Communities', slug: 'communities', thumbnailNaId: 519145 },
   { name: 'Construction', slug: 'construction', thumbnailNaId: 118969535 },
