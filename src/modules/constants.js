@@ -145,7 +145,7 @@ export const topics = [
   { name: 'Military Service', slug: 'military-service', thumbnailNaId: 285695 },
   { name: 'Music', slug: 'music', thumbnailNaId: 5585778 },
   { name: 'Schools', slug: 'schools', thumbnailNaId: 295152 },
-  { name: 'Transportation', slug: 'transportation', thumbnailNaId: 118970715 },
+  { name: 'Transportation', slug: 'transportation', thumbnailNaId: 118972577 },
 ];
 
 export const regions = [
