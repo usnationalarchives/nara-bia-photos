@@ -39,14 +39,10 @@ const SectionMeta = styled.p`
 `;
 
 const Items = styled.ol`
-  @media all and ${props => props.theme.breakpoints.medium} {
-    column-count: 2;
-    column-gap: 2rem;
-  }
-
-  @media all and ${props => props.theme.breakpoints.large} {
-    column-count: 4;
-  }
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 -20px;
 `;
 
 const Item = styled.li`
@@ -54,6 +50,17 @@ const Item = styled.li`
   font-weight: bold;
   font-size: 1rem;
   margin-bottom: 1rem;
+  justify-content: flex-start;
+  padding: 8px 20px;
+  flex: 0 0 100%;
+
+  @media all and ${props => props.theme.breakpoints.medium} {
+    flex: 0 0 50%;
+  }
+
+  @media all and ${props => props.theme.breakpoints.large} {
+    flex: 0 0 25%;
+  }
 `;
 
 const ItemLink = styled(Link)`
@@ -62,7 +69,7 @@ const ItemLink = styled(Link)`
     text-decoration: none;
   `)}
 
-    ${fl_attention(css`
+  ${fl_attention(css`
     text-decoration: underline;
   `)}
 `;
@@ -80,9 +87,10 @@ const TribeList = ({ groupedTribes }) => {
         <Section key={i}>
           <Results
             singleRow
-            data={sampleSize(thumbnailResults.filter(result =>
-              tribalNationThumbnails[section[0].toLowerCase()].includes(result.naId)
-            ), 3)}
+            data={sampleSize(
+              thumbnailResults.filter(result => tribalNationThumbnails[section[0].toLowerCase()].includes(result.naId)),
+              3
+            )}
             fidelity={250}
           />
 
