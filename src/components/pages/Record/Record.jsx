@@ -116,25 +116,26 @@ const Record = ({ ...props }) => {
     }
   }, [record]);
 
-    return (
-      <>
-        <Helmet>
-          <title>{!!record ? record.title : getIdFromPathname(location.pathname)}</title>
-          {!!record && !!record.scopeContentNote && <meta name="description" content={record.scopeContentNote} />}
-          <meta name="" content="" />
-          <meta name="twitter:title" content={!!record ? record.title : getIdFromPathname(location.pathname)} />
-          <meta name="twitter:site" content="@FIXME" />
-          {!!record && !!record.scopeContentNote && <meta name="twitter:card" content={record.scopeContentNote} />}
-          {!!record && !!record.scopeContentNote && <meta name="twitter:description" content={record.scopeContentNote} />}
-          {!!record && <meta name="twitter:image" content={iiifImage(record, '1080')} />}
-          <meta property="og:title" content={!!record ? record.title : getIdFromPathname(location.pathname)} />
-          {!!record && !!record.scopeContentNote && <meta name="og:description" content={record.scopeContentNote} />}
-          <meta property="og:site_name" content="FIXME" />
-          <meta property="og:url" content={window.location} />
-          <meta property="og:type" content="article" />
-          {!!record && <meta property="og:image" content={iiifImage(record, '1080')} />}
-        </Helmet>
-        {!!record && <>
+  return (
+    <>
+      <Helmet>
+        <title>{!!record ? record.title : getIdFromPathname(location.pathname)}</title>
+        {!!record && !!record.scopeContentNote && <meta name="description" content={record.scopeContentNote} />}
+        <meta name="" content="" />
+        <meta name="twitter:title" content={!!record ? record.title : getIdFromPathname(location.pathname)} />
+        <meta name="twitter:site" content="@FIXME" />
+        {!!record && !!record.scopeContentNote && <meta name="twitter:card" content={record.scopeContentNote} />}
+        {!!record && !!record.scopeContentNote && <meta name="twitter:description" content={record.scopeContentNote} />}
+        {!!record && <meta name="twitter:image" content={iiifImage(record, '1080')} />}
+        <meta property="og:title" content={!!record ? record.title : getIdFromPathname(location.pathname)} />
+        {!!record && !!record.scopeContentNote && <meta name="og:description" content={record.scopeContentNote} />}
+        <meta property="og:site_name" content="FIXME" />
+        <meta property="og:url" content={window.location} />
+        <meta property="og:type" content="article" />
+        {!!record && <meta property="og:image" content={iiifImage(record, '1080')} />}
+      </Helmet>
+      {!!record && (
+        <>
           <Layout.Padding style={{ marginTop: '2rem', marginBottom: '3rem' }}>
             <Layout.Wrapper>
               <Shave textRef={titleTextRef} maxHeight={130} options={{ character: '&nbsp; ' }}>
@@ -220,10 +221,12 @@ const Record = ({ ...props }) => {
                     <Table.LabelStyles>
                       <Text.Label style={{ fontSize: '13px', fontWeight: 'normal' }}>
                         National Archives Catalog Identifier:
-                    </Text.Label>
+                      </Text.Label>
                     </Table.LabelStyles>
                     <Table.ValueStyles>
-                      <ExternalLink href={`${externalUrls.catalogRecordDetail}/${record.naId}`}>{record.naId}</ExternalLink>
+                      <ExternalLink href={`${externalUrls.catalogRecordDetail}/${record.naId}`}>
+                        {record.naId}
+                      </ExternalLink>
                     </Table.ValueStyles>
                   </Table.RowStyles>
                 </TabPanel>
@@ -232,9 +235,10 @@ const Record = ({ ...props }) => {
                     <p>
                       Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel
                       scelerisque nisl consectetur et. Nulla vitae elit libero, a pharetra augue. Vestibulum id ligula
-                      porta felis euismod semper. Etiam porta sem malesuada magna mollis euismod. Praesent commodo cursus
-                      magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                  </p>
+                      porta felis euismod semper. Etiam porta sem malesuada magna mollis euismod. Praesent commodo
+                      cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut
+                      id elit.
+                    </p>
                   </Table.RowStyles>
                 </TabPanel>
               </Tabs>
@@ -256,8 +260,8 @@ const Record = ({ ...props }) => {
                   }}
                 >
                   <p style={{ marginRight: '20px' }}>
-                    There are {thumbnailResults.length.toLocaleString('en')} other digitized records in the archival series{' '}
-                    {record.parentSeriesTitle}
+                    There are {thumbnailResults.length.toLocaleString('en')} other digitized records in the archival
+                    series {record.parentSeriesTitle}
                   </p>
 
                   <ExternalLink
@@ -265,18 +269,16 @@ const Record = ({ ...props }) => {
                     href={`https://catalog.archives.gov/search?q=*:*&f.ancestorNaIds=${record.parentSeriesNaId}&sort=naIdSort%20asc&f.materialsType=photographsandgraphics`}
                   >
                     View All
-                </ExternalLink>
+                  </ExternalLink>
                 </div>
                 <Results singleRow data={sampleSize(thumbnailResults, 3)} fidelity={250} />
               </Layout.Wrapper>
             </Layout.Padding>
           )}
         </>
-        }
-      </>
-
-    );
-
+      )}
+    </>
+  );
 };
 
 export default Record;
