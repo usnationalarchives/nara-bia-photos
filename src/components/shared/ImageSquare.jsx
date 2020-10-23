@@ -41,7 +41,6 @@ const Wrapper = styled.div`
 `;
 
 const ImageSquare = ({ image, bkg, className, size, onClick, alt = '' }) => {
-  console.log(alt);
   return (
     <Wrapper onClick={onClick} size={size}>
       <ImageSquareStyled size={size} bkg={bkg} className={className}>
