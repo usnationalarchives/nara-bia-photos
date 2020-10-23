@@ -42,16 +42,25 @@ module.exports = {
   },
 
   objects: result => {
+    const file = object => {
+      let json = {};
+      if (Array.isArray(object.file)) {
+        json.url = object.file[0]['@url'];
+        json.path = object.file[0]['@path'];
+      } else if (object.file) {
+        json.url = object.file['@url'];
+        json.path = object.file['@path'];
+      }
+      return json;
+    };
+
     const mapObject = object => {
       let json = {
         type: (object.technicalMetadata || {})['mime'],
         thumbnail: {
           url: object.thumbnail['@url'],
         },
-        file: {
-          url: object.file['@url'],
-          path: object.file['@path'],
-        },
+        file: file(object),
       };
 
       let width = (object.technicalMetadata || {}).width;
