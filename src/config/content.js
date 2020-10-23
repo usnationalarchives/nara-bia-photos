@@ -13,7 +13,7 @@ module.exports = {
   state: {
     // * Interpolated string ${STATE}
     intro:
-      'These photographs are associated with the state of ${STATE}. Use the filters below to narrow down this list by tribal nation and/or topic. Select an image to see it and get more information',
+      'These photographs are associated with the state of ${STATE}. Use the filters below to narrow down this list by Tribal Nation and/or topic. Select an image to see it and get more information',
   },
   topics: {
     title: 'Topics',
@@ -25,15 +25,15 @@ module.exports = {
   topic: {
     // * Interpolated string ${TOPIC}
     intro:
-      'This listing displays all of the photographs in this record group identified as relating to ${TOPIC}. Use the filters below to narrow down this list by tribal nation and/or state.',
+      'This listing displays all of the photographs in this record group identified as relating to ${TOPIC}. Use the filters below to narrow down this list by Tribal Nation and/or state.',
     portraitIntro:
-      'This listing displays all of the photographs in this record group identified as portraits. Use the filters below to narrow down this list by tribal nation and/or state.',
+      'This listing displays all of the photographs in this record group identified as portraits. Use the filters below to narrow down this list by Tribal Nation and/or state.',
   },
   tribalNations: {
     title: 'Tribal Nations',
     intro: "Select the first letter of a Tribal Nation's name",
     help:
-      'Tribal nations associated with photographs are based on either the known tribal nation or presumed tribal nation from the available metadata. Names used generally follow each tribal nation’s preferred name, but many tribes have variant names which can be searched upon as well.',
+      'Tribal Nations associated with photographs are based on either the known Tribal Nation or presumed Tribal Nation from the available metadata. Names used generally follow each Tribal Nation’s preferred name, but many tribes have variant names which can be searched upon as well.',
   },
   tribalNation: {
     // * Interpolated string ${TRIBE}

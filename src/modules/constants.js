@@ -9,7 +9,7 @@ export const externalUrls = {
 // get list of authority record names included in the dataset
 const permittedTribalNationNames = groups.tribes.map(t => t.key);
 
-// filter out tribal nations that arent represented by an authority record
+// filter out Tribal Nations that arent represented by an authority record
 // in the dataset
 export const tribalNations = tribalNationsData
   .filter(row => permittedTribalNationNames.includes(row.name))
