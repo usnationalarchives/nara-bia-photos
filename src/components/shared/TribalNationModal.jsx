@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import chroma, { scale } from 'chroma-js';
 import tinycolor from 'tinycolor2';
 import ReactTooltip from 'react-tooltip';
+import scroll from '@threespot/freeze-scroll';
 
 import { ReactComponent as CrossIcon } from '#assets/icons/cross.svg';
 
@@ -116,6 +117,12 @@ const TribalNationModal = ({ open, setOpen }) => {
     setActiveTribalNation(groups[0].key);
   }, []);
 
+  useEffect(() => {
+    if (open) {
+      scroll.freeze();
+    }
+  });
+
   // Gets the records associated withe the active Tribal Nation
   const [results, dimensions, h, a, grps] = useRecords({
     purgeDimensions: true,
@@ -185,8 +192,14 @@ const TribalNationModal = ({ open, setOpen }) => {
         }}
         closeIcon={<CrossIcon width={30} fill="#000" />}
         showCloseIcon={true}
+        // The modal libraries scroll blocking does not work properly with
+        // setting the `html` styles to `scroll-behavior: smooth;`.
+        // Instead, the blocking functionality is disable and reimplmented
+        // using @threespot/freeze-scroll within a React useEffect above.
+        blockScroll={false}
         open={open}
         onClose={() => {
+          scroll.unfreeze();
           setOpen(false);
         }}
         center
@@ -211,12 +224,7 @@ const TribalNationModal = ({ open, setOpen }) => {
                       href={`/tribal-nations/${tribalNation.slug}`}
                       onClick={() => {
                         setOpen(false);
-                        // A timeout is required so the the scroll prevention is
-                        // removeed prior to navigating to a new route. The timeout
-                        // value is set to after the modals `animationDuration` prop
-                        setTimeout(() => {
-                          history.push(`/tribal-nations/${tribalNation.slug}`);
-                        }, 400);
+                        history.push(`/tribal-nations/${tribalNation.slug}`);
                       }}
                     >
                       Tribal Nations page
@@ -268,12 +276,7 @@ const TribalNationModal = ({ open, setOpen }) => {
                         }}
                         onClick={() => {
                           setOpen(false);
-                          // A timeout is required so the the scroll prevention is
-                          // removeed prior to navigating to a new route. The timeout
-                          // value is set to after the modals `animationDuration` prop
-                          setTimeout(() => {
-                            history.push(`/tribal-nations/${tribalNation.slug}?${joinParams('topics', [topic.name])}`);
-                          }, 500);
+                          history.push(`/tribal-nations/${tribalNation.slug}?${joinParams('topics', [topic.name])}`);
                         }}
                       >
                         <span>{topic.name}</span>
@@ -289,9 +292,7 @@ const TribalNationModal = ({ open, setOpen }) => {
                   outline={false}
                   onClick={() => {
                     setOpen(false);
-                    setTimeout(() => {
-                      history.push(`/tribal-nations/${tribalNation.slug}`);
-                    }, 500);
+                    history.push(`/tribal-nations/${tribalNation.slug}`);
                   }}
                 >
                   View all {results.length} photos

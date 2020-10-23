@@ -167,11 +167,14 @@ const Home = () => {
   let inverseGridSize = gridSize * -1 + max + min;
   let size = 100 / ((inverseGridSize / max) * max);
 
-  const [results, actions] = useRecords({
-    facets: {
-      naIds: homepageGridThumbnailNaids,
+  const [results, actions] = useRecords(
+    {
+      facets: {
+        naIds: homepageGridThumbnailNaids,
+      },
     },
-  });
+    []
+  );
 
   const shuffleItems = items => {
     return shuffle(items);

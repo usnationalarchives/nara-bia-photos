@@ -3,6 +3,7 @@ import { Modal } from 'react-responsive-modal';
 import styled, { css } from 'styled-components';
 import tinycolor from 'tinycolor2';
 import { useHistory } from 'react-router-dom';
+import scroll from '@threespot/freeze-scroll';
 
 import { ReactComponent as ArrowRightIcon } from '#assets/icons/arrow-right.svg';
 import { ReactComponent as ArrowLeftIcon } from '#assets/icons/arrow-left.svg';
@@ -50,13 +51,25 @@ const NotableNativeAmericanModal = ({ open, setOpen }) => {
     },
   });
 
+  useEffect(() => {
+    if (open) {
+      scroll.freeze();
+    }
+  });
+
   return (
     <Modal
       animationDuration={300}
       closeIcon={<CrossIcon width={30} fill="#fff" />}
       showCloseIcon={true}
       open={open}
+      // The modal libraries scroll blocking does not work properly with
+      // setting the `html` styles to `scroll-behavior: smooth;`.
+      // Instead, the blocking functionality is disable and reimplmented
+      // using @threespot/freeze-scroll within a React useEffect above.
+      blockScroll={false}
       onClose={() => {
+        scroll.unfreeze();
         setOpen(false);
       }}
       center

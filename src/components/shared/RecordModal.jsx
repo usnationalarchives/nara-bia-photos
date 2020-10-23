@@ -5,6 +5,7 @@ import tinycolor from 'tinycolor2';
 import { useHistory } from 'react-router-dom';
 import { CarouselProvider, Slider, Slide, Image, ButtonBack, ButtonNext, CarouselContext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
+import scroll from '@threespot/freeze-scroll';
 
 import { ReactComponent as ArrowRightIcon } from '#assets/icons/arrow-right.svg';
 import { ReactComponent as ArrowLeftIcon } from '#assets/icons/arrow-left.svg';
@@ -88,6 +89,7 @@ const RecordModal = ({ activeIndex, items, open, setOpen, setImageIndex }) => {
     var recordTopics = getRecordTopics(record.tags);
     var recordStates = getRecordStates(record.states);
   }
+
   useEffect(() => {
     function onChange() {
       setCurrentSlide(carouselContext.state.currentSlide);
@@ -97,13 +99,25 @@ const RecordModal = ({ activeIndex, items, open, setOpen, setImageIndex }) => {
     return () => carouselContext.unsubscribe(onChange);
   }, [carouselContext]);
 
+  useEffect(() => {
+    if (open) {
+      scroll.freeze();
+    }
+  });
+
   return (
     <Modal
       animationDuration={300}
       closeIcon={<CrossIcon width={30} fill="#fff" />}
       showCloseIcon={true}
+      // The modal libraries scroll blocking does not work properly with
+      // setting the `html` styles to `scroll-behavior: smooth;`.
+      // Instead, the blocking functionality is disable and reimplmented
+      // using @threespot/freeze-scroll within a React useEffect above.
+      blockScroll={false}
       open={open}
       onClose={() => {
+        scroll.unfreeze();
         setOpen(false);
         setImageIndex(null);
       }}
@@ -141,12 +155,7 @@ const RecordModal = ({ activeIndex, items, open, setOpen, setImageIndex }) => {
                       link: `/topics/${topic.slug}`,
                       onClick: () => {
                         setOpen(false);
-                        // A timeout is required so the the scroll prevention is
-                        // removeed prior to navigating to a new route. The timeout
-                        // value is set to after the modals `animationDuration` prop
-                        setTimeout(() => {
-                          history.push(`/topics/${topic.slug}`);
-                        }, 400);
+                        history.push(`/topics/${topic.slug}`);
                       },
                     };
                   })}
@@ -191,12 +200,7 @@ const RecordModal = ({ activeIndex, items, open, setOpen, setImageIndex }) => {
                 outline={false}
                 onClick={() => {
                   setOpen(false);
-                  // A timeout is required so the the scroll prevention is
-                  // removeed prior to navigating to a new route. The timeout
-                  // value is set to after the modals `animationDuration` prop
-                  setTimeout(() => {
-                    history.push(`/${record.slug}`);
-                  }, 500);
+                  history.push(`/${record.slug}`);
                 }}
               >
                 Explore in more detail<span className="screenreader"> Photograph: {record.title}</span>

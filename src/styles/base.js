@@ -15,7 +15,7 @@ const BaseStyles = createGlobalStyle`
     background-color: ${props => props.theme.colors.white};
     color: ${props => props.theme.colors.darkGrey};
     font-family: ${props => props.theme.font.family};
-    /* scroll-behavior: smooth; */
+    scroll-behavior: smooth;
   }
 
   body {
@@ -84,6 +84,15 @@ const BaseStyles = createGlobalStyle`
       }
     }
   }
+
+  .js-no-scroll,
+  .js-no-scroll body {
+    overflow: hidden;
+    touch-action: none;
+  }
+
+  /* Create class to allow scrolling on certain elements, like modal windows */
+  .allow-scroll { touch-action: auto !important; }
 
   @media print {
     * {
