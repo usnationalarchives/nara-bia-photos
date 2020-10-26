@@ -42,6 +42,8 @@ const TopicLanding = () => {
     },
   });
 
+  console.log(results);
+
   const thumbnailUrl = naId => {
     const result = results.filter(result => result.naId === naId)[0];
     !!result && console.log(naId, result.title, result);

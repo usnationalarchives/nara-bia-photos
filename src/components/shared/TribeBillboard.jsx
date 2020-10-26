@@ -1,6 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import * as frontline from '#styles/frontline';
+import { useLocation } from 'react-router-dom';
+import Popover from 'react-tiny-popover';
+
+// styles
+import { buttonReset } from '#styles/mixins';
 
 // assets
 import bannerImage from '#assets/images/banner-state-landing.png';
@@ -12,6 +17,7 @@ import * as Layout from '#components/shared/Layout';
 import PopoverInfo from '#components/shared/PopoverInfo';
 import BackgroundImage from '#components/shared/BackgroundImage';
 import ContentWarning from '#components/shared/ContentWarning';
+import PopoverNav from '#components/shared/PopoverNav';
 
 const BackgroundImageStyle = styled.div`
   display: block;
@@ -31,6 +37,31 @@ const Root = styled.div`
 const Title = styled(Text.H2)`
   color: ${props => props.theme.colors.white};
   margin-bottom: 1rem;
+`;
+
+const TitleButton = styled.button`
+  ${buttonReset}
+  display: inline;
+  text-align: left;
+  line-height: inherit;
+
+  [data-whatinput='mouse'] & {
+    outline: none;
+  }
+
+  &:after {
+    /* don't alphabetize these border properties, the order is important */
+    border: 8px solid white;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+
+    content: '';
+    display: inline-block;
+    height: 16px;
+    margin-left: 1rem;
+    width: 16px;
+  }
 `;
 
 const Intro = styled(Text.Intro)`
@@ -103,7 +134,7 @@ const TribeBillboardLayout = styled.div`
     }
   }
 
-  a {
+  .layout-col--secondary a {
     ${frontline.fl_static(css`
       color: #fff;
       text-decoration: underline;
@@ -129,7 +160,27 @@ const SuperTitle = styled.span`
   text-transform: uppercase;
 `;
 
-const TribeBillboard = ({ alignment, title, imageUrl, intro, introIcon, introHelp, superTitle, ...props }) => {
+const TribeBillboard = ({
+  alignment,
+  title,
+  imageUrl,
+  intro,
+  introIcon,
+  introHelp,
+  items,
+  superTitle,
+  slugPrefix,
+  ...props
+}) => {
+  const popoverEl = useRef();
+  const [navOpen, setNavOpen] = useState(false);
+  const location = useLocation();
+
+  // collapse the mobile navigation when following a link
+  useEffect(() => {
+    setNavOpen(false);
+  }, [location]);
+
   return (
     <Root>
       <Layout.Padding>
@@ -138,7 +189,22 @@ const TribeBillboard = ({ alignment, title, imageUrl, intro, introIcon, introHel
             <div className="layout-col--primary">
               <div className="layout-content">
                 {!!superTitle && <SuperTitle>{superTitle}</SuperTitle>}
-                <Title as="h1">{title}</Title>
+                <Popover
+                  isOpen={navOpen}
+                  disableReposition
+                  onClickOutside={() => setNavOpen(false)}
+                  contentLocation={{ top: 60, left: 0 }}
+                  content={<PopoverNav items={items} slugPrefix={slugPrefix} />}
+                  contentDestination={popoverEl.current}
+                  containerStyle={{ overflow: 'visible', zIndex: '100' }}
+                >
+                  <div style={{ position: 'relative' }}>
+                    <Title as="h1">
+                      <TitleButton onClick={() => setNavOpen(!navOpen)}>{title}</TitleButton>
+                    </Title>
+                    <div ref={popoverEl}></div>
+                  </div>
+                </Popover>
                 <IntroWrapper>
                   {!!introIcon && introIcon === 'warning' && (
                     <ContentWarning style={{ flex: '0 0 100px', paddingRight: '20px' }} />

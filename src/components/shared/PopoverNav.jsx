@@ -20,6 +20,7 @@ const Items = styled.ul`
 `;
 
 const Item = styled.li`
+  color: ${props => props.theme.colors.darkGrey};
   margin-bottom: 0.5rem;
   font-size: 0.95rem;
 
