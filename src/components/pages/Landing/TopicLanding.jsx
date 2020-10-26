@@ -34,6 +34,8 @@ const CardStyled = styled(Card)`
 const TopicLanding = () => {
   const thumbnailNaIds = topics.map(t => t.thumbnailNaId);
 
+  console.log(thumbnailNaIds);
+
   const [results] = useRecords({
     facets: {
       naIds: thumbnailNaIds,
@@ -42,6 +44,7 @@ const TopicLanding = () => {
 
   const thumbnailUrl = naId => {
     const result = results.filter(result => result.naId === naId)[0];
+    !!result && console.log(naId, result.title, result);
 
     if (result) {
       const url = iiifImage(result, 600);
@@ -60,7 +63,7 @@ const TopicLanding = () => {
     return (
       <LandingBillboard title={content.topics.title} intro={content.topics.intro} introHelp={content.topics.help}>
         <form>
-          <label className="screenreader" for="topic">
+          <label className="screenreader" htmlFor="topic">
             Topics
           </label>
           <Select transparent id="topic" name="topic" style={{ marginTop: '2.5rem' }} onChange={handleSelect}>
@@ -79,13 +82,16 @@ const TopicLanding = () => {
   const TopicsGrid = () => {
     return (
       <Grid>
-        {orderBy(topics, 'name').map(topic => (
-          <GridItem key={topic.slug}>
-            <CardStyled>
-              <Topic topic={topic} thumbnailUrl={thumbnailUrl(topic.thumbnailNaId)} />
-            </CardStyled>
-          </GridItem>
-        ))}
+        {orderBy(topics, 'name').map(topic => {
+          console.log(topic.slug);
+          return (
+            <GridItem key={topic.slug}>
+              <CardStyled>
+                <Topic topic={topic} thumbnailUrl={thumbnailUrl(topic.thumbnailNaId)} />
+              </CardStyled>
+            </GridItem>
+          );
+        })}
       </Grid>
     );
   };
