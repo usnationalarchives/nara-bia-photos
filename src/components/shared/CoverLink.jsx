@@ -9,7 +9,7 @@ const StyledLink = styled(Link)`
   &:before {
     content: '';
     ${fl_absoluteFill}
-    z-index: 900
+    z-index: 4
   }
 `;
 
