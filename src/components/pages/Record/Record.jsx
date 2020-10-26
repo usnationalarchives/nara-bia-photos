@@ -102,6 +102,7 @@ const Record = ({ ...props }) => {
   );
 
   if (record) {
+    console.log(record);
     var tribalNation = tribalNations.filter(tribalNation => tribalNation.name === record.tribes)[0];
     var recordTopics = getRecordTopics(record.tags);
     var recordStates = getRecordStates(record.states);
@@ -233,11 +234,19 @@ const Record = ({ ...props }) => {
                 <TabPanel>
                   <Table.RowStyles>
                     <p>
-                      Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel
-                      scelerisque nisl consectetur et. Nulla vitae elit libero, a pharetra augue. Vestibulum id ligula
-                      porta felis euismod semper. Etiam porta sem malesuada magna mollis euismod. Praesent commodo
-                      cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut
-                      id elit.
+                      {record.title}, {record.date} [General Records Type]; Record Group Title, Record Group Number;
+                      Location [online version available through the National Archives Catalog (National Archives
+                      Identifier {record.naId}) at{' '}
+                      <a href={`https://catalog.archives.gov/id/${record.naId}`}>
+                        https://catalog.archives.gov/id/{record.naId}
+                      </a>
+                      ;{' '}
+                      {new Intl.DateTimeFormat('en-US', {
+                        month: 'long',
+                        day: 'numeric',
+                        year: 'numeric',
+                      }).format(new Date())}
+                      ].
                     </p>
                   </Table.RowStyles>
                 </TabPanel>
@@ -268,7 +277,7 @@ const Record = ({ ...props }) => {
                     style={{ flex: '1 0 auto' }}
                     href={`https://catalog.archives.gov/search?q=*:*&f.ancestorNaIds=${record.parentSeriesNaId}&sort=naIdSort%20asc&f.materialsType=photographsandgraphics`}
                   >
-                    View All
+                    View All in the Catalog
                   </ExternalLink>
                 </div>
                 <Results singleRow data={sampleSize(thumbnailResults, 3)} fidelity={250} />
