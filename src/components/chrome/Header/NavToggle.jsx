@@ -14,7 +14,7 @@ const Root = styled.button`
   outline: none;
   text-align: center;
   text-transform: uppercase;
-  width: 30px;
+  width: 40px;
 
   @media all and ${props => props.theme.breakpoints.medium} {
     display: none;
@@ -22,6 +22,7 @@ const Root = styled.button`
 `;
 
 const Burger = styled.div`
+  display: inline-block;
   ${fl_burger({
     color: '#fff',
     gutter: 5,
