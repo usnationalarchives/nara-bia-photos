@@ -37,4 +37,5 @@ export const zIndex = {
   modal: 1000,
   skipLinks: 999,
   header: 900,
+  nav: 899,
 };

@@ -40,7 +40,7 @@ const Menu = styled.ul`
   transition-timing-function: cubic-bezier('0.215, 0.610, 0.355, 1.000');
   transition: transform 300ms;
   width: 100%;
-  z-index: 1;
+  z-index: ${props => props.theme.zIndex.nav};
 
   ${props =>
     props.navOpen &&
