@@ -229,7 +229,7 @@ const ImageViewer = ({ record, objects }) => {
           </ViewerButtonStyled>
         </div>
         <div>
-          <ViewerButtonStyled as="a" href={iiifImage(record, 'full')} download>
+          <ViewerButtonStyled as="a" href={iiifImage(record, 'full')} title="Download" download>
             <DownloadIcon width={20} fill="currentColor" />
             <Text.Screenreader>Download original photograph of: {record.title}</Text.Screenreader>
           </ViewerButtonStyled>
