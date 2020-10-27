@@ -28,7 +28,7 @@ const ResultsStyles = styled.ul`
 
 const Item = styled.li`
   flex: auto;
-  height: ${props => props.fidelity + 60}px;
+  height: ${props => props.fidelity + 70}px;
   margin: 10px 10px 20px;
   overflow: hidden;
   position: relative;

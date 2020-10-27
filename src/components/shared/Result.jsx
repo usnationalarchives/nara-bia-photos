@@ -47,7 +47,7 @@ const Title = styled.span`
   color: currentColor;
   display: block;
   font-size: 0.8em;
-  margin-top: ${props => props.scale + 10}px;
+  margin-top: ${props => props.scale + 15}px;
 
   ${fl_attention(css`
     color: #fff;
