@@ -35,11 +35,17 @@ import Button from '#components/shared/Button';
 import * as frontline from '#styles/frontline';
 import { colors } from '#styles/theme';
 
+const TopicChartWrapper = styled.div`
+  width: 100%;
+  overflow-y: scroll;
+`;
+
 const TopicChart = styled.ul`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   margin-top: 3rem;
+  min-width: 900px;
 `;
 
 const TopicChartItem = styled.li`
@@ -94,6 +100,26 @@ const TopicChartItem = styled.li`
   span:last-child {
     font-size: 22px;
     font-weight: normal;
+  }
+`;
+
+const ContentLayout = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+
+  > * {
+    margin-top: 15px;
+  }
+
+  @media all and ${props => props.theme.breakpoints.medium} {
+    flex-direction: row;
+
+    > * {
+      margin-top: 0;
+    }
+    > *:first-child {
+      padding-right: 50px;
+    }
   }
 `;
 
@@ -208,8 +234,8 @@ const TribalNationModal = ({ open, setOpen }) => {
           <Layout.Wrapper large>
             <Text.H4 style={{ color: '#000', textTransform: 'uppercase' }}>{'Featured Tribal Nation'}</Text.H4>
             {!!activeTribalNation && (
-              <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <div style={{ paddingRight: '50px' }}>
+              <ContentLayout>
+                <div>
                   <Text.H2 style={{ color: '#000', marginTop: '1rem', marginBottom: '1rem' }}>
                     {tribalNation.name}
                   </Text.H2>
@@ -249,43 +275,45 @@ const TribalNationModal = ({ open, setOpen }) => {
                     ))}
                   </Select>
                 </div>
-              </div>
+              </ContentLayout>
             )}
           </Layout.Wrapper>
         </Layout.Padding>
         {!!activeTribalNation && (
           <Layout.Padding style={{ color: '#000' }}>
             <Layout.Wrapper large>
-              <TopicChart>
-                {orderedTopics.map(topic => {
-                  return (
-                    <TopicChartItem
-                      key={topic.name}
-                      percentage={topic.percentage}
-                      color={topic.color}
-                      // data-for="tribalNationModalTooltip"
-                      data-tip={topic.percentage <= 10 ? `${topic.name} ${topic.count}` : null}
-                    >
-                      <button
-                        style={{
-                          border: 'none',
-                          outline: 'none',
-                          paddingLeft: '15px',
-                          height: '100%',
-                          textAlign: 'left',
-                        }}
-                        onClick={() => {
-                          setOpen(false);
-                          history.push(`/tribal-nations/${tribalNation.slug}?${joinParams('topics', [topic.name])}`);
-                        }}
+              <TopicChartWrapper>
+                <TopicChart>
+                  {orderedTopics.map(topic => {
+                    return (
+                      <TopicChartItem
+                        key={topic.name}
+                        percentage={topic.percentage}
+                        color={topic.color}
+                        // data-for="tribalNationModalTooltip"
+                        data-tip={topic.percentage <= 10 ? `${topic.name} ${topic.count}` : null}
                       >
-                        <span>{topic.name}</span>
-                        <span>{topic.count}</span>
-                      </button>
-                    </TopicChartItem>
-                  );
-                })}
-              </TopicChart>
+                        <button
+                          style={{
+                            border: 'none',
+                            outline: 'none',
+                            paddingLeft: '15px',
+                            height: '100%',
+                            textAlign: 'left',
+                          }}
+                          onClick={() => {
+                            setOpen(false);
+                            history.push(`/tribal-nations/${tribalNation.slug}?${joinParams('topics', [topic.name])}`);
+                          }}
+                        >
+                          <span>{topic.name}</span>
+                          <span>{topic.count}</span>
+                        </button>
+                      </TopicChartItem>
+                    );
+                  })}
+                </TopicChart>
+              </TopicChartWrapper>
               <div style={{ textAlign: 'center', marginTop: '3rem' }}>
                 <Button
                   scheme="green"
