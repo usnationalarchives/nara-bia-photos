@@ -2,8 +2,17 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 const SelectWrapper = styled.div`
+  background-color: #fff;
+  border: solid 1px ${props => props.theme.colors.mediumGrey};
+  border-radius: 23px;
   display: inline-block;
   position: relative;
+
+  ${props =>
+    props.transparent &&
+    css`
+      background-color: transparent;
+    `}
 
   &:after {
     /* don't reorder these border properties */
@@ -28,19 +37,21 @@ const SelectWrapper = styled.div`
     right: 18px;
     top: 20px;
     width: 12px;
+    z-index: 1;
   }
 `;
 
 const SelectMenu = styled.select`
   appearance: none;
-  background-color: #fff;
-  border: solid 1px ${props => props.theme.colors.mediumGrey};
-  border-radius: 23px;
+  background-color: transparent;
+  border: none;
   font-size: 0.75rem;
   padding: 14px 40px 14px 22px;
+  position: relative;
   text-decoration: none;
   text-align: left;
   text-transform: uppercase;
+  z-index: 2;
   width: 100%;
 
   option {
