@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect, createRef } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Results from '#components/shared/Results';
 import { sampleSize } from 'lodash';
@@ -53,6 +53,23 @@ const MetaWrapper = styled.div`
     &:not(:first-child) {
       padding-left: 25px;
       border-left: solid 1px ${props => props.theme.colors.mediumGrey};
+    }
+  }
+`;
+
+const SeriesHeader = styled.div`
+  @media all and ${props => props.theme.breakpoints.medium} {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+
+  > * {
+    margin-top: 1rem;
+
+    @media all and ${props => props.theme.breakpoints.medium} {
+      margin-top: 0;
     }
   }
 `;
@@ -234,9 +251,10 @@ const Record = ({ ...props }) => {
                 <TabPanel>
                   <Table.RowStyles>
                     <p>
-                      {record.title}, {record.date} [General Records Type]; Record Group Title, Record Group Number;
-                      Location [online version available through the National Archives Catalog (National Archives
-                      Identifier {record.naId}) at{' '}
+                      {record.title},{!!record.date ? `${record.date} ` : ' '}[Photographs and other Graphic Materials];
+                      Records of the Bureau of Indian Affairs, Record Group 75;
+                      {!!record.location ? ` ${record.location}` : ' '}[online version available through the National
+                      Archives Catalog (National Archives Identifier {record.naId}) at{' '}
                       <a href={`https://catalog.archives.gov/id/${record.naId}`}>
                         https://catalog.archives.gov/id/{record.naId}
                       </a>
@@ -260,14 +278,7 @@ const Record = ({ ...props }) => {
                   <SeriesIcon width={20}></SeriesIcon>
                   <span>Also in this series</span>
                 </SectionHeader>
-                <div
-                  style={{
-                    alignItems: 'flex-start',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    marginTop: '2rem',
-                  }}
-                >
+                <SeriesHeader>
                   <p style={{ marginRight: '20px' }}>
                     There are {thumbnailResults.length.toLocaleString('en')} other digitized records in the archival
                     series {record.parentSeriesTitle}
@@ -279,7 +290,7 @@ const Record = ({ ...props }) => {
                   >
                     View All in the Catalog
                   </ExternalLink>
-                </div>
+                </SeriesHeader>
                 <Results singleRow data={sampleSize(thumbnailResults, 3)} fidelity={250} />
               </Layout.Wrapper>
             </Layout.Padding>
