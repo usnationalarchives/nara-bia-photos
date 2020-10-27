@@ -2,10 +2,6 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import * as frontline from '#styles/frontline';
 
-// assets
-import bannerImage from '#assets/images/banner-state-landing.png';
-import bannerImage2x from '#assets/images/banner-state-landing@2x.png';
-
 // components
 import * as Text from '#components/shared/Text';
 import * as Layout from '#components/shared/Layout';

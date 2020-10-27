@@ -2,6 +2,11 @@ import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 
+// assets
+import { ReactComponent as InfoIcon } from '#assets/icons/info.svg';
+import bannerImage from '#assets/images/banner-tribal-nations.png';
+import bannerImage2x from '#assets/images/banner-tribal-nations@2x.png';
+
 // components
 import * as Layout from '#components/shared/Layout';
 import LandingBillboard from '#components/shared/LandingBillboard';
@@ -26,7 +31,7 @@ const TribeLanding = () => {
 
   const Billboard = () => {
     return (
-      <LandingBillboard title={content.tribalNations.title}>
+      <LandingBillboard bannerImage={bannerImage} bannerImage2x={bannerImage2x} title={content.tribalNations.title}>
         <Label>
           {content.tribalNations.intro}
           <PopoverInfo content={content.tribalNations.help} />

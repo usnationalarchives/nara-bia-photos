@@ -8,8 +8,8 @@ import Popover from 'react-tiny-popover';
 import { buttonReset } from '#styles/mixins';
 
 // assets
-import bannerImage from '#assets/images/banner-state-landing.png';
-import bannerImage2x from '#assets/images/banner-state-landing@2x.png';
+import bannerImage from '#assets/images/banner-tribal-nations.png';
+import bannerImage2x from '#assets/images/banner-tribal-nations@2x.png';
 
 // components
 import * as Text from '#components/shared/Text';

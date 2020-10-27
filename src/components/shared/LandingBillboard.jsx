@@ -2,10 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import * as frontline from '#styles/frontline';
 
-// assets
-import bannerImage from '#assets/images/banner-state-landing.png';
-import bannerImage2x from '#assets/images/banner-state-landing@2x.png';
-
 // components
 import * as Text from '#components/shared/Text';
 import * as Layout from '#components/shared/Layout';
@@ -82,7 +78,7 @@ const LandingBillboardLayout = styled.div`
   }
 `;
 
-const Billboard = ({ title, intro, introHelp, ...props }) => {
+const Billboard = ({ bannerImage, bannerImage2x, title, intro, introHelp, ...props }) => {
   return (
     <Root>
       <Layout.Padding>
@@ -101,7 +97,7 @@ const Billboard = ({ title, intro, introHelp, ...props }) => {
               </div>
             </div>
             <div className="layout-col--secondary">
-              <BackgroundImage className="desktopImage">
+              <BackgroundImage className="desktopImage bg-image--contain">
                 <img
                   alt=""
                   aria-hidden="true"

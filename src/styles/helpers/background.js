@@ -16,6 +16,15 @@ const BackgroundStyles = css`
       &-source {
         ${frontline.fl_absoluteFill}
         object-fit: cover;
+
+        .bg-image--contain & {
+          object-fit: contain;
+          object-position: center bottom;
+
+          @media all and (min-width: 600px) {
+            object-position: left bottom;
+          }
+        }
       }
     }
   }

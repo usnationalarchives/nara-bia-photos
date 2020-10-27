@@ -17,6 +17,16 @@ export const Padding = styled.div`
   }
 `;
 
+export const Strata = styled.div`
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  @media all and ${props => props.theme.breakpoints.tablet} {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+`;
+
 export const Wrapper = styled.div`
   ${fl_clearfix}
 

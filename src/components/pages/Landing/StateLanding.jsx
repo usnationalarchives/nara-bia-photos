@@ -16,6 +16,8 @@ import { StateThumbnailProvider, withStateThumbnails } from '#context/StateThumb
 
 // assets
 import { ReactComponent as InfoIcon } from '#assets/icons/info.svg';
+import bannerImage from '#assets/images/banner-states.png';
+import bannerImage2x from '#assets/images/banner-states@2x.png';
 
 // hooks
 import useRecords from '#hooks/useRecords';
@@ -37,7 +39,15 @@ import iiifImage from '#modules/iiifImage';
 import * as frontline from '#styles/frontline';
 
 const Billboard = () => {
-  return <LandingBillboard title={content.states.title} intro={content.states.intro} introHelp={content.states.help} />;
+  return (
+    <LandingBillboard
+      bannerImage={bannerImage}
+      bannerImage2x={bannerImage2x}
+      title={content.states.title}
+      intro={content.states.intro}
+      introHelp={content.states.help}
+    />
+  );
 };
 
 const getStatesByRegion = (states, regionSlug) => {
@@ -104,21 +114,21 @@ const MapSelect = styled.div`
   margin: 50px auto -20px;
   max-width: 600px;
 
-  @media all and ${props => props.theme.breakpoints.medium} {
+  @media all and ${props => props.theme.breakpoints.large} {
     flex-direction: row;
     align-items: center;
     margin-bottom: -80px;
   }
 
   > *:first-child {
-    @media all and ${props => props.theme.breakpoints.medium} {
+    @media all and ${props => props.theme.breakpoints.large} {
       flex: 1 1 70%;
       padding-right: 40px;
     }
   }
   > *:last-child {
     padding-top: 20px;
-    @media all and ${props => props.theme.breakpoints.medium} {
+    @media all and ${props => props.theme.breakpoints.large} {
       padding-top: 0;
       flex: 1 1 30%;
     }

@@ -4,6 +4,11 @@ import { Helmet } from 'react-helmet';
 import styled, { css } from 'styled-components';
 import { orderBy } from 'lodash';
 
+// assets
+import { ReactComponent as InfoIcon } from '#assets/icons/info.svg';
+import bannerImage from '#assets/images/banner-topics.png';
+import bannerImage2x from '#assets/images/banner-topics@2x.png';
+
 // components
 import * as Layout from '#components/shared/Layout';
 import LandingBillboard from '#components/shared/LandingBillboard';
@@ -34,8 +39,6 @@ const CardStyled = styled(Card)`
 const TopicLanding = () => {
   const thumbnailNaIds = topics.map(t => t.thumbnailNaId);
 
-  console.log(thumbnailNaIds);
-
   const [results] = useRecords({
     facets: {
       naIds: thumbnailNaIds,
@@ -63,7 +66,13 @@ const TopicLanding = () => {
     };
 
     return (
-      <LandingBillboard title={content.topics.title} intro={content.topics.intro} introHelp={content.topics.help}>
+      <LandingBillboard
+        bannerImage={bannerImage}
+        bannerImage2x={bannerImage2x}
+        title={content.topics.title}
+        intro={content.topics.intro}
+        introHelp={content.topics.help}
+      >
         <form>
           <label className="screenreader" htmlFor="topic">
             Topics
@@ -124,11 +133,13 @@ const TopicLanding = () => {
       </Helmet>
       <Billboard />
 
-      <Layout.Padding style={{ marginTop: '5rem', marginBottom: '5rem' }}>
-        <Layout.Wrapper>
-          <TopicsGrid />
-        </Layout.Wrapper>
-      </Layout.Padding>
+      <Layout.Strata>
+        <Layout.Padding>
+          <Layout.Wrapper>
+            <TopicsGrid />
+          </Layout.Wrapper>
+        </Layout.Padding>
+      </Layout.Strata>
     </Fragment>
   );
 };
