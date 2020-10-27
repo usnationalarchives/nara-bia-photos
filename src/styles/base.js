@@ -15,7 +15,11 @@ const BaseStyles = createGlobalStyle`
     background-color: ${props => props.theme.colors.white};
     color: ${props => props.theme.colors.darkGrey};
     font-family: ${props => props.theme.font.family};
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
+
+    @media screen and (prefers-reduced-motion: reduce){
+      scroll-behavior: auto;
+    }
   }
 
   body {

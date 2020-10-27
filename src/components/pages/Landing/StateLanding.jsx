@@ -282,7 +282,6 @@ const StateLanding = () => {
         <Helmet>
           <title>{`${content.states.title} - Bureau Of Indian Affairs Photography Finding Aid`}</title>
           <meta name="description" content={content.states.intro}></meta>
-          <meta name="" content="" />
           <meta
             name="twitter:title"
             content={`${content.states.title} - Bureau Of Indian Affairs Photography Finding Aid`}
