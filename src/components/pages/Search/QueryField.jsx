@@ -95,15 +95,16 @@ const QueryField = ({ defaultValue, setQuery }) => {
     <Banner>
       <Layout.Padding>
         <Layout.Wrapper narrow="true">
-          <form role="search">
-            <label htmlFor="query">
+          <form role="search" action="/search" method="get">
+            <label htmlFor="q">
               <H1>Search</H1>
             </label>
             <InputGroup>
               <div>
                 <Input
                   type="text"
-                  id="query"
+                  id="q"
+                  name="q"
                   defaultValue={defaultValue}
                   className="grow"
                   placeholder="Enter a keyword or phrase"
