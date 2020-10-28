@@ -46,12 +46,12 @@ const TribeLanding = () => {
   return (
     <Fragment>
       <Helmet>
-        <title>{`${content.tribalNations.title} - Bureau Of Indian Affairs Photography Finding Aid`}</title>
+        <title>{`${content.tribalNations.title} - Bureau Of Indian Affairs Photographs Finding Aid`}</title>
         {/* <meta name="description" content={content.topics.intro}></meta> */}
         <meta name="" content="" />
         <meta
           name="twitter:title"
-          content={`${content.tribalNations.title} - Bureau Of Indian Affairs Photography Finding Aid`}
+          content={`${content.tribalNations.title} - Bureau Of Indian Affairs Photographs Finding Aid`}
         />
         <meta name="twitter:site" content="@FIXME" />
         <meta name="twitter:card" content={'FIXME'} />
@@ -59,7 +59,7 @@ const TribeLanding = () => {
         <meta name="twitter:image" content={'FIXME'} />
         <meta
           property="og:title"
-          content={`${content.topics.title} - Bureau Of Indian Affairs Photography Finding Aid`}
+          content={`${content.topics.title} - Bureau Of Indian Affairs Photographs Finding Aid`}
         />
         <meta name="og:description" content={'FIXME'} />
         <meta property="og:site_name" content="FIXME" />

@@ -94,17 +94,17 @@ const StateListing = ({ ...props }) => {
   return (
     <Fragment>
       <Helmet>
-        <title>{`${stateName} - Bureau Of Indian Affairs Photography Finding Aid`}</title>
+        <title>{`${stateName} - Bureau Of Indian Affairs Photographs Finding Aid`}</title>
         <meta name="description" content={content.state.intro.replace('${STATE}', stateName)}></meta>
         <meta name="" content="" />
-        <meta name="twitter:title" content={`${stateName} - Bureau Of Indian Affairs Photography Finding Aid`} />
+        <meta name="twitter:title" content={`${stateName} - Bureau Of Indian Affairs Photographs Finding Aid`} />
         <meta name="twitter:site" content="@FIXME" />
         <meta name="twitter:card" content={'FIXME'} />
         <meta name="twitter:description" content={content.state.intro.replace('${STATE}', stateName)} />
         <meta name="twitter:image" content={'FIXME'} />
         <meta
           property="og:title"
-          content={`${content.states.title} - Bureau Of Indian Affairs Photography Finding Aid`}
+          content={`${content.states.title} - Bureau Of Indian Affairs Photographs Finding Aid`}
         />
         <meta name="og:description" content={content.state.intro.replace('${STATE}', stateName)} />
         <meta property="og:site_name" content="FIXME" />

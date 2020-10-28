@@ -187,15 +187,15 @@ const Home = () => {
   return (
     <div style={{ position: 'relative' }}>
       <Helmet>
-        <title>Bureau Of Indian Affairs Photography Finding Aid</title>
+        <title>Bureau Of Indian Affairs Photographs Finding Aid</title>
         {/* <meta name="description" content={content.topics.intro}></meta> */}
         <meta name="" content="" />
-        <meta name="twitter:title" content="Bureau Of Indian Affairs Photography Finding Aid" />
+        <meta name="twitter:title" content="Bureau Of Indian Affairs Photographs Finding Aid" />
         <meta name="twitter:site" content="@FIXME" />
         <meta name="twitter:card" content={'FIXME'} />
         <meta name="twitter:description" content={'FIXME'} />
         <meta name="twitter:image" content={'FIXME'} />
-        <meta property="og:title" content="Bureau Of Indian Affairs Photography Finding Aid" />
+        <meta property="og:title" content="Bureau Of Indian Affairs Photographs Finding Aid" />
         <meta name="og:description" content={'FIXME'} />
         <meta property="og:site_name" content="FIXME" />
         <meta property="og:url" content={window.location} />
