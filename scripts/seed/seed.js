@@ -87,8 +87,8 @@ const createTribalNationsCsv = async () => {
 
 const run = async () => {
   await createRecordsCsv();
-  await convertRecordsToJSON();
   await addRecordsFromFileUnits();
+  await convertRecordsToJSON();
   await createTribalNationsCsv();
 };
 
