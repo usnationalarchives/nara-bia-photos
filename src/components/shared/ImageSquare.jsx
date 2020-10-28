@@ -15,12 +15,17 @@ const ImageSquareStyled = styled(BackgroundImage)`
 const Wrapper = styled.div`
   position: relative;
   width: 33.33333333%;
+  overflow: hidden;
 
   ${fl_attention(css`
     cursor: pointer;
     &:before {
       opacity: 1;
       visibility: visible;
+    }
+
+    &:after {
+      transform: translateY(0);
     }
   `)}
 
@@ -31,12 +36,24 @@ const Wrapper = styled.div`
   &:before {
     ${fl_absoluteFill}
     background-color: rgba(0,0,0,.5);
-    border-bottom: 6px solid ${props => props.theme.colors.yellow}; 
-    content '';
+    content: '';
     opacity: 0;
-    transition: opacity .7s ease, border .7s ease;
+    transition: opacity 0.4s ease, border 0.7s ease;
     visibility: hidden;
     z-index: 1;
+  }
+
+  &:after {
+    bottom: 0;
+    background-color: ${props => tinycolor(props.theme.colors.yellow).darken(25).toString()};
+    content: '';
+    height: 10px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+    z-index: 2;
   }
 `;
 
