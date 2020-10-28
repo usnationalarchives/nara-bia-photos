@@ -56,9 +56,9 @@ const Item = ({ href, ...props }) => {
 const FooterNav = () => {
   return (
     <Menu>
-      <Item href="#">Help</Item>
-      <Item href="#">Contact Us</Item>
-      <Item href="#">Privacy Policy</Item>
+      <Item href="https://www.archives.gov/contact">Contact Us</Item>
+      <Item href="https://www.archives.gov/global-pages/privacy.html">Privacy Policy</Item>
+      <Item href="https://www.archives.gov/global-pages/accessibility">Accessibility</Item>
     </Menu>
   );
 };

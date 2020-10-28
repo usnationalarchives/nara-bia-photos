@@ -34,7 +34,8 @@ const Main = styled.div`
   }
 `;
 
-const Branding = styled.div`
+const Branding = styled.a`
+  display: block;
   margin-bottom: 30px;
   text-align: center;
 
@@ -56,7 +57,7 @@ const Footer = () => {
       <Layout.Padding>
         <Layout.Wrapper>
           <Main>
-            <Branding>
+            <Branding href="https://www.archives.gov/">
               <Logo />
             </Branding>
 
@@ -64,7 +65,7 @@ const Footer = () => {
 
             <Help>
               <Summary>{content.footer.summary}</Summary>
-              <ButtonLink href="#">Ask on History Hub</ButtonLink>
+              <ButtonLink href="https://historyhub.history.gov/welcome">Ask on History Hub</ButtonLink>
             </Help>
           </Main>
 
