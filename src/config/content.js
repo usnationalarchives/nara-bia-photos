@@ -83,7 +83,7 @@ module.exports = {
   home: {
     intro: {
       title: 'Explore over 18,000 Photographs from the Bureau of Indian Affairs (Record Group 75)',
-      text: 'Use this finding aid to explore digitized photographs from from this record group',
+      text: 'Use this finding aid to explore digitized photographs from this record group',
       cta: 'Learn more about this project',
     },
     tribalNationExplorer: {
