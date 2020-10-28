@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { records, dimensions, groups, actions } from '../modules/data';
 
 /**
@@ -24,6 +24,7 @@ import { records, dimensions, groups, actions } from '../modules/data';
 const useRecords = (options = {}) => {
   const serializedOptions = JSON.stringify(options);
   const [results, setResults] = useState([]);
+  const [finishedQuery, setFinishedQuery] = useState(false);
   const { facets = {} } = options;
 
   // Purge the current applied dimensions
@@ -84,7 +85,11 @@ const useRecords = (options = {}) => {
     // eslint-disable-next-line
   }, [serializedOptions]);
 
-  return [results, dimensions, hasActiveFilters, actions, groups];
+  useEffect(() => {
+    setFinishedQuery(true);
+  }, [results]);
+
+  return [results, dimensions, hasActiveFilters, actions, groups, finishedQuery];
 };
 
 export default useRecords;

@@ -29,6 +29,7 @@ import { states } from '#modules/constants';
 
 const StateListing = ({ ...props }) => {
   const [fidelity, setFidelity] = useState(220);
+  const fetchedResults = useState(false);
   const slug = props.match.params.slug;
   const stateName = states.filter(state => state.slug === slug)[0].name;
 
@@ -49,13 +50,14 @@ const StateListing = ({ ...props }) => {
     .all()
     .map(s => s.key);
 
-  const [results] = useRecords({
+  const [results, , , , , finishedResults] = useRecords({
     facets: {
       states: [stateName],
       tribes: tribes,
       topics: topics,
     },
   });
+  console.log('finishedResults', finishedResults);
 
   useSearchHistory({
     filters: [
@@ -120,7 +122,7 @@ const StateListing = ({ ...props }) => {
       <Layout.Padding>
         <Layout.Wrapper>
           {results.length > 0 && <Filters filters={filters} />}
-          {results.length < 1 && <Redirect to="/states" />}
+          {results.length < 1 && !!finishedResults && <Redirect to="/states" />}
 
           <ResultsWrapper>
             <ResultsHeaderWrapper>
