@@ -82,6 +82,7 @@ const Button = styled.button`
 const SelectWrapper = styled.div`
   position: relative;
   margin-right: 6px;
+  background-color: #fff;
 
   &:after {
     /* don't reorder these border properties */
@@ -99,19 +100,22 @@ const SelectWrapper = styled.div`
     right: 18px;
     top: 20px;
     width: 12px;
+    z-index: 1;
   }
 `;
 
 const Select = styled.select`
   appearance: none;
-  background-color: #fff;
+  background-color: transparent;
   border: solid 1px ${props => props.theme.colors.mediumGrey};
   border-radius: 23px;
   font-size: 0.75rem;
   padding: 14px 40px 14px 22px;
+  position: relative;
   text-decoration: none;
   text-align: left;
   text-transform: uppercase;
+  z-index: 2;
 
   &:focus {
     outline: none;
