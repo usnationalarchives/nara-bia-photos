@@ -50,7 +50,7 @@ export const states = [
   { name: 'Arizona', slug: 'arizona', region: 'southwest', id: 'AZ', val: '04', thumbnailNaId: 593679 },
   { name: 'Arkansas', slug: 'arkansas', region: 'eastern', id: 'AR', val: '05', thumbnailNaId: 285280 },
   { name: 'California', slug: 'california', region: 'california', id: 'CA', val: '06', thumbnailNaId: 170102701 },
-  { name: 'Colorado', slug: 'colorado', region: 'western', id: 'CO', val: '08', thumbnailNaId: 106756280 },
+  { name: 'Colorado', slug: 'colorado', region: 'western', id: 'CO', val: '08', thumbnailNaId: 298658 },
   { name: 'Connecticut', slug: 'connecticut', region: 'eastern', id: 'CT', val: '09', thumbnailNaId: 285280 },
   { name: 'Delaware', slug: 'delaware', region: 'eastern', id: 'DE', val: '10', thumbnailNaId: 285280 },
   { name: 'Florida', slug: 'florida', region: 'eastern', id: 'FL', val: '12', thumbnailNaId: 519171 },
