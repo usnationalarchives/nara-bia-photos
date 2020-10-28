@@ -4,8 +4,6 @@ import { Helmet } from 'react-helmet';
 
 // assets
 import { ReactComponent as InfoIcon } from '#assets/icons/info.svg';
-import bannerImage from '#assets/images/banner-tribal-nations.png';
-import bannerImage2x from '#assets/images/banner-tribal-nations@2x.png';
 
 // components
 import * as Layout from '#components/shared/Layout';
@@ -31,7 +29,12 @@ const TribeLanding = () => {
 
   const Billboard = () => {
     return (
-      <LandingBillboard bannerImage={bannerImage} bannerImage2x={bannerImage2x} title={content.tribalNations.title}>
+      <LandingBillboard
+        bannerImage={content.tribalNations.bannerImage}
+        bannerImage2x={content.tribalNations.bannerImage2x}
+        title={content.tribalNations.title}
+        imagePopup={'testing'}
+      >
         <Label>
           {content.tribalNations.intro}
           <PopoverInfo content={content.tribalNations.help} />

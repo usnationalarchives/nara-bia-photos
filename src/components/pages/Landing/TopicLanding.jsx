@@ -6,8 +6,6 @@ import { orderBy } from 'lodash';
 
 // assets
 import { ReactComponent as InfoIcon } from '#assets/icons/info.svg';
-import bannerImage from '#assets/images/banner-topics.png';
-import bannerImage2x from '#assets/images/banner-topics@2x.png';
 
 // components
 import * as Layout from '#components/shared/Layout';
@@ -45,8 +43,6 @@ const TopicLanding = () => {
     },
   });
 
-  console.log(results);
-
   const thumbnailUrl = naId => {
     const result = results.filter(result => result.naId === naId)[0];
     !!result && console.log(naId, result.title, result);
@@ -67,8 +63,8 @@ const TopicLanding = () => {
 
     return (
       <LandingBillboard
-        bannerImage={bannerImage}
-        bannerImage2x={bannerImage2x}
+        bannerImage={content.topics.bannerImage}
+        bannerImage2x={content.topics.bannerImage2x}
         title={content.topics.title}
         intro={content.topics.intro}
         introHelp={content.topics.help}

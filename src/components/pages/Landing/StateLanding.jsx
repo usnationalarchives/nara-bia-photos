@@ -16,8 +16,6 @@ import { StateThumbnailProvider, withStateThumbnails } from '#context/StateThumb
 
 // assets
 import { ReactComponent as InfoIcon } from '#assets/icons/info.svg';
-import bannerImage from '#assets/images/banner-states.png';
-import bannerImage2x from '#assets/images/banner-states@2x.png';
 
 // hooks
 import useRecords from '#hooks/useRecords';
@@ -41,8 +39,8 @@ import * as frontline from '#styles/frontline';
 const Billboard = () => {
   return (
     <LandingBillboard
-      bannerImage={bannerImage}
-      bannerImage2x={bannerImage2x}
+      bannerImage={content.states.bannerImage}
+      bannerImage2x={content.states.bannerImage2x}
       title={content.states.title}
       intro={content.states.intro}
       introHelp={content.states.help}

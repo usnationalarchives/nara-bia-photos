@@ -30,23 +30,35 @@ const StyledButton = styled.button`
   }
 `;
 
+const Wrapper = styled.span`
+  position: relative;
+`;
+
 const Question = styled(QuestionIcon)`
   fill: ${props => props.theme.colors.white};
   height: 14px;
   width: 14px;
 `;
 
-const PopoverInfo = ({ content }) => {
+const PopoverInfo = ({
+  className,
+  content,
+  toggleText,
+  position = 'bottom',
+  disableReposition = true,
+  contentLocation = { top: 40, left: -20 },
+}) => {
   const contentEl = useRef();
   const [open, setOpen] = useState(false);
 
   return (
     <Popover
+      className={className}
       isOpen={open}
-      position={'bottom'}
-      disableReposition
+      position={position}
+      disableReposition={disableReposition}
       onClickOutside={() => setOpen(false)}
-      contentLocation={{ top: 40, left: -20 }}
+      contentLocation={contentLocation}
       content={({ position, targetRect, popoverRect }) => (
         <ArrowContainer
           position={position}
@@ -62,13 +74,13 @@ const PopoverInfo = ({ content }) => {
       contentDestination={contentEl.current}
       containerStyle={{ overflow: 'visible', zIndex: '100' }}
     >
-      <span style={{ position: 'relative' }}>
-        <StyledButton aria-describedby="billboarTooltip" onClick={() => setOpen(!open)}>
-          <Text.Screenreader>Toggle Help</Text.Screenreader>
+      <Wrapper className={className}>
+        <StyledButton aria-describedby="billboardTooltip" onClick={() => setOpen(!open)}>
+          <Text.Screenreader>{!!toggleText ? toggleText : 'Toggle Help'}</Text.Screenreader>
           <Question />
         </StyledButton>
-        <span id="billboarTooltip" ref={contentEl} aria-live="assertive" role="tooltip"></span>
-      </span>
+        <span id="billboardTooltip" ref={contentEl} aria-live="assertive" role="tooltip"></span>
+      </Wrapper>
     </Popover>
   );
 };

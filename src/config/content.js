@@ -1,5 +1,7 @@
 module.exports = {
   states: {
+    bannerImage: `${process.env.PUBLIC_URL}/images/banners/banner-states.png`,
+    bannerImage2x: `${process.env.PUBLIC_URL}/images/banners/banner-states@2x.png`,
     title: 'States',
     intro:
       'Many photographs are associated with the state in which the photograph was taken. Select a state name to see a list of photographs organized by state.',
@@ -16,6 +18,8 @@ module.exports = {
       'These photographs are associated with the state of ${STATE}. Use the filters below to narrow down this list by Tribal Nation and/or topic. Select an image to see it and get more information',
   },
   topics: {
+    bannerImage: `${process.env.PUBLIC_URL}/images/banners/banner-topics.png`,
+    bannerImage2x: `${process.env.PUBLIC_URL}/images/banners/banner-topics@2x.png`,
     title: 'Topics',
     intro:
       'Photographs are organized around common topics to help you discover digitized photos in this record group. Topics range from photos related to BIA history to Native American culture.',
@@ -30,6 +34,8 @@ module.exports = {
       'This listing displays all of the photographs in this record group identified as portraits. Use the filters below to narrow down this list by Tribal Nation and/or state.',
   },
   tribalNations: {
+    bannerImage: `${process.env.PUBLIC_URL}/images/banners/banner-tribal-nations.png`,
+    bannerImage2x: `${process.env.PUBLIC_URL}/images/banners/banner-tribal-nations@2x.png`,
     title: 'Tribal Nations',
     intro: "Select the first letter of a Tribal Nation's name",
     help:

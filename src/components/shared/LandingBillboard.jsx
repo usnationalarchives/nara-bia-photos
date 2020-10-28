@@ -29,6 +29,13 @@ const Intro = styled(Text.Intro)`
   max-width: 530px;
 `;
 
+const ImagePopupStyled = styled(PopoverInfo)`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+`;
+
 const LandingBillboardLayout = styled.div`
   & .desktopImage {
     ${frontline.fl_aspectRatio(16 / 9)}
@@ -54,6 +61,7 @@ const LandingBillboardLayout = styled.div`
         }
       }
       &--secondary {
+        position: relative;
         margin-left: -${props => props.theme.layout.minPadding};
         margin-right: -${props => props.theme.layout.minPadding};
 
@@ -78,7 +86,7 @@ const LandingBillboardLayout = styled.div`
   }
 `;
 
-const Billboard = ({ bannerImage, bannerImage2x, title, intro, introHelp, ...props }) => {
+const LandingBillboard = ({ bannerImage, bannerImage2x, title, intro, introHelp, imagePopup, ...props }) => {
   return (
     <Root>
       <Layout.Padding>
@@ -97,6 +105,16 @@ const Billboard = ({ bannerImage, bannerImage2x, title, intro, introHelp, ...pro
               </div>
             </div>
             <div className="layout-col--secondary">
+              {!!imagePopup && (
+                <>
+                  <ImagePopupStyled
+                    content={imagePopup}
+                    toggleText={'Image Details'}
+                    contentLocation={{}}
+                    position={'top'}
+                  />
+                </>
+              )}
               <BackgroundImage className="desktopImage bg-image--contain">
                 <img
                   alt=""
@@ -114,4 +132,4 @@ const Billboard = ({ bannerImage, bannerImage2x, title, intro, introHelp, ...pro
   );
 };
 
-export default Billboard;
+export default LandingBillboard;
