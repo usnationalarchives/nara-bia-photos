@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import qs from 'qs';
 import { Helmet } from 'react-helmet';
 import { includes } from 'lodash';
+import { Redirect } from 'react-router-dom';
 
 import content from '#config/content';
 
@@ -119,6 +120,7 @@ const StateListing = ({ ...props }) => {
       <Layout.Padding>
         <Layout.Wrapper>
           {results.length > 0 && <Filters filters={filters} />}
+          {results.length < 1 && <Redirect to="/states" />}
 
           <ResultsWrapper>
             <ResultsHeaderWrapper>
