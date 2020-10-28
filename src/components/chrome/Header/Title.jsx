@@ -39,7 +39,7 @@ const Title = () => {
   return (
     <Root as={location.pathname === '/' ? 'h1' : 'div'}>
       <Line1>Bureau of Indian Affairs</Line1>
-      <Line2>Photography Finding Aid</Line2>
+      <Line2>Photographs Finding Aid</Line2>
     </Root>
   );
 };
