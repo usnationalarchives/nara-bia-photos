@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 
 // assets
 import { ReactComponent as InfoIcon } from '#assets/icons/info.svg';
@@ -12,6 +13,7 @@ import AlphabetLinks from '#components/shared/AlphabetLinks';
 import TribeList from '#components/shared/TribeList';
 import TribeSearch from '#components/shared/TribeSearch';
 import PopoverInfo from '#components/shared/PopoverInfo';
+import BannerImageAnnotation from '#components/shared/BannerImageAnnotation';
 
 // modules
 import { tribalNations } from '#modules/constants';
@@ -33,7 +35,23 @@ const TribeLanding = () => {
         bannerImage={content.tribalNations.bannerImage}
         bannerImage2x={content.tribalNations.bannerImage2x}
         title={content.tribalNations.title}
-        imagePopup={'testing'}
+        imagePopup={
+          <BannerImageAnnotation>
+            <li>
+              <span class="uppercase" aria-label="Left">
+                Left
+              </span>
+              <Link to="/FIXME_NAID">Lorem ipsum dolor sit amet consectetur</Link>
+            </li>
+
+            <li>
+              <span class="uppercase" aria-label="Right">
+                Right
+              </span>
+              <Link to="/FIXME_NAID">Lorem ipsum dolor sit amet consectetur</Link>
+            </li>
+          </BannerImageAnnotation>
+        }
       >
         <Label>
           {content.tribalNations.intro}

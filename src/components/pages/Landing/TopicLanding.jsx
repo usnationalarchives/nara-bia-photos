@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import styled, { css } from 'styled-components';
 import { orderBy } from 'lodash';
+import { Link } from 'react-router-dom';
 
 // assets
 import { ReactComponent as InfoIcon } from '#assets/icons/info.svg';
@@ -14,6 +15,7 @@ import { Grid, GridItem } from '#components/shared/Grid';
 import Card from '#components/shared/Card';
 import Topic from '#components/shared/Topic';
 import Select from '#components/shared/Select';
+import BannerImageAnnotation from '#components/shared/BannerImageAnnotation';
 
 import { fl_attention } from '#styles/frontline';
 
@@ -68,6 +70,30 @@ const TopicLanding = () => {
         title={content.topics.title}
         intro={content.topics.intro}
         introHelp={content.topics.help}
+        imagePopup={
+          <BannerImageAnnotation>
+            <li>
+              <span class="uppercase" aria-label="Left">
+                Left
+              </span>
+              <Link to="/518923">Art Class, Phoenix Indian School, Arizona</Link>
+            </li>
+
+            <li>
+              <span class="uppercase" aria-label="Bottom Right">
+                Bottom Right
+              </span>
+              <Link to="/285703">Boy in Boat with Large Catch of Fish</Link>
+            </li>
+
+            <li>
+              <span class="uppercase" aria-label="Top Right">
+                Top Right
+              </span>
+              <Link to="/285703">String and belt wampum, ca. 1890.</Link>
+            </li>
+          </BannerImageAnnotation>
+        }
       >
         <form>
           <label className="screenreader" htmlFor="topic">

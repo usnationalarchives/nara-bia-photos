@@ -1,9 +1,8 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import * as Text from '#components/shared/Text';
 import { statesByRegion, joinParams } from '#modules/helpers';
 import styled, { css } from 'styled-components';
-import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { includes } from 'lodash';
 
@@ -27,6 +26,7 @@ import LandingBillboard from '#components/shared/LandingBillboard';
 import RegionMap from '#components/shared/RegionMap';
 import Select from '#components/shared/Select';
 import { Grid, GridItem } from '#components/shared/Grid';
+import BannerImageAnnotation from '#components/shared/BannerImageAnnotation';
 
 // modules
 import { states, regions } from '#modules/constants';
@@ -43,6 +43,30 @@ const Billboard = () => {
       title={content.states.title}
       intro={content.states.intro}
       introHelp={content.states.help}
+      imagePopup={
+        <BannerImageAnnotation>
+          <li>
+            <span class="uppercase" aria-label="Left">
+              Left
+            </span>
+            <Link to="/298613">Pala Reservation. Well</Link>
+          </li>
+
+          <li>
+            <span class="uppercase" aria-label="Right">
+              Right
+            </span>
+            <Link to="/298614">Pala Reservation. Reinforcement of first joint of caisson</Link>
+          </li>
+
+          <li>
+            <span class="uppercase" aria-label="Right">
+              Right
+            </span>
+            <Link to="/118970357">Landscape</Link>
+          </li>
+        </BannerImageAnnotation>
+      }
     />
   );
 };
