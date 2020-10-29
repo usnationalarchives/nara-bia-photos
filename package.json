@@ -194,5 +194,7 @@
     "@threespot/prettier-config": "^1.0.0",
     "webpack-bundle-analyzer": "^3.9.0"
   },
-  "prettier": "@threespot/prettier-config"
+  "prettier": "@threespot/prettier-config",
+  "homepage": "https://bia.test.drupalme.net/research/native-americans/bia/photos"
+
 }
