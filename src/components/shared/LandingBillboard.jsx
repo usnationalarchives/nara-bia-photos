@@ -98,7 +98,13 @@ const LandingBillboard = ({ bannerImage, bannerImage2x, title, intro, introHelp,
                 {intro && (
                   <Intro>
                     {intro}
-                    {introHelp && <PopoverInfo content={introHelp} />}
+                    {introHelp && (
+                      <PopoverInfo
+                        position={['bottom', 'top', 'left', 'right']}
+                        disableReposition={false}
+                        content={introHelp}
+                      />
+                    )}
                   </Intro>
                 )}
                 {props.children}

@@ -18,12 +18,13 @@ const Content = styled.div`
   max-height: 500px;
   overflow-y: auto;
   padding: 0.5rem 1rem;
-  width: 300px;
+  max-width: 300px;
 `;
 
 const StyledButton = styled.button`
   ${buttonReset}
   margin-left: 0.5rem;
+  position: relative;
 
   [data-whatinput='mouse'] & {
     outline: 0;
@@ -58,7 +59,7 @@ const PopoverInfo = ({
       position={position}
       disableReposition={disableReposition}
       onClickOutside={() => setOpen(false)}
-      contentLocation={contentLocation}
+      // contentLocation={contentLocation} this doesn't work properly
       content={({ position, targetRect, popoverRect }) => (
         <ArrowContainer
           position={position}
@@ -71,7 +72,7 @@ const PopoverInfo = ({
           <Content>{content}</Content>
         </ArrowContainer>
       )}
-      contentDestination={contentEl.current}
+      // contentDestination={contentEl.current} this doesn't work properly
       containerStyle={{ overflow: 'visible', zIndex: '100' }}
     >
       <Wrapper className={className}>
@@ -79,8 +80,8 @@ const PopoverInfo = ({
           <Text.Screenreader>{!!toggleText ? toggleText : 'Toggle Help'}</Text.Screenreader>
           <Question />
         </StyledButton>
-        <span id="billboardTooltip" ref={contentEl} aria-live="assertive" role="tooltip"></span>
       </Wrapper>
+      {/* <span id="billboardTooltip" ref={contentEl} aria-live="assertive" role="tooltip"></span> */}
     </Popover>
   );
 };

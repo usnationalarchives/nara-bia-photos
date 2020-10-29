@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import * as Text from '#components/shared/Text';
 import { statesByRegion, joinParams } from '#modules/helpers';
 import styled, { css } from 'styled-components';
-import ReactTooltip from 'react-tooltip';
 import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { includes } from 'lodash';
