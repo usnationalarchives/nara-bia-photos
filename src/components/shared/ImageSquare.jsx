@@ -9,12 +9,13 @@ const ImageSquareStyled = styled(BackgroundImage)`
   ${fl_aspectRatio(1 / 1)}
   background-color: ${props => tinycolor('#fff').darken(props.bkg).toString()};
   position: relative;
+  z-index: 1;
   width: 100%;
 `;
 
 const Wrapper = styled.div`
   position: relative;
-  width: 33.33333333%;
+  width: 100%;
   overflow: hidden;
 
   ${fl_attention(css`
@@ -30,7 +31,7 @@ const Wrapper = styled.div`
   `)}
 
   @media all and ${props => props.theme.breakpoints.full} {
-    width: ${props => `${props.size}%`};
+    /* width: ${props => `${props.size}%`}; */
   }
 
   &:before {
@@ -57,11 +58,11 @@ const Wrapper = styled.div`
   }
 `;
 
-const ImageSquare = ({ image, bkg, className, size, onClick, alt = '' }) => {
+const ImageSquare = ({ image, bkg, className, size, onClick, alt = '', index }) => {
   return (
-    <Wrapper onClick={onClick} size={size}>
+    <Wrapper onClick={onClick} size={size} data-index={index}>
       <ImageSquareStyled size={size} bkg={bkg} className={className}>
-        <img srcSet={`${image} 1x`} alt={alt} />
+        <img srcSet={`${image} 1x`} alt={alt} lazy />
       </ImageSquareStyled>
     </Wrapper>
   );

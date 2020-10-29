@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import styled, { css } from 'styled-components';
 // import reactPackeryComponent from 'react-packery-component';
-import { random, shuffle } from 'lodash';
+import { random, shuffle, slice } from 'lodash';
 import tinycolor from 'tinycolor2';
 import IPS from 'img-placeholder-src';
 import { Helmet } from 'react-helmet';
@@ -61,38 +61,58 @@ const Grid = styled.div`
   grid-template-columns: repeat(3, 33.333333vw [col-start]);
   grid-template-rows: repeat(18, 33.333333vw);
 
-  @media all and (min-width: 400px) {
-    grid-template-rows: repeat(13, 33.333333vw);
+  @media all and (max-width: 1023px) {
+    grid-template-rows: repeat(11, 33.333333vw);
+    > *:nth-child(n + 20) {
+      display: none;
+      position: absolute;
+    }
   }
 
-  @media all and ${props => props.theme.breakpoints.medium} {
-    grid-template-rows: repeat(12, 33.333333vw);
-  }
-
-  @media all and ${props => props.theme.breakpoints.full} {
+  @media all and ${props => props.theme.breakpoints.full} and (max-width: 1199px) {
     ${props =>
       props.$columns === 4 &&
       css`
         grid-template-columns: repeat(4, ${props.$columnWidth}vw [col-start]);
         grid-template-rows: repeat(9, ${props.$columnWidth}vw);
+
+        > *:nth-child(n + 42) {
+          display: none;
+          position: absolute;
+        }
       `}
     ${props =>
       props.$columns === 5 &&
       css`
         grid-template-columns: repeat(5, ${props.$columnWidth}vw [col-start]);
         grid-template-rows: repeat(10, ${props.$columnWidth}vw);
+
+        > *:nth-child(n + 34) {
+          display: none;
+          position: absolute;
+        }
       `}
     ${props =>
       props.$columns === 6 &&
       css`
         grid-template-columns: repeat(6, ${props.$columnWidth}vw [col-start]);
         grid-template-rows: repeat(9, ${props.$columnWidth}vw);
+
+        > *:nth-child(n + 41) {
+          display: none;
+          position: absolute;
+        }
       `}  
     ${props =>
       props.$columns === 7 &&
       css`
         grid-template-columns: repeat(7, ${props.$columnWidth}vw [col-start]);
         grid-template-rows: repeat(10, ${props.$columnWidth}vw);
+
+        > *:nth-child(n + 54) {
+          display: none;
+          position: absolute;
+        }
       `}
   }
 
@@ -102,24 +122,44 @@ const Grid = styled.div`
       css`
         grid-template-columns: repeat(4, ${props.$columnWidth}vw [col-start]);
         grid-template-rows: repeat(7, ${props.$columnWidth}vw);
+
+        > *:nth-child(n + 30) {
+          display: none;
+          position: absolute;
+        }
       `}
     ${props =>
       props.$columns === 5 &&
       css`
         grid-template-columns: repeat(5, ${props.$columnWidth}vw [col-start]);
         grid-template-rows: repeat(7, ${props.$columnWidth}vw);
+
+        > *:nth-child(n + 32) {
+          display: none;
+          position: absolute;
+        }
       `}
     ${props =>
       props.$columns === 6 &&
       css`
         grid-template-columns: repeat(6, ${props.$columnWidth}vw [col-start]);
         grid-template-rows: repeat(9, ${props.$columnWidth}vw);
+
+        > *:nth-child(n + 45) {
+          display: none;
+          position: absolute;
+        }
       `}  
     ${props =>
       props.$columns === 7 &&
       css`
         grid-template-columns: repeat(7, ${props.$columnWidth}vw [col-start]);
         grid-template-rows: repeat(10, ${props.$columnWidth}vw);
+
+        > *:nth-child(n + 54) {
+          display: none;
+          position: absolute;
+        }
       `}
   }
 `;
@@ -156,6 +196,12 @@ const FidelitySliderStyled = styled(FidelitySlider)`
 const Home = () => {
   const max = 7;
   const min = 4;
+  const gridPhotoLimts = {
+    4: 54,
+    5: 42,
+    6: 38,
+    7: 30,
+  };
 
   const [gridSize, setGridSize] = useState(6);
   const [recordModalOpen, setRecordModalOpen] = useState(false);
@@ -240,32 +286,25 @@ const Home = () => {
               open={notableNativeAmericanModalOpen}
               setOpen={setNotableNativeAmericanModalOpen}
             />
+            {slice(gridItems, 0, gridPhotoLimts[gridSize]).map((result, i) => {
+              return (
+                <ImageSquareStyled
+                  // image={ips.src({ height: 500, width: 500 }, 'lorempixel', { unique: i })}
+                  index={i}
+                  alt={`Photograph Titled: ${result.title}` || ''}
+                  bkg={items[i].bkg}
+                  image={iiifImage(result, 600)}
+                  key={`imageGrid-${i}`}
+                  onClick={() => {
+                    setImageIndex(i);
+                    setRecordModalOpen(true);
+                  }}
+                  size={size}
+                ></ImageSquareStyled>
+              );
+            })}
           </Grid>
         </div>
-        <ImageGrid>
-          {/* <Packery
-            style={{ diplay: 'flex', alignItems: 'stretch' }}
-            options={packeryOptions}
-            disableImagesLoaded={true}
-          > */}
-          {gridItems.map((result, i) => {
-            return (
-              <ImageSquareStyled
-                // image={ips.src({ height: 500, width: 500 }, 'lorempixel', { unique: i })}
-                alt={`Photograph Titled: ${result.title}` || ''}
-                bkg={items[i].bkg}
-                image={iiifImage(result, 600)}
-                key={`imageGrid-${i}`}
-                onClick={() => {
-                  setImageIndex(i);
-                  setRecordModalOpen(true);
-                }}
-                size={size}
-              ></ImageSquareStyled>
-            );
-          })}
-          {/* </Packery> */}
-        </ImageGrid>
       </div>
       <CarouselProvider
         currentSlide={imageIndex}

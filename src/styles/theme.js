@@ -11,8 +11,11 @@ export const colors = {
 
 export const breakpoints = {
   small: `(min-width: 320px)`,
+  mediumMax: `(max-width: 767px)`,
   medium: `(min-width: 768px)`,
+  largeMax: `(max-width: 899px)`,
   large: `(min-width: 900px)`,
+  fullMax: `(max-width: 1023px)`,
   full: `(min-width: 1024px)`,
 };
 
