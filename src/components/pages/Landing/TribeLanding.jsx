@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
@@ -41,14 +41,14 @@ const TribeLanding = () => {
               <span class="uppercase" aria-label="Left">
                 Left
               </span>
-              <Link to="/FIXME_NAID">Lorem ipsum dolor sit amet consectetur</Link>
+              <Link to="/76048369">Indian Woman Weaves a Basket as Girl Watches</Link>
             </li>
 
             <li>
               <span class="uppercase" aria-label="Right">
                 Right
               </span>
-              <Link to="/FIXME_NAID">Lorem ipsum dolor sit amet consectetur</Link>
+              <Link to="/519200">Watson Family Members, Alex Watson (Far Back), Lemma Shoshone</Link>
             </li>
           </BannerImageAnnotation>
         }
