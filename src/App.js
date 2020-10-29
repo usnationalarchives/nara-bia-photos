@@ -1,6 +1,7 @@
 import React, { Fragment, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 import * as theme from '#styles/theme';
 import BaseStyles from '#styles/base';
@@ -28,6 +29,21 @@ console.log(process.env.PUBLIC_URL);
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
+      <Helmet>
+        <title>Bureau Of Indian Affairs Photographs Finding Aid</title>
+        {/* <meta name="description" content={content.topics.intro}></meta> */}
+        <meta name="twitter:title" content="Bureau Of Indian Affairs Photographs Finding Aid" />
+        <meta name="twitter:site" content="@FIXME" />
+        <meta name="twitter:card" content={'FIXME'} />
+        <meta name="twitter:description" content={'FIXME'} />
+        <meta name="twitter:image" content={'FIXME'} />
+        <meta property="og:title" content="Bureau Of Indian Affairs Photographs Finding Aid" />
+        <meta name="og:description" content={'FIXME'} />
+        <meta property="og:site_name" content="FIXME" />
+        <meta property="og:url" content={window.location} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={'FIXME'} />
+      </Helmet>
       <BaseStyles />
       <div className="skip-links">
         <ul>
