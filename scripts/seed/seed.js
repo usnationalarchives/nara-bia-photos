@@ -58,9 +58,9 @@ const addRecordsFromFileUnits = async () => {
 const convertRecordsToJSON = async () => {
   try {
     csvtojson({ checkType: true, colParser: { objects: 'string' } })
-      .fromFile('src/data/records.csv')
+      .fromFile('../data/records.csv')
       .then(json => {
-        fs.writeFileSync('src/data/records.json', JSON.stringify(json));
+        fs.writeFileSync('../data/records.json', JSON.stringify(json));
       });
   } catch (error) {
     console.log(error);

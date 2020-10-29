@@ -24,7 +24,7 @@ const mapRow = result => {
 module.exports = {
   writer: (options = {}) => {
     return createCsvWriter({
-      path: 'src/data/records.csv',
+      path: '../data/records.csv',
       header: [
         { id: 'searchUUID', title: 'searchUUID' },
         { id: 'naId', title: 'naId' },
