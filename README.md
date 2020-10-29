@@ -34,10 +34,14 @@ In the project directory, you can run:
 ### `yarn start`
 
 Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3000/research/native-americans/bia/photos](http://localhost:3000/research/native-americans/bia/photos) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
+
+### `yarn run seed`
+
+Programattically generates the data files used to popluate the record and Tribal Nation content in the site. The files are written to a folder up one level from the project directory called `data` (`../data` relative to this directory). You might need to create this folder manually if it does not already exist. The files will be overwritten each time the `yarn seed` task is performed.
 
 ### `yarn run build`
 
@@ -49,6 +53,28 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn run seed`
+NOTE: The build script can only be performed after the dataset has been seeded with the `yarn seed` script.
 
-Programattically generates the data files used to popluate the record and Tribal Nation content in the site. The files are written to the `src/data` directory and should **not** be manually modified. The files will be overwritten each time the `seed` task is run.
+## AWS Environment
+
+This application is hosted on an AWS EC2 instance provisioned by NARA (bia.test.drupalme.net) and is available publicly at [https://bia.test.drupalme.net/research/native-americans/bia/photos/](https://bia.test.drupalme.net/research/native-americans/bia/photos/).
+
+### Deployment
+
+The deployment script is owned by the account on the above server created by NARA for use by Threespot (dboggs). In order to deploy updates to this environment you must have an appropriate SSH public key added to this account's `~/.ssh/authorized_keys` file. Once this is configured a collaborator may deploy the application by running:
+
+```
+ssh dboggs@34.197.152.218 -p 122 './sites/bia/deploy.sh'
+```
+
+This script will pull the latest code down from the `master` branch on GitHub, install any missing dependencies, build the applicatoin, and promotes the production build to the web server directory at `/appdata/www/bia.archives/website/public/research/native-americans/bia/photos` using `rsync`.
+
+### Data Synchronization
+
+There is a script owned by the same user acount that handles deployments (dboggs) that automates the process of fetching new data from the catalog (using the aforementioned `yarn seed` script), buiding the project, and deploying the site. If a collaborator has their SSH key deployed to the server this can be manually executed by running:
+
+```
+ssh dboggs@34.197.152.218 -p 122 './sites/bia/sync_data.sh'
+```
+
+Note that this process can take 15 minutes or more to complete. This script is also executed on Monday nights at midnight (Tuesday 00:00:00 AM), via a cron job owned by the `dboggs` user on the server.
