@@ -78,3 +78,12 @@ ssh dboggs@34.197.152.218 -p 122 './sites/bia/sync_data.sh'
 ```
 
 Note that this process can take 15 minutes or more to complete. This script is also executed on Monday nights at midnight (Tuesday 00:00:00 AM), via a cron job owned by the `dboggs` user on the server.
+
+## Noteworthy JavaScript Libraries
+
+The core of this application leverages the [React](https://reactjs.org) JavaScript framework. For more information on React, please refer to their [project documentation](https://reactjs.org/docs/getting-started.html)
+
+While this is an entirely client-side application that runs in the browser, it is able to provide complex features such as full text and faceted search which traditionally require server-side support. This functionality is made possible by the use of two libaries listed below. Please view these project pages to learn more about how these work and are used to support the features within the BIA finding aid.
+
+- [ElasticLunr](http://elasticlunr.com/)
+- [Crossfilter](http://crossfilter.github.io/crossfilter/)
