@@ -123,6 +123,17 @@ const ContentLayout = styled.div`
   }
 `;
 
+const ButtonStyled = styled.button`
+  ${frontline.fl_static(css`
+    border: none;
+    background: none;
+    color: ${props => props.theme.colors.blue};
+  `)}
+  ${frontline.fl_static(css`
+    text-decoration: underline;
+  `)}
+`;
+
 const TribalNationModal = ({ open, setOpen }) => {
   const history = useHistory();
   const [r, dim] = useRecords({
@@ -246,15 +257,14 @@ const TribalNationModal = ({ open, setOpen }) => {
                   </p>
                   <p>
                     Interested in viewing all Tribal Nations? Visit the{' '}
-                    <a
-                      href={`/tribal-nations/${tribalNation.slug}`}
+                    <ButtonStyled
                       onClick={() => {
                         setOpen(false);
                         history.push(`/tribal-nations/${tribalNation.slug}`);
                       }}
                     >
                       Tribal Nations page
-                    </a>
+                    </ButtonStyled>
                     .
                   </p>
                 </div>
