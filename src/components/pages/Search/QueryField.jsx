@@ -95,7 +95,7 @@ const QueryField = ({ defaultValue, setQuery }) => {
     <Banner>
       <Layout.Padding>
         <Layout.Wrapper narrow="true">
-          <form role="search" action="/search" method="get">
+          <form role="search" action={`${process.env.PUBLIC_URL}/search`} method="get">
             <label htmlFor="q">
               <H1>Search</H1>
             </label>
