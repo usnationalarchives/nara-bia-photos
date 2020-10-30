@@ -57,7 +57,6 @@ const StateListing = ({ ...props }) => {
       topics: topics,
     },
   });
-  console.log('finishedResults', finishedResults);
 
   useSearchHistory({
     filters: [
@@ -91,6 +90,8 @@ const StateListing = ({ ...props }) => {
     },
   ];
 
+  console.log(!!finishedResults, tribes.length, topics.length);
+
   return (
     <Fragment>
       <Helmet>
@@ -121,8 +122,10 @@ const StateListing = ({ ...props }) => {
       />
       <Layout.Padding>
         <Layout.Wrapper>
-          {results.length > 0 && <Filters filters={filters} />}
-          {results.length < 1 && !!finishedResults && <Redirect to="/states" />}
+          <Filters filters={filters} />
+          {results.length < 1 && !!finishedResults && tribes.length < 1 && topics.length < 1 && (
+            <Redirect to="/states" />
+          )}
 
           <ResultsWrapper>
             <ResultsHeaderWrapper>
