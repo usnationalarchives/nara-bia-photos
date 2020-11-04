@@ -110,13 +110,6 @@ const ImageViewer = ({ record, objects }) => {
     // eslint-disable-next-line
   }, [objects]);
 
-  // useEffect(() => {
-  //   if (typeof window.addthis !== 'undefined') {
-  //     console.log('addthis', addthis);
-  //     addthis.layers.refresh();
-  //   }
-  // }, []);
-
   useEffect(() => {
     initOpenSeaDragon();
 
@@ -130,12 +123,6 @@ const ImageViewer = ({ record, objects }) => {
     // we only want to run this once, dont worry about other dependencies
     // eslint-disable-next-line
   }, []);
-
-  useEffect(() => {
-    if (objects && viewer) {
-      // viewer.viewport.zoomTo(zoomLevel);
-    }
-  }, [zoomLevel]);
 
   const handleAddThisLoad = () => {
     // addthis.layers.refresh();
