@@ -143,7 +143,7 @@ const Pagination = ({ page, setPage, prevHandler, nextHandler, prevPage, nextPag
     <Root {...props} aria-label="pagination" role="region">
       {prevPage && (
         <Button prev onClick={prevHandler}>
-          Previous<span class="screenreader"> Page</span>
+          Previous<span className="screenreader"> Page</span>
         </Button>
       )}
       <p aria-live="polite" className="screenreader">
