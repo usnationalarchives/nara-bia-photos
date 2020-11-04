@@ -23,7 +23,7 @@ const BaseStyles = createGlobalStyle`
   }
 
   body {
-    /* overflow-x: hidden; */
+    overflow-x: hidden;
   }
 
   [data-whatinput='mouse'],
