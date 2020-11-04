@@ -40,19 +40,18 @@ const Item = styled.li`
   margin: 10px 10px 20px;
   overflow: hidden;
   position: relative;
-  width: ${props => props.fidelity * (props.record.aspectRatio ? props.record.aspectRatio : 1)}px;
+  /* width: ${props => props.fidelity * (props.record.aspectRatio ? props.record.aspectRatio : 1)}px; */
 
   ${props =>
     !props.singleRow &&
     css`
-      &:nth-child(${props => props.data.length}),
-      &:nth-child(${props => props.data.length - 1}) {
+      &:nth-child(${props => props.dataLength}),
+      &:nth-child(${props => props.dataLength - 1}) {
         flex-grow: 0;
       }
     `}
 
-  @media all and ${props => props.theme.breakpoints.medium} {
-    max-width: 50%;
+  @media all and ${props => props.theme.breakpoints.large} {
     margin-bottom: 40px;
   }
 `;
@@ -64,7 +63,14 @@ const Results = ({ className, results = [], data, fidelity, singleRow }) => {
         <ResultsWrapper $singleRow={singleRow}>
           <ResultsStyles className={className} role="main" aria-label="Results" $singleRow={singleRow}>
             {data.map(record => (
-              <Item singleRow={singleRow} key={record.slug} data={data} record={record} fidelity={fidelity}>
+              <Item
+                style={{ width: `${Math.floor(fidelity * (record.aspectRatio ? record.aspectRatio : 1))}px` }}
+                singleRow={singleRow}
+                key={record.slug}
+                dataLength={data.length}
+                record={record}
+                fidelity={fidelity}
+              >
                 <Result key={record.naId} record={record} scale={fidelity} />
               </Item>
             ))}
