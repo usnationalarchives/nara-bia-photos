@@ -19,8 +19,14 @@ const SliderStyles = styled.div`
 `;
 
 const Handle = props => {
-  console.log(props);
-  return <div className="rc-slider-handle"></div>;
+  return (
+    <div
+      {...props}
+      tabIndex="0"
+      style={{ left: `${props.offset}%`, transform: 'translateX(-50%)', right: 'auto' }}
+      className="rc-slider-handle"
+    ></div>
+  );
 };
 
 const FidelitySlider = ({
@@ -42,11 +48,12 @@ const FidelitySlider = ({
         ariaLabelForHandle={'fidelity-slider'}
         trackStyle={{ height: '2px', backgroundColor: color }}
         railStyle={{ height: '2px', backgroundColor: color }}
-        handleStyle={{
-          boxShadow: 'none',
-          borderColor: color,
-        }}
-        // handle={Handle}
+        // handleStyle={{
+        //   boxShadow: 'none',
+        //   borderColor: color,
+        //   cursor: 'grab',
+        // }}
+        handle={Handle}
         defaultValue={defaultValue}
         onChange={val => {
           update(val);
