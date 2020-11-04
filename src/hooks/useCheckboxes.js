@@ -14,7 +14,7 @@ const useCheckboxes = defaultValue => {
           return activeItems;
       }
     },
-    defaultValue || [] // the default value is an empty array
+    defaultValue // the default value is an empty array
   );
 
   return [activeItems, dispatchItems];

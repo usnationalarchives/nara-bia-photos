@@ -1,5 +1,5 @@
 // libraries
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect, lazy, Suspense, useRef } from 'react';
 import qs from 'qs';
 import styled, { css } from 'styled-components';
 import { Helmet } from 'react-helmet';
@@ -57,6 +57,9 @@ const Search = ({ ...props }) => {
 
   // set up query state, seed with any starting search query
   const [query, setQuery] = useState(search.q || '');
+  const [firstRender, setFirstRender] = useState(true);
+  console.log('search.page', search.page, search);
+  const [page, setPage] = useState(!!search.page ? parseInt(search.page) : 1);
   const [fidelity, setFidelity] = useState(220);
 
   // Set up checkboxes state, seed with any starting search filters
@@ -83,11 +86,14 @@ const Search = ({ ...props }) => {
       { label: 'topics', values: topics },
       { label: 'states', values: states },
     ],
+    page,
   });
 
-  const { page, setPage, prevHandler, nextHandler, prevPage, nextPage, totalPages, total, data } = usePagination({
+  const { prevHandler, nextHandler, prevPage, nextPage, totalPages, total, data } = usePagination({
     items: results,
     perPage: fidelity < 180 ? 60 : 30,
+    page,
+    setPage,
   });
 
   // Scroll to the top of the document when the page changes
@@ -95,10 +101,16 @@ const Search = ({ ...props }) => {
     document.querySelector('html').scrollTop = 0;
   }, [page]);
 
-  // reset the page to 1 when the query changes
+  // reset the page to 1 when the query and filters change
   useEffect(() => {
-    setPage(1);
-  }, [setPage, query, tribes, topics, states]);
+    if (!firstRender) {
+      setPage(1);
+    }
+  }, [query, states, topics, tribes]);
+
+  useEffect(() => {
+    setFirstRender(false);
+  }, []);
 
   const filters = [
     {

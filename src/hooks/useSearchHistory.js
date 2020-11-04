@@ -16,14 +16,15 @@ import { joinParams } from '#modules/helpers';
  *   filters: [
  *     { label: "filter1", values: myfilter1ActiveValues },
  *     { label: "filter2", values: myfilter2ActiveValues }
- *   ]
+ *   ],
+ *   page: 1
  * })
  *
  * @param {*} [options={}]
  */
 const useSearchHistory = (options = {}) => {
   const serializedOptions = JSON.stringify(options);
-  const { filters, query } = options;
+  const { filters, query, page } = options;
   const history = useHistory();
 
   useEffect(() => {
@@ -41,11 +42,13 @@ const useSearchHistory = (options = {}) => {
       params.unshift(`q=${query}`);
     }
 
+    let searchString = `?page=${page}`;
+
     // join the params into a valid search string
-    const searchString = '?' + params.join('&');
+    searchString += params.length ? '&' + params.join('&') : '';
 
     // push the new search url to the history
-    history.replace(searchString);
+    history.push(searchString);
 
     //eslint-disable-next-line
   }, [serializedOptions]);

@@ -1,8 +1,7 @@
 import { useState } from 'react';
 
 const usePagination = (options = { items: [], perPage: 20 }) => {
-  const { items, perPage } = options;
-  const [page, setPage] = useState(1);
+  const { items, perPage, page, setPage } = options;
 
   // set up pagination data
   const offset = (page - 1) * perPage,
@@ -33,8 +32,6 @@ const usePagination = (options = { items: [], perPage: 20 }) => {
   };
 
   return {
-    page,
-    setPage,
     perPage,
     prevPage,
     nextPage,
