@@ -69,7 +69,7 @@ const PopoverInfo = ({
           arrowColor={'#f6f6f6'}
           arrowSize={8}
         >
-          <Content>{content}</Content>
+          <Content aria-live="polite">{content}</Content>
         </ArrowContainer>
       )}
       // contentDestination={contentEl.current} this doesn't work properly
