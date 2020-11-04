@@ -95,7 +95,6 @@ const Record = ({ ...props }) => {
   const titleTextRef = createRef();
   const history = useHistory();
   const location = useLocation();
-  console.log(location.pathname);
 
   const [results] = useRecords(
     {
@@ -119,7 +118,6 @@ const Record = ({ ...props }) => {
   );
 
   if (record) {
-    console.log(record);
     var tribalNation = tribalNations.filter(tribalNation => tribalNation.name === record.tribes)[0];
     var recordTopics = getRecordTopics(record.tags);
     var recordStates = getRecordStates(record.states);
@@ -213,7 +211,9 @@ const Record = ({ ...props }) => {
           <Layout.Padding style={{ marginTop: '2rem', marginBottom: '3rem' }}>
             <Layout.Wrapper>
               <Tabs>
-                <TabList>
+                <TabList style={{ overflowX: 'hidden' }}>
+                  {' '}
+                  {/* prevents the scrollbar on Windows */}
                   <Tab>
                     <DetailsIcon width={20} />
                     <Text.Label>Details</Text.Label>

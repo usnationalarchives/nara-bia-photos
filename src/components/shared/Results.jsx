@@ -11,6 +11,14 @@ const ResultsWrapper = styled.div`
       width: 100%;
       overflow-x: scroll;
     `}
+
+  @media all and ${props => props.theme.breakpoints.medium} {
+    ${props =>
+      !!props.$singleRow &&
+      css`
+        overflow-x: hidden;
+      `}
+  }
 `;
 const ResultsStyles = styled.ul`
   display: flex;
