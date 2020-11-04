@@ -329,7 +329,7 @@ const StateLanding = () => {
             <MapSelect>
               <p>{content.states.mapDirections}</p>
               <span>
-                <Select style={{ width: '250px' }} onChange={handleSelect}>
+                <Select style={{ width: '250px' }} onChange={handleSelect} aria-label="Select a state">
                   <option value="">{content.states.selectPrompt}</option>
                   {states
                     .filter(state => includes(statesWithResults, state.name))
