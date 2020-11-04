@@ -108,13 +108,19 @@ const RecordModal = ({ activeIndex, items, open, setOpen, setImageIndex }) => {
   return (
     <Modal
       animationDuration={300}
-      closeIcon={<CrossIcon width={30} fill="#fff" />}
+      closeIcon={
+        <>
+          <span className="screenreader">Close</span>
+          <CrossIcon width={30} fill="#fff" />
+        </>
+      }
       showCloseIcon={true}
       // The modal libraries scroll blocking does not work properly with
       // setting the `html` styles to `scroll-behavior: smooth;`.
       // Instead, the blocking functionality is disable and reimplmented
       // using @threespot/freeze-scroll within a React useEffect above.
       blockScroll={false}
+      focusTrapped={true}
       open={open}
       onClose={() => {
         scroll.unfreeze();

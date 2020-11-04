@@ -60,7 +60,12 @@ const NotableNativeAmericanModal = ({ open, setOpen }) => {
   return (
     <Modal
       animationDuration={300}
-      closeIcon={<CrossIcon width={30} fill="#fff" />}
+      closeIcon={
+        <>
+          <span className="screenreader">Close</span>
+          <CrossIcon width={30} fill="#fff" />
+        </>
+      }
       showCloseIcon={true}
       open={open}
       // The modal libraries scroll blocking does not work properly with
@@ -68,6 +73,7 @@ const NotableNativeAmericanModal = ({ open, setOpen }) => {
       // Instead, the blocking functionality is disable and reimplmented
       // using @threespot/freeze-scroll within a React useEffect above.
       blockScroll={false}
+      focusTrapped={true}
       onClose={() => {
         scroll.unfreeze();
         setOpen(false);

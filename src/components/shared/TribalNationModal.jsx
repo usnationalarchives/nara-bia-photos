@@ -227,7 +227,13 @@ const TribalNationModal = ({ open, setOpen }) => {
         onAnimationEnd={() => {
           ReactTooltip.rebuild();
         }}
-        closeIcon={<CrossIcon width={30} fill="#000" />}
+        focusTrapped={true}
+        closeIcon={
+          <>
+            <span className="screenreader">Close</span>
+            <CrossIcon width={30} fill="#000" />
+          </>
+        }
         showCloseIcon={true}
         // The modal libraries scroll blocking does not work properly with
         // setting the `html` styles to `scroll-behavior: smooth;`.
