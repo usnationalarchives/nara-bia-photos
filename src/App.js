@@ -20,11 +20,10 @@ import StateListing from '#components/pages/Listing/StateListing';
 import TopicListing from '#components/pages/Listing/TopicListing';
 import TribeListing from '#components/pages/Listing/TribeListing';
 import Prototype from '#components/pages/Prototype/Prototype';
+import Error404 from '#components/pages/Error404';
 
 // Lazy load the home page to improve time to first paint on the most popular entry point
 const Home = lazy(() => import('./components/pages/Home/Home'));
-
-console.log(process.env.PUBLIC_URL);
 
 const App = () => {
   return (
@@ -66,6 +65,7 @@ const App = () => {
           <div role="main" id="main" aria-live="polite" aria-atomic="true">
             <Suspense fallback={<PageLoader />}>
               <Switch>
+                <Route path="/404" component={Error404} />
                 <Route path="/about" component={About} />
                 <Route path="/search" component={Search} />
                 <Route path="/prototype" component={Prototype} />

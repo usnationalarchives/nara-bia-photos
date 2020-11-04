@@ -4,7 +4,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Results from '#components/shared/Results';
 import { sampleSize } from 'lodash';
 import { Helmet } from 'react-helmet';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation, Redirect } from 'react-router-dom';
 
 // import 'react-tabs/style/react-tabs.css';
 
@@ -96,7 +96,7 @@ const Record = ({ ...props }) => {
   const history = useHistory();
   const location = useLocation();
 
-  const [results] = useRecords(
+  const [results, , , , , finishedQuery] = useRecords(
     {
       facets: {
         naIds: [naId],
@@ -297,6 +297,7 @@ const Record = ({ ...props }) => {
           )}
         </>
       )}
+      {!record && finishedQuery && <Redirect to="/404"></Redirect>}
     </>
   );
 };
