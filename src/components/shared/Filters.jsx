@@ -8,6 +8,7 @@ import useEventListener from '@use-it/event-listener';
 
 const FiltersLayout = styled.div`
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
@@ -25,7 +26,7 @@ const FiltersLayout = styled.div`
     @media all and ${props => props.theme.breakpoints.medium} {
       flex: 0 0 ${(1 / 3) * 100}%;
     }
-    @media all and ${props => props.theme.breakpoints.large} {
+    @media all and ${props => props.theme.breakpoints.full} {
       flex: 0 0 25%;
     }
   }
