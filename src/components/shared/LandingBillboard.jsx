@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import * as frontline from '#styles/frontline';
+import { takeRight, dropRight } from 'lodash';
 
 // components
 import * as Text from '#components/shared/Text';
@@ -87,6 +88,14 @@ const LandingBillboardLayout = styled.div`
 `;
 
 const LandingBillboard = ({ bannerImage, bannerImage2x, title, intro, introHelp, imagePopup, ...props }) => {
+  if (intro && introHelp) {
+    const groupingLength = 2;
+    let introArray = intro.split(' ');
+    let endStringsArray = takeRight(introArray, groupingLength);
+    var endString = endStringsArray.join(' ');
+    intro = dropRight(introArray, groupingLength).join(' ');
+  }
+
   return (
     <Root>
       <Layout.Padding>
@@ -99,11 +108,15 @@ const LandingBillboard = ({ bannerImage, bannerImage2x, title, intro, introHelp,
                   <Intro>
                     {intro}
                     {introHelp && (
-                      <PopoverInfo
-                        position={['bottom', 'top', 'left', 'right']}
-                        disableReposition={false}
-                        content={introHelp}
-                      />
+                      <span className="nowrap">
+                        {' '}
+                        {endString}
+                        <PopoverInfo
+                          position={['bottom', 'top', 'left', 'right']}
+                          disableReposition={false}
+                          content={introHelp}
+                        />
+                      </span>
                     )}
                   </Intro>
                 )}

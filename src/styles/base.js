@@ -95,6 +95,12 @@ const BaseStyles = createGlobalStyle`
     touch-action: none;
   }
 
+  @media all and (min-width: 320px) {
+    .nowrap {
+      white-space: nowrap !important;
+    }
+  }
+
   /* Create class to allow scrolling on certain elements, like modal windows */
   .allow-scroll { touch-action: auto !important; }
 
