@@ -75,8 +75,8 @@ const SelectMenu = styled.select`
 
 const Select = ({ style, className, transparent, ...rest }) => {
   return (
-    <SelectWrapper style={style} className={className} transparent>
-      <SelectMenu {...rest} transparent>
+    <SelectWrapper style={style} className={className} transparent={transparent}>
+      <SelectMenu {...rest} transparent={transparent}>
         {rest.children}
       </SelectMenu>
     </SelectWrapper>
