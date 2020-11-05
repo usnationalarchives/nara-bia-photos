@@ -35,6 +35,8 @@ const StateListing = ({ ...props }) => {
 
   // fetch starting search parameters remove the leading ?
   const search = qs.parse(props.location.search.replace('?', ''));
+  const [page, setPage] = useState(!!search.page ? parseInt(search.page) : 1);
+  const [firstRender, setFirstRender] = useState(true);
 
   // Set up checkboxes state, seed with any starting search filters
   const [tribes, dispatchTribes] = useCheckboxes(search.tribalNations || []);
@@ -63,17 +65,31 @@ const StateListing = ({ ...props }) => {
       { label: 'tribalNations', values: tribes },
       { label: 'topics', values: topics },
     ],
+    page,
   });
 
-  const { page, setPage, prevHandler, nextHandler, total, prevPage, nextPage, totalPages, data } = usePagination({
+  const { prevHandler, nextHandler, total, prevPage, nextPage, totalPages, data } = usePagination({
     items: results,
     perPage: 30,
+    page,
+    setPage,
   });
 
   // Scroll to the top of the document when the page changes
   useEffect(() => {
     document.querySelector('html').scrollTop = 0;
   }, [page]);
+
+  // reset the page to 1 when the query and filters change
+  useEffect(() => {
+    if (!firstRender) {
+      setPage(1);
+    }
+  }, [topics, tribes]);
+
+  useEffect(() => {
+    setFirstRender(false);
+  }, []);
 
   const filters = [
     {
@@ -89,8 +105,6 @@ const StateListing = ({ ...props }) => {
       all: topicFilters,
     },
   ];
-
-  console.log(!!finishedResults, tribes.length, topics.length);
 
   return (
     <Fragment>

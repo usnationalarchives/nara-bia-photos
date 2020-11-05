@@ -38,6 +38,8 @@ const TribeListing = ({ ...props }) => {
 
   // fetch starting search parameters remove the leading ?
   const search = qs.parse(props.location.search.replace('?', ''));
+  const [page, setPage] = useState(!!search.page ? parseInt(search.page) : 1);
+  const [firstRender, setFirstRender] = useState(true);
 
   // Set up checkboxes state, seed with any starting search filters
   const [states, dispatchStates] = useCheckboxes(search.states || []);
@@ -59,11 +61,14 @@ const TribeListing = ({ ...props }) => {
       { label: 'states', values: states },
       { label: 'topics', values: topics },
     ],
+    page,
   });
 
-  const { page, setPage, prevHandler, nextHandler, total, prevPage, nextPage, totalPages, data } = usePagination({
+  const { prevHandler, nextHandler, total, prevPage, nextPage, totalPages, data } = usePagination({
     items: results,
     perPage: 30,
+    page,
+    setPage,
   });
 
   const filters = [
@@ -85,6 +90,17 @@ const TribeListing = ({ ...props }) => {
   useEffect(() => {
     document.querySelector('html').scrollTop = 0;
   }, [page]);
+
+  // reset the page to 1 when the query and filters change
+  useEffect(() => {
+    if (!firstRender) {
+      setPage(1);
+    }
+  }, [topics, states]);
+
+  useEffect(() => {
+    setFirstRender(false);
+  }, []);
 
   const highlightedStates = !!stateFilters.length
     ? stateConsts.filter(state =>

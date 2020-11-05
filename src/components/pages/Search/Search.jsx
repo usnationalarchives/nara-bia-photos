@@ -57,9 +57,8 @@ const Search = ({ ...props }) => {
 
   // set up query state, seed with any starting search query
   const [query, setQuery] = useState(search.q || '');
-  const [firstRender, setFirstRender] = useState(true);
-  console.log('search.page', search.page, search);
   const [page, setPage] = useState(!!search.page ? parseInt(search.page) : 1);
+  const [firstRender, setFirstRender] = useState(true);
   const [fidelity, setFidelity] = useState(220);
 
   // Set up checkboxes state, seed with any starting search filters
