@@ -116,15 +116,21 @@ const TribeListing = ({ ...props }) => {
   return (
     <Fragment>
       <Helmet>
-        <title>{tribalNationName}</title>
+        <title>{`Photograph records featuring ${tribalNationName} - Bureau Of Indian Affairs Photographs Finding Aid`}</title>
         <meta name="description" content={description}></meta>
         <meta name="" content="" />
-        <meta name="twitter:title" content={tribalNationName} />
+        <meta
+          name="twitter:title"
+          content={`Photograph records featuring ${tribalNationName} - Bureau Of Indian Affairs Photographs Finding Aid`}
+        />
         <meta name="twitter:site" content="@FIXME" />
         <meta name="twitter:card" content={'FIXME'} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={'FIXME'} />
-        <meta property="og:title" content={tribalNationName} />
+        <meta
+          property="og:title"
+          content={`Photograph records featuring ${tribalNationName} - Bureau Of Indian Affairs Photographs Finding Aid`}
+        />
         <meta name="og:description" content={description} />
         <meta property="og:site_name" content="FIXME" />
         <meta property="og:url" content={window.location} />

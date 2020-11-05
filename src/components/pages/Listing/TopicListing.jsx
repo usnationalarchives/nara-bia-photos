@@ -86,18 +86,21 @@ const TopicListing = ({ ...props }) => {
   return (
     <Fragment>
       <Helmet>
-        <title>{`Photograph Topic ${topicName} - Bureau Of Indian Affairs Photographs Finding Aid`}</title>
+        <title>{`Photograph records on ${topicName} - Bureau Of Indian Affairs Photographs Finding Aid`}</title>
         <meta name="description" content={description}></meta>
         <meta name="" content="" />
         <meta
           name="twitter:title"
-          content={`${content.states.title} - Bureau Of Indian Affairs Photographs Finding Aid`}
+          content={`Photograph records on ${topicName} - Bureau Of Indian Affairs Photographs Finding Aid`}
         />
         <meta name="twitter:site" content="@FIXME" />
         <meta name="twitter:card" content={'FIXME'} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={'FIXME'} />
-        <meta property="og:title" content={`${topicName} - Bureau Of Indian Affairs Photographs Finding Aid`} />
+        <meta
+          property="og:title"
+          content={`Photograph records on ${topicName} - Bureau Of Indian Affairs Photographs Finding Aid`}
+        />
         <meta name="og:description" content={description} />
         <meta property="og:site_name" content="FIXME" />
         <meta property="og:url" content={window.location} />
