@@ -49,6 +49,7 @@ const About = () => {
           title={billboard.title}
           intro={billboard.intro}
           introIcon={billboard.introIcon || null}
+          imageAltText={billboard.imageAltText}
           imageUrl={billboard.imageUrl}
         />
       ))}

@@ -104,7 +104,7 @@ const SuperTitle = styled.span`
   font-weight: bold;
 `;
 
-const Billboard = ({ alignment, title, imageUrl, intro, introIcon, introHelp, superTitle, ...props }) => {
+const Billboard = ({ alignment, title, imageUrl, imageAltText, intro, introIcon, introHelp, superTitle, ...props }) => {
   return (
     <Root>
       <Layout.Padding>
@@ -132,7 +132,12 @@ const Billboard = ({ alignment, title, imageUrl, intro, introIcon, introHelp, su
               {/* <BackgroundImage className="desktopImage">
                 <img style={{ objectFit: 'contain' }} srcSet={`${imageUrl} 1x, ${imageUrl} 2x`} src={imageUrl}></img>
               </BackgroundImage> */}
-              <img style={{ width: '100%' }} srcSet={`${imageUrl} 1x, ${imageUrl} 2x`} src={imageUrl}></img>
+              <img
+                style={{ width: '100%' }}
+                srcSet={`${imageUrl} 1x, ${imageUrl} 2x`}
+                src={imageUrl}
+                alt={imageAltText}
+              ></img>
             </div>
           </LandingBillboardLayout>
         </Layout.Wrapper>

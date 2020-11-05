@@ -55,6 +55,7 @@ module.exports = {
     billboards: [
       {
         imageUrl: `${process.env.PUBLIC_URL}/images/content/collage.png`,
+        imageAltText: "Grid of images from NARA's holdings",
         intro:
           'NARA acknowledges that photographs included in this project may evoke painful or traumatic memories and feelings from a history of systemic oppression.',
         // introIcon: 'warning',
@@ -64,6 +65,7 @@ module.exports = {
       },
       {
         imageUrl: `${process.env.PUBLIC_URL}/images/content/records_digitized.jpg`,
+        imageAltText: 'Representation of the photograph digitization process',
         intro:
           'Therefore, some Tribal Nations, topics, and geographic areas may not be fully represented. As NARA digitizes and makes more photographs publicly accessible, they will be made available through this project. ',
         // superTitle: 'Our records are still incomplete',
@@ -72,6 +74,7 @@ module.exports = {
       },
       {
         imageUrl: `${process.env.PUBLIC_URL}/images/content/corner.png`,
+        imageAltText: 'Image of an original photograph caption',
         intro:
           'Some of the terms used at the time may now be considered to be outdated, inaccurate, derogatory, disrespectful, or culturally insensitive. NARA does not alter, edit, or modify original captions as they are part of the historical record, which often reflect and document the attitudes and biases of government officials at the time.',
         // superTitle: 'Our records reflect a settler-colonialist history',
