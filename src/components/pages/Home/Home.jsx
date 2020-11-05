@@ -252,6 +252,7 @@ const Home = () => {
       <div>
         <Track>
           <FidelitySliderStyled
+            aria-hidden="true"
             color="#fff"
             defaultValue={gridSize}
             min={min}
