@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { sampleSize } from 'lodash';
 
+import { ReactComponent as CaretIcon } from '#assets/icons/caret.svg';
+
 // components
 import * as Text from '#components/shared/Text';
 import Results from '#components/shared/Results';
@@ -14,7 +16,7 @@ import useRecords from '#hooks/useRecords';
 import { tribalNationThumbnails } from '#modules/constants';
 
 // styles
-import { fl_allStates, fl_static, fl_attention } from '#styles/frontline';
+import { fl_allStates, fl_static, fl_attention, fl_visuallyHidden } from '#styles/frontline';
 
 const Root = styled.ol``;
 
@@ -74,6 +76,41 @@ const ItemLink = styled(Link)`
   `)}
 `;
 
+const ReturnLink = styled('a')`
+  font-size: 0.75rem;
+  margin-left: 1rem;
+  padding-left: 1rem;
+  border-left: solid 1px ${props => props.theme.colors.mediumGrey};
+  text-transform: uppercase;
+  line-height: 1.8;
+
+  ${fl_static(css`
+    color: ${props => props.theme.colors.blue};
+    text-decoration: none;
+  `)}
+  ${fl_attention(css`
+    color: ${props => props.theme.colors.darkBlue};
+    text-decoration: underline;
+  `)}
+
+  @media all and ${props => props.theme.breakpoints.medium} {
+    font-size: 14px;
+  }
+
+  span {
+    @media all and ${props => props.theme.breakpoints.mediumMax} {
+      ${fl_visuallyHidden}
+    }
+  }
+
+  svg {
+    margin-left: 5px;
+    margin-top: -0.3em;
+    transform: rotate(180deg);
+    vertical-align: middle;
+  }
+`;
+
 const TribeList = ({ groupedTribes }) => {
   const [thumbnailResults] = useRecords({
     facets: {
@@ -107,9 +144,10 @@ const TribeList = ({ groupedTribes }) => {
             <SectionMeta>
               ({section[1].length} Tribal {section[1].length > 1 ? 'Nations' : 'Nation'})
             </SectionMeta>
-            <a className="screenreader" href={`#section-link-${section[0].toLowerCase()}`}>
-              Back to Alphabet navigation
-            </a>
+            <ReturnLink aria-label="Return to index" href={`#section-link-${section[0].toLowerCase()}`}>
+              <span>Return to</span> index
+              <CaretIcon width="10" fill="#345d96" />
+            </ReturnLink>
           </SectionHeading>
           <Items>
             {section[1].map((item, i) => (
