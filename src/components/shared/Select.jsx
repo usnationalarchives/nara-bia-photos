@@ -73,10 +73,12 @@ const SelectMenu = styled.select`
     `}
 `;
 
-const Select = ({ style, ...rest }) => {
+const Select = ({ style, className, transparent, ...rest }) => {
   return (
-    <SelectWrapper style={style} {...rest}>
-      <SelectMenu {...rest}>{rest.children}</SelectMenu>
+    <SelectWrapper style={style} className={className} transparent>
+      <SelectMenu {...rest} transparent>
+        {rest.children}
+      </SelectMenu>
     </SelectWrapper>
   );
 };
