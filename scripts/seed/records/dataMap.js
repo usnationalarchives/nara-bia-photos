@@ -1,6 +1,47 @@
 const trim = require('lodash').trim;
 const parameterize = require('../helpers').parameterize;
 
+const topics = [
+  { name: 'Agriculture', slug: 'agriculture', thumbnailNaId: 170102075, variantNames: [] },
+  { name: 'Animals', slug: 'animals', thumbnailNaId: 12079826, variantNames: ['animal'] },
+  {
+    name: 'Art and Artifacts',
+    slug: 'art-artifacts',
+    thumbnailNaId: 519161,
+    variantNames: ['art and artifact', 'art and artifacts'],
+  },
+  { name: 'Buildings', slug: 'buildings', thumbnailNaId: 12084828, variantNames: ['building', 'buildings'] },
+  { name: 'Bureau of Indian Affairs Personnel', slug: 'bia-personnel', thumbnailNaId: 292868, variantNames: [] },
+  { name: 'Camps', slug: 'camps', thumbnailNaId: 285803, variantNames: ['camp', 'camps'] },
+  { name: 'Children', slug: 'children', thumbnailNaId: 12460729, variantNames: ['children'] },
+  { name: 'Clothing', slug: 'clothing', thumbnailNaId: 298648, variantNames: ['clothing'] },
+  { name: 'Communities', slug: 'communities', thumbnailNaId: 519145, variantNames: ['communities'] },
+  { name: 'Construction', slug: 'construction', thumbnailNaId: 118969535, variantNames: ['construction'] },
+  { name: 'Councils', slug: 'councils', thumbnailNaId: 298702, variantNames: ['councils'] },
+  { name: 'Dances', slug: 'dances', thumbnailNaId: 12466498, variantNames: ['dance', 'dances'] },
+  { name: 'Events', slug: 'events', thumbnailNaId: 285197, variantNames: ['event', 'events'] },
+  { name: 'Fishing', slug: 'fishing', thumbnailNaId: 285703, variantNames: ['fishing'] },
+  { name: 'Food Preparation', slug: 'food-preparation', thumbnailNaId: 519166, variantNames: ['food preparation'] },
+  { name: 'Groups', slug: 'groups', thumbnailNaId: 595392, variantNames: ['group', 'groups'] },
+  { name: 'Dwellings', slug: 'dwellings', thumbnailNaId: 7867735, variantNames: ['dwelling', 'dwellings'] },
+  { name: 'Hunting', slug: 'hunting', thumbnailNaId: 285719, variantNames: ['hunting'] },
+  { name: 'Portraits', slug: 'portraits', thumbnailNaId: 285690, variantNames: ['portrait', 'portraits'] },
+  { name: 'Recreation', slug: 'recreation', thumbnailNaId: 158884346, variantNames: ['recreation'] },
+  {
+    name: 'Reservations',
+    slug: 'reservations',
+    thumbnailNaId: 292867,
+    variantNames: ['reservations', 'reservation', 'Reservation'],
+  },
+  { name: 'Manufacturing', slug: 'manufacturing', thumbnailNaId: 523806, variantNames: ['manufacturing'] },
+  { name: 'Landscapes', slug: 'landscapes', thumbnailNaId: 170102383, variantNames: ['landscapes', 'landscape'] },
+  { name: 'Leaders', slug: 'leaders', thumbnailNaId: 32202303, variantNames: ['leaders', 'leader'] },
+  { name: 'Military Service', slug: 'military-service', thumbnailNaId: 285695, variantNames: ['military service'] },
+  { name: 'Music', slug: 'music', thumbnailNaId: 5585778, variantNames: ['music'] },
+  { name: 'Schools', slug: 'schools', thumbnailNaId: 295152, variantNames: ['schools', 'school'] },
+  { name: 'Transportation', slug: 'transportation', thumbnailNaId: 118972577, variantNames: ['transportation'] },
+];
+
 module.exports = {
   naId: result => {
     return result.naId;
@@ -115,10 +156,26 @@ module.exports = {
   tags: result => {
     const tags = ((result.publicContributions || {}).tags || {}).tag;
 
+    // Normalize topic names using variant names
+    const normalizeName = name => {
+      const displayNames = topics.map(topic => topic.name);
+      if (displayNames.includes(name)) {
+        return name;
+      }
+
+      for (const topic of topics) {
+        if (topic.variantNames.includes(name)) {
+          return topic.name;
+        }
+      }
+
+      return name;
+    };
+
     if (Array.isArray(tags)) {
-      return tags.map(tag => tag.$).join('||');
+      return tags.map(tag => normalizeName(tag.$)).join('||');
     } else if (tags) {
-      return [tags.$];
+      return [normalizeName(tags.$)];
     } else {
       return null;
     }
