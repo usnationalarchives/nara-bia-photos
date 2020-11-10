@@ -117,6 +117,7 @@ export const Rich = styled.div`
 
     p {
       margin-bottom: 1em;
+      font-size: 1.125rem;
 
       &:empty {
         display: none !important;
