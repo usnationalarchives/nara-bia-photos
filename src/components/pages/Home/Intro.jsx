@@ -19,13 +19,14 @@ const { title, text, cta } = content.home.intro;
 const IntroStyled = styled.div`
   background-color: ${props => props.theme.colors.blue};
   color: ${props => props.theme.colors.white};
-  padding: 20px;
+  padding: 25px;
   display: flex;
   align-items: center;
   transition: height 0.3s ease, width 0.3s ease;
 
   @media all and ${props => props.theme.breakpoints.medium} {
     /* padding: 35px 60px; */
+    padding: 20px;
   }
 
   > * {
@@ -71,27 +72,22 @@ const LinkStyled = styled(Link)`
 `;
 
 const SectionLinks = styled.div`
-  align-items: stretch;
   display: flex;
-  flex-direction: column;
-  text-transform: uppercase;
-
-  @media all and ${props => props.theme.breakpoints.medium} {
-    align-items: space-between;
-    flex-direction: row;
-    flex-wrap: nowrap;
-  }
+  align-items: space-between;
+  flex-direction: row;
+  flex-wrap: nowrap;
 `;
 
 const SectionLink = styled(Link)`
   align-items: center;
   display: flex;
-  flex-direction: row;
-  margin-top: 20px;
+  flex-direction: column;
+  margin-top: 10px;
+  text-align: center;
   width: 100%;
 
   @media all and ${props => props.theme.breakpoints.medium} {
-    flex-direction: column;
+    margin-top: 20px;
   }
 
   ${fl_static(css`
@@ -104,7 +100,8 @@ const SectionLink = styled(Link)`
   `)}
 
   > *:first-child {
-    flex: 0 0 96px;
+    flex: 0 0 60px;
+    margin: 0 auto;
     text-align: center;
 
     @media all and ${props => props.theme.breakpoints.medium} {
@@ -114,7 +111,6 @@ const SectionLink = styled(Link)`
 
   > *:last-child {
     flex: 1 0 auto;
-    margin-left: 20px;
 
     @media all and ${props => props.theme.breakpoints.medium} {
       margin-left: 0;
@@ -124,10 +120,16 @@ const SectionLink = styled(Link)`
   svg {
     fill: #fff;
     &.small {
-      width: 70px;
+      width: 55px;
+      @media all and ${props => props.theme.breakpoints.medium} {
+        width: 70px;
+      }
     }
     &.large {
-      width: 96px;
+      width: 80px;
+      @media all and ${props => props.theme.breakpoints.medium} {
+        width: 96px;
+      }
     }
   }
 `;

@@ -5,24 +5,10 @@ import ExplorePromo from './ExplorePromo';
 const ExploreTribalNationsStyled = styled(ExplorePromo)`
 grid-column-start: 1;
 grid-column-end: 4;
-grid-row-start: 9;
-grid-row-end: 11;
-min-height: 20vw;
+grid-row-start: 6;
+grid-row-end: auto;
+/* min-height: 20vw; */
 z-index: 2;
-
-@media all and (min-width: 400px) {
-  grid-row-start: 8;
-  grid-row-end: 10;
-}  
-
-@media all and (min-width: 460px) {
-  grid-row-start: 7;
-  grid-row-end: 9;
-}  
-@media all and (min-width: 550px)  {
-  grid-row-start: 6;
-  grid-row-end: 8;
-}  
 
 @media all and ${props => props.theme.breakpoints.medium} {
   grid-row-start: 5;

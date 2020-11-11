@@ -5,23 +5,9 @@ import ExplorePromo from './ExplorePromo';
 const ExploreNativeAmericansStyled = styled(ExplorePromo)`
   grid-column-start: 1;
   grid-column-end: 4;
-  grid-row-start: 14;
-  grid-row-end: 16;
+  grid-row-start: 10;
+  grid-row-end: auto;
   z-index: 2;
-
-  @media all and (min-width: 400px) {
-    grid-row-start: 12;
-    grid-row-end: 14;
-  }
-
-  @media all and (min-width: 460px) {
-    grid-row-start: 11;
-    grid-row-end: 13;
-  }
-  @media all and (min-width: 550px) {
-    grid-row-start: 10;
-    grid-row-end: 12;
-  }
 
   @media all and ${props => props.theme.breakpoints.medium} {
     grid-row-start: 9;

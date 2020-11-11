@@ -43,15 +43,6 @@ const packeryOptions = {
   columnWidth: 0,
 };
 
-const ImageGrid = styled.div`
-  ${fl_absoluteFill}
-  background-color: ${props => tinycolor(props.theme.colors.blue).darken(15).toString()};
-  display: flex;
-  flex-wrap: wrap;
-  overflow-y: hidden;
-  /* z-index: -; */
-`;
-
 const Grid = styled.div`
   display: grid;
   position: relative;
@@ -59,11 +50,18 @@ const Grid = styled.div`
   grid-template-rows: 1fr repeat(6, 20vw); */
 
   grid-template-columns: repeat(3, 33.333333vw [col-start]);
-  grid-template-rows: repeat(18, 33.333333vw);
+  /* grid-template-rows: 33.333333vw 1fr repeat(16, 33.333333vw); */
 
-  @media all and (max-width: 1023px) {
-    grid-template-rows: repeat(11, 33.333333vw);
-    > *:nth-child(n + 20) {
+  @media all and ${props => props.theme.breakpoints.mediumMax} {
+    grid-template-rows: 33.333333vw min-content repeat(3, 33.333333vw) min-content repeat(3, 33.333333vw) min-content 33.333333vw;
+    > *:nth-child(n + 35) {
+      display: none;
+      position: absolute;
+    }
+  }
+  @media all and ${props => props.theme.breakpoints.medium} and ${props => props.theme.breakpoints.fullMax} {
+    grid-template-rows: 33.333333vw min-content repeat(3, 33.333333vw) min-content repeat(3, 33.333333vw) min-content 33.333333vw;
+    > *:nth-child(n + 26) {
       display: none;
       position: absolute;
     }
