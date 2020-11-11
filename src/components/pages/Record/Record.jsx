@@ -250,22 +250,24 @@ const Record = ({ ...props }) => {
                 </TabPanel>
                 <TabPanel>
                   <Table.RowStyles>
-                    <p>
-                      {record.title},{!!record.date ? `${record.date} ` : ' '}[Photographs and other Graphic Materials];
-                      Records of the Bureau of Indian Affairs, Record Group 75;
-                      {!!record.location ? ` ${record.location}` : ' '}[online version available through the National
-                      Archives Catalog (National Archives Identifier {record.naId}) at{' '}
-                      <a href={`https://catalog.archives.gov/id/${record.naId}`}>
-                        https://catalog.archives.gov/id/{record.naId}
-                      </a>
-                      ;{' '}
-                      {new Intl.DateTimeFormat('en-US', {
-                        month: 'long',
-                        day: 'numeric',
-                        year: 'numeric',
-                      }).format(new Date())}
-                      ].
-                    </p>
+                    <Text.Rich>
+                      <p>
+                        {record.title},{!!record.date ? `${record.date} ` : ' '}[Photographs and other Graphic
+                        Materials]; Records of the Bureau of Indian Affairs, Record Group 75;
+                        {!!record.location ? ` ${record.location}` : ' '}[online version available through the National
+                        Archives Catalog (National Archives Identifier {record.naId}) at{' '}
+                        <a href={`https://catalog.archives.gov/id/${record.naId}`}>
+                          https://catalog.archives.gov/id/{record.naId}
+                        </a>
+                        ;{' '}
+                        {new Intl.DateTimeFormat('en-US', {
+                          month: 'long',
+                          day: 'numeric',
+                          year: 'numeric',
+                        }).format(new Date())}
+                        ].
+                      </p>
+                    </Text.Rich>
                   </Table.RowStyles>
                 </TabPanel>
               </Tabs>
