@@ -137,7 +137,7 @@ const Filter = ({ filter, isActive, toggle, id }) => {
       <div>
         <Fieldset>
           <legend style={{ marginBottom: '1.25rem' }}>
-            <Legend>{label}</Legend>
+            <Legend id={`sections-heading-${label.replace(' ', '')}`}>{label}</Legend>
           </legend>
 
           <div style={{ position: 'relative' }}>
@@ -147,7 +147,11 @@ const Filter = ({ filter, isActive, toggle, id }) => {
                 <CaretIcon width="10" fill={colors.blue}></CaretIcon>
               </span>
             </SelectToggle>
-            <CheckboxList ref={checkboxListRef} aria-hidden={!isActive} aria-labelledby="sections-heading">
+            <CheckboxList
+              ref={checkboxListRef}
+              aria-hidden={!isActive}
+              aria-labelledby={`sections-heading-${label.replace(' ', '')}`}
+            >
               <DropDownCaret width="10" fill="#999"></DropDownCaret>
               <ul>
                 {allItems.map((item, i) => (
