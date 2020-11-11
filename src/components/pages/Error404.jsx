@@ -11,8 +11,8 @@ const Error404 = () => {
           <div>
             <Text.H1>Error 404</Text.H1>
             <p style={{ marginTop: '20px' }}>
-              Try a search for photographs <Link to="/search">here</Link> or return to the Finding Aid{' '}
-              <Link to="/">homepage</Link>
+              This page could not be found. Try a search for photographs <Link to="/search">here</Link> or return to the
+              Finding Aid <Link to="/">homepage</Link>
             </p>
           </div>
         </div>
