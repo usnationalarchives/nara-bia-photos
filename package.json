@@ -75,7 +75,7 @@
     "react-app-polyfill": "^1.0.6",
     "react-dev-utils": "^10.2.1",
     "react-dom": "^16.13.1",
-    "react-helmet": "^6.1.0",
+    "react-helmet": "^5.2.0",
     "react-html-parser": "^2.0.2",
     "react-load-script": "^0.0.6",
     "react-packery-component": "git+https://github.com/lucbelliveau/react-packery-component.git#3458fdcfe95b02186fae75ed4c9a22e53b745233",
@@ -197,5 +197,4 @@
   },
   "prettier": "@threespot/prettier-config",
   "homepage": "https://bia.test.drupalme.net/research/native-americans/bia/photos"
-
 }
