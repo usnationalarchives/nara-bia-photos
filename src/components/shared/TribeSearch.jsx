@@ -87,7 +87,7 @@ const TribeSearch = ({ tribalNations }) => {
               <Text.Screenreader>Search</Text.Screenreader>
             </StyledButton>
 
-            <div ref={popoverEl}></div>
+            <div ref={popoverEl} aria-live="polite" aria-atomic="true" role="status"></div>
           </div>
         </Popover>
       </div>

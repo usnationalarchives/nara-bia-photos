@@ -15,7 +15,7 @@ const Root = styled.div`
   width: 300px;
 `;
 
-const Items = styled.ul`
+const Items = styled.ol`
   margin: 0.5rem 0;
 `;
 
@@ -43,8 +43,11 @@ const ItemLink = styled(Link)`
 const PopoverNav = ({ slugPrefix, items, ...props }) => {
   return (
     <Root {...props}>
+      <p className="screenreader">
+        There {items.length !== 1 ? 'are' : 'is'} {items.length} suggested search terms based on your term.
+      </p>
       <Items>
-        {items.map(item => (
+        {items.map((item, index) => (
           <Item key={item.slug}>
             <ItemLink to={`/${slugPrefix}/${item.slug}`}>{item.name}</ItemLink>
           </Item>

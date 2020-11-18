@@ -44,9 +44,7 @@ const AlphabetLinks = ({ activeLetters, ...props }) => {
           <Link
             key={i}
             id={`section-link-${letter}`}
-            aria-label={
-              hasTribalNations ? `${letter}. Jump to Tribal Nations starting with the letter ${letter}` : null
-            }
+            aria-label={hasTribalNations ? `Jump to Tribal Nations starting with the letter ${letter}` : null}
             href={hasTribalNations ? `#section-${letter}` : null}
             disabled={!hasTribalNations}
             aria-hidden={!hasTribalNations}
