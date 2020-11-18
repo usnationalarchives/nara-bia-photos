@@ -1,7 +1,7 @@
 module.exports = {
   states: {
-    bannerImage: `${process.env.PUBLIC_URL}/images/banners/banner-states.png`,
-    bannerImage2x: `${process.env.PUBLIC_URL}/images/banners/banner-states@2x.png`,
+    bannerImage: `${process.env.PUBLIC_URL}/images/banners/banner-states.jpg`,
+    bannerImage2x: `${process.env.PUBLIC_URL}/images/banners/banner-states@2x.jpg`,
     title: 'States',
     intro:
       'Many photographs are associated with the state in which the photograph was taken. Select a state name to see a list of photographs organized by state.',
