@@ -46,11 +46,11 @@ export const tribalNationThumbnails = {
 
 export const states = [
   { name: 'Alabama', slug: 'alabama', region: 'eastern', id: 'AL', val: '01', thumbnailNaId: 285280 },
-  { name: 'Alaska', slug: 'alaska', region: 'pacific-alaska', id: 'AK', val: '02', thumbnailNaId: 285280 },
-  { name: 'Arizona', slug: 'arizona', region: 'southwest', id: 'AZ', val: '04', thumbnailNaId: 593679 },
+  { name: 'Alaska', slug: 'alaska', region: 'alaska', id: 'AK', val: '02', thumbnailNaId: 285280 },
+  { name: 'Arizona', slug: 'arizona', region: 'western', id: 'AZ', val: '04', thumbnailNaId: 593679 },
   { name: 'Arkansas', slug: 'arkansas', region: 'eastern', id: 'AR', val: '05', thumbnailNaId: 285280 },
-  { name: 'California', slug: 'california', region: 'california', id: 'CA', val: '06', thumbnailNaId: 170102701 },
-  { name: 'Colorado', slug: 'colorado', region: 'western', id: 'CO', val: '08', thumbnailNaId: 298658 },
+  { name: 'California', slug: 'california', region: 'pacific', id: 'CA', val: '06', thumbnailNaId: 170102701 },
+  { name: 'Colorado', slug: 'colorado', region: 'southwest', id: 'CO', val: '08', thumbnailNaId: 298658 },
   { name: 'Connecticut', slug: 'connecticut', region: 'eastern', id: 'CT', val: '09', thumbnailNaId: 285280 },
   { name: 'Delaware', slug: 'delaware', region: 'eastern', id: 'DE', val: '10', thumbnailNaId: 285280 },
   { name: 'Florida', slug: 'florida', region: 'eastern', id: 'FL', val: '12', thumbnailNaId: 519171 },
@@ -78,10 +78,10 @@ export const states = [
   { name: 'Missouri', slug: 'missouri', region: 'eastern', id: 'MO', val: '29', thumbnailNaId: 285280 },
   { name: 'Montana', slug: 'montana', region: 'rocky-mountain', id: 'MT', val: '30', thumbnailNaId: 285280 },
   { name: 'Nebraska', slug: 'nebraska', region: 'great-plains', id: 'NE', val: '31', thumbnailNaId: 285280 },
-  { name: 'Nevada', slug: 'nevada', region: 'southwest', id: 'NV', val: '32', thumbnailNaId: 519146 },
+  { name: 'Nevada', slug: 'nevada', region: 'western', id: 'NV', val: '32', thumbnailNaId: 519146 },
   { name: 'New Hampshire', slug: 'new-hampshire', region: 'eastern', id: 'NH', val: '33', thumbnailNaId: 285280 },
   { name: 'New Jersey', slug: 'new-jersey', region: 'eastern', id: 'NJ', val: '34', thumbnailNaId: 285280 },
-  { name: 'New Mexico', slug: 'new-mexico', region: 'western', id: 'NM', val: '35', thumbnailNaId: 519153 },
+  { name: 'New Mexico', slug: 'new-mexico', region: 'southwest', id: 'NM', val: '35', thumbnailNaId: 519153 },
   { name: 'New York', slug: 'new-york', region: 'eastern', id: 'NY', val: '36', thumbnailNaId: 519162 },
   { name: 'North Carolina', slug: 'north-carolina', region: 'eastern', id: 'NC', val: '37', thumbnailNaId: 285280 },
   { name: 'North Dakota', slug: 'north-dakota', region: 'great-plains', id: 'ND', val: '38', thumbnailNaId: 285312 },
@@ -108,7 +108,7 @@ export const states = [
     val: '48',
     thumbnailNaId: 285280,
   },
-  { name: 'Utah', slug: 'utah', region: 'southwest', id: 'UT', val: '49', thumbnailNaId: 519240 },
+  { name: 'Utah', slug: 'utah', region: 'western', id: 'UT', val: '49', thumbnailNaId: 519240 },
   { name: 'Vermont', slug: 'vermont', region: 'eastern', id: 'VT', val: '50', thumbnailNaId: 285280 },
   { name: 'Virginia', slug: 'virginia', region: 'eastern', id: 'VA', val: '51', thumbnailNaId: 285280 },
   { name: 'Washington (State)', slug: 'washington', region: 'northwest', id: 'WA', val: '53', thumbnailNaId: 5585728 },
@@ -159,8 +159,8 @@ export const regions = [
     mapLabelCooridnates: [-120.56200520337062, 45.93465032631577],
   },
   {
-    name: 'Pacific Region & Alaska Region',
-    slug: 'pacific-alaska',
+    name: 'Alaska Region',
+    slug: 'alaska',
     mapColors: {
       region: '#F0C0D2',
       listing: '#325990',
@@ -168,8 +168,8 @@ export const regions = [
     mapLabelCooridnates: [-157.1794192251042, 66.42441825088091],
   },
   {
-    name: 'Western Region',
-    slug: 'western',
+    name: 'Southwest Region',
+    slug: 'southwest',
     mapColors: {
       region: '#9FD7C0',
       listing: '#244168',
@@ -186,8 +186,8 @@ export const regions = [
     mapLabelCooridnates: [-109.63302925840122, 45.6524662795163],
   },
   {
-    name: 'Southwest Region',
-    slug: 'southwest',
+    name: 'Western Region',
+    slug: 'western',
     mapColors: {
       region: '#DECE91',
       listing: '#294A79',
@@ -231,8 +231,8 @@ export const regions = [
     mapLabelCooridnates: [-85.30200559812172, 37.53502330485163],
   },
   {
-    name: 'California Region',
-    slug: 'california',
+    name: 'Pacific Region',
+    slug: 'pacific',
     mapColors: {
       region: '#F7C2A0',
       listing: '#25436C',

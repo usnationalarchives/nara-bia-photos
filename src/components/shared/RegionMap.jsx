@@ -31,7 +31,7 @@ const RegionMarker = ({ region, fill }) => {
       case 'southern-plains-eastern-oklahoma':
         width = 70;
         break;
-      case 'pacific-alaska':
+      case 'alaska':
         name = 'Alaska Region';
         break;
     }
