@@ -146,7 +146,9 @@ const Record = ({ ...props }) => {
       <>
         <Helmet>
           <title>{!!record ? record.title : getIdFromPathname(location.pathname)}</title>
-          {!!record && <meta name="description" content={`View the photograph ${record.title} from the U.S. National Archives`}} />}
+          {!!record && (
+            <meta name="description" content={`View the photograph ${record.title} from the U.S. National Archives`} />
+          )}
           <meta name="" content="" />
           <meta name="twitter:title" content={!!record ? record.title : getIdFromPathname(location.pathname)} />
           <meta name="twitter:site" content={window.location} />
@@ -159,7 +161,12 @@ const Record = ({ ...props }) => {
           )}
           {!!record && <meta name="twitter:image" content={iiifImage(record, '1080')} />}
           <meta property="og:title" content={!!record ? record.title : getIdFromPathname(location.pathname)} />
-          {!!record && <meta name="og:description" content={`View the photograph ${record.title} from the U.S. National Archives`}} />}
+          {!!record && (
+            <meta
+              name="og:description"
+              content={`View the photograph ${record.title} from the U.S. National Archives`}
+            />
+          )}
           <meta property="og:site_name" content="Bureau of Indian Affairs Photography Finding Aid" />
           <meta property="og:url" content={window.location} />
           <meta property="og:type" content="article" />
