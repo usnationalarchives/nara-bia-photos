@@ -85,7 +85,7 @@ const IntroStyled = styled(Intro)`
       css`
         grid-column-start: 2;
         grid-column-end: 5;
-        grid-row-start: [row-start];
+        grid-row-start: 1;
         grid-row-end: 4;
       `}
   }

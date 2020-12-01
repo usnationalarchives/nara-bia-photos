@@ -137,7 +137,7 @@ const SectionLink = styled(Link)`
 const Intro = ({ className }) => {
   return (
     <IntroStyled className={className}>
-      <IntroContent style={{ maxWidth: '500px', margin: '0 auto' }}>
+      <IntroContent style={{ maxWidth: '560px', margin: '0 auto' }}>
         <Text.H2>{title}</Text.H2>
         <p>{text}</p>
         <LinkStyled to="/about">{cta}</LinkStyled>
