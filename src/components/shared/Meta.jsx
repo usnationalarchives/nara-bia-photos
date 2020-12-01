@@ -22,7 +22,12 @@ const List = styled.ul`
 
 const Li = styled.li`
   display: inline-block;
-  margin: 5px 0 5px 15px;
+  margin: 5px 7px 5px 0;
+
+  @media all and ${props => props.theme.breakpoints.tablet} {
+    margin: 5px 15px 5px 0;
+    padding-left: 25px;
+  }
 `;
 
 const Meta = ({ className, label, items = [], scheme = 'dark' }) => {

@@ -46,14 +46,22 @@ const MetaWrapper = styled.div`
   margin-top: 2rem;
 
   > * {
-    align-items: center;
-    display: flex;
-    margin-right: 25px;
-    margin-bottom: 20px;
+    display: block;
+    margin-right: 15px;
+    margin-bottom: 10px;
+
+    @media all and ${props => props.theme.breakpoints.tablet} {
+      align-items: center;
+      display: flex;
+      margin-right: 25px;
+      margin-bottom: 20px;
+    }
 
     &:not(:first-child) {
-      padding-left: 25px;
-      border-left: solid 1px ${props => props.theme.colors.mediumGrey};
+      @media all and ${props => props.theme.breakpoints.tablet} {
+        border-left: solid 1px ${props => props.theme.colors.mediumGrey};
+        padding-left: 25px;
+      }
     }
   }
 `;

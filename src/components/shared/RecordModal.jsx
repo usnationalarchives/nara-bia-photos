@@ -44,14 +44,22 @@ const MetaWrapper = styled.div`
   padding-bottom: 1rem;
 
   > * {
-    align-items: center;
-    display: flex;
-    margin-right: 25px;
-    margin-bottom: 20px;
+    display: block;
+    margin-right: 15px;
+    margin-bottom: 10px;
+
+    @media all and ${props => props.theme.breakpoints.tablet} {
+      align-items: center;
+      display: flex;
+      margin-right: 25px;
+      margin-bottom: 20px;
+    }
 
     &:not(:first-child) {
-      padding-left: 25px;
-      border-left: solid 1px ${tinycolor('#fff').setAlpha(0.4).toRgbString()};
+      @media all and ${props => props.theme.breakpoints.tablet} {
+        border-left: solid 1px ${tinycolor('#fff').setAlpha(0.4).toRgbString()};
+        padding-left: 25px;
+      }
     }
   }
 `;
