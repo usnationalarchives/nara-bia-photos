@@ -141,7 +141,7 @@ const Record = ({ ...props }) => {
           {!!record && !!record.scopeContentNote && <meta name="description" content={record.scopeContentNote} />}
           <meta name="" content="" />
           <meta name="twitter:title" content={!!record ? record.title : getIdFromPathname(location.pathname)} />
-          <meta name="twitter:site" content="@FIXME" />
+          <meta name="twitter:site" content={window.location} />
           {!!record && !!record.scopeContentNote && <meta name="twitter:card" content={record.scopeContentNote} />}
           {!!record && !!record.scopeContentNote && (
             <meta name="twitter:description" content={record.scopeContentNote} />
@@ -149,7 +149,7 @@ const Record = ({ ...props }) => {
           {!!record && <meta name="twitter:image" content={iiifImage(record, '1080')} />}
           <meta property="og:title" content={!!record ? record.title : getIdFromPathname(location.pathname)} />
           {!!record && !!record.scopeContentNote && <meta name="og:description" content={record.scopeContentNote} />}
-          <meta property="og:site_name" content="FIXME" />
+          <meta property="og:site_name" content="Bureau of Indian Affairs Photography Finding Aid" />
           <meta property="og:url" content={window.location} />
           <meta property="og:type" content="article" />
           {!!record && <meta property="og:image" content={iiifImage(record, '1080')} />}

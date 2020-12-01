@@ -307,19 +307,19 @@ const StateLanding = () => {
             name="twitter:title"
             content={`${content.states.title} - Bureau Of Indian Affairs Photographs Finding Aid`}
           />
-          <meta name="twitter:site" content="@FIXME" />
-          <meta name="twitter:card" content={'FIXME'} />
+          <meta name="twitter:site" content={window.location} />
+          <meta name="twitter:card" content="summary" />
           <meta name="twitter:description" content={content.states.intro} />
-          <meta name="twitter:image" content={'FIXME'} />
+          <meta name="twitter:image" content={`${process.env.PUBLIC_URL}/og-image.png`} />
           <meta
             property="og:title"
             content={`${content.states.title} - Bureau Of Indian Affairs Photographs Finding Aid`}
           />
           <meta name="og:description" content={content.states.intro} />
-          <meta property="og:site_name" content="FIXME" />
+          <meta property="og:site_name" content="Bureau of Indian Affairs Photography Finding Aid" />
           <meta property="og:url" content={window.location} />
           <meta property="og:type" content="website" />
-          <meta property="og:image" content={'FIXME'} />
+          <meta name="og:image" content={`${process.env.PUBLIC_URL}/og-image.png`} />
         </Helmet>
 
         <Billboard />

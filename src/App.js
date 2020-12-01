@@ -29,19 +29,28 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Helmet>
-        <title>Bureau Of Indian Affairs Photographs Finding Aid</title>
-        {/* <meta name="description" content={content.topics.intro}></meta> */}
+        <title>Bureau of Indian Affairs Photography Finding Aid</title>
+        <meta
+          name="description"
+          content="An interactive finding aid to explore digitized photographs from the U.S. National Archives and Records Administration"
+        ></meta>
         <meta name="twitter:title" content="Bureau Of Indian Affairs Photographs Finding Aid" />
-        <meta name="twitter:site" content="@FIXME" />
-        <meta name="twitter:card" content={'FIXME'} />
-        <meta name="twitter:description" content={'FIXME'} />
-        <meta name="twitter:image" content={'FIXME'} />
+        <meta name="twitter:site" content={window.location} />
+        <meta name="twitter:card" content="summary" />
+        <meta
+          name="twitter:description"
+          content="An interactive finding aid to explore digitized photographs from the U.S. National Archives and Records Administration"
+        />
+        <meta name="twitter:image" content={`${process.env.PUBLIC_URL}/og-image.png`} />
         <meta property="og:title" content="Bureau Of Indian Affairs Photographs Finding Aid" />
-        <meta name="og:description" content={'FIXME'} />
-        <meta property="og:site_name" content="FIXME" />
+        <meta
+          name="og:description"
+          content="An interactive finding aid to explore digitized photographs from the U.S. National Archives and Records Administration"
+        />
+        <meta property="og:site_name" content="Bureau of Indian Affairs Photography Finding Aid" />
         <meta property="og:url" content={window.location} />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content={'FIXME'} />
+        <meta name="og:image" content={`${process.env.PUBLIC_URL}/og-image.png`} />
       </Helmet>
       <BaseStyles />
       <div className="skip-links">
