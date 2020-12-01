@@ -133,7 +133,10 @@ const TopicLanding = () => {
     <Fragment>
       <Helmet>
         <title>{`${content.topics.title} - Bureau Of Indian Affairs Photographs Finding Aid`}</title>
-        {/* <meta name="description" content={content.topics.intro}></meta> */}
+        <meta
+          name="description"
+          content={'Explore records from the Bureau of Indian Affairs by topic, like agriculture and communities.'}
+        ></meta>
         <meta name="" content="" />
         <meta
           name="twitter:title"
@@ -141,13 +144,19 @@ const TopicLanding = () => {
         />
         <meta name="twitter:site" content={window.location} />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:description" content={'FIXME'} />
+        <meta
+          name="twitter:description"
+          content={'Explore records from the Bureau of Indian Affairs by topic, like agriculture and communities.'}
+        />
         <meta name="twitter:image" content={`${process.env.PUBLIC_URL}/og-image.png`} />
         <meta
           property="og:title"
           content={`${content.topics.title} - Bureau Of Indian Affairs Photographs Finding Aid`}
         />
-        <meta name="og:description" content={'FIXME'} />
+        <meta
+          name="og:description"
+          content={'Explore records from the Bureau of Indian Affairs by topic, like agriculture and communities.'}
+        />
         <meta property="og:site_name" content="Bureau of Indian Affairs Photography Finding Aid" />
         <meta property="og:url" content={window.location} />
         <meta property="og:type" content="website" />

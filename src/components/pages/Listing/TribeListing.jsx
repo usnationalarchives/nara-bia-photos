@@ -132,22 +132,31 @@ const TribeListing = ({ ...props }) => {
   return (
     <Fragment>
       <Helmet>
-        <title>{`Photograph records featuring ${tribalNationName} - Bureau Of Indian Affairs Photographs Finding Aid`}</title>
-        <meta name="description" content={description}></meta>
+        <title>{`${tribalNationName} detail page - Bureau Of Indian Affairs Photographs Finding Aid`}</title>
+        <meta
+          name="description"
+          content={`See records from the NARA holdings associated with ${tribalNationName}`}
+        ></meta>
         <meta name="" content="" />
         <meta
           name="twitter:title"
-          content={`Photograph records featuring ${tribalNationName} - Bureau Of Indian Affairs Photographs Finding Aid`}
+          content={`${tribalNationName} detail page - Bureau Of Indian Affairs Photographs Finding Aid`}
         />
         <meta name="twitter:site" content={window.location} />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:description" content={description} />
+        <meta
+          name="twitter:description"
+          content={`See records from the NARA holdings associated with ${tribalNationName}`}
+        />
         <meta name="twitter:image" content={`${process.env.PUBLIC_URL}/og-image.png`} />
         <meta
           property="og:title"
-          content={`Photograph records featuring ${tribalNationName} - Bureau Of Indian Affairs Photographs Finding Aid`}
+          content={`${tribalNationName} detail page - Bureau Of Indian Affairs Photographs Finding Aid`}
         />
-        <meta name="og:description" content={description} />
+        <meta
+          name="og:description"
+          content={`See records from the NARA holdings associated with ${tribalNationName}`}
+        />
         <meta property="og:site_name" content="Bureau of Indian Affairs Photography Finding Aid" />
         <meta property="og:url" content={window.location} />
         <meta property="og:type" content="article" />

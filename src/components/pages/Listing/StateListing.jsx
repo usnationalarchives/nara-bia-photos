@@ -109,22 +109,22 @@ const StateListing = ({ ...props }) => {
   return (
     <Fragment>
       <Helmet>
-        <title>{`Photograph records from ${stateName} - Bureau Of Indian Affairs Photographs Finding Aid`}</title>
-        <meta name="description" content={content.state.intro.replace('${STATE}', stateName)}></meta>
+        <title>{`${stateName} detail page - Bureau Of Indian Affairs Photographs Finding Aid`}</title>
+        <meta name="description" content={`See records from the NARA holdings from ${stateName}.`}></meta>
         <meta name="" content="" />
         <meta
           name="twitter:title"
-          content={`Photograph records from ${stateName} - Bureau Of Indian Affairs Photographs Finding Aid`}
+          content={`${stateName} detail page - Bureau Of Indian Affairs Photographs Finding Aid`}
         />
         <meta name="twitter:site" content={window.location} />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:description" content={content.state.intro.replace('${STATE}', stateName)} />
+        <meta name="twitter:description" content={`See records from the NARA holdings from ${stateName}.`} />
         <meta name="twitter:image" content={`${process.env.PUBLIC_URL}/og-image.png`} />
         <meta
           property="og:title"
-          content={`Photograph records from ${stateName} - Bureau Of Indian Affairs Photographs Finding Aid`}
+          content={`${stateName} detail page - Bureau Of Indian Affairs Photographs Finding Aid`}
         />
-        <meta name="og:description" content={content.state.intro.replace('${STATE}', stateName)} />
+        <meta name="og:description" content={`See records from the NARA holdings from ${stateName}.`} />
         <meta property="og:site_name" content="Bureau of Indian Affairs Photography Finding Aid" />
         <meta property="og:url" content={window.location} />
         <meta property="og:type" content="website" />

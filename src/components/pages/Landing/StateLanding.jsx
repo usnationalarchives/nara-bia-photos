@@ -302,20 +302,20 @@ const StateLanding = () => {
       <Fragment>
         <Helmet>
           <title>{`${content.states.title} - Bureau Of Indian Affairs Photographs Finding Aid`}</title>
-          <meta name="description" content={content.states.intro}></meta>
+          <meta name="description" content={'Explore records from the Bureau of Indian Affairs by state.'}></meta>
           <meta
             name="twitter:title"
             content={`${content.states.title} - Bureau Of Indian Affairs Photographs Finding Aid`}
           />
           <meta name="twitter:site" content={window.location} />
           <meta name="twitter:card" content="summary" />
-          <meta name="twitter:description" content={content.states.intro} />
+          <meta name="twitter:description" content={'Explore records from the Bureau of Indian Affairs by state.'} />
           <meta name="twitter:image" content={`${process.env.PUBLIC_URL}/og-image.png`} />
           <meta
             property="og:title"
             content={`${content.states.title} - Bureau Of Indian Affairs Photographs Finding Aid`}
           />
-          <meta name="og:description" content={content.states.intro} />
+          <meta name="og:description" content={'Explore records from the Bureau of Indian Affairs by state.'} />
           <meta property="og:site_name" content="Bureau of Indian Affairs Photography Finding Aid" />
           <meta property="og:url" content={window.location} />
           <meta property="og:type" content="website" />
