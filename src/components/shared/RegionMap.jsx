@@ -131,7 +131,9 @@ const MapChart = ({}) => {
                   const hasResults = !!state && statesWithResults.map(s => s.key).includes(state.name);
                   return (
                     <Geography
-                      aria-label={!!state ? state.name : ''}
+                      aria-label={
+                        !!state ? `${state.name}, ${getNumberOfStateResults(statesWithResults, state)} records` : ''
+                      }
                       style={{
                         default: {
                           fill: fill,
