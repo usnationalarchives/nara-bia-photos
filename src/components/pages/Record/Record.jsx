@@ -264,6 +264,7 @@ const Record = ({ ...props }) => {
                   <Table.ValueStyles>
                     <ExternalLink href={`${externalUrls.catalogRecordDetail}/${record.naId}`}>
                       {record.naId}
+                      <span className="screenreader">. view this record at catalog.archives.gov</span>
                     </ExternalLink>
                   </Table.ValueStyles>
                 </Table.RowStyles>
@@ -310,7 +311,7 @@ const Record = ({ ...props }) => {
                   style={{ flex: '1 0 auto' }}
                   href={`https://catalog.archives.gov/search?q=*:*&f.ancestorNaIds=${record.parentSeriesNaId}&sort=naIdSort%20asc&f.materialsType=photographsandgraphics`}
                 >
-                  View All in the Catalog
+                  View All in the Catalog <span className="screenreader">by visiting catalog.archives.gov</span>
                 </ExternalLink>
               </SeriesHeader>
               <Results singleRow data={sampleSize(thumbnailResults, 3)} fidelity={250} />
