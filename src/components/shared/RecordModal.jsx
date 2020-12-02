@@ -139,7 +139,7 @@ const RecordModal = ({ activeIndex, items, open, setOpen, setImageIndex }) => {
     >
       {items.length > 0 && !!record && (
         <Layout.Padding>
-          <Layout.Wrapper medium>
+          <Layout.Wrapper medium tabIndex="0">
             <Text.H3 style={{ color: '#fff' }}>{record.title}</Text.H3>
             <MetaWrapper>
               {tribalNation && (

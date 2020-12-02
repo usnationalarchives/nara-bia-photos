@@ -81,7 +81,7 @@ const NotableNativeAmericanModal = ({ open, setOpen }) => {
       center
     >
       <Layout.Padding>
-        <Layout.Wrapper medium>
+        <Layout.Wrapper medium tabIndex="0">
           <Text.H3 style={{ color: '#fff' }}>{'Explore Photographs of Famous Native Americans'}</Text.H3>
           {results.length > 0 && <ResultsStyles results={results} data={results} fidelity={fidelity} />}
         </Layout.Wrapper>
