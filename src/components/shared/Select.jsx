@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 
 const SelectWrapper = styled.div`
   background-color: #fff;
-  border: solid 1px ${props => props.theme.colors.mediumGrey};
   border-radius: 23px;
   display: inline-block;
   position: relative;
@@ -44,7 +43,8 @@ const SelectWrapper = styled.div`
 const SelectMenu = styled.select`
   appearance: none;
   background-color: transparent;
-  border: none;
+  border: solid 1px ${props => props.theme.colors.mediumGrey};
+  border-radius: 23px;
   font-size: 0.75rem;
   padding: 14px 40px 14px 22px;
   position: relative;
@@ -54,6 +54,12 @@ const SelectMenu = styled.select`
   z-index: 2;
   width: 100%;
 
+  ${props =>
+    props.transparent &&
+    css`
+      background-color: transparent;
+    `}
+
   option {
     color: ${props => props.theme.colors.black};
     font-size: 1rem;
@@ -62,6 +68,13 @@ const SelectMenu = styled.select`
 
   &:focus {
     outline: none;
+    border: solid 1px ${props => props.theme.colors.blue};
+
+    ${props =>
+      props.transparent &&
+      css`
+        border-color: #000;
+      `}
   }
 
   ${props =>
