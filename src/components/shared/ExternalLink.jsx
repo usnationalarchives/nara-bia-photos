@@ -18,7 +18,7 @@ const LinkStyled = styled.a`
 
 const ExternalLink = ({ href, children }) => {
   return (
-    <LinkStyled href={href}>
+    <LinkStyled href={href} target="_blank">
       {children}
       <ExternalIcon style={{ marginLeft: '12px' }} width={15} fill="currentColor" />
     </LinkStyled>
