@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Popover, { ArrowContainer } from 'react-tiny-popover';
 
+import * as frontline from '#styles/frontline';
 // components
 import * as Text from '#components/shared/Text';
 import { ReactComponent as QuestionIcon } from '#assets/icons/question.svg';
@@ -29,6 +30,13 @@ const StyledButton = styled.button`
   [data-whatinput='mouse'] & {
     outline: 0;
   }
+
+  ${frontline.fl_static(css`
+    color: ${props => props.theme.colors.white};
+  `)}
+  ${frontline.fl_attention(css`
+    color: ${props => props.theme.colors.yellow};
+  `)}
 `;
 
 const Wrapper = styled.span`
@@ -36,7 +44,7 @@ const Wrapper = styled.span`
 `;
 
 const Question = styled(QuestionIcon)`
-  fill: ${props => props.theme.colors.white};
+  fill: currentColor;
   height: 14px;
   width: 14px;
 `;
