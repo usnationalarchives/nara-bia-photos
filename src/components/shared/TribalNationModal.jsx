@@ -41,23 +41,32 @@ const TopicChartWrapper = styled.div`
 `;
 
 const TopicChart = styled.ul`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  margin-top: 3rem;
-  min-width: 900px;
+  margin-top: 1.5rem;
+
+  @media all and ${props => props.theme.breakpoints.medium} {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-top: 3rem;
+    min-width: 900px;
+  }
 `;
 
 const TopicChartItem = styled.li`
   /* background-color: ${props => props.color}; */
   align-items: flex-start;
   display: flex;
+  padding: 5px 0;
   flex-direction: column;
   flex: 0 1 ${props => props.percentage}%;
-  height: 100px;
   overflow-x: hidden;
   position: relative;
   justify-content: center;
+
+  @media all and ${props => props.theme.breakpoints.medium} {
+    height: 100px;
+    padding: 0;
+  }
 
   &:before {
     background-color: #fff;
@@ -70,36 +79,93 @@ const TopicChartItem = styled.li`
   }
 
   button {
-    background-color: ${props => props.color};
-    color: ${props => props => tinycolor.mostReadable(props.color, ['#000', '#fff', { level: 'AA', size: 'large' }])};
-    transition: background-color 0.3s ease;
+    color: #000;
     width: 100%;
 
     ${frontline.fl_static(css`
-      background-color: ${props => props.color};
+      background: none;
+      color: #000;
     `)}
     ${frontline.fl_attention(css`
-      background-color: ${props => tinycolor(props.color).darken(15).toString()};
+      text-decoration: underline;
     `)}
+
+    @media all and ${props => props.theme.breakpoints.medium} {
+      color: ${props => props => tinycolor.mostReadable(props.color, ['#000', '#fff', { level: 'AA', size: 'large' }])};
+      background-color: ${props => props.color};
+      transition: background-color 0.3s ease;
+
+      ${frontline.fl_static(css`
+        background-color: ${props => props.color};
+      `)}
+      ${frontline.fl_attention(css`
+        background-color: ${props => tinycolor(props.color).darken(15).toString()};
+      `)}
+    }
   }
 
   span {
     display: block;
     white-space: nowrap;
-    ${props =>
-      props.percentage <= 10 &&
-      css`
-        opacity: 0.3;
-      `}
+    @media all and ${props => props.theme.breakpoints.medium} {
+      ${props =>
+        props.percentage <= 10 &&
+        css`
+          opacity: 0.3;
+        `}
+    }
   }
 
   span:first-child {
+    float: left;
     font-size: 14px;
     font-weight: bold;
+    line-height: 22px;
+
+    @media all and ${props => props.theme.breakpoints.medium} {
+      line-height: 1.2;
+      float: none;
+    }
   }
   span:last-child {
+    float: right;
     font-size: 22px;
     font-weight: normal;
+
+    @media all and ${props => props.theme.breakpoints.medium} {
+      float: none;
+    }
+  }
+`;
+
+const ChartItemButton = styled.button`
+  ${frontline.fl_clearfix}
+  border: none;
+  outline: none;
+  text-align: left;
+
+  @media all and ${props => props.theme.breakpoints.medium} {
+    padding-left: 15px;
+    height: 100%;
+  }
+`;
+
+const ChartItemBar = styled.div`
+  background-color: #ddd;
+  display: block;
+  height: 20px;
+  width: 100%;
+
+  @media all and ${props => props.theme.breakpoints.medium} {
+    display: none;
+  }
+
+  &:before {
+    background-color: ${props => props.color};
+    content: '';
+    display: block;
+    height: 100%;
+    width: ${props => props.width}%;
   }
 `;
 
@@ -132,6 +198,25 @@ const ButtonStyled = styled.button`
   ${frontline.fl_static(css`
     text-decoration: underline;
   `)}
+`;
+
+const ModalFooter = styled.div`
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  bottom: 0;
+  margin-left: -20px;
+  padding: 10px;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+
+  @media all and ${props => props.theme.breakpoints.medium} {
+    background: none;
+    box-shadow: none;
+    margin-top: 3rem;
+    margin-left: 0;
+    position: static;
+  }
 `;
 
 const TribalNationModal = ({ open, setOpen }) => {
@@ -187,9 +272,10 @@ const TribalNationModal = ({ open, setOpen }) => {
 
   // use the unique topic values, construct a new object array
   // containing the topic data and it's count
-  let calculatedTopics = uniqBy(topicsArray, t => t.name).map(topic => {
+  let uniqueTopics = uniqBy(topicsArray, t => t.name);
+  let calculatedTopics = uniqueTopics.map(topic => {
     topic.count = topicCount[topic.name];
-    topic.percentage = (topic.count / topicsArray.length) * 100;
+    topic.totalPercentage = (topic.count / uniqueTopics.length) * 100;
     return topic;
   });
   // order the topic by their count
@@ -200,6 +286,10 @@ const TribalNationModal = ({ open, setOpen }) => {
     },
     'desc'
   );
+  orderedTopics = orderedTopics.map(topic => {
+    topic.maxTopicPercentage = (topic.count / orderedTopics[0].count) * 100;
+    return topic;
+  });
   // Build a color array based on the number of topics
   const colorScale = chroma
     .scale([colors.blue, '#BBCAE4', '9BD4CF', '#376462'])
@@ -247,7 +337,7 @@ const TribalNationModal = ({ open, setOpen }) => {
         }}
         center
       >
-        <Layout.Padding style={{ color: '#000', marginTop: '5rem' }}>
+        <Layout.Padding style={{ color: '#000', marginTop: '2rem' }}>
           <Layout.Wrapper large tabIndex="0">
             <Text.H4 style={{ color: '#000', textTransform: 'uppercase' }}>{'Featured Tribal Nation'} Testing</Text.H4>
             {!!activeTribalNation && (
@@ -304,19 +394,12 @@ const TribalNationModal = ({ open, setOpen }) => {
                     return (
                       <TopicChartItem
                         key={topic.name}
-                        percentage={topic.percentage}
+                        percentage={topic.totalPercentage}
                         color={topic.color}
                         // data-for="tribalNationModalTooltip"
-                        data-tip={topic.percentage <= 10 ? `${topic.name} ${topic.count}` : null}
+                        data-tip={topic.totalPercentage <= 10 ? `${topic.name} ${topic.count}` : null}
                       >
-                        <button
-                          style={{
-                            border: 'none',
-                            outline: 'none',
-                            paddingLeft: '15px',
-                            height: '100%',
-                            textAlign: 'left',
-                          }}
+                        <ChartItemButton
                           onClick={() => {
                             setOpen(false);
                             history.push(`/tribal-nations/${tribalNation.slug}?${joinParams('topics', [topic.name])}`);
@@ -324,13 +407,14 @@ const TribalNationModal = ({ open, setOpen }) => {
                         >
                           <span>{topic.name}</span>
                           <span>{topic.count}</span>
-                        </button>
+                        </ChartItemButton>
+                        <ChartItemBar color={topic.color} width={topic.maxTopicPercentage}></ChartItemBar>
                       </TopicChartItem>
                     );
                   })}
                 </TopicChart>
               </TopicChartWrapper>
-              <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+              <ModalFooter>
                 <Button
                   scheme="green"
                   outline={false}
@@ -341,7 +425,7 @@ const TribalNationModal = ({ open, setOpen }) => {
                 >
                   View all {results.length} photos
                 </Button>
-              </div>
+              </ModalFooter>
             </Layout.Wrapper>
           </Layout.Padding>
         )}
