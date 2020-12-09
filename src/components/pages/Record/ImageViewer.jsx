@@ -146,6 +146,9 @@ const ImageViewer = ({ record, objects }) => {
       // Custom button selectors
       zoomInButton: 'osd-zoom_in',
       zoomOutButton: 'osd-zoom_out',
+      gestureSettingsMouse: {
+        scrollToZoom: false,
+      },
       homeButton: 'osd-home',
       fullPageButton: 'osd-full_page',
       // referenceStripElement: 'referenceStripElement', // this is broken. see: https://github.com/openseadragon/openseadragon/issues/333

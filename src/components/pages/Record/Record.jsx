@@ -227,11 +227,7 @@ const Record = ({ ...props }) => {
             </MetaWrapper>
           </Layout.Wrapper>
         </Layout.Padding>
-        <Layout.Padding style={{ marginTop: '2rem', marginBottom: '3rem' }}>
-          <Layout.Wrapper>
-            <ImageViewer record={record} objects={objects} />
-          </Layout.Wrapper>
-        </Layout.Padding>
+        <ImageViewer record={record} objects={objects} />
         <Layout.Padding style={{ marginTop: '2rem', marginBottom: '3rem' }}>
           <Layout.Wrapper>
             <Tabs>
