@@ -111,7 +111,7 @@ const Billboard = ({ alignment, title, imageUrl, imageAltText, intro, introIcon,
         <Layout.Wrapper>
           <LandingBillboardLayout alignment={alignment}>
             <div className="layout-col--primary">
-              <div className="layout-content">
+              <div className="layout-content" tabIndex="0">
                 {!!superTitle && <SuperTitle>{superTitle}</SuperTitle>}
                 <Title>{title}</Title>
                 <IntroWrapper>

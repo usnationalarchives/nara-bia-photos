@@ -55,7 +55,9 @@ const About = () => {
       ))}
       <Layout.Padding style={{ marginTop: '3rem', marginBottom: '4rem' }}>
         <Layout.Wrapper medium>
-          <Text.Rich>{ReactHtmlParser(aboutText, {})}</Text.Rich>
+          <Text.Rich role="region" aria-label="Frequently Asked Questions">
+            {ReactHtmlParser(aboutText, {})}
+          </Text.Rich>
         </Layout.Wrapper>
       </Layout.Padding>
     </>

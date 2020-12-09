@@ -71,7 +71,7 @@ const App = () => {
         <Fragment>
           <Header />
 
-          <div role="main" id="main">
+          <div role="main" id="main" aria-label="Main">
             <Suspense fallback={<PageLoader />}>
               <Switch>
                 <Route path="/404" component={Error404} />
