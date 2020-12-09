@@ -100,6 +100,10 @@ const TribalNationMap = ({ activeStates }) => {
 
   return (
     <TribalNationMapWrapper style={{ width: '100%' }}>
+      <p tabIndex="0" class="screenreader">
+        Maps of states containing photographs from this Tribal Nation. Select a state to see photographs specific to
+        that state.
+      </p>
       <ComposableMap projection="geoAlbersUsa" width={900} height={600}>
         <Geographies geography={geoUrl}>
           {({ geographies }) => {
@@ -116,6 +120,9 @@ const TribalNationMap = ({ activeStates }) => {
                   const stroke = tinycolor('#253B5D').darken(10).toString();
                   return (
                     <Geography
+                      aria-label={!!state ? `${state.name}` : ''}
+                      aria-hidden={active ? false : true}
+                      tabIndex={active ? '0' : ''}
                       className={active ? 'active' : ''}
                       style={{
                         default: {

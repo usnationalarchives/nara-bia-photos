@@ -190,15 +190,29 @@ const TribeBillboard = ({
                   disableReposition
                   onClickOutside={() => setNavOpen(false)}
                   contentLocation={{ top: 60, left: 0 }}
-                  content={<PopoverNav items={items} slugPrefix={slugPrefix} />}
+                  content={
+                    <PopoverNav
+                      items={items}
+                      slugPrefix={slugPrefix}
+                      ariaText={`There ${items.length !== 1 ? 'are' : 'is'} ${
+                        items.length
+                      } other Tribal Nations to Explore`}
+                    />
+                  }
                   contentDestination={popoverEl.current}
                   containerStyle={{ overflow: 'visible', zIndex: '100' }}
                 >
                   <div style={{ position: 'relative' }}>
                     <Title as="h1">
-                      <TitleButton onClick={() => setNavOpen(!navOpen)}>{title}</TitleButton>
+                      <TitleButton
+                        aria-pressed={navOpen}
+                        onClick={() => setNavOpen(!navOpen)}
+                        aria-label={`${title}. Select a new state`}
+                      >
+                        {title}
+                      </TitleButton>
                     </Title>
-                    <div ref={popoverEl}></div>
+                    <div ref={popoverEl} aria-live="polite"></div>
                   </div>
                 </Popover>
                 <IntroWrapper>

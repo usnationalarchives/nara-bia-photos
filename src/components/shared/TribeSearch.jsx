@@ -69,7 +69,15 @@ const TribeSearch = ({ tribalNations }) => {
           disableReposition
           onClickOutside={resetSearch}
           contentLocation={{ top: 50, left: 0 }}
-          content={<PopoverNav items={results} slugPrefix="tribal-nations" />}
+          content={
+            <PopoverNav
+              items={results}
+              slugPrefix="tribal-nations"
+              ariaText={`There ${results.length !== 1 ? 'are' : 'is'} ${
+                results.length
+              } suggested search terms based on your term.`}
+            />
+          }
           contentDestination={popoverEl.current}
           containerStyle={{ overflow: 'visible', zIndex: 100 }}
         >

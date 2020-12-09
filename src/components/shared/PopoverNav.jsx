@@ -40,12 +40,10 @@ const ItemLink = styled(Link)`
   `)}
 `;
 
-const PopoverNav = ({ slugPrefix, items, ...props }) => {
+const PopoverNav = ({ slugPrefix, items, ariaText, ...props }) => {
   return (
     <Root {...props}>
-      <p className="screenreader">
-        There {items.length !== 1 ? 'are' : 'is'} {items.length} suggested search terms based on your term.
-      </p>
+      <p className="screenreader">{ariaText}</p>
       <Items>
         {items.map((item, index) => (
           <Item key={item.slug}>
