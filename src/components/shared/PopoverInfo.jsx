@@ -35,7 +35,7 @@ const StyledButton = styled.button`
     color: ${props => props.theme.colors.white};
   `)}
   ${frontline.fl_attention(css`
-    color: ${props => props.theme.colors.yellow};
+    color: ${props => props.theme.colors.black};
   `)}
 `;
 
