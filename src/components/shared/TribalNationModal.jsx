@@ -38,6 +38,11 @@ import { colors } from '#styles/theme';
 const TopicChartWrapper = styled.div`
   width: 100%;
   overflow-y: scroll;
+  margin-bottom: 100px;
+
+  @media all and ${props => props.theme.breakpoints.medium} {
+    margin-bottom: 0;
+  }
 `;
 
 const TopicChart = styled.ul`
@@ -339,7 +344,7 @@ const TribalNationModal = ({ open, setOpen }) => {
       >
         <Layout.Padding style={{ color: '#000', marginTop: '2rem' }}>
           <Layout.Wrapper large tabIndex="0">
-            <Text.H4 style={{ color: '#000', textTransform: 'uppercase' }}>{'Featured Tribal Nation'} Testing</Text.H4>
+            <Text.H4 style={{ color: '#000', textTransform: 'uppercase' }}>{'Featured Tribal Nation'}</Text.H4>
             {!!activeTribalNation && (
               <ContentLayout>
                 <div>
@@ -359,9 +364,8 @@ const TribalNationModal = ({ open, setOpen }) => {
                         history.push(`/tribal-nations/${tribalNation.slug}`);
                       }}
                     >
-                      Tribal Nations page
+                      Tribal Nations page.
                     </ButtonStyled>
-                    .
                   </p>
                 </div>
                 <div>

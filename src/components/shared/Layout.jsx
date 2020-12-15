@@ -67,6 +67,10 @@ export const Wrapper = styled.div`
   @media print {
     max-width: none !important;
   }
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const Center = styled.div`

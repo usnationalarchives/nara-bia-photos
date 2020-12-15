@@ -54,6 +54,10 @@ const SelectMenu = styled.select`
   z-index: 2;
   width: 100%;
 
+  &:focus {
+    font-size: 1rem;
+  }
+
   ${props =>
     props.transparent &&
     css`
