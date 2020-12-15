@@ -153,7 +153,7 @@ export const regions = [
     name: 'Northwest Region',
     slug: 'northwest',
     mapColors: {
-      region: '#F8BFBA',
+      region: '#C3D4AB',
       listing: '#203B60',
     },
     mapLabelCooridnates: [-120.56200520337062, 45.93465032631577],
@@ -171,7 +171,7 @@ export const regions = [
     name: 'Southwest Region',
     slug: 'southwest',
     mapColors: {
-      region: '#9FD7C0',
+      region: '#D6C7EF',
       listing: '#244168',
     },
     mapLabelCooridnates: [-107.54795634775779, 37.597256788375054],
@@ -180,7 +180,7 @@ export const regions = [
     name: 'Rocky Mountain Region',
     slug: 'rocky-mountain',
     mapColors: {
-      region: '#C3D4AB',
+      region: '#F8BFBA',
       listing: '#2E5387',
     },
     mapLabelCooridnates: [-109.63302925840122, 45.6524662795163],
@@ -207,7 +207,7 @@ export const regions = [
     name: 'Southern Plains Region & Eastern Oklahoma Region',
     slug: 'southern-plains-eastern-oklahoma',
     mapColors: {
-      region: '#ABD2F2',
+      region: '#F7C2A0',
       listing: '#284876',
     },
     mapLabelCooridnates: [-100.79322972354891, 35.58832303946829],
@@ -225,7 +225,7 @@ export const regions = [
     name: 'Eastern Region',
     slug: 'eastern',
     mapColors: {
-      region: '#D6C7EF',
+      region: '#9FD7C0',
       listing: '#2E5386',
     },
     mapLabelCooridnates: [-85.30200559812172, 37.53502330485163],
@@ -234,7 +234,7 @@ export const regions = [
     name: 'Pacific Region',
     slug: 'pacific',
     mapColors: {
-      region: '#F7C2A0',
+      region: '#ABD2F2',
       listing: '#25436C',
     },
     mapLabelCooridnates: [-121.57292512079247, 37.18397337102898],

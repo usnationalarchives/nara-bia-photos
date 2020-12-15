@@ -331,13 +331,20 @@ const StateLanding = () => {
               <span>
                 <Select style={{ width: '250px' }} onChange={handleSelect} aria-label="Select a state">
                   <option value="">{content.states.selectPrompt}</option>
-                  {states
-                    .filter(state => includes(statesWithResults, state.name))
-                    .map(state => (
-                      <option value={state.slug} key={state.slug}>
-                        {state.name}
-                      </option>
-                    ))}
+                  {regions.map(region => {
+                    const regionStates = getStatesByRegion(states, region.slug);
+                    return (
+                      <optgroup label={region.name}>
+                        {regionStates.map(state => {
+                          return (
+                            <option value={state.slug} key={state.slug}>
+                              {state.name}
+                            </option>
+                          );
+                        })}
+                      </optgroup>
+                    );
+                  })}
                 </Select>
               </span>
             </MapSelect>

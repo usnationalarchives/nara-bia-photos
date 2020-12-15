@@ -17,6 +17,34 @@ const RegionMapWrapper = styled.div`
   .rsm-geography:hover {
     cursor: pointer;
   }
+
+  /* .RegionMap-pacific {
+    transform: translate(-2px, 2px);
+  }
+  .RegionMap-southern-plains-eastern-oklahoma {
+    transform: translate(0, 4px);
+  }
+  .RegionMap-southwest {
+    transform: translate(-4px, 0);
+  }
+  .RegionMap-western {
+    transform: translate(-8px, 0);
+  }
+  .RegionMap-pacific {
+    transform: translate(-12px, 0);
+  }
+  .RegionMap-great-plains {
+    transform: translate(0, -4px);
+  }
+  .RegionMap-rocky-mountain {
+    transform: translate(-4px, -8px);
+  }
+  .RegionMap-northwest {
+    transform: translate(-12px, -4px);
+  }
+  .RegionMap-eastern {
+    transform: translate(6px, 5px);
+  } */
 `;
 
 const RegionMarker = ({ region, fill }) => {
@@ -134,6 +162,7 @@ const MapChart = ({}) => {
                       aria-label={
                         !!state ? `${state.name}, ${getNumberOfStateResults(statesWithResults, state)} records` : ''
                       }
+                      className={!!state ? `RegionMap-${state.region}` : ''}
                       style={{
                         default: {
                           fill: fill,
