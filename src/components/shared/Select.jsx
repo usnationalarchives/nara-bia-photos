@@ -45,7 +45,7 @@ const SelectMenu = styled.select`
   background-color: transparent;
   border: solid 1px ${props => props.theme.colors.mediumGrey};
   border-radius: 23px;
-  font-size: 0.75rem;
+  font-size: 1rem;
   padding: 14px 40px 14px 22px;
   position: relative;
   text-decoration: none;
@@ -54,8 +54,8 @@ const SelectMenu = styled.select`
   z-index: 2;
   width: 100%;
 
-  &:focus {
-    font-size: 1rem;
+  @media all and ${props => props.theme.breakpoints.medium} {
+    font-size: 0.75rem;
   }
 
   ${props =>

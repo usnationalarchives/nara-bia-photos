@@ -53,6 +53,19 @@ const BaseStyles = createGlobalStyle`
     ${frontline.fl_visuallyHidden}
   }
 
+  a,
+  area,
+  button,
+  input,
+  label,
+  select,
+  summary,
+  textarea,
+  [tabindex] {
+    -ms-touch-action: manipulation;// IE 10
+    touch-action: manipulation;// IE 11+
+  }
+
   .tip {
       z-index: 1001 !important;
   }
