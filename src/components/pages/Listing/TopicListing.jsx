@@ -70,16 +70,16 @@ const TopicListing = ({ ...props }) => {
     document.querySelector('html').scrollTop = 0;
   }, [page]);
 
+  useEffect(() => {
+    setFirstRender(false);
+  }, []);
+
   // reset the page to 1 when the query and filters change
   useEffect(() => {
     if (!firstRender) {
       setPage(1);
     }
-  }, [topics, tribes]);
-
-  useEffect(() => {
-    setFirstRender(false);
-  }, []);
+  }, [states, tribes]);
 
   const filters = [
     {
