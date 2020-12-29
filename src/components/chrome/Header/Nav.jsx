@@ -91,7 +91,7 @@ const Root = styled.div`
 const Item = props => {
   return (
     <MenuItem>
-      <Link to={props.to} exact>
+      <Link to={props.to} style={{ display: 'block' }} exact>
         {props.children}
       </Link>
     </MenuItem>
