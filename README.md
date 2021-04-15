@@ -1,4 +1,4 @@
-# National Archives Bureau of Indian Affairs Photography Finding Aid
+# National Archives Bureau of Indian Affairs Photographs Finding Aid
 
 ## Outline
 
